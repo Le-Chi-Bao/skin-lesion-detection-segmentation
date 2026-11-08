@@ -1,0 +1,8 @@
+extends: base.yaml
+model_name: unet
+input_mode: roi
+image_size: [512, 512]
+batch_size: 2
+paths:
+  checkpoint_dir: checkpoints/unet_roi_512
+  output_dir: outputs/unet_roi_512

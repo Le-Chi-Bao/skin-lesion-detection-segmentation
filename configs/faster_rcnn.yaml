@@ -1,0 +1,8 @@
+extends: base.yaml
+model_name: faster_rcnn
+input_mode: full_image
+image_size: [512, 512]
+batch_size: 2
+paths:
+  checkpoint_dir: checkpoints/faster_rcnn
+  output_dir: outputs/faster_rcnn

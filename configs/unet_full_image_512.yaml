@@ -1,0 +1,8 @@
+extends: base.yaml
+model_name: unet
+input_mode: full_image
+image_size: [512, 512]
+batch_size: 2
+paths:
+  checkpoint_dir: checkpoints/unet_full_image_512
+  output_dir: outputs/unet_full_image_512

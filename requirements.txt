@@ -1,0 +1,3 @@
+# Install the project and test/lint tools from the workspace root.
+# Install a matched torch/torchvision pair for your CPU/CUDA platform first.
+-e .[dev]

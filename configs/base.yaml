@@ -1,0 +1,18 @@
+# All relative paths are resolved against the project root, not the current cwd.
+project_name: Skin Lesion Detection and Segmentation
+paths:
+  dataset_root: data/raw/ISIC2018
+  images_dir: data/raw/ISIC2018/ISIC2018_Task1-2_Training_Input
+  masks_dir: data/raw/ISIC2018/ISIC2018_Task1_Training_GroundTruth
+  splits_dir: data/splits
+  checkpoint_dir: checkpoints
+  output_dir: outputs
+image_size: [256, 256]  # [height, width]
+roi_padding: 0.10       # fraction of box width/height on each side
+batch_size: 4
+seed: 42
+device: auto           # auto | cpu | cuda
+model_name: two_stage
+input_mode: roi        # roi | full_image
+detector_checkpoint: null
+segmenter_checkpoint: null
