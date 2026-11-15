@@ -1,0 +1,43 @@
+{
+  "checkpoint": {
+    "path": "E:\\Các môn học năm 3\\Thị giác máy tính\\course work\\checkpoints\\segformer-gate2\\real_only\\best.pt",
+    "bytes": 99002337,
+    "sha256": "d5a92fa31296a4f7c32e87cdf84683119d07dc64410253103bfa285aacb93f87",
+    "url": "https://huggingface.co/mokshhere/skin-lesion-segformer-gate2/resolve/19ca826598cb59a6ac5b18b6a5636ba9298851b5/real_only/best.pt",
+    "repo": "mokshhere/skin-lesion-segformer-gate2",
+    "revision": "19ca826598cb59a6ac5b18b6a5636ba9298851b5",
+    "upstream_lfs_sha256": "d5a92fa31296a4f7c32e87cdf84683119d07dc64410253103bfa285aacb93f87",
+    "tree_url": "https://huggingface.co/api/models/mokshhere/skin-lesion-segformer-gate2/tree/19ca826598cb59a6ac5b18b6a5636ba9298851b5/real_only"
+  },
+  "sample": {
+    "path": "E:\\Các môn học năm 3\\Thị giác máy tính\\course work\\data\\samples\\ISIC_0012169.jpg",
+    "bytes": 576614,
+    "sha256": "45ec44071e288dfe84b889189968ea3a343933d05451219ca4e345c54f1a1653",
+    "url": "https://isic-archive.s3.us-east-1.amazonaws.com/images/ISIC_0012169.jpg",
+    "api_advertised_bytes": 573464,
+    "s3_content_length": 576614,
+    "s3_etag": "798570f65d5251c8f2e2a5fb3274be60",
+    "downloaded_md5": "798570f65d5251c8f2e2a5fb3274be60",
+    "s3_last_modified": "Thu, 05 Jun 2025 17:56:51 GMT",
+    "size_discrepancy": true,
+    "integrity_note": "API size differs from S3 object size; actual length and MD5 verified against S3 HEAD",
+    "image_format": "JPEG",
+    "image_mode": "RGB",
+    "width": 3008,
+    "height": 2000,
+    "isic_id": "ISIC_0012169",
+    "metadata_url": "https://api.isic-archive.com/api/v2/images/ISIC_0012169/",
+    "copyright_license": "CC-0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attribution": "Anonymous",
+    "credit": "ISIC_0012169 - Anonymous, via ISIC Archive, CC0 1.0",
+    "upstream_test_list_url": "https://raw.githubusercontent.com/ishaannk/skin-lesion-seg/d3d3195f13b02366cbc1332cbb57d7ca9234b7a7/experiments/segformer_real_s1337/perimage_test_t0.5_native.csv",
+    "upstream_test_row": "0.8325694837123714,0.7131640573863884,0.98231324863496,0.7224406761013857,0.9973505333247166,0.9508309507978724,ISIC_0012169",
+    "split_status": "Listed as test by upstream; official challenge split not independently verified",
+    "intended_use": "Local smoke test only; not model evaluation",
+    "retrieved_at_utc": "2026-11-15T17:23:09.732832+00:00",
+    "metadata_page_url": "https://api.isic-archive.com/images/ISIC_0012169/",
+    "license_visible_on_metadata_page": true,
+    "attribution_visible_on_metadata_page": true
+  }
+}

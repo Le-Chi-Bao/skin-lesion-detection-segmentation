@@ -1,0 +1,7 @@
+{
+  "upstream_revision": "d3d3195f13b02366cbc1332cbb57d7ca9234b7a7",
+  "tree_url": "https://api.github.com/repos/ishaannk/skin-lesion-seg/git/trees/d3d3195f13b02366cbc1332cbb57d7ca9234b7a7?recursive=1",
+  "manifest_or_lockfile_paths": [],
+  "trial_smp_version": "0.5.0",
+  "reason": "Upstream README specifies segmentation-models-pytorch>=0.5; exact training version not pinned."
+}

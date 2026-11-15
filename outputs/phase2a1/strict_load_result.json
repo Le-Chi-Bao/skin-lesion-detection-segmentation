@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "path": "E:\\Các môn học năm 3\\Thị giác máy tính\\course work\\checkpoints\\segformer-gate2\\real_only\\best.pt",
+  "weights_only": true,
+  "map_location": "cpu",
+  "strict": true,
+  "inference_run": false,
+  "smp_version_source": "Trial version 0.5.0; upstream README specifies >=0.5, no manifest or lockfile pins the exact version",
+  "code_revision": "d3d3195f13b02366cbc1332cbb57d7ca9234b7a7",
+  "versions": {
+    "torch": "2.11.0+cu126",
+    "torchvision": "0.26.0+cu126",
+    "segmentation-models-pytorch": "0.5.0",
+    "timm": "1.0.31",
+    "numpy": "2.5.4",
+    "Pillow": "13.0.0"
+  },
+  "sha256": "d5a92fa31296a4f7c32e87cdf84683119d07dc64410253103bfa285aacb93f87",
+  "deserialization_succeeded": true,
+  "checkpoint_keys": [
+    "model",
+    "cfg",
+    "epoch",
+    "val_dice",
+    "which"
+  ],
+  "missing_keys": [],
+  "unexpected_keys": [],
+  "tensor_values_match": true,
+  "state_dict_entries": 348,
+  "total_params": 24722369,
+  "model_device": "cpu",
+  "model": "segformer_mitb2",
+  "encoder": "mit_b2",
+  "encoder_weights": null,
+  "in_channels": 3,
+  "classes": 1,
+  "img_size": 512,
+  "checkpoint_epoch": 21,
+  "checkpoint_which": "raw"
+}
