@@ -1,0 +1,39 @@
+{
+  "gpu_status": "PASS",
+  "cpu_status": "NOT_RUN (CUDA succeeded; no CPU inference needed)",
+  "original_size_wh": [
+    3008,
+    2000
+  ],
+  "mask_size_wh": [
+    3008,
+    2000
+  ],
+  "overlay_size_wh": [
+    3008,
+    2000
+  ],
+  "mask_values": [
+    0,
+    255
+  ],
+  "mask_pixels": 801770,
+  "total_pixels": 6016000,
+  "mask_fraction": 0.13327293882978725,
+  "png_reopen_status": "PASS",
+  "tests_run": 9,
+  "tests_status": "PASS",
+  "versions": {
+    "torch": "2.11.0+cu126",
+    "torchvision": "0.26.0+cu126",
+    "segmentation-models-pytorch": "0.5.0",
+    "timm": "1.0.31",
+    "numpy": "2.5.4",
+    "Pillow": "13.0.0",
+    "opencv-python-headless": "4.13.0.92"
+  },
+  "output_sha256": {
+    "ISIC_0012169_mask.png": "1276e69204efe607b13083589bd416f2b15fb455f7842b9ce3d172889b1a0d4e",
+    "ISIC_0012169_overlay.png": "b4614c12a85e54da742a6c3d0c9b6885c2614a4435034960c3d0c20b688599ac"
+  }
+}
