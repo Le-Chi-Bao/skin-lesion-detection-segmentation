@@ -1,138 +1,42 @@
-# Hỗ trợ phân tích ảnh soi da và chuẩn bị hội chẩn
+# Skin Lesion Detection, Segmentation & Clinical Consultation Support System
 
-Dự án hỗ trợ phân tích ảnh soi da và chuẩn bị hội chẩn. **Gradio hiện vẫn chỉ
-là demo tải và xem ảnh gốc JPG/PNG, chưa tích hợp phân tích tổn thương.**
-Phase 2B bổ sung CLI segmentation độc lập dùng SegFormer MiT-B2. Đây là smoke test
-kỹ thuật, chưa đánh giá độ chính xác; chưa có RAG, cơ sở dữ liệu hoặc báo cáo AI.
+Đồ án tốt nghiệp xây dựng hệ thống hỗ trợ phân tích tổn thương da trên ảnh soi da,
+tra cứu kiến thức y khoa và chuẩn bị hồ sơ hội chẩn. Hệ thống hướng tới hỗ trợ bác sĩ;
+kết quả cần được kiểm tra chuyên môn, không thay thế chẩn đoán hoặc quyết định điều trị.
 
-## Cài đặt trên Windows PowerShell
+## Mục tiêu
 
-Yêu cầu Python 3.12. Mở PowerShell ngay tại thư mục dự án:
+- Hỗ trợ xác định vị trí và ranh giới tổn thương trên ảnh dermoscopy.
+- Tra cứu tài liệu y khoa có nguồn trích dẫn và có thể kiểm tra lại.
+- Kết nối kết quả phân tích ảnh, tài liệu tham khảo và thông tin ca khám.
+- Chuẩn bị báo cáo nháp để bác sĩ rà soát trước hội chẩn.
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-```
+## Bốn giai đoạn dự kiến
 
-Không cần kích hoạt môi trường ảo hoặc thay đổi Execution Policy.
-Gradio tự cài các thư viện phụ thuộc; dự án không xây dựng dịch vụ FastAPI riêng.
-Các lệnh trên chỉ cài phần giao diện. Dependency cho CLI nằm trong
-`requirements-vision.txt`, xem phần Phase 2B bên dưới.
+1. **Computer Vision (CV):** phát hiện và phân đoạn tổn thương da.
+2. **RAG:** truy xuất kiến thức y khoa có trích dẫn.
+3. **Integration:** tích hợp CV, RAG và báo cáo ca lâm sàng.
+4. **Evaluation & Finalization:** đánh giá, hoàn thiện và tổng hợp kết quả đồ án.
 
-## Chạy giao diện
+## Trạng thái hiện tại
 
-```powershell
-.\.venv\Scripts\python.exe app.py
-```
+**Preparing for Phase 1 — Đang chuẩn bị triển khai lại Phase 1.**
 
-Mở http://127.0.0.1:7860. Chọn ảnh JPG/PNG rồi nhấn **Xem ảnh**.
-Vùng **Ảnh gốc** hiển thị ảnh đã tải, không có dự đoán hoặc đánh dấu tổn thương.
-Nếu chưa chọn ảnh, vùng **Thông báo** nhắc chọn ảnh bằng tiếng Việt.
-Ứng dụng chỉ lắng nghe trên localhost và tắt chia sẻ công khai (`share=False`).
-Nhấn `Ctrl+C` trong PowerShell để dừng.
+Repository đã được dọn về nền tảng tài liệu để bắt đầu triển khai mới với kiến trúc
+đơn giản, dễ bảo trì. Chưa triển khai Phase 1 mới; hiện không có mã ứng dụng,
+module CV, RAG hoặc tích hợp hoạt động trong phiên bản baseline này.
+Các triển khai trước được lưu trong lịch sử Git và nhánh backup.
 
-## Phase 2B — CLI segmentation độc lập
+Pipeline crawling và tiền xử lý tài liệu RAG được quản lý ở repository riêng.
+Tài nguyên local được Git bỏ qua, như môi trường ảo, dữ liệu, checkpoint và output
+thử nghiệm cũ, không thuộc baseline và chưa bị xóa.
 
-Tái sử dụng `.venv`, checkpoint và ảnh đã xác minh ở
-[`outputs/phase2a1/report.md`](outputs/phase2a1/report.md). Môi trường hiện tại:
-Python 3.12.5, torch 2.11.0+cu126, torchvision 0.26.0+cu126, SMP 0.5.0,
-timm 1.0.31, NumPy 2.5.4, Pillow 13.0.0 và OpenCV headless 4.13.0.92.
-Phase 2B chỉ cài thêm OpenCV còn thiếu, không cài lại bộ torch/SMP.
+## Tài liệu dự án
 
-**Chạy lại ngay trong môi trường đã chuẩn bị**, không cần tải lại tài nguyên:
+- [Define System — Định nghĩa hệ thống](docs/Define_System.md)
+- [System Design — Thiết kế hệ thống](docs/System_Design.md)
 
-```powershell
-.\.venv\Scripts\python.exe -m teledermoscopy.segment `
-  --image data\samples\ISIC_0012169.jpg `
-  --checkpoint checkpoints\segformer-gate2\real_only\best.pt `
-  --output-dir outputs\phase2b `
-  --device cuda
-```
-
-Mỗi lần nhận một ảnh. `--device auto` chọn CUDA khi khả dụng, nếu không chọn CPU.
-`--device cuda` trả mã lỗi 1 khi CUDA thất bại, **không tự chuyển CPU**. Để thử CPU
-riêng, đổi thành `--device cpu --output-dir outputs\phase2b\cpu`.
-Thiết bị thực tế được in ra terminal và lưu trong JSON.
-
-Pipeline cố định theo upstream: đọc RGB, resize 512×512 bằng `INTER_AREA`, chuẩn hóa
-ImageNet `(pixel/255 - mean)/std`, mean `(0.485, 0.456, 0.406)`, std
-`(0.229, 0.224, 0.225)`. Nạp `SMPWrapper` bọc SegFormer `mit_b2`, 3 kênh vào,
-1 kênh ra, `encoder_weights=None`, `torch.load(weights_only=True, map_location="cpu")`
-và `load_state_dict(strict=True)`. Dùng `eval()` và `inference_mode()` với float32.
-Áp dụng sigmoid, resize **xác suất** về kích thước ảnh gốc bằng `INTER_LINEAR`,
-sau đó threshold cố định **>= 0.5**. Không có tham số chỉnh ngưỡng hoặc hậu xử lý mask.
-
-Đầu ra trong `outputs/phase2b/`:
-
-- `ISIC_0012169_mask.png`: PNG một kênh, chỉ có giá trị 0/255.
-- `ISIC_0012169_overlay.png`: PNG RGB tô đỏ vùng mask, cùng kích thước ảnh gốc.
-- `ISIC_0012169_result.json`: thiết bị, kích thước, tỷ lệ mask, ngưỡng và SHA-256 đầu vào.
-
-CLI đọc lại hai PNG để kiểm tra định dạng, kích thước và mask nhị phân. Mask rỗng
-hoặc phủ kín được ghi nhận và cảnh báo, không thay thế bằng kết quả khác. Chạy lại
-cùng tên ảnh trong cùng output-dir sẽ ghi đè các file kết quả tương ứng.
-
-`SegmentationPredictor` trong `teledermoscopy/vision/segmentation.py` nạp mô hình
-một lần; phương thức `predict(rgb)` nhận mảng RGB uint8 H×W×3 để 2C có thể dùng lại.
-Không phụ thuộc Gradio và không tự tải weights hoặc dữ liệu.
-
-Ảnh `ISIC_0012169` có giấy phép CC-0, ghi công Anonymous qua ISIC Archive;
-metadata và provenance nằm bên cạnh ảnh trong `data/samples/`.
-[Trang metadata gốc](https://api.isic-archive.com/images/ISIC_0012169/).
-Chưa độc lập xác minh split chính thức; **chỉ dùng smoke test, không tính Dice/IoU
-hay kết luận độ chính xác hoặc chẩn đoán**.
-
-Chỉ khi dựng một `.venv` mới trên Windows CUDA 12.6, cài bộ dependency đã ghim:
-
-```powershell
-.\.venv\Scripts\python.exe -m pip install -r requirements-vision.txt
-```
-
-Lệnh cài dependency không tải checkpoint hoặc ảnh mẫu. Các file này giữ local
-trong `checkpoints/` và `data/`, được `.gitignore` bỏ qua.
-
-## Kiểm thử
-
-```powershell
-.\.venv\Scripts\python.exe -m unittest discover -s tests -v
-```
-
-Để chạy toàn bộ kiểm thử cần bộ dependency vision bên trên. Kiểm thử tự sinh ảnh
-hình học tạm thời; kiểm tra luồng xem ảnh, RGB/chuẩn hóa, thứ tự resize xác suất
-trước threshold, quy tắc chọn thiết bị, CLI với ảnh không hợp lệ và checkpoint
-bị thiếu. Kiểm thử lỗi yêu cầu exit code 1 và không sinh output giả; không tải
-weights hoặc chạy mô hình. Lệnh CLI Phase 2B bên trên là smoke test inference thật.
-
-Kiểm tra trực tiếp trên trình duyệt: nhấn **Xem ảnh** khi chưa chọn file để xem
-thông báo; sau đó tải lần lượt một JPG và một PNG bất kỳ không chứa dữ liệu bệnh
-nhân, nhấn **Xem ảnh** và đối chiếu ảnh trong vùng hiển thị với ảnh gốc.
-
-## Cấu trúc hiện tại
-
-```text
-.
-├── app.py
-├── teledermoscopy/
-│   ├── __init__.py
-│   ├── segment.py
-│   └── vision/
-│       ├── __init__.py
-│       └── segmentation.py
-├── tests/
-│   ├── test_app.py
-│   └── test_segmentation.py
-├── docs/
-│   ├── Define_System.md
-│   └── System_Design.md
-├── requirements.txt
-├── requirements-vision.txt
-├── .gitignore
-└── README.md
-```
-
-`app.py` chỉ phụ trách giao diện và đọc ảnh để hiển thị. Phần segmentation nằm
-riêng trong `teledermoscopy/vision/`. Hai tài liệu thiết kế hiện có trong `docs/`.
-
-Cấu trúc đích trong `teledermoscopy/` gồm `vision/` (Detection, Segmentation),
-`ingestion/` (nạp tài liệu), `rag/` (tra cứu tài liệu) và `reports/` (báo cáo nháp).
-Hiện mới triển khai segmentation trong `vision/`; chưa tạo các module còn lại.
+Hai tài liệu được giữ nguyên để tham chiếu phạm vi và kiến trúc tổng thể; các mô tả
+tiến độ cũ trong đó không xác nhận chức năng hiện có của baseline này.
+Các liên kết sơ đồ docs/assets/ hiện thiếu file nguồn từ trước đợt dọn dẹp;
+cần bổ sung lại tài sản gốc khi có sẵn.

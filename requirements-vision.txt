@@ -1,9 +1,0 @@
-# Môi trường Windows CUDA 12.6 đã kiểm chứng tại Phase 2A.1/2B.
--r requirements.txt
---extra-index-url https://download.pytorch.org/whl/cu126
-torch==2.11.0+cu126
-torchvision==0.26.0+cu126
-segmentation-models-pytorch==0.5.0
-timm==1.0.31
-numpy==2.5.4
-opencv-python-headless==4.13.0.92
