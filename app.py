@@ -1,9 +1,11 @@
-"""Giao diện demo tải và xem ảnh; chưa thực hiện phân tích tổn thương."""
+"""Giao diện xem ảnh và phân vùng thử nghiệm; không đưa ra chẩn đoán."""
 
 from pathlib import Path
 
 import gradio as gr
 from PIL import Image, UnidentifiedImageError
+
+from teledermoscopy.gradio_segmentation import DEFAULT_CHECKPOINT, SegmentationController
 
 
 def preview_image(image_path: str | None) -> tuple[Image.Image | None, str]:
@@ -24,13 +26,31 @@ def preview_image(image_path: str | None) -> tuple[Image.Image | None, str]:
         return None, "Không đọc được ảnh. Vui lòng chọn lại ảnh JPG hoặc PNG hợp lệ."
 
 
-def build_demo() -> gr.Blocks:
+def reset_results(image_path: str | None, image_state: dict):
+    """State là đối tượng riêng mỗi phiên; cập nhật tại chỗ để vô hiệu hóa lượt cũ."""
+    image_state["revision"] += 1
+    message = ("Đã đổi ảnh. Nhấn Xem ảnh hoặc Phân vùng để tiếp tục." if image_path
+               else "Đã xóa ảnh. Vui lòng chọn ảnh JPG hoặc PNG.")
+    return None, None, None, "", message
+
+
+def preview_and_reset(image_path: str | None, image_state: dict):
+    image_state["revision"] += 1
+    image, message = preview_image(image_path)
+    return image, None, None, "", message
+
+
+def build_demo(checkpoint_path: str | Path = DEFAULT_CHECKPOINT, *,
+               controller: SegmentationController | None = None) -> gr.Blocks:
     """Tạo giao diện mà không tự khởi động máy chủ khi import."""
+    controller = controller if controller is not None else SegmentationController(checkpoint_path)
     with gr.Blocks(title="Hỗ trợ hội chẩn da liễu", analytics_enabled=False) as demo:
+        image_state = gr.State({"revision": 0})
         gr.Markdown(
             "# Hỗ trợ phân tích ảnh soi da và chuẩn bị hội chẩn\n"
-            "**Bước 1 — Demo tải và xem ảnh. Chưa phân tích tổn thương.**\n\n"
-            "Chọn ảnh JPG hoặc PNG, sau đó nhấn **Xem ảnh** để hiển thị ảnh gốc."
+            "**Phân vùng thử nghiệm — không phải chẩn đoán.**\n\n"
+            "Chọn ảnh JPG hoặc PNG. Nhấn **Xem ảnh** để xem trước, hoặc **Phân vùng** "
+            "để chạy mô hình local. Kết quả chỉ phục vụ smoke test, chưa đánh giá độ chính xác."
         )
         with gr.Row():
             image_input = gr.File(
@@ -38,20 +58,38 @@ def build_demo() -> gr.Blocks:
                 file_types=[".jpg", ".jpeg", ".png"],
                 file_count="single",
                 type="filepath",
+                elem_id="image-upload",
             )
             image_output = gr.Image(
                 label="Ảnh gốc",
                 type="pil",
                 format="png",
                 interactive=False,
+                elem_id="original-image",
             )
-        view_button = gr.Button("Xem ảnh", variant="primary")
-        status = gr.Textbox(label="Thông báo", interactive=False)
+        with gr.Row():
+            view_button = gr.Button("Xem ảnh")
+            segment_button = gr.Button("Phân vùng", variant="primary")
+        gr.Markdown("## Phân vùng thử nghiệm\nMask và overlay là đầu ra mô hình, không phải kết luận bệnh.")
+        with gr.Row():
+            mask_output = gr.Image(label="Mask — Phân vùng thử nghiệm", type="pil", image_mode="L",
+                                   format="png", interactive=False, elem_id="segmentation-mask")
+            overlay_output = gr.Image(label="Overlay — Phân vùng thử nghiệm", type="pil",
+                                      format="png", interactive=False, elem_id="segmentation-overlay")
+        device_output = gr.Textbox(label="Thiết bị thực tế", interactive=False, elem_id="actual-device")
+        status = gr.Textbox(label="Thông báo", interactive=False, elem_id="app-status")
+        results = [image_output, mask_output, overlay_output, device_output, status]
+        segmentation_event = segment_button.click(
+            fn=controller.segment, inputs=[image_input, image_state], outputs=results,
+            api_name="segment_image", concurrency_limit=1, concurrency_id="segmentation",
+        )
         view_button.click(
-            fn=preview_image,
-            inputs=image_input,
-            outputs=[image_output, status],
-            api_name="preview_image",
+            fn=preview_and_reset, inputs=[image_input, image_state], outputs=results,
+            api_name="preview_image", queue=False, cancels=[segmentation_event],
+        )
+        image_input.change(
+            fn=reset_results, inputs=[image_input, image_state], outputs=results,
+            api_name="image_changed", queue=False, cancels=[segmentation_event],
         )
     return demo
 

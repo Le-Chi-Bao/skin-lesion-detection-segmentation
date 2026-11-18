@@ -1,23 +1,28 @@
 # Hỗ trợ phân tích ảnh soi da và chuẩn bị hội chẩn
 
-Dự án hỗ trợ phân tích ảnh soi da và chuẩn bị hội chẩn. **Gradio hiện vẫn chỉ
-là demo tải và xem ảnh gốc JPG/PNG, chưa tích hợp phân tích tổn thương.**
-Phase 2B bổ sung CLI segmentation độc lập dùng SegFormer MiT-B2. Đây là smoke test
-kỹ thuật, chưa đánh giá độ chính xác; chưa có RAG, cơ sở dữ liệu hoặc báo cáo AI.
+Dự án hỗ trợ phân tích ảnh soi da và chuẩn bị hội chẩn. Gradio cho phép tải ảnh,
+xem trước và chạy **Phân vùng thử nghiệm** bằng SegFormer MiT-B2 khi bấm nút.
+CLI Phase 2B vẫn chạy độc lập; UI Phase 2C dùng lại cùng predictor và ngưỡng 0.5.
+Đây là smoke test kỹ thuật, không phải chẩn đoán và chưa đánh giá độ chính xác.
+Chưa có detection, classification, RAG, cơ sở dữ liệu hoặc báo cáo AI.
+
+Xem [tài liệu và kết quả kiểm chứng Phase 2C](docs/phase-2c.md).
 
 ## Cài đặt trên Windows PowerShell
 
-Yêu cầu Python 3.12. Mở PowerShell ngay tại thư mục dự án:
+Yêu cầu Python 3.12. Nếu đã có môi trường Phase 2B, dùng lại `.venv` và tài nguyên
+local, bỏ qua bước cài đặt. Khi dựng môi trường Windows CUDA 12.6 mới, mở
+PowerShell ngay tại thư mục dự án:
 
 ```powershell
 python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m pip install -r requirements-vision.txt
 ```
 
 Không cần kích hoạt môi trường ảo hoặc thay đổi Execution Policy.
 Gradio tự cài các thư viện phụ thuộc; dự án không xây dựng dịch vụ FastAPI riêng.
-Các lệnh trên chỉ cài phần giao diện. Dependency cho CLI nằm trong
-`requirements-vision.txt`, xem phần Phase 2B bên dưới.
+`requirements-vision.txt` gồm dependency giao diện và vision đã kiểm chứng.
+Lệnh cài dependency không tải checkpoint hoặc ảnh mẫu.
 
 ## Chạy giao diện
 
@@ -25,9 +30,16 @@ Các lệnh trên chỉ cài phần giao diện. Dependency cho CLI nằm trong
 .\.venv\Scripts\python.exe app.py
 ```
 
-Mở http://127.0.0.1:7860. Chọn ảnh JPG/PNG rồi nhấn **Xem ảnh**.
-Vùng **Ảnh gốc** hiển thị ảnh đã tải, không có dự đoán hoặc đánh dấu tổn thương.
-Nếu chưa chọn ảnh, vùng **Thông báo** nhắc chọn ảnh bằng tiếng Việt.
+Mở http://127.0.0.1:7860. Chọn ảnh JPG/PNG rồi nhấn **Xem ảnh** để xem trước,
+hoặc **Phân vùng** để nhận ảnh gốc, mask, overlay và thiết bị thực tế.
+Mô hình chỉ được nạp ở lần phân vùng đầu và dùng lại cho các lượt sau.
+Checkpoint mặc định là `checkpoints/segformer-gate2/real_only/best.pt` local;
+không tải weights khi mở app. Chế độ `auto` dùng CUDA khi khả dụng, nếu không dùng
+CPU ngay từ đầu; lỗi inference không tự chuyển thiết bị.
+
+Đổi/xóa ảnh, xem trước lại hoặc lượt chạy thất bại sẽ xóa mask, overlay và thiết bị
+cũ. Muốn chọn ảnh khác trong ô upload đang có file, bấm nút **Clear** (dấu ×)
+rồi chọn ảnh mới. Thông báo lỗi bằng tiếng Việt hiển thị tại **Thông báo**.
 Ứng dụng chỉ lắng nghe trên localhost và tắt chia sẻ công khai (`share=False`).
 Nhấn `Ctrl+C` trong PowerShell để dừng.
 
@@ -102,6 +114,9 @@ hình học tạm thời; kiểm tra luồng xem ảnh, RGB/chuẩn hóa, thứ 
 trước threshold, quy tắc chọn thiết bị, CLI với ảnh không hợp lệ và checkpoint
 bị thiếu. Kiểm thử lỗi yêu cầu exit code 1 và không sinh output giả; không tải
 weights hoặc chạy mô hình. Lệnh CLI Phase 2B bên trên là smoke test inference thật.
+Các test Phase 2C bổ sung kiểm tra cache, xóa trạng thái cũ, lỗi thiếu checkpoint,
+hết VRAM giả lập và bỏ kết quả của ảnh đã thay đổi. Phần thao tác UI và inference
+thật được ghi riêng trong [docs/phase-2c.md](docs/phase-2c.md).
 
 Kiểm tra trực tiếp trên trình duyệt: nhấn **Xem ảnh** khi chưa chọn file để xem
 thông báo; sau đó tải lần lượt một JPG và một PNG bất kỳ không chứa dữ liệu bệnh
@@ -114,24 +129,28 @@ nhân, nhấn **Xem ảnh** và đối chiếu ảnh trong vùng hiển thị v�
 ├── app.py
 ├── teledermoscopy/
 │   ├── __init__.py
+│   ├── gradio_segmentation.py
 │   ├── segment.py
 │   └── vision/
 │       ├── __init__.py
 │       └── segmentation.py
 ├── tests/
 │   ├── test_app.py
+│   ├── test_gradio_segmentation.py
 │   └── test_segmentation.py
 ├── docs/
 │   ├── Define_System.md
-│   └── System_Design.md
+│   ├── System_Design.md
+│   └── phase-2c.md
 ├── requirements.txt
 ├── requirements-vision.txt
 ├── .gitignore
 └── README.md
 ```
 
-`app.py` chỉ phụ trách giao diện và đọc ảnh để hiển thị. Phần segmentation nằm
-riêng trong `teledermoscopy/vision/`. Hai tài liệu thiết kế hiện có trong `docs/`.
+`app.py` phụ trách giao diện và xem trước. `teledermoscopy/gradio_segmentation.py`
+nối nút bấm với predictor, quản lý cache và trạng thái kết quả. Logic inference
+dùng chung với CLI nằm trong `teledermoscopy/vision/`.
 
 Cấu trúc đích trong `teledermoscopy/` gồm `vision/` (Detection, Segmentation),
 `ingestion/` (nạp tài liệu), `rag/` (tra cứu tài liệu) và `reports/` (báo cáo nháp).
