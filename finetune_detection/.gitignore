@@ -1,0 +1,13 @@
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+*.py[cod]
+*.ckpt
+*.pt
+*.pth
+*.zip
+*.part
+/data/*
+!/data/.gitkeep
+/runs/*
+!/runs/.gitkeep
