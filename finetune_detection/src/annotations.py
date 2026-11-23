@@ -7,6 +7,7 @@ from pathlib import Path
 
 import numpy as np
 from PIL import Image
+from tqdm.auto import tqdm
 
 
 def sha256_file(path):
@@ -76,7 +77,8 @@ def build_annotations(root, images, masks):
     root = Path(root)
     images, masks = index_files(images), index_files(masks, mask=True)
     records, invalid = [], []
-    for index, image_id in enumerate(sorted(images.keys() | masks.keys()), 1):
+    image_ids = sorted(images.keys() | masks.keys())
+    for index, image_id in enumerate(tqdm(image_ids, desc="Validate image/mask pairs", mininterval=1), 1):
         image_path, mask_path = images.get(image_id), masks.get(image_id)
         try:
             if image_path is None or mask_path is None:

@@ -60,7 +60,14 @@ def seal_path(path):
 
 
 def read_seal(path):
-    return json.loads(seal_path(path).read_text(encoding="utf-8"))
+    seal = json.loads(seal_path(path).read_text(encoding="utf-8"))
+    if set(seal) != {"run_id", "position", "best_epoch", "best_map", "completed", "bytes", "sha256"}:
+        raise ValueError("Checkpoint seal fields are incomplete")
+    position = seal["position"]
+    if (not isinstance(position, list) or len(position) != 3
+            or any(type(value) is not int or value < 0 for value in position)):
+        raise ValueError("Invalid checkpoint position in seal")
+    return seal
 
 
 def describe(payload):
@@ -102,6 +109,8 @@ def publish(source, target, seal):
         os.replace(stage, target)
         verify_bytes(target, seal)
         write_json(seal_path(target), seal)
+        if read_seal(target) != seal:
+            raise OSError(f"Checkpoint seal verification failed: {target}")
     finally:
         stage.unlink(missing_ok=True)
 
@@ -193,9 +202,18 @@ class CheckpointStore:
                 payload = self.read(path, seal)
                 if seal["best_epoch"] is not None and not is_selected_best(seal, seal):
                     self.best(payload, report)
-                return payload
             except READ_ERRORS as error:
                 report(f"Skipping unusable checkpoint {path}: {error}")
+                continue
+            for _, other_path, other_seal in options:
+                if other_seal["run_id"] == seal["run_id"]:
+                    continue
+                try:
+                    self.read(other_path, other_seal)
+                except READ_ERRORS:
+                    continue
+                raise ValueError(f"Conflicting run IDs in {path} and {other_path}; verify the local and Drive run directories.")
+            return payload
         if present or completed:
             raise ValueError("No verified recoverable checkpoint for this run. Restore a valid backup or use a distinct run name.")
         return None
@@ -259,6 +277,31 @@ class CheckpointStore:
             message = " | ".join(status)
             report(f"Checkpoint: {message}")
             return message
+
+    def backup_completed(self, payload, report=tqdm.write):
+        if not self.drive:
+            return
+        reference = describe(payload)
+        last = self.drive / "last.ckpt"
+        try:
+            try:
+                seal = read_seal(last)
+                if describe_seal(seal) != reference:
+                    raise ValueError("Drive checkpoint does not match completed run")
+                verify_bytes(last, seal)
+                self.sync_best(self.local / "best.ckpt", seal)
+            except READ_ERRORS:
+                self.restore_local_best(payload, report)
+                with tempfile.TemporaryDirectory(prefix=".complete-", dir=self.local) as directory:
+                    source = Path(directory) / "checkpoint.ckpt"
+                    torch.save(payload, source)
+                    validate_payload(source)
+                    seal = {**reference, "bytes": source.stat().st_size, "sha256": sha256_file(source)}
+                    self.sync_best(self.local / "best.ckpt", seal)
+                    self.commit(self.drive, source, seal, False, False)
+                report("Completed checkpoint Drive backup repaired and verified.")
+        except READ_ERRORS as error:
+            report(f"Completed checkpoint Drive backup failed; local checkpoint retained: {error}")
 
     def commit(self, root, source, seal, improved, snapshot_step):
         last = root / "last.ckpt"

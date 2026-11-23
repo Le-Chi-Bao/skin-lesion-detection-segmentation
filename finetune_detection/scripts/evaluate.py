@@ -23,6 +23,10 @@ def official_test(args):
     lock = args.output / "official_test_protocol.json"
     artifact_hash = sha256_file(args.artifact)
     training = load_manifest(args.training_manifest)
+    training_root = args.training_manifest.parent.resolve()
+    test_root = args.data.resolve()
+    if test_root == training_root or training_root in test_root.parents or test_root in training_root.parents:
+        raise ValueError("Use separate, non-overlapping data roots for training and official test.")
     device = require_device()
     model, artifact = load_inference(args.artifact, device)
     if sha256_file(args.artifact) != artifact_hash:

@@ -139,9 +139,12 @@ def prepare_dataset(root, archives=None, download=False, grouping_csv=None, inva
 
 def persist_manifest(path, destination):
     existing = Path(destination)
-    if existing.exists() and load_manifest(existing)["sha256"] != load_manifest(path)["sha256"]:
-        raise ValueError(f"Persistent split differs: {existing}. Restore the original data and grouping CSV.")
-    write_json(existing, load_manifest(path))
+    manifest = load_manifest(path)
+    if existing.exists():
+        if load_manifest(existing)["sha256"] != manifest["sha256"]:
+            raise ValueError(f"Persistent split differs: {existing}. Restore the original data and grouping CSV.")
+        return
+    write_json(existing, manifest)
 
 
 def main():

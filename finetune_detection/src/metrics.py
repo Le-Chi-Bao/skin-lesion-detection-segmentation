@@ -3,6 +3,7 @@
 import contextlib
 import io
 
+import torch
 from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
 from torchvision.ops import box_iou
@@ -44,6 +45,12 @@ class DetectionMetrics:
             raise ValueError(f"Invalid detections for image {image_id}")
         ranked = scores.argsort(descending=True, stable=True)[:100]
         boxes, scores = boxes[ranked], scores[ranked]
+        # Torchvision maps resized boxes back to source pixels in float32.
+        limits = boxes.new_tensor([width, height, width, height])
+        tolerance = limits * (4 * torch.finfo(boxes.dtype).eps)
+        if not (torch.isfinite(boxes) & (boxes >= -tolerance) & (boxes <= limits + tolerance)).all():
+            raise ValueError(f"Detections extend outside the image {image_id}")
+        boxes = torch.minimum(boxes.clamp_min(0), limits)
         for box, score in zip(boxes.tolist(), scores.tolist()):
             validate_box(box, width, height)
             self.predictions.append({"image_id": image_id, "category_id": 1, "bbox": xywh(box), "score": score})

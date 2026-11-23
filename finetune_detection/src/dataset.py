@@ -54,12 +54,14 @@ def split_records(records, groups=None, seed=42):
     if len(blocks) < 2:
         raise ValueError("Need at least two independent groups to make a split")
     random.Random(seed).shuffle(blocks)
-    target = round(len(records) * 0.2)
+    target = max(1, round(len(records) * 0.2))
     validation = []
-    for block in blocks[:-1]:
-        if validation and abs(len(validation) - target) <= abs(len(validation) + len(block) - target):
-            break
-        validation.extend(block)
+    for block in blocks:
+        combined = len(validation) + len(block)
+        if combined < len(records) and abs(combined - target) < abs(len(validation) - target):
+            validation.extend(block)
+    if not validation:
+        validation = min(blocks, key=len)
     return {"train": sorted(parents.keys() - set(validation)), "validation": sorted(validation)}
 
 
@@ -68,7 +70,7 @@ def load_manifest(path, expected="training", verify_files=False):
     if not path.is_file():
         raise FileNotFoundError(f"Missing manifest: {path}. Run scripts.prepare_data first.")
     manifest = json.loads(path.read_text(encoding="utf-8"))
-    claimed = manifest.pop("sha256")
+    claimed = manifest.pop("sha256", None)
     if manifest.get("version") != 1 or manifest.get("dataset") != expected or digest_json(manifest) != claimed:
         raise ValueError(f"Incorrect manifest type, version or checksum: {path}")
     valid = {row["id"]: row for row in manifest["records"]}

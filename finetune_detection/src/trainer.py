@@ -82,6 +82,8 @@ class TrainingRun:
         self.started_from_checkpoint = saved is not None
         self.model = None
         if self.state["completed"]:
+            self.identity["environment"] = saved["environment"]
+            store.backup_completed(saved, logs.message)
             return
         if saved and self.state["best_epoch"] is not None:
             store.restore_local_best(saved, logs.message)
@@ -153,7 +155,10 @@ class TrainingRun:
                     self.scaler.update()
                     self.optimizer.zero_grad(set_to_none=True)
                     state["next_batch"] = index + 1
-                    if self.scaler.get_scale() >= previous_scale:
+                    new_scale = self.scaler.get_scale()
+                    if not math.isfinite(new_scale) or new_scale <= 0:
+                        raise FloatingPointError("AMP scale became invalid; resume from the last verified checkpoint.")
+                    if new_scale >= previous_scale:
                         state["steps"] += 1
                         self.scheduler.step()
                         due = state["steps"] % config["checkpoint_every_steps"] == 0
@@ -188,6 +193,9 @@ class TrainingRun:
             self.logs.message(f"{config['experiment']} already completed and validated. Best epoch {state['best_epoch']}.")
             if not (self.logs.directory / "history.json").is_file():
                 self.logs.history(state["history"])
+            if not (self.logs.directory / "run_config.yaml").is_file():
+                self.logs.initialize(config, self.identity["environment"])
+            self.store.backup_logs(self.logs.directory, self.logs.message)
             return result_summary(state, self.identity)
         self.logs.initialize(config, self.identity["environment"])
         if self.started_from_checkpoint:
@@ -200,6 +208,9 @@ class TrainingRun:
             if self.device.type == "cuda":
                 torch.cuda.reset_peak_memory_stats(self.device)
             self.train_epoch()
+            previous_steps = state["history"][-1]["optimizer_steps"] if state["history"] else 0
+            if state["steps"] == previous_steps:
+                raise FloatingPointError(f"No optimizer updates completed in epoch {state['epoch']}. Check AMP overflow or dataset size.")
             started = time.perf_counter()
             metrics = evaluate_model(self.model, validation_loader, self.device, config["operating_score_threshold"])
             self.record_time(started)

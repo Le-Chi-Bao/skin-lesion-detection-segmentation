@@ -6,6 +6,7 @@ import os
 import platform
 import random
 import re
+import subprocess
 import time
 from pathlib import Path
 
@@ -66,10 +67,19 @@ def require_device(cpu=False):
 def environment(device):
     packages = ("torch", "torchvision", "numpy", "Pillow", "PyYAML", "tqdm", "matplotlib", "pycocotools")
     versions = {name: importlib.metadata.version(name) for name in packages}
+    driver_version = None
+    if device.type == "cuda":
+        try:
+            driver = subprocess.run(["nvidia-smi", "--query-gpu=driver_version", "--format=csv,noheader"],
+                                    check=True, capture_output=True, text=True, timeout=5)
+            driver_version = next(iter(driver.stdout.splitlines()), None)
+        except (OSError, subprocess.SubprocessError):
+            pass
     return {
         "python": platform.python_version(), "platform": platform.platform(), "packages": versions,
         "cuda_build": torch.version.cuda, "cuda_available": torch.cuda.is_available(),
         "cudnn": torch.backends.cudnn.version(), "device_type": device.type,
+        "nvidia_driver": driver_version,
         "gpu": torch.cuda.get_device_name(device) if device.type == "cuda" else None,
         "gpu_memory_bytes": torch.cuda.get_device_properties(device).total_memory if device.type == "cuda" else None,
     }
