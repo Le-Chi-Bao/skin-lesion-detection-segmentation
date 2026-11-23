@@ -82,8 +82,9 @@ class TrainingRun:
         self.started_from_checkpoint = saved is not None
         self.model = None
         if self.state["completed"]:
-            store.best(saved)
             return
+        if saved and self.state["best_epoch"] is not None:
+            store.restore_local_best(saved, logs.message)
         seed_training(config["seed"])
         self.model = model_factory(config, pretrained=pretrained and saved is None).to(device)
         self.optimizer = torch.optim.SGD(
@@ -118,7 +119,8 @@ class TrainingRun:
         epoch = state["epoch"]
         batches = epoch_batches(len(self.train_data), config["batch_size"], config["seed"], epoch)
         start_batch = state["next_batch"]
-        if start_batch > len(batches) or (start_batch < len(batches) and start_batch % self.accumulation):
+        if (start_batch > len(batches) or (start_batch < len(batches) and start_batch % self.accumulation)
+                or state["samples"] != sum(map(len, batches[:start_batch]))):
             raise ValueError("Checkpoint contains an invalid optimizer-step boundary")
         loader = make_loader(self.train_data, self.device, batches=batches[start_batch:])
         self.model.train()
@@ -144,6 +146,7 @@ class TrainingRun:
                     state["loss_sums"][name] += value * count
                 state["samples"] += count
                 processed += count
+                due = False
                 if index + 1 == group_stop:
                     previous_scale = self.scaler.get_scale()
                     self.scaler.step(self.optimizer)
@@ -153,11 +156,7 @@ class TrainingRun:
                     if self.scaler.get_scale() >= previous_scale:
                         state["steps"] += 1
                         self.scheduler.step()
-                        if state["steps"] % config["checkpoint_every_steps"] == 0:
-                            self.record_time(started)
-                            self.snapshot(snapshot_step=True)
-                            started = time.perf_counter()
-                            processed = 0
+                        due = state["steps"] % config["checkpoint_every_steps"] == 0
                     else:
                         state["amp_skips"] += 1
                         skips = state["amp_skips"]
@@ -167,6 +166,12 @@ class TrainingRun:
                 rate = processed / max(time.perf_counter() - started, 1e-9) if processed else None
                 bar.set_postfix_str(training_metrics(values, lr, memory, rate), refresh=False)
                 bar.update(1)
+                if due:
+                    self.record_time(started)
+                    self.snapshot(snapshot_step=True)
+                    self.store.backup_logs(self.logs.directory, self.logs.message)
+                    started = time.perf_counter()
+                    processed = 0
         self.record_time(started)
 
     def record_time(self, started):
@@ -181,8 +186,12 @@ class TrainingRun:
         state, config = self.state, self.config
         if state["completed"]:
             self.logs.message(f"{config['experiment']} already completed and validated. Best epoch {state['best_epoch']}.")
+            if not (self.logs.directory / "history.json").is_file():
+                self.logs.history(state["history"])
             return result_summary(state, self.identity)
         self.logs.initialize(config, self.identity["environment"])
+        if self.started_from_checkpoint:
+            self.logs.history(state["history"])
         location = f"epoch {state['epoch']}, next batch {state['next_batch'] + 1}, optimizer step {state['steps']}"
         self.logs.message(f"{config['experiment']} | {config['model']} | {self.identity['environment']['gpu'] or self.device} | FP16 AMP {self.amp}")
         self.logs.message(f"{'Resumed' if self.started_from_checkpoint else 'Started'} run {self.identity['run_id']} at {location}")
@@ -248,6 +257,7 @@ def run_experiment(experiment, resume="auto", *, manifest_path=None, runs_root=N
     drive = run_directory(drive_root, experiment, run_name) if drive_root else None
     logs = RunLogs(local)
     store = CheckpointStore(local, drive)
+    store.restore_logs(logs.directory, logs.message)
     try:
         run = TrainingRun(
             config, LesionDataset(manifest_path, manifest, "train", config["augmentation"]),
