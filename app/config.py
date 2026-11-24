@@ -17,6 +17,8 @@ class AppConfig:
     port: int = 7860
     runtime_dir: Path = PROJECT_ROOT / "runtime"
     model_store_dir: Path = PROJECT_ROOT / "model_store"
+    segformer_checkpoint: Path | None = None
+    segformer_device: str = "auto"
     max_upload_mib: int = 10
     max_image_pixels: int = 16_000_000
     max_image_edge: int = 8192
@@ -46,6 +48,15 @@ class AppConfig:
             raise AppError(ErrorCode.INVALID_CONFIG, field="LOG_LEVEL")
         if self.research_mode is not True:
             raise AppError(ErrorCode.INVALID_CONFIG, field="RESEARCH_MODE")
+        if self.segformer_device not in {"auto", "cpu", "cuda"}:
+            raise AppError(ErrorCode.INVALID_CONFIG, field="SEGFORMER_DEVICE")
+        if self.segformer_checkpoint is not None:
+            try:
+                path = self.segformer_checkpoint.expanduser()
+                path = (PROJECT_ROOT / path).resolve()
+            except (OSError, RuntimeError, ValueError) as exc:
+                raise AppError(ErrorCode.INVALID_CONFIG, field="SEGFORMER_CHECKPOINT") from exc
+            object.__setattr__(self, "segformer_checkpoint", path)
 
         for field in ("runtime_dir", "model_store_dir"):
             try:
@@ -85,7 +96,7 @@ class AppConfig:
             try:
                 if name in {"port", "max_upload_mib", "max_image_pixels", "max_image_edge", "session_ttl_seconds"}:
                     values[name] = int(raw)
-                elif name.endswith("_dir"):
+                elif name.endswith("_dir") or name == "segformer_checkpoint":
                     if not raw:
                         raise ValueError
                     path = Path(raw)
@@ -94,6 +105,8 @@ class AppConfig:
                     values[name] = raw.lower() in {"true", "1"}
                 elif name == "log_level":
                     values[name] = raw.upper()
+                elif name == "segformer_device":
+                    values[name] = raw.lower()
                 else:
                     values[name] = raw
             except ValueError as exc:
