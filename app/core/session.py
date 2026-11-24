@@ -37,6 +37,14 @@ class SessionState:
     image: SessionImage | None = field(default=None, init=False)
     active_run: RunToken | None = field(default=None, init=False)
     result: CVResult | None = field(default=None, init=False)
+    _latest_image_action: int = field(default=0, init=False, repr=False)
+
+    def accept_image_action(self, action: int) -> bool:
+        """Reject browser edits that reached the queue after a newer edit."""
+        if type(action) is not int or action <= self._latest_image_action:
+            return False
+        self._latest_image_action = action
+        return True
 
     @property
     def processing_status(self) -> RunStatus | None:

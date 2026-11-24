@@ -22,6 +22,9 @@ def clinical_theme() -> gr.themes.Soft:
 
 
 CSS = """
+/* Keep Gradio event inputs mounted without showing internal controls. */
+#image-action-index, #oversize-image { display: none; }
+
 /* Keep the full image in view, including portrait and panorama uploads. */
 .lesion-view {
     display: grid;

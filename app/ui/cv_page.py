@@ -19,13 +19,15 @@ logger = logging.getLogger(__name__)
 
 
 def upload_browser_setup(max_bytes: int) -> str:
-    # The upload event is emitted after the browser finishes transferring the file.
-    # Remember a reset during that interval and localize the browser-side size check.
+    # Remember user action order before the multipart transfer and queue requests.
     return """
     () => {
         let revision = 0;
-        let selectedRevision = 0;
-        window.lesionUploadIsCurrent = () => selectedRevision === revision;
+        const uploadName = action => "wp1-upload-" + action;
+        window.lesionImageActions = {
+            current: () => revision,
+            upload: file => file?.orig_name === uploadName(revision) ? revision : 0
+        };
         document.addEventListener("click", event => {
             if (event.target.closest("#reset-image")) revision++;
         }, true);
@@ -33,12 +35,18 @@ def upload_browser_setup(max_bytes: int) -> str:
             const input = event.target;
             if (!(input instanceof HTMLInputElement) || input.type !== "file" ||
                 !input.closest("#cv-controls") || !input.files?.length) return;
-            selectedRevision = ++revision;
-            if (input.files[0].size > MAX_UPLOAD_BYTES) {
+            const file = input.files[0];
+            const action = ++revision;
+            if (file.size > MAX_UPLOAD_BYTES) {
                 event.stopImmediatePropagation();
                 input.value = "";
                 document.querySelector("button#oversize-image, #oversize-image button")?.click();
+                return;
             }
+            // Gradio returns this name in FileData.orig_name when this transfer completes.
+            const transfer = new DataTransfer();
+            transfer.items.add(new File([file], uploadName(action), {type: file.type}));
+            input.files = transfer.files;
         }, true);
     }
     """.replace("MAX_UPLOAD_BYTES", str(max_bytes))
@@ -62,6 +70,7 @@ def render_cv_page(config: AppConfig, files: TemporaryFiles, availability: CVAva
             files.close_session(state.session_id)
 
     state = gr.State(delete_callback=cleanup)
+    action_index = gr.Number(value=0, precision=0, visible="hidden", elem_id="image-action-index")
     gr.Markdown("## Computer Vision")
     with gr.Row():
         with gr.Column(scale=1, min_width=260, elem_id="cv-controls"):
@@ -95,14 +104,7 @@ def render_cv_page(config: AppConfig, files: TemporaryFiles, availability: CVAva
                 with gr.Tab("Localization", id="localization"):
                     gr.Markdown("Chưa có kết quả định vị.")
 
-    def clear_view(current: SessionState, message: str = "") -> tuple:
-        return (
-            current, image_panel("preview"), "Chưa có thông tin ảnh.",
-            f'<div role="alert">{escape(message)}</div>', image_panel("original"), gr.Tabs(selected="original"),
-        )
-
-    def reset(current: SessionState | None, message: str = "") -> tuple:
-        current = current or SessionState()
+    def clear_image(current: SessionState, message: str = "") -> tuple:
         previous = current.reset()
         if previous is not None:
             try:
@@ -110,12 +112,15 @@ def render_cv_page(config: AppConfig, files: TemporaryFiles, availability: CVAva
                     files.discard(current.session_id, previous.temporary_file)
             except (AppError, OSError) as exc:
                 log_error(logger, exc, current.session_id)
-        return clear_view(current, message)
+        return (
+            current, image_panel("preview"), "Chưa có thông tin ảnh.",
+            f'<div role="alert">{escape(message)}</div>', image_panel("original"), gr.Tabs(selected="original"),
+        )
 
-    def upload(payload: dict[str, Any] | None, current: SessionState | None) -> tuple:
-        if payload is None:
-            return tuple(gr.skip() for _ in outputs)
+    def upload(payload: dict[str, Any] | None, current: SessionState | None, action: int) -> tuple:
         current = current or SessionState()
+        if payload is None or not current.accept_image_action(action):
+            return tuple(gr.skip() for _ in outputs)
         try:
             raw_path = payload.get("path") if isinstance(payload, dict) else None
             path = uploaded_path(raw_path if isinstance(raw_path, str) else None, files.cache_dir)
@@ -129,23 +134,38 @@ def render_cv_page(config: AppConfig, files: TemporaryFiles, availability: CVAva
         except Exception as exc:
             log_error(logger, exc, current.session_id)
             message = str(exc) if isinstance(exc, AppError) else str(AppError(ErrorCode.INTERNAL))
-            return reset(current, message)
+            return clear_image(current, message)
         summary = f"**{details.width} × {details.height} px** · {details.format} · {details.size_bytes / MIB:.2f} MiB"
         return (
             current, image_panel("preview", src), summary, '<div role="alert"></div>',
             image_panel("original", src), gr.Tabs(selected="original"),
         )
 
+    def reset(current: SessionState | None, action: int) -> tuple:
+        current = current or SessionState()
+        if not current.accept_image_action(action):
+            return tuple(gr.skip() for _ in outputs)
+        return clear_image(current)
+
+    def reject_oversize(current: SessionState | None, action: int) -> tuple:
+        current = current or SessionState()
+        if not current.accept_image_action(action):
+            return tuple(gr.skip() for _ in outputs)
+        return clear_image(current, str(AppError(ErrorCode.UPLOAD_TOO_LARGE, limit=config.max_upload_mib)))
+
     outputs = [state, preview, metadata, error, original, tabs]
-    events = {"concurrency_id": "cv-session-edits", "concurrency_limit": 1, "api_visibility": "private"}
+    events = {
+        "concurrency_id": "cv-session-edits", "concurrency_limit": 1, "api_visibility": "private",
+        "trigger_mode": "multiple", "preprocess": False,
+    }
     # Read bounded bytes ourselves and avoid UploadButton's built-in file conversion.
     upload_button.upload(
-        upload, [upload_button, state], outputs, preprocess=False,
-        js="(file, state) => [window.lesionUploadIsCurrent?.() === false ? null : file, state]", **events,
+        upload, [upload_button, state, action_index], outputs,
+        js="""(file, state) => {
+            const action = window.lesionImageActions?.upload(file) ?? 0;
+            return [action ? file : null, state, action];
+        }""", **events,
     )
-    reset_button.click(reset, state, outputs, **events)
-
-    def reject_oversize(current: SessionState | None) -> tuple:
-        return reset(current, str(AppError(ErrorCode.UPLOAD_TOO_LARGE, limit=config.max_upload_mib)))
-
-    oversize_button.click(reject_oversize, state, outputs, **events)
+    current_action_js = "(state) => [state, window.lesionImageActions?.current() ?? 0]"
+    reset_button.click(reset, [state, action_index], outputs, js=current_action_js, **events)
+    oversize_button.click(reject_oversize, [state, action_index], outputs, js=current_action_js, **events)

@@ -57,3 +57,10 @@ Gradio quản lý riêng tệp tải lên trong `runtime/gradio-cache/` theo tu�
 Bộ kiểm thử dùng ảnh tự sinh và khởi động một tiến trình Gradio cục bộ để kiểm tra HTTP. WP2 tích hợp SegFormer qua hợp đồng trạng thái mô hình và `CVResult`. Faster R-CNN sẽ được tích hợp sau khi có checkpoint suy luận phù hợp. WP3 dành cho giao diện kết quả đầy đủ, điều khiển độ mờ và xuất PNG.
 
 Nếu thư mục tạm mặc định của pytest bị từ chối truy cập trên Windows, thêm `--basetemp runtime/wp1-pytest`. Dùng một thư mục dành riêng cho kiểm thử vì pytest sẽ dọn thư mục này khi chạy lại.
+
+Để pytest chạy thêm ca tải ảnh đồng thời trên trình duyệt, cài Playwright và Chromium trong môi trường kiểm thử.
+
+```powershell
+.venv\Scripts\python.exe -m pip install playwright==1.65.0
+.venv\Scripts\python.exe -m playwright install chromium
+```
