@@ -4,7 +4,7 @@ import re
 import shutil
 import time
 from collections.abc import Callable, Iterator
-from contextlib import contextmanager
+from contextlib import AbstractContextManager, contextmanager
 from pathlib import Path
 from threading import Event, Lock, Thread
 from typing import BinaryIO
@@ -104,6 +104,15 @@ class TemporaryFiles:
                 raise AppError(ErrorCode.TEMPORARY_FILE) from exc
             raise
         return path.name
+
+    def write_mask(self, session_id: UUID, writer: Callable[[BinaryIO], None]) -> str:
+        return self.write(session_id, writer).removesuffix(".png")
+
+    def open_mask(self, session_id: UUID, reference: str) -> AbstractContextManager[BinaryIO]:
+        return self.open_image(session_id, f"{reference}.png")
+
+    def discard_mask(self, session_id: UUID, reference: str) -> None:
+        self.discard(session_id, f"{reference}.png")
 
     @contextmanager
     def open_image(self, session_id: UUID, name: str) -> Iterator[BinaryIO]:

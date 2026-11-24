@@ -32,12 +32,15 @@ class FileTransportPolicy(BaseHTTPMiddleware):
 
 
 def launch_options(config: AppConfig) -> dict:
+    blocked_paths = [str(config.runtime_dir / "sessions"), str(config.model_store_dir)]
+    if config.segformer_checkpoint is not None:
+        blocked_paths.append(str(config.segformer_checkpoint))
     return {
         "server_name": config.host,
         "server_port": config.port,
         "share": False,
         "allowed_paths": [],
-        "blocked_paths": [str(config.runtime_dir / "sessions"), str(config.model_store_dir)],
+        "blocked_paths": blocked_paths,
         "max_file_size": config.max_upload_bytes,
         "show_error": False,
         "run_history": False,

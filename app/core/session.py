@@ -1,4 +1,6 @@
+from _thread import LockType
 from dataclasses import dataclass, field
+from threading import Lock
 from uuid import UUID, uuid4
 
 from app.core.errors import AppError, ErrorCode
@@ -38,6 +40,8 @@ class SessionState:
     active_run: RunToken | None = field(default=None, init=False)
     result: CVResult | None = field(default=None, init=False)
     _latest_image_action: int = field(default=0, init=False, repr=False)
+    lock: LockType = field(default_factory=Lock, init=False, repr=False, compare=False)
+    _run_claimed: bool = field(default=False, init=False, repr=False)
 
     def accept_image_action(self, action: int) -> bool:
         """Reject browser edits that reached the queue after a newer edit."""
@@ -45,6 +49,9 @@ class SessionState:
             return False
         self._latest_image_action = action
         return True
+
+    def matches_image_action(self, action: int) -> bool:
+        return type(action) is int and action == self._latest_image_action
 
     @property
     def processing_status(self) -> RunStatus | None:
@@ -74,7 +81,14 @@ class SessionState:
             raise AppError(ErrorCode.INVALID_SESSION)
         self.result = None
         self.active_run = RunToken(self.session_id, self.image_revision, uuid4())
+        self._run_claimed = False
         return self.active_run
+
+    def claim_run(self) -> tuple[RunToken, SessionImage] | None:
+        if self.active_run is None or self.image is None or self._run_claimed:
+            return None
+        self._run_claimed = True
+        return self.active_run, self.image
 
     def accept_result(self, token: RunToken, result: CVResult) -> bool:
         if (
