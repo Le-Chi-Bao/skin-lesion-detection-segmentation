@@ -286,7 +286,8 @@ def test_real_checkpoint_app_callbacks(published_sample, tmp_path, monkeypatch):
     assert observed == [((1, 1, 512, 512), True, True)]
 
 
-def test_real_checkpoint_browser(published_sample, tmp_path):
+@pytest.fixture
+def real_browser(published_sample, tmp_path):
     playwright_api = pytest.importorskip("playwright.sync_api")
     checkpoint, sample, device = published_sample
     with socket.socket() as sock:
@@ -321,41 +322,48 @@ def test_real_checkpoint_browser(published_sample, tmp_path):
 
                 browser = playwright.chromium.launch()
                 try:
-                    page = browser.new_page()
-                    assert page.goto(url).status == 200
-                    page.get_by_role("radio", name="Computer Vision").check()
-                    analyze = page.get_by_role("button", name="Phân tích")
-                    playwright_api.expect(analyze).to_be_disabled()
-                    with page.expect_file_chooser() as chooser:
-                        page.get_by_role("button", name="Tải ảnh lên").click()
-                    chooser.value.set_files(sample)
-                    playwright_api.expect(analyze).to_be_enabled()
-                    analyze.click()
-                    completed = page.get_by_text("Phân đoạn hoàn tất", exact=False)
-                    playwright_api.expect(completed).to_be_visible(timeout=120_000)
-                    playwright_api.expect(page.get_by_text(CHECKPOINT_ID, exact=True)).to_be_visible()
-                    page.get_by_role("tab", name="Mask").click()
-                    mask = page.get_by_role("img", name="Mặt nạ tổn thương nhị phân")
-                    playwright_api.expect(mask).to_be_visible()
-                    original = page.locator("#lesion-preview img")
-                    assert mask.evaluate("(img) => [img.naturalWidth, img.naturalHeight]") == original.evaluate(
-                        "(img) => [img.naturalWidth, img.naturalHeight]",
-                    )
-
-                    other = browser.new_page()
-                    other.goto(url)
-                    other.get_by_role("radio", name="Computer Vision").check()
-                    other.get_by_role("tab", name="Mask").click()
-                    playwright_api.expect(other.get_by_role("img", name="Mặt nạ tổn thương nhị phân")).to_have_count(0)
-
-                    page.get_by_role("button", name="Đặt lại").click()
-                    playwright_api.expect(analyze).to_be_disabled()
-                    playwright_api.expect(completed).to_have_count(0)
-                    page.get_by_role("tab", name="Mask").click()
-                    playwright_api.expect(mask).to_have_count(0)
+                    yield browser, url, sample
                 finally:
                     browser.close()
             finally:
                 if process.poll() is None:
                     process.terminate()
                 process.wait(timeout=10)
+
+
+def test_real_checkpoint_browser(real_browser):
+    from playwright.sync_api import expect
+
+    browser, url, sample = real_browser
+    page = browser.new_page()
+    assert page.goto(url).status == 200
+    page.get_by_role("radio", name="Computer Vision").check()
+    analyze = page.get_by_role("button", name="Phân tích")
+    expect(analyze).to_be_disabled()
+    with page.expect_file_chooser() as chooser:
+        page.get_by_role("button", name="Tải ảnh lên").click()
+    chooser.value.set_files(sample)
+    expect(analyze).to_be_enabled()
+    analyze.click()
+    completed = page.get_by_text("Phân đoạn hoàn tất", exact=False)
+    expect(completed).to_be_visible(timeout=120_000)
+    expect(page.get_by_text(CHECKPOINT_ID, exact=True)).to_be_visible()
+    page.get_by_role("tab", name="Mask").click()
+    mask = page.get_by_role("img", name="Mặt nạ tổn thương nhị phân")
+    expect(mask).to_be_visible()
+    original = page.locator("#lesion-preview img")
+    assert mask.evaluate("(img) => [img.naturalWidth, img.naturalHeight]") == original.evaluate(
+        "(img) => [img.naturalWidth, img.naturalHeight]",
+    )
+
+    other = browser.new_page()
+    other.goto(url)
+    other.get_by_role("radio", name="Computer Vision").check()
+    other.get_by_role("tab", name="Mask").click()
+    expect(other.get_by_role("img", name="Mặt nạ tổn thương nhị phân")).to_have_count(0)
+
+    page.get_by_role("button", name="Đặt lại").click()
+    expect(analyze).to_be_disabled()
+    expect(completed).to_have_count(0)
+    page.get_by_role("tab", name="Mask").click()
+    expect(mask).to_have_count(0)

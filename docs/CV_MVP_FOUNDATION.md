@@ -15,7 +15,7 @@ WP1 ưu tiên sản phẩm trước trong định hướng cân bằng 50/50 gi�
 
 Gradio nhận từng tệp, có giới hạn dung lượng ngay tại điểm tải lên. Ứng dụng chỉ đọc đường dẫn đã kiểm tra trong cache tải lên. Bộ kiểm tra nhận dạng chữ ký JPEG/PNG, kiểm tra dung lượng, kích thước cạnh và số pixel trước khi giải mã đầy đủ. Tệp hỏng và PNG động bị từ chối. Ứng dụng áp dụng hướng EXIF, chuẩn hóa RGB, bỏ metadata khi ghi ảnh PNG chuẩn hóa và lưu SHA-256 của byte tệp đã nhận trong metadata phiên.
 
-Ảnh xem trước và thẻ **Original** lấy từ cùng một bản hiển thị với cạnh dài tối đa 1.600 px. Giao diện giữ tỉ lệ ảnh. Pixel và kích thước dùng cho suy luận lấy từ PNG chuẩn hóa đầy đủ. **Phân tích** khả dụng khi có SegFormer sẵn sàng và ảnh hợp lệ. **Mask** hiển thị mask nhị phân đúng kích thước ảnh và **Localization** hiển thị tọa độ tính từ mask. **Overlay** dành cho WP3.
+Ảnh xem trước và thẻ **Original** lấy từ cùng một bản hiển thị với cạnh dài tối đa 1.600 px. Giao diện giữ tỉ lệ ảnh. Pixel và kích thước dùng cho suy luận lấy từ PNG chuẩn hóa đầy đủ. **Phân tích** khả dụng khi có SegFormer sẵn sàng và ảnh hợp lệ. WP3 hiển thị **Mask**, **Overlay** và **Localization** cùng hệ tọa độ với **Original**. Bản hiển thị giới hạn cạnh dài ở 1.600 px. Ảnh xuất Overlay và Localization dùng kích thước gốc. [Hiển thị và xuất PNG trong WP3](WP3_CLINICAL_VISUALIZATION.md)
 
 ## Phiên, thứ tự cập nhật và vòng đời tệp
 
@@ -37,4 +37,4 @@ Hợp đồng lưu mã lỗi có thể ánh xạ sang thông báo người dùng
 
 - **WP2 SegFormer MiT-B2** dùng `ModelAvailability`, ảnh RGB trong phiên, `RunToken` và `CVResult` với checkpoint `real_only/best.pt` đã ghim phiên bản. [Quy trình và bằng chứng kiểm thử](WP2_SEGFORMER_INTEGRATION.md)
 - Faster R-CNN ResNet50-FPN V2 đang được fine-tune riêng trên Google Colab. Tích hợp ứng dụng cần checkpoint suy luận phù hợp.
-- **WP3** bổ sung hiển thị kết quả đầy đủ, độ mờ và xuất PNG. Phần nghiên cứu CV tiếp tục đánh giá mô hình trên dữ liệu phù hợp. WP1 chỉ phục vụ nghiên cứu trên máy phát triển, không có xác thực hay kho lưu hồ sơ bệnh nhân.
+- **WP3** bổ sung hiển thị kết quả đầy đủ, độ mờ và xuất PNG theo phiên. Bản chạy cục bộ phục vụ nghiên cứu và dùng định danh phiên trình duyệt tạm thời. [Luồng xuất và kết quả kiểm chứng](WP3_CLINICAL_VISUALIZATION.md)

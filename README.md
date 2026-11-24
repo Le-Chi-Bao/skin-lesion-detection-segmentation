@@ -1,14 +1,14 @@
 # Hệ thống hỗ trợ phân tích tổn thương da
 
-Ứng dụng nghiên cứu dành cho nhân viên y tế đã được đào tạo. Mục tiêu của đồ án là hỗ trợ quan sát tổn thương trên ảnh soi da, tra cứu kiến thức da liễu và chuẩn bị hội chẩn. **WP2 hỗ trợ tải, xem và phân đoạn ảnh soi da bằng SegFormer MiT-B2.** Nguyên mẫu này chưa được thẩm định để sử dụng lâm sàng và không tự động chẩn đoán bệnh da.
+Ứng dụng nghiên cứu dành cho nhân viên y tế đã được đào tạo. Mục tiêu của đồ án là hỗ trợ quan sát tổn thương trên ảnh soi da, tra cứu kiến thức da liễu và chuẩn bị hội chẩn. **WP3 bổ sung trình xem phân đoạn SegFormer MiT-B2, điều chỉnh độ mờ và xuất ảnh PNG.** Nguyên mẫu này chưa được thẩm định để sử dụng lâm sàng và không tự động chẩn đoán bệnh da.
 
-| Mô-đun | Trạng thái WP2 |
+| Mô-đun | Trạng thái WP3 |
 | --- | --- |
 | Tổng quan | Thông tin ứng dụng và trạng thái mô-đun |
-| Computer Vision | Tải JPEG/PNG, kiểm tra ảnh, xem ảnh gốc, tạo mask nhị phân và lấy tọa độ từ mask |
+| Computer Vision | Tải JPEG/PNG, phân đoạn, xem ảnh gốc, mask, lớp phủ và vùng định vị. Xuất PNG lớp phủ và định vị ở kích thước gốc. |
 | Medical RAG, Clinical Cases, Consultation Reports | Chưa triển khai |
 
-Nút **Phân tích** khả dụng khi checkpoint SegFormer đã được xác minh, nạp thành công và phiên có ảnh hợp lệ. Faster R-CNN ResNet50-FPN V2 hiển thị **Chưa tích hợp**. Kết quả WP2 xuất hiện trong **Mask** và **Localization** dưới dạng mặt nạ nhị phân và tọa độ box tính từ mask.
+Nút **Phân tích** khả dụng khi checkpoint SegFormer đã được xác minh, nạp thành công và phiên có ảnh hợp lệ. Faster R-CNN ResNet50-FPN V2 hiển thị **Chưa tích hợp**. Khi hoàn tất, trình xem tự mở **Overlay** với độ mờ 40%. **Original** hiển thị ảnh đã chuẩn hóa hướng EXIF, **Mask** hiển thị mặt nạ nhị phân và **Localization** vẽ bounding box suy ra từ mặt nạ. Phần **Chi tiết mô hình** ghi nguồn checkpoint, thiết bị, ngưỡng và thời gian suy luận. [Hướng dẫn và kiểm chứng WP3](docs/WP3_CLINICAL_VISUALIZATION.md)
 
 ## Cài đặt và chạy cục bộ
 
@@ -35,7 +35,7 @@ $env:LESION_SEGFORMER_DEVICE = 'cpu'
 .venv\Scripts\python.exe -m app.main
 ```
 
-Lệnh tải xác minh SHA-256 và dùng lại tệp hợp lệ nếu đã có. Để dùng bản sao cục bộ của checkpoint, trỏ `LESION_SEGFORMER_CHECKPOINT` đến tệp đó và chạy `python -m app.cv.checkpoint --verify-only`. Máy chủ chỉ đọc checkpoint cục bộ khi khởi động. Trong **Computer Vision**, tải ảnh soi da có giấy phép phù hợp, chọn **Phân tích** rồi mở **Mask**.
+Lệnh tải xác minh SHA-256 và dùng lại tệp hợp lệ nếu đã có. Để dùng bản sao cục bộ của checkpoint, trỏ `LESION_SEGFORMER_CHECKPOINT` đến tệp đó và chạy `python -m app.cv.checkpoint --verify-only`. Máy chủ chỉ đọc checkpoint cục bộ khi khởi động. Trong **Computer Vision**, tải ảnh soi da có giấy phép phù hợp rồi chọn **Phân tích**. Sau khi hoàn tất, chọn độ mờ và bấm **Tải Overlay PNG**. Khi có box, dùng **Tải Localization PNG** để tải ảnh định vị.
 
 ## Cấu hình
 
@@ -62,20 +62,22 @@ Các biến môi trường sau ghi đè cấu hình mặc định. Đường d�
 
 Mỗi phiên Gradio giữ một ảnh hiện tại và kết quả phân đoạn tương ứng. Ảnh được chuẩn hóa hướng EXIF và màu RGB. Khi thay ảnh hoặc đặt lại, ứng dụng hủy hiệu lực của lượt phân tích và yêu cầu xóa ảnh cùng mask trước đó. Dữ liệu của ứng dụng nằm trong `runtime/sessions/`. Một lượt phân tích đang đọc hoặc ghi có thể giữ tệp đến khi thao tác hoàn tất. Kết quả của lượt đã hết hiệu lực bị loại bỏ.
 
+Ứng dụng mã hóa PNG xuất trong bộ nhớ khi người dùng yêu cầu. Máy chủ kiểm tra phiên trình duyệt, ảnh và lượt phân tích hiện tại trước khi trả PNG. Quyền xuất hết hạn theo TTL của phiên.
+
 Gradio quản lý riêng tệp tải lên trong `runtime/gradio-cache/` theo tuổi tệp. Đặt lại ảnh không xóa ngay mọi bản sao thuộc cache của Gradio. Bộ nhớ trình duyệt, tệp còn lại sau khi tiến trình dừng đột ngột và chi tiết vòng đời được mô tả trong tài liệu nền tảng. [Kiến trúc và giới hạn WP1](docs/CV_MVP_FOUNDATION.md)
 
 ## Kiểm thử và tích hợp tiếp theo
 
 ```powershell
 .venv\Scripts\python.exe -m pip install -r requirements-dev.txt
-.venv\Scripts\python.exe -m pytest -q tests --basetemp runtime/wp2-regression
+.venv\Scripts\python.exe -m pytest -q tests --basetemp runtime/wp3-regression
 ```
 
-Bộ kiểm thử thông thường không tải checkpoint. Để chạy đủ ca đơn vị CV, cài thêm `requirements-cv.txt`. Cách chạy smoke test với checkpoint thật, mẫu có giấy phép, kiểm thử trình duyệt và kết quả đo được nằm trong [tài liệu WP2](docs/WP2_SEGFORMER_INTEGRATION.md).
+Bộ kiểm thử thông thường không tải checkpoint. Để chạy đủ ca đơn vị CV, cài thêm `requirements-cv.txt`. Thiết lập checkpoint thật, mẫu có giấy phép, lệnh kiểm thử Chromium và kết quả kiểm chứng được ghi trong [tài liệu WP3](docs/WP3_CLINICAL_VISUALIZATION.md) và [tài liệu WP2](docs/WP2_SEGFORMER_INTEGRATION.md).
 
 Dùng thư mục riêng cho `--basetemp` vì pytest sẽ dọn thư mục đó khi chạy lại.
 
-Để pytest chạy thêm ca tải ảnh đồng thời trên trình duyệt, cài Playwright và Chromium trong môi trường kiểm thử.
+Để pytest chạy các ca trình duyệt, cài Playwright và Chromium trong môi trường kiểm thử.
 
 ```powershell
 .venv\Scripts\python.exe -m pip install playwright==1.65.0
