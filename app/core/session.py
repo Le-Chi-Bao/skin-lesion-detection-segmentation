@@ -32,8 +32,10 @@ class RunToken:
     run_id: UUID
 
 
-@dataclass(slots=True)
+@dataclass(slots=True, weakref_slot=True)
 class SessionState:
+    browser_owner: str | None = field(default=None, repr=False, kw_only=True)
+    browser_proof: str | None = field(default=None, repr=False, init=False)
     session_id: UUID = field(default_factory=uuid4, init=False)
     image_revision: int = field(default=0, init=False)
     image: SessionImage | None = field(default=None, init=False)

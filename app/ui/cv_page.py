@@ -1,6 +1,7 @@
 import base64
 import io
 import logging
+import re
 from html import escape
 from typing import Any
 
@@ -18,8 +19,9 @@ from app.cv.availability import CVAvailability, ModelStatus, RunStatus
 from app.cv.schemas import CVResult
 from app.cv.segformer import SegFormer
 from app.cv.visualization import (
-    DEFAULT_OPACITY, display_size, draw_localization, encode_png, overlay_layer, validate_alignment,
+    DEFAULT_OPACITY, display_size, draw_localization, encode_png, open_aligned_images, overlay_layer,
 )
+from app.ui.png_export import EXPORT_PATH, UNAVAILABLE, PNGExports, browser_owner
 
 logger = logging.getLogger(__name__)
 
@@ -29,10 +31,15 @@ def upload_browser_setup(max_bytes: int) -> str:
     return """
     () => {
         let revision = 0;
+        let pendingExport;
+        const proof = Array.from(crypto.getRandomValues(new Uint8Array(32)),
+            byte => byte.toString(16).padStart(2, "0")).join("");
         const uploadName = action => "wp1-upload-" + action;
+        const opacityInput = () => document.querySelector('#overlay-opacity input[type="range"]');
         window.lesionImageActions = {
             current: () => revision,
-            upload: file => file?.orig_name === uploadName(revision) ? revision : 0
+            upload: file => file?.orig_name === uploadName(revision)
+                ? [file, {index: revision, proof}] : [null, 0]
         };
         document.addEventListener("input", event => {
             const input = event.target;
@@ -42,8 +49,50 @@ def upload_browser_setup(max_bytes: int) -> str:
                 layer.style.opacity = Math.min(100, Math.max(0, input.valueAsNumber)) / 100;
             }
         });
-        document.addEventListener("click", event => {
+        document.addEventListener("click", async event => {
             if (event.target.closest("#reset-image")) revision++;
+            if (event.target.closest("#reset-image, #analyze-image")) pendingExport?.abort();
+            const button = event.target.closest("#lesion-exports button[data-kind]");
+            if (!button || button.disabled || pendingExport) return;
+            const actions = button.closest("[data-run]");
+            const action = Number(actions.dataset.action);
+            if (action !== revision) return;
+            const output = actions.querySelector('[role="status"]');
+            const controller = new AbortController();
+            const isCurrent = () => action === revision && actions.isConnected && !controller.signal.aborted;
+            pendingExport = controller;
+            output.textContent = "Đang chuẩn bị PNG…";
+            try {
+                const response = await fetch(new URL("." + EXPORT_ENDPOINT, location.href), {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    signal: controller.signal,
+                    body: JSON.stringify({
+                        session: actions.dataset.session, run: actions.dataset.run, action, proof,
+                        kind: button.dataset.kind, opacity: opacityInput()?.valueAsNumber ?? DEFAULT_PERCENT,
+                    }),
+                });
+                if (!response.ok) {
+                    const message = await response.text();
+                    if (isCurrent()) output.textContent = message || "Không thể xuất PNG. Vui lòng thử lại.";
+                    return;
+                }
+                const blob = await response.blob();
+                if (!isCurrent()) return;
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = `segformer-${button.dataset.kind}-${actions.dataset.run.slice(0, 12)}.png`;
+                document.body.append(link);
+                link.click();
+                link.remove();
+                setTimeout(() => URL.revokeObjectURL(url), 1000);
+                output.textContent = "Đã tạo PNG để tải xuống.";
+            } catch (error) {
+                if (isCurrent()) output.textContent = "Không thể xuất PNG. Vui lòng thử lại.";
+            } finally {
+                pendingExport = undefined;
+            }
         }, true);
         document.addEventListener("change", event => {
             const input = event.target;
@@ -51,6 +100,7 @@ def upload_browser_setup(max_bytes: int) -> str:
                 !input.closest("#cv-controls") || !input.files?.length) return;
             const file = input.files[0];
             const action = ++revision;
+            pendingExport?.abort();
             if (file.size > MAX_UPLOAD_BYTES) {
                 event.stopImmediatePropagation();
                 input.value = "";
@@ -63,7 +113,9 @@ def upload_browser_setup(max_bytes: int) -> str:
             input.files = transfer.files;
         }, true);
     }
-    """.replace("MAX_UPLOAD_BYTES", str(max_bytes))
+    """.replace("MAX_UPLOAD_BYTES", str(max_bytes)).replace(
+        "EXPORT_ENDPOINT", f'"{EXPORT_PATH}"',
+    ).replace("DEFAULT_PERCENT", str(DEFAULT_OPACITY))
 
 
 VIEWS = {
@@ -123,17 +175,8 @@ def result_details(result: CVResult, status: str) -> str:
 
 
 def render_result_images(files: TemporaryFiles, current: SessionState, source_file: str, result: CVResult) -> tuple:
-    reference = result.segmentation.mask
     size = result.image_width, result.image_height
-    session_id = current.session_id
-    with (
-        files.operation(session_id),
-        files.open_image(session_id, source_file) as source_stream,
-        files.open_mask(session_id, reference.reference) as mask_stream,
-        Image.open(source_stream, formats=("PNG",)) as source,
-        Image.open(mask_stream, formats=("PNG",)) as binary,
-    ):
-        validate_alignment(source, binary, size)
+    with open_aligned_images(files, current.session_id, source_file, result) as (source, binary):
         dimensions = display_size(size)
         with (
             source.resize(dimensions, Image.Resampling.LANCZOS) as preview,
@@ -155,7 +198,28 @@ def render_result_images(files: TemporaryFiles, current: SessionState, source_fi
     return mask, overlay, coordinates + localization
 
 
-def render_cv_page(config: AppConfig, files: TemporaryFiles, availability: CVAvailability, segmenter: SegFormer) -> None:
+def export_panel(current: SessionState | None = None, result: CVResult | None = None, action: int = 0) -> str:
+    if current is None or result is None:
+        identity = ""
+        status = UNAVAILABLE
+        overlay_disabled = " disabled"
+    else:
+        identity = f' data-session="{current.session_id.hex}" data-run="{result.run_id.hex}" data-action="{action}"'
+        status = "Sẵn sàng xuất PNG." if result.localization else "Có thể xuất Overlay. Mặt nạ rỗng nên không có ảnh định vị."
+        overlay_disabled = ""
+    localization_disabled = "" if result and result.localization else " disabled"
+    return (
+        f'<div class="lesion-exports"{identity}><div class="lesion-export-actions">'
+        f'<button type="button" data-kind="overlay"{overlay_disabled}>Tải Overlay PNG</button>'
+        f'<button type="button" data-kind="localization"{localization_disabled}>Tải Localization PNG</button>'
+        f'</div><p role="status">{status}</p></div>'
+    )
+
+
+def render_cv_page(
+    config: AppConfig, files: TemporaryFiles, availability: CVAvailability, segmenter: SegFormer,
+    exports: PNGExports | None = None,
+) -> None:
     ready = availability.segmentation.status is ModelStatus.READY
     idle_status = run_status(str(segmenter.error), alert=True) if segmenter.error else run_status("Chưa có ảnh để phân tích.")
 
@@ -163,7 +227,18 @@ def render_cv_page(config: AppConfig, files: TemporaryFiles, availability: CVAva
         if state is not None:
             with state.lock:
                 state.reset()
+                if exports is not None:
+                    exports.revoke(state.session_id)
                 files.close_session(state.session_id)
+
+    def owns(current: SessionState, request: gr.Request | None) -> bool:
+        return exports is None or (current.browser_owner is not None and current.browser_owner == browser_owner(request))
+
+    def editable(current: SessionState | None, request: gr.Request | None) -> SessionState | None:
+        if current is not None:
+            return current if owns(current, request) else None
+        owner = browser_owner(request)
+        return SessionState(browser_owner=owner) if exports is None or owner else None
 
     state = gr.State(delete_callback=cleanup)
     action_index = gr.Number(value=0, precision=0, visible="hidden", elem_id="image-action-index")
@@ -201,9 +276,10 @@ def render_cv_page(config: AppConfig, files: TemporaryFiles, availability: CVAva
                 with gr.Tab("Localization", id="localization"):
                     localization = gr.HTML(image_panel("localization"), js_on_load=None, elem_id="lesion-localization")
             opacity = gr.Slider(
-                0, 100, DEFAULT_OPACITY, step=1, label="Độ mờ lớp phủ (%)", interactive=False,
+                0, 100, DEFAULT_OPACITY, step=1, precision=0, label="Độ mờ lớp phủ (%)", interactive=False, buttons=[],
                 elem_id="overlay-opacity",
             )
+            export_view = gr.HTML(export_panel(), js_on_load=None, elem_id="lesion-exports")
             warnings = gr.HTML('<div role="status"></div>', js_on_load=None, elem_id="lesion-warnings")
             with gr.Accordion("Chi tiết mô hình", open=False):
                 details_view = gr.Markdown("Chưa có lượt phân tích.", elem_id="lesion-model-details")
@@ -212,13 +288,15 @@ def render_cv_page(config: AppConfig, files: TemporaryFiles, availability: CVAva
         return (
             gr.update(interactive=interactive), image_panel("mask"),
             message or idle_status, image_panel("localization"), image_panel("overlay"),
-            gr.update(value=DEFAULT_OPACITY, interactive=False), details, '<div role="status"></div>',
+            gr.update(value=DEFAULT_OPACITY, interactive=False), details, '<div role="status"></div>', export_panel(),
         )
 
     def clear_image(current: SessionState, message: str = "") -> tuple:
         with current.lock:
             previous_result = current.result
             previous = current.reset()
+            if exports is not None:
+                exports.revoke(current.session_id)
         try:
             with files.operation(current.session_id):
                 if previous is not None:
@@ -232,12 +310,31 @@ def render_cv_page(config: AppConfig, files: TemporaryFiles, availability: CVAva
             *empty_analysis(False),
         )
 
-    def upload(payload: dict[str, Any] | None, current: SessionState | None, action: int) -> tuple:
-        current = current or SessionState()
-        if payload is None or not current.accept_image_action(action):
+    def accept_edit(current: SessionState, action: int) -> bool:
+        with current.lock:
+            if not current.accept_image_action(action):
+                return False
+            if exports is not None:
+                exports.revoke(current.session_id)
+            return True
+
+    def upload(
+        payload: dict[str, Any] | None, current: SessionState | None, action: int | dict[str, Any], request: gr.Request,
+    ) -> tuple:
+        current = editable(current, request)
+        if not isinstance(payload, dict) or current is None:
+            return tuple(gr.skip() for _ in outputs)
+        proof = action.get("proof") if isinstance(action, dict) else None
+        action = action.get("index") if isinstance(action, dict) else action
+        if exports is not None and (
+            not isinstance(proof, str) or not re.fullmatch(r"[a-f0-9]{64}", proof)
+            or current.browser_proof not in (None, proof)
+        ):
+            return tuple(gr.skip() for _ in outputs)
+        if not accept_edit(current, action):
             return tuple(gr.skip() for _ in outputs)
         try:
-            raw_path = payload.get("path") if isinstance(payload, dict) else None
+            raw_path = payload.get("path")
             path = uploaded_path(raw_path if isinstance(raw_path, str) else None, files.cache_dir)
             image, details = validate_image(path, config)
             with image, files.operation(current.session_id):
@@ -247,6 +344,7 @@ def render_cv_page(config: AppConfig, files: TemporaryFiles, availability: CVAva
                 with current.lock:
                     previous_result = current.result
                     previous = current.replace_image(details, stored_file)
+                    current.browser_proof = proof
                 if previous is not None:
                     files.discard(current.session_id, previous.temporary_file)
                 discard_result(files, current, previous_result)
@@ -261,19 +359,19 @@ def render_cv_page(config: AppConfig, files: TemporaryFiles, availability: CVAva
             *empty_analysis(ready, run_status("Đã tải ảnh. Sẵn sàng phân tích.") if ready else idle_status),
         )
 
-    def reset(current: SessionState | None, action: int) -> tuple:
-        current = current or SessionState()
-        if not current.accept_image_action(action):
+    def reset(current: SessionState | None, action: int, request: gr.Request) -> tuple:
+        current = editable(current, request)
+        if current is None or not accept_edit(current, action):
             return tuple(gr.skip() for _ in outputs)
         return clear_image(current)
 
-    def reject_oversize(current: SessionState | None, action: int) -> tuple:
-        current = current or SessionState()
-        if not current.accept_image_action(action):
+    def reject_oversize(current: SessionState | None, action: int, request: gr.Request) -> tuple:
+        current = editable(current, request)
+        if current is None or not accept_edit(current, action):
             return tuple(gr.skip() for _ in outputs)
         return clear_image(current, str(AppError(ErrorCode.UPLOAD_TOO_LARGE, limit=config.max_upload_mib)))
 
-    analysis_outputs = [analyze_button, mask, status, localization, overlay, opacity, details_view, warnings]
+    analysis_outputs = [analyze_button, mask, status, localization, overlay, opacity, details_view, warnings, export_view]
     outputs = [state, preview, metadata, error, original, tabs, *analysis_outputs]
     events = {
         "concurrency_id": "cv-session-edits", "concurrency_limit": 1, "api_visibility": "private",
@@ -283,8 +381,8 @@ def render_cv_page(config: AppConfig, files: TemporaryFiles, availability: CVAva
     upload_button.upload(
         upload, [upload_button, state, action_index], outputs,
         js="""(file, state) => {
-            const action = window.lesionImageActions?.upload(file) ?? 0;
-            return [action ? file : null, state, action];
+            const [payload, action] = window.lesionImageActions?.upload(file) ?? [null, 0];
+            return [payload, state, action];
         }""", **events,
     )
     current_action_js = "(state) => [state, window.lesionImageActions?.current() ?? 0]"
@@ -294,14 +392,16 @@ def render_cv_page(config: AppConfig, files: TemporaryFiles, availability: CVAva
     if not ready:
         return
 
-    def begin_analysis(current: SessionState | None, action: int) -> tuple:
-        if current is None:
+    def begin_analysis(current: SessionState | None, action: int, request: gr.Request) -> tuple:
+        if current is None or not owns(current, request):
             return tuple(gr.skip() for _ in analysis_outputs)
         with current.lock:
             if not current.matches_image_action(action) or current.image is None or current.active_run is not None:
                 return tuple(gr.skip() for _ in analysis_outputs)
             previous_result = current.result
             current.begin_run()
+            if exports is not None:
+                exports.revoke(current.session_id)
         try:
             with files.operation(current.session_id):
                 discard_result(files, current, previous_result)
@@ -309,13 +409,13 @@ def render_cv_page(config: AppConfig, files: TemporaryFiles, availability: CVAva
             log_error(logger, exc, current.session_id)
         return empty_analysis(False, run_status("Đang phân tích ảnh bằng SegFormer…"), "Đang xử lý ảnh.")
 
-    def run_analysis(current: SessionState | None) -> None:
-        if current is not None:
+    def run_analysis(current: SessionState | None, request: gr.Request) -> None:
+        if current is not None and owns(current, request):
             execute_analysis(current, files, segmenter)
 
-    def show_analysis(current: SessionState | None, action: int) -> tuple:
+    def show_analysis(current: SessionState | None, action: int, request: gr.Request) -> tuple:
         skip = tuple(gr.skip() for _ in (*analysis_outputs, tabs))
-        if current is None:
+        if current is None or not owns(current, request):
             return skip
         with current.lock:
             result = current.result if current.matches_image_action(action) else None
@@ -341,6 +441,8 @@ def render_cv_page(config: AppConfig, files: TemporaryFiles, availability: CVAva
         with current.lock:
             if current.result is not result or not current.matches_image_action(action):
                 return skip
+            if exports is not None:
+                exports.issue(current, result)
         summary = run_status(f"Phân đoạn hoàn tất · {segmentation.model.model_id}", segmentation.model.checkpoint_id)
         caution = " ".join(segmentation.warnings)
         if "empty_mask" in result.metadata.warning_codes:
@@ -348,7 +450,8 @@ def render_cv_page(config: AppConfig, files: TemporaryFiles, availability: CVAva
         return (
             gr.update(interactive=True), mask_view, summary, localization_view, overlay_view,
             gr.update(value=DEFAULT_OPACITY, interactive=True), result_details(result, "Phân đoạn hoàn tất"),
-            f'<div role="status">{escape(caution)}</div>', gr.Tabs(selected="overlay"),
+            f'<div role="status">{escape(caution)}</div>',
+            export_panel(current, result, action) if exports is not None else export_panel(), gr.Tabs(selected="overlay"),
         )
 
     # Only the short start and display callbacks share the upload/Reset queue.

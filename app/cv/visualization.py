@@ -1,11 +1,15 @@
 """Render SegFormer results in the normalized image's pixel coordinates."""
 
+from collections.abc import Iterator
+from contextlib import contextmanager
 from math import ceil, floor
 from typing import BinaryIO
+from uuid import UUID
 
 from PIL import Image, ImageDraw
 
-from app.cv.schemas import BoundingBox
+from app.core.temporary_files import TemporaryFiles
+from app.cv.schemas import BoundingBox, CVResult
 
 DISPLAY_EDGE = 1600
 DEFAULT_OPACITY = 40
@@ -26,6 +30,24 @@ def validate_alignment(original: Image.Image, mask: Image.Image, size: tuple[int
     colors = mask.getcolors(2)
     if colors is None or any(value not in (0, 255) for _, value in colors):
         raise ValueError("Expected a binary mask with values 0 and 255")
+
+
+@contextmanager
+def open_aligned_images(
+    files: TemporaryFiles, session_id: UUID, source_file: str, result: CVResult,
+) -> Iterator[tuple[Image.Image, Image.Image]]:
+    reference = result.segmentation.mask
+    if reference is None:
+        raise ValueError("A completed segmentation is required")
+    with (
+        files.operation(session_id),
+        files.open_image(session_id, source_file) as source_stream,
+        files.open_mask(session_id, reference.reference) as mask_stream,
+        Image.open(source_stream, formats=("PNG",)) as source,
+        Image.open(mask_stream, formats=("PNG",)) as binary,
+    ):
+        validate_alignment(source, binary, (result.image_width, result.image_height))
+        yield source, binary
 
 
 def compose_overlay(original: Image.Image, mask: Image.Image, opacity: int) -> Image.Image:

@@ -6,9 +6,12 @@ from app.cv.availability import CVAvailability
 from app.cv.segformer import SegFormer
 from app.ui.cv_page import render_cv_page
 from app.ui.overview import DEFERRED_MODULES, render_overview
+from app.ui.png_export import PNGExports
 
 
-def build_shell(config: AppConfig, files: TemporaryFiles, segmenter: SegFormer | None = None) -> gr.Blocks:
+def build_shell(
+    config: AppConfig, files: TemporaryFiles, segmenter: SegFormer | None = None, *, exports: PNGExports | None = None,
+) -> gr.Blocks:
     segmenter = segmenter if segmenter is not None else SegFormer(config)
     segmenter.load()
     availability = CVAvailability(segmentation=segmenter.availability)
@@ -31,7 +34,7 @@ def build_shell(config: AppConfig, files: TemporaryFiles, segmenter: SegFormer |
         with gr.Column() as overview:
             render_overview(availability)
         with gr.Column(visible=False) as cv_page:
-            render_cv_page(config, files, availability, segmenter)
+            render_cv_page(config, files, availability, segmenter, exports)
 
         def navigate(section: str) -> tuple[dict, dict]:
             return gr.update(visible=section == "Tổng quan"), gr.update(visible=section == "Computer Vision")

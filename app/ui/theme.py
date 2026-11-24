@@ -45,6 +45,19 @@ CSS = """
 .lesion-layer, .lesion-mask img { image-rendering: pixelated; }
 .lesion-coordinates { margin: 0 0 0.5rem; overflow-wrap: anywhere; }
 #lesion-model-details, #segmentation-status { overflow-wrap: anywhere; }
+.lesion-export-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.lesion-export-actions button {
+    padding: 0.5rem 0.8rem;
+    background: var(--button-secondary-background-fill);
+    color: var(--button-secondary-text-color);
+    border: 1px solid var(--block-border-color);
+    border-radius: var(--button-small-radius);
+    font-weight: 600;
+    cursor: pointer;
+}
+.lesion-export-actions button:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.lesion-export-actions button:disabled { opacity: 0.55; cursor: default; }
+.lesion-exports p { margin-top: 0.35rem; }
 @media (max-width: 720px) {
     #cv-controls, #cv-viewer { flex: 1 1 100%; }
     .lesion-view:not(.lesion-preview) { min-height: clamp(12rem, 45vh, 25rem); }
