@@ -36,8 +36,17 @@ CSS = """
     color: var(--body-text-color);
 }
 .lesion-preview { min-height: 8rem; }
-.lesion-original, .lesion-mask { min-height: clamp(20rem, 58vh, 42rem); }
-.lesion-view img { display: block; max-width: 100%; object-fit: contain; }
+.lesion-view:not(.lesion-preview) { min-height: clamp(14rem, 57vh, 42rem); }
+.lesion-view img { display: block; max-width: 100%; height: auto; object-fit: contain; }
 .lesion-preview img { max-height: 10rem; }
-.lesion-original img, .lesion-mask img { max-height: min(70vh, 52rem); }
+.lesion-view:not(.lesion-preview) img { max-height: min(64vh, 44rem); }
+.lesion-stack { display: grid; min-width: 0; max-width: 100%; }
+.lesion-stack img { grid-area: 1 / 1; place-self: center; }
+.lesion-layer, .lesion-mask img { image-rendering: pixelated; }
+.lesion-coordinates { margin: 0 0 0.5rem; overflow-wrap: anywhere; }
+#lesion-model-details, #segmentation-status { overflow-wrap: anywhere; }
+@media (max-width: 720px) {
+    #cv-controls, #cv-viewer { flex: 1 1 100%; }
+    .lesion-view:not(.lesion-preview) { min-height: clamp(12rem, 45vh, 25rem); }
+}
 """
