@@ -21,7 +21,9 @@ from app.core.logging_config import log_error
 from app.core.session import SessionState
 from app.core.temporary_files import TemporaryFiles
 from app.cv.schemas import CVResult
-from app.cv.visualization import compose_overlay, draw_localization, encode_png, open_aligned_images
+from app.cv.visualization import (
+    compose_overlay, draw_localization, draw_combined_localization, encode_png, open_aligned_images, open_source,
+)
 
 logger = logging.getLogger(__name__)
 EXPORT_COOKIE = "lesion_browser"
@@ -79,7 +81,11 @@ class PNGExports:
             return self.unavailable()
         result = grant.result
         with current.lock:
-            if not self._matches(current, grant, requested) or (requested.kind == "localization" and result.localization is None):
+            if (
+                not self._matches(current, grant, requested)
+                or (requested.kind == "localization" and result.localization is None and not result.detection.boxes)
+                or (requested.kind == "overlay" and result.segmentation.mask is None)
+            ):
                 return self.unavailable()
             source_file = current.image.temporary_file
             with self._lock:
@@ -87,11 +93,13 @@ class PNGExports:
                     return PlainTextResponse("Đang chuẩn bị PNG cho phiên này.", 409, headers=NO_CACHE)
                 self._encoding.add(requested.session)
         try:
-            with open_aligned_images(self.files, current.session_id, source_file, result) as (source, mask):
+            with self.files.operation(current.session_id):
                 if requested.kind == "overlay":
-                    rendered = compose_overlay(source, mask, requested.opacity)
+                    with open_aligned_images(self.files, current.session_id, source_file, result) as (source, mask):
+                        rendered = compose_overlay(source, mask, requested.opacity)
                 else:
-                    rendered = draw_localization(source, result.localization.box)
+                    with open_source(self.files, current.session_id, source_file, result) as source:
+                        rendered = draw_combined_localization(source, result) if result.detection.boxes else draw_localization(source, result.localization.box)
                 with rendered, io.BytesIO() as buffer:
                     encode_png(rendered, buffer)
                     content = buffer.getvalue()

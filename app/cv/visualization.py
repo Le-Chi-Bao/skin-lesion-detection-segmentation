@@ -16,6 +16,40 @@ DEFAULT_OPACITY = 40
 OVERLAY_COLOR = (20, 184, 166)
 BOX_COLOR = (255, 207, 73)
 BOX_OUTLINE = (23, 50, 77)
+DETECTION_COLOR = (255, 96, 96)
+
+
+@contextmanager
+def open_source(files: TemporaryFiles, session_id: UUID, source_file: str, result: CVResult) -> Iterator[Image.Image]:
+    with files.operation(session_id), files.open_image(session_id, source_file) as stream, Image.open(stream, formats=("PNG",)) as source:
+        if source.mode != "RGB" or source.size != (result.image_width, result.image_height):
+            raise ValueError("Source dimensions do not match the result")
+        yield source
+
+
+def draw_combined_localization(original: Image.Image, result: CVResult) -> Image.Image | None:
+    if result.localization is None and not result.detection.boxes:
+        return None
+    size = result.image_width, result.image_height
+    output = draw_localization(original, result.localization.box, source_size=size) if result.localization else original.copy()
+    output.info.clear()
+    draw = ImageDraw.Draw(output)
+    stroke = max(1, min(12, round(max(output.size) / 450)))
+    if result.localization:
+        box = result.localization.box
+        # Put mask and detector labels on opposite sides of overlapping boxes.
+        position = (floor(box.x1 * output.width / size[0]), min(max(0, output.height - 12), ceil(box.y2 * output.height / size[1]) + 2))
+        draw.text(position, "SegFormer: mask box", fill=BOX_COLOR, stroke_width=1, stroke_fill=BOX_OUTLINE)
+    for prediction in result.detection.boxes:
+        box = prediction.box
+        coords = (
+            floor(box.x1 * output.width / size[0]), floor(box.y1 * output.height / size[1]),
+            min(output.width - 1, ceil(box.x2 * output.width / size[0]) - 1),
+            min(output.height - 1, ceil(box.y2 * output.height / size[1]) - 1),
+        )
+        draw.rectangle(coords, outline=DETECTION_COLOR, width=stroke)
+        draw.text((coords[0], max(0, coords[1] - 12)), f"Faster R-CNN: {prediction.score:.3f}", fill=DETECTION_COLOR, stroke_width=1, stroke_fill=BOX_OUTLINE)
+    return output
 
 
 def display_size(size: tuple[int, int]) -> tuple[int, int]:

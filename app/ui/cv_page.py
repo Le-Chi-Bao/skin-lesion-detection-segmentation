@@ -17,9 +17,10 @@ from app.core.temporary_files import TemporaryFiles
 from app.cv.analysis import discard_result, execute_analysis
 from app.cv.availability import CVAvailability, ModelStatus, RunStatus
 from app.cv.schemas import CVResult
-from app.cv.segformer import SegFormer
+from app.cv.orchestrator import CVOrchestrator
 from app.cv.visualization import (
-    DEFAULT_OPACITY, display_size, draw_localization, encode_png, open_aligned_images, overlay_layer,
+    DEFAULT_OPACITY, display_size, draw_localization, draw_combined_localization, encode_png, open_aligned_images,
+    open_source, overlay_layer,
 )
 from app.ui.png_export import EXPORT_PATH, UNAVAILABLE, PNGExports, browser_owner
 
@@ -123,7 +124,7 @@ VIEWS = {
     "original": ("Ảnh soi da đã tải lên", "Tải ảnh soi da để xem ảnh gốc."),
     "mask": ("Mặt nạ tổn thương nhị phân", "Chưa có mặt nạ phân đoạn."),
     "overlay": ("Ảnh soi da chồng mặt nạ phân đoạn", "Chưa có ảnh chồng mặt nạ."),
-    "localization": ("Ảnh soi da với bounding box suy ra từ mask", "Chưa có vùng định vị từ mặt nạ."),
+    "localization": ("Ảnh soi da với bounding box suy ra từ mask", "Chưa có kết quả định vị."),
 }
 
 
@@ -171,11 +172,34 @@ def result_details(result: CVResult, status: str) -> str:
          if result.metadata.inference_duration_ms is not None else None),
         ("Nguồn định vị", "Bounding box suy ra từ mask" if result.localization else None),
     ]
-    return "\n\n".join(f"**{label}** · `{value}`" for label, value in rows if value is not None)
+    for label, module in (("SegFormer", result.segmentation), ("Faster R-CNN", result.detection)):
+        rows.append((f"{label} · trạng thái", module.status.value))
+        rows.append((f"{label} · thời gian", f"{module.inference_duration_ms:.2f} ms" if module.inference_duration_ms is not None else None))
+        rows.append((f"{label} · lỗi", str(AppError(module.error_code)).replace("SegFormer", label) if module.error_code else None))
+        if module.model:
+            identity = module.model
+            rows.extend((
+                (f"{label} · phiên bản", identity.model_version or identity.checkpoint_id),
+                (f"{label} · định dạng", identity.artifact_format), (f"{label} · kiến trúc", identity.architecture),
+            ))
+            if label == "Faster R-CNN":
+                rows.extend(((f"{label} · mô hình", identity.model_id), (f"{label} · SHA-256", identity.checkpoint_sha256), (f"{label} · thiết bị", identity.device)))
+    rows.extend((("Số detection", str(len(result.detection.boxes))), ("Điểm detection", "Điểm của mô hình, không phải xác suất ung thư.")))
+    return "\n\n".join(f"**{label}** · `{escape(str(value))}`" for label, value in rows if value is not None)
 
 
 def render_result_images(files: TemporaryFiles, current: SessionState, source_file: str, result: CVResult) -> tuple:
     size = result.image_width, result.image_height
+    if result.segmentation.mask is None:
+        with open_source(files, current.session_id, source_file, result) as source:
+            with source.resize(display_size(size), Image.Resampling.LANCZOS) as preview:
+                localized = draw_combined_localization(preview, result)
+                if localized is None:
+                    localization = image_panel("localization", empty="Không có detection đạt ngưỡng.")
+                else:
+                    with localized:
+                        localization = image_panel("localization", image_source(localized, png=True))
+        return image_panel("mask"), image_panel("overlay"), localization_legend(result) + localization
     with open_aligned_images(files, current.session_id, source_file, result) as (source, binary):
         dimensions = display_size(size)
         with (
@@ -185,17 +209,25 @@ def render_result_images(files: TemporaryFiles, current: SessionState, source_fi
         ):
             mask = image_panel("mask", image_source(display_mask, png=True))
             overlay = image_panel("overlay", image_source(preview), layer=image_source(layer, png=True))
-            if result.localization is None:
+            if result.localization is None and not result.detection.boxes:
                 return mask, overlay, image_panel("localization", empty="Mặt nạ rỗng. Không có vùng định vị.")
-            box = result.localization.box
-            with draw_localization(preview, box, source_size=size) as localized:
+            box = result.localization.box if result.localization else None
+            with (draw_combined_localization(preview, result) if result.detection.boxes else draw_localization(preview, box, source_size=size)) as localized:
                 localization = image_panel("localization", image_source(localized, png=True))
     coordinates = (
         f'<p class="lesion-coordinates"><strong>Bounding box suy ra từ mask</strong> · '
         f'<code>[{box.x1:g}, {box.y1:g}, {box.x2:g}, {box.y2:g}]</code> px. '
         'Cạnh phải và cạnh dưới là tọa độ loại trừ.</p>'
+    ) if box else ""
+    return mask, overlay, coordinates + localization_legend(result) + localization
+
+
+def localization_legend(result: CVResult) -> str:
+    return (
+        '<p><span style="color:#8a6100">SegFormer: bounding box suy ra từ mask (vàng)</span> · '
+        '<span style="color:#b42332">Faster R-CNN: detection độc lập (đỏ)</span>. '
+        f'{len(result.detection.boxes)} detection. Điểm detection không phải xác suất ung thư.</p>'
     )
-    return mask, overlay, coordinates + localization
 
 
 def export_panel(current: SessionState | None = None, result: CVResult | None = None, action: int = 0) -> str:
@@ -205,9 +237,9 @@ def export_panel(current: SessionState | None = None, result: CVResult | None = 
         overlay_disabled = " disabled"
     else:
         identity = f' data-session="{current.session_id.hex}" data-run="{result.run_id.hex}" data-action="{action}"'
-        status = "Sẵn sàng xuất PNG." if result.localization else "Có thể xuất Overlay. Mặt nạ rỗng nên không có ảnh định vị."
-        overlay_disabled = ""
-    localization_disabled = "" if result and result.localization else " disabled"
+        status = "Sẵn sàng xuất PNG." if result.localization or result.detection.boxes else "Có thể xuất Overlay. Mặt nạ rỗng nên không có ảnh định vị."
+        overlay_disabled = "" if result.segmentation.mask else " disabled"
+    localization_disabled = "" if result and (result.localization or result.detection.boxes) else " disabled"
     return (
         f'<div class="lesion-exports"{identity}><div class="lesion-export-actions">'
         f'<button type="button" data-kind="overlay"{overlay_disabled}>Tải Overlay PNG</button>'
@@ -217,11 +249,12 @@ def export_panel(current: SessionState | None = None, result: CVResult | None = 
 
 
 def render_cv_page(
-    config: AppConfig, files: TemporaryFiles, availability: CVAvailability, segmenter: SegFormer,
+    config: AppConfig, files: TemporaryFiles, availability: CVAvailability, models: CVOrchestrator,
     exports: PNGExports | None = None,
 ) -> None:
-    ready = availability.segmentation.status is ModelStatus.READY
-    idle_status = run_status(str(segmenter.error), alert=True) if segmenter.error else run_status("Chưa có ảnh để phân tích.")
+    ready = any(model.status is ModelStatus.READY for model in (availability.segmentation, availability.detection))
+    errors = [str(adapter.error).replace("SegFormer", label) for label, adapter in (("SegFormer", models.segmentation), ("Faster R-CNN", models.detection)) if adapter.error]
+    idle_status = run_status(" ".join(errors), alert=True) if errors else run_status("Chưa có ảnh để phân tích.")
 
     def cleanup(state: SessionState | None) -> None:
         if state is not None:
@@ -407,11 +440,11 @@ def render_cv_page(
                 discard_result(files, current, previous_result)
         except (AppError, OSError) as exc:
             log_error(logger, exc, current.session_id)
-        return empty_analysis(False, run_status("Đang phân tích ảnh bằng SegFormer…"), "Đang xử lý ảnh.")
+        return empty_analysis(False, run_status("Đang phân tích ảnh bằng các mô hình sẵn sàng…"), "Đang xử lý ảnh.")
 
     def run_analysis(current: SessionState | None, request: gr.Request) -> None:
         if current is not None and owns(current, request):
-            execute_analysis(current, files, segmenter)
+            execute_analysis(current, files, models)
 
     def show_analysis(current: SessionState | None, action: int, request: gr.Request) -> tuple:
         skip = tuple(gr.skip() for _ in (*analysis_outputs, tabs))
@@ -443,15 +476,23 @@ def render_cv_page(
                 return skip
             if exports is not None:
                 exports.issue(current, result)
-        summary = run_status(f"Phân đoạn hoàn tất · {segmentation.model.model_id}", segmentation.model.checkpoint_id)
-        caution = " ".join(segmentation.warnings)
+        message = "Phân đoạn hoàn tất" if segmentation.mask else "Phát hiện hoàn tất"
+        if result.metadata.status is RunStatus.PARTIAL:
+            message += " · Thành công một phần"
+        identity = segmentation.model if segmentation.mask else result.detection.model
+        summary = run_status(f"{message} · {identity.model_id}", identity.checkpoint_id)
+        caution = " ".join((*segmentation.warnings, *result.detection.warnings))
+        for label, module in (("SegFormer", segmentation), ("Faster R-CNN", result.detection)):
+            if module.error_code:
+                caution += " " + str(AppError(module.error_code)).replace("SegFormer", label)
         if "empty_mask" in result.metadata.warning_codes:
-            caution = "Không có pixel tiền cảnh đạt ngưỡng phân đoạn. Kết quả này không dùng để kết luận về bệnh lý."
+            caution += " Không có pixel tiền cảnh đạt ngưỡng phân đoạn. Kết quả này không dùng để kết luận về bệnh lý."
         return (
             gr.update(interactive=True), mask_view, summary, localization_view, overlay_view,
-            gr.update(value=DEFAULT_OPACITY, interactive=True), result_details(result, "Phân đoạn hoàn tất"),
+            gr.update(value=DEFAULT_OPACITY, interactive=segmentation.mask is not None), result_details(result, message),
             f'<div role="status">{escape(caution)}</div>',
-            export_panel(current, result, action) if exports is not None else export_panel(), gr.Tabs(selected="overlay"),
+            export_panel(current, result, action) if exports is not None else export_panel(),
+            gr.Tabs(selected="overlay" if segmentation.mask else "localization"),
         )
 
     # Only the short start and display callbacks share the upload/Reset queue.
