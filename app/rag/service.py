@@ -25,6 +25,17 @@ class RAGService:
     def document_count(self):
         return len(self._documents)
 
+    def close(self):
+        with self._lock:
+            self._documents.clear()
+            self._receipts.clear()
+            self._sources.clear()
+            self._invalidate()
+            directory = getattr(self, "_demo_directory", None)
+            if directory is not None:
+                directory.cleanup()
+                self._demo_directory = None
+
     def ingest(self, manifest_path, importer: DocumentImporter):
         with self._lock:
             key = str(manifest_path.absolute())

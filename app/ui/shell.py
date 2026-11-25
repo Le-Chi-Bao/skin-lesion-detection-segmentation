@@ -7,6 +7,7 @@ from app.cv.orchestrator import CVOrchestrator, create_orchestrator
 from app.ui.cv_page import render_cv_page
 from app.ui.overview import DEFERRED_MODULES, render_overview
 from app.ui.png_export import PNGExports
+from app.ui.rag_page import render_rag_page
 
 
 def build_shell(
@@ -22,7 +23,7 @@ def build_shell(
     ) as demo:
         with gr.Sidebar(label="Điều hướng", width=250):
             navigation = gr.Radio(
-                ("Tổng quan", "Computer Vision"), value="Tổng quan", label="Mô-đun",
+                ("Tổng quan", "Computer Vision", "Medical RAG"), value="Tổng quan", label="Mô-đun",
             )
             gr.Markdown("\n\n".join(f"**{module}**  \nChưa triển khai" for module in DEFERRED_MODULES))
 
@@ -35,9 +36,12 @@ def build_shell(
             render_overview(availability)
         with gr.Column(visible=False) as cv_page:
             render_cv_page(config, files, availability, models, exports)
+        with gr.Column(visible=False) as rag_page:
+            render_rag_page(config.session_ttl_seconds)
 
-        def navigate(section: str) -> tuple[dict, dict]:
-            return gr.update(visible=section == "Tổng quan"), gr.update(visible=section == "Computer Vision")
+        def navigate(section: str) -> tuple[dict, dict, dict]:
+            return (gr.update(visible=section == "Tổng quan"), gr.update(visible=section == "Computer Vision"),
+                    gr.update(visible=section == "Medical RAG"))
 
-        navigation.input(navigate, navigation, [overview, cv_page], api_visibility="private", queue=False)
+        navigation.input(navigate, navigation, [overview, cv_page, rag_page], api_visibility="private", queue=False)
     return demo

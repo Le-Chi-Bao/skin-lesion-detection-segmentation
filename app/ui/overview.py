@@ -2,7 +2,7 @@ import gradio as gr
 
 from app.cv.availability import CVAvailability, ModelStatus
 
-DEFERRED_MODULES = ("Medical RAG", "Clinical Cases", "Consultation Reports")
+DEFERRED_MODULES = ("Clinical Cases", "Consultation Reports")
 
 
 def render_overview(availability: CVAvailability) -> None:
@@ -18,5 +18,6 @@ def render_overview(availability: CVAvailability) -> None:
         f"| Computer Vision | {cv_description} |\n"
         f"| Phân đoạn · {availability.segmentation.model_id} | {availability.segmentation.label} |\n"
         f"| Phát hiện · {availability.detection.model_id} | {availability.detection.label} |\n"
+        "| Medical RAG | WP6A: BM25 / Dense / Hybrid; cần corpus đủ quyền hoặc SYNTHETIC DEMO |\n"
         + "".join(f"| {module} | Chưa triển khai |\n" for module in DEFERRED_MODULES)
     )
