@@ -41,7 +41,7 @@ class ModelAvailability:
     @property
     def label(self) -> str:
         return {
-            ModelStatus.NOT_AVAILABLE: "Chưa tích hợp",
+            ModelStatus.NOT_AVAILABLE: "Không khả dụng",
             ModelStatus.LOADING: "Đang tải mô hình",
             ModelStatus.READY: "Sẵn sàng",
             ModelStatus.FAILED: "Không thể nạp mô hình",

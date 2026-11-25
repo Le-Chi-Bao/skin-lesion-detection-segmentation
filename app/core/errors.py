@@ -34,7 +34,7 @@ MESSAGES = {
     ErrorCode.INVALID_SESSION: "Phiên hoặc ảnh hiện tại đã thay đổi. Vui lòng tải lại ảnh.",
     ErrorCode.MODEL_UNAVAILABLE: "Mô hình phân tích chưa sẵn sàng.",
     ErrorCode.INVALID_MODEL_CONFIG: "Cấu hình mô hình không hợp lệ.",
-    ErrorCode.CHECKPOINT_MISSING: "Chưa có checkpoint SegFormer. Hãy chạy lệnh tải checkpoint trong README.",
+    ErrorCode.CHECKPOINT_MISSING: "Chưa có checkpoint SegFormer. Hãy kiểm tra đường dẫn artifact đã đăng ký và hướng dẫn trong README.",
     ErrorCode.CHECKPOINT_INCOMPATIBLE: "Checkpoint SegFormer không khớp kích thước, SHA-256 hoặc kiến trúc đã xác minh.",
     ErrorCode.CHECKPOINT_READ: "Không thể đọc checkpoint SegFormer. Hãy kiểm tra quyền truy cập tệp.",
     ErrorCode.CHECKPOINT_WEIGHTS_ONLY: "Không thể đọc checkpoint SegFormer bằng torch.load với weights_only=True.",

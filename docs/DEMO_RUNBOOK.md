@@ -14,18 +14,13 @@ Chạy PowerShell tại gốc repository. Môi trường đã kiểm chứng: Wi
 Registry: **`config/models.json` tại gốc repo**, không phải `app/config/models.json`. Hai entry trên phải active; pilot inactive không bắt buộc. Ngưỡng SegFormer **0,7**, detection **0,5**. Không thay weights, hash hoặc ngưỡng để chạy demo.
 
 ```powershell
-$env:PYTHONUTF8 = '1'
-$env:OMP_NUM_THREADS = '4'
-$env:LESION_MODEL_REGISTRY = (Resolve-Path 'config/models.json').Path
-$env:LESION_SEGFORMER_DEVICE = 'cpu'
-$env:LESION_DETECTION_DEVICE = 'cpu'
-$env:LESION_HOST = '127.0.0.1'
-$env:LESION_PORT = '7860'
-$env:LESION_RUNTIME_DIR = Join-Path (Get-Location) 'runtime/demo-live'
-.venv\Scripts\python.exe -m app.main
+.venv\Scripts\Activate.ps1
+python main.py
 ```
 
-Mở **http://127.0.0.1:7860** sau khi terminal báo URL. Giữ terminal mở. Kết thúc bằng **Ctrl+C**, chờ tiến trình thoát; không đóng cưỡng bức cửa sổ trong lúc phân tích. Mỗi tiến trình dùng một `LESION_RUNTIME_DIR` riêng.
+Không cần đặt biến môi trường registry/device: tự đọc `config/models.json`, chọn model active và dùng device `auto`. Có thể override bằng `LESION_MODEL_REGISTRY`, `LESION_SEGFORMER_DEVICE`, `LESION_DETECTION_DEVICE` khi cần; `python -m app.main` vẫn hoạt động. Terminal báo registry, version, device thực tế, trạng thái từng model và lỗi kèm đường dẫn checkpoint. Startup không tải weights hoặc tự bật pilot. Xem [README](../README.md) để đăng ký phiên bản E3 đã xác minh.
+
+Mở **http://127.0.0.1:7860** sau khi terminal báo URL. Giữ terminal mở. Kết thúc bằng **Ctrl+C**, chờ tiến trình thoát; không đóng cưỡng bức cửa sổ trong lúc phân tích. Nếu chạy đồng thời nhiều tiến trình, đặt `LESION_RUNTIME_DIR` và `LESION_PORT` riêng cho từng tiến trình.
 
 ## Kịch bản năm phút
 

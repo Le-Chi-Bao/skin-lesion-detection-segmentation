@@ -23,10 +23,13 @@ Dùng Python 3.12. Các lệnh dưới đây chạy tại thư mục gốc của
 ```powershell
 python -m venv .venv
 .venv\Scripts\python.exe -m pip install -r requirements.txt
-.venv\Scripts\python.exe -m app.main
+.venv\Scripts\Activate.ps1
+python main.py
 ```
 
-Trên Linux hoặc macOS, thay `.venv\Scripts\python.exe` bằng `.venv/bin/python`. Khi đã kích hoạt môi trường ảo, chạy `python -m app.main`. Mở `http://127.0.0.1:7860`. Gradio chạy với `share=False`. Cài đặt cơ bản hỗ trợ tải và xem ảnh khi chưa cấu hình SegFormer.
+Trên Linux hoặc macOS, thay `.venv\Scripts\python.exe` bằng `.venv/bin/python`, kích hoạt bằng `source .venv/bin/activate`. Sau khi cài CV và chuẩn bị artifact cục bộ, chỉ cần **`python main.py`**. Lệnh `python -m app.main` vẫn hoạt động qua cùng hàm khởi động. Ứng dụng tự đọc `config/models.json` từ gốc dự án, nạp đúng các model `active=true` (SegFormer `checkpoint-v1` và detection `E1-best-completed`), rồi mở Gradio tại `http://127.0.0.1:7860` với `share=False`. Thiết bị mặc định `auto`: CUDA khi PyTorch hỗ trợ, còn lại CPU.
+
+Terminal ghi registry đã chọn, trạng thái READY / FAILED / UNAVAILABLE, version, device thực tế của model đã nạp, checkpoint dự kiến và nguyên nhân nếu lỗi. Không tự tải weights. Một model lỗi không chặn model kia; nếu cả hai chưa sẵn sàng, ứng dụng vẫn cho tải/xem ảnh nhưng khóa **Phân tích** và hiển thị lý do.
 
 ### Bật phân đoạn SegFormer
 
@@ -36,12 +39,10 @@ Ví dụ cài đặt CPU cho Windows hoặc Linux. Nếu môi trường đã có
 .venv\Scripts\python.exe -m pip install torch==2.10.0 torchvision==0.25.0 --index-url https://download.pytorch.org/whl/cpu
 .venv\Scripts\python.exe -m pip install -r requirements-cv.txt
 .venv\Scripts\python.exe -m app.cv.checkpoint
-$env:LESION_SEGFORMER_CHECKPOINT = 'model_store/segformer/real_only/best.pt'
-$env:LESION_SEGFORMER_DEVICE = 'cpu'
-.venv\Scripts\python.exe -m app.main
+.venv\Scripts\python.exe main.py
 ```
 
-Lệnh tải xác minh SHA-256 và dùng lại tệp hợp lệ nếu đã có. Để dùng bản sao cục bộ của checkpoint, trỏ `LESION_SEGFORMER_CHECKPOINT` đến tệp đó và chạy `python -m app.cv.checkpoint --verify-only`. Máy chủ chỉ đọc checkpoint cục bộ khi khởi động. Trong **Computer Vision**, tải ảnh soi da có giấy phép phù hợp rồi chọn **Phân tích**. Sau khi hoàn tất, chọn độ mờ và bấm **Tải Overlay PNG**. Khi có box, dùng **Tải Localization PNG** để tải ảnh định vị.
+Lệnh tải là thao tác chuẩn bị chủ động, xác minh SHA-256 và dùng lại tệp hợp lệ nếu đã có; startup không gọi downloader. Để dùng bản sao cục bộ của SegFormer, sửa `checkpoint_path` của entry segmentation trong registry; có thể xác minh riêng bằng `LESION_SEGFORMER_CHECKPOINT` và `python -m app.cv.checkpoint --verify-only`. Trong **Computer Vision**, tải ảnh soi da có giấy phép phù hợp rồi chọn **Phân tích**. Sau khi hoàn tất, chọn độ mờ và bấm **Tải Overlay PNG**. Khi có box, dùng **Tải Localization PNG** để tải ảnh định vị.
 
 ### Chạy đủ hai mô hình qua registry
 
@@ -50,13 +51,12 @@ Sau khi cài CV và chuẩn bị checkpoint SegFormer như trên, đặt artifac
 ```powershell
 .venv\Scripts\python.exe -m app.cv.export_detection model_store/detection/E1 model_store/detection/E1-final-inference.pt
 # Chỉ chạy export nếu đích chưa tồn tại. Ghi SHA-256 trả về vào entry tương ứng.
-$env:LESION_MODEL_REGISTRY = 'config/models.json'
-$env:LESION_SEGFORMER_DEVICE = 'cpu'
-$env:LESION_DETECTION_DEVICE = 'cpu'
-.venv\Scripts\python.exe -m app.main
+.venv\Scripts\python.exe main.py
 ```
 
-Mở `http://127.0.0.1:7860` → **Computer Vision** → tải ảnh → **Phân tích**. Registry có ưu tiên hơn `LESION_SEGFORMER_CHECKPOINT`; không đặt registry thì luồng SegFormer cũ vẫn hoạt động. Chuyển phiên bản bằng `active`, giữ tối đa một entry active cho mỗi mô-đun rồi khởi động lại. Rollback bằng cách bật lại entry trước và khởi động lại; không cần sửa UI.
+Mở `http://127.0.0.1:7860` → **Computer Vision** → tải ảnh → **Phân tích**. Không cần đặt `LESION_MODEL_REGISTRY`; nếu có, biến này ưu tiên hơn registry mặc định. Registry có ưu tiên hơn `LESION_SEGFORMER_CHECKPOINT`. Chỉ khi **registry mặc định không tồn tại và không có override**, ứng dụng cảnh báo rồi giữ chế độ SegFormer cũ qua `LESION_SEGFORMER_CHECKPOINT`; detection không khả dụng. Registry đã được chọn mà thiếu, hỏng hoặc cấu hình sai sẽ báo lỗi, không tự chuyển sang checkpoint khác.
+
+Để đăng ký E3 sau này: chuẩn bị artifact inference đã xác minh, thêm entry detection mới với `version`, `checkpoint_path`, SHA-256 thật, architecture, format `isic-fasterrcnn-inference-v1`, threshold và preprocessing khớp metadata của artifact. Đặt `research_pilot=false`, tắt `active` của E1 rồi bật `active` của E3 và khởi động lại. Giữ tối đa một entry active cho mỗi mô-đun. Không có artifact E3 đã xác minh thì giữ E1 active; ứng dụng không tự chọn E3 hoặc bật pilot. Rollback bằng cách bật lại E1 và khởi động lại; không cần sửa code/UI.
 
 ## Cấu hình
 
@@ -68,9 +68,9 @@ Các biến môi trường sau ghi đè cấu hình mặc định. Đường d�
 | `LESION_HOST` / `LESION_PORT` | `127.0.0.1` / `7860` | Địa chỉ IP hoặc `localhost` và cổng lắng nghe |
 | `LESION_RUNTIME_DIR` | `runtime/` | Dữ liệu tạm. Dùng thư mục dành riêng cho một tiến trình ứng dụng |
 | `LESION_MODEL_STORE_DIR` | `model_store/` | Nơi CLI lưu checkpoint |
-| `LESION_SEGFORMER_CHECKPOINT` | Chưa cấu hình | Đường dẫn đến bản sao đã xác minh của `real_only/best.pt` |
+| `LESION_SEGFORMER_CHECKPOINT` | Chưa cấu hình | Đường dẫn SegFormer cho CLI xác minh và chế độ cũ khi không có registry mặc định |
 | `LESION_SEGFORMER_DEVICE` | `auto` | Chọn CUDA nếu PyTorch nhận diện được CUDA, CPU nếu không. Có thể chọn cố định `cpu` hoặc `cuda` |
-| `LESION_MODEL_REGISTRY` | Chưa cấu hình | JSON chọn artifact/version; ví dụ `config/models.json` |
+| `LESION_MODEL_REGISTRY` | `config/models.json` | Override JSON chọn artifact/version; mặc định tự tìm từ project root |
 | `LESION_DETECTION_DEVICE` | `auto` | `auto`, `cpu`, `cuda`; CUDA chưa được kiểm chứng trong sprint này |
 | `LESION_DETECTION_PILOT_MODE` | `false` | Pilot chỉ được phép khi bật rõ ràng và entry có `research_pilot=true` |
 | `LESION_MAX_UPLOAD_MIB` | `10` | Dung lượng tệp, từ 1 đến 64 MiB |

@@ -255,7 +255,13 @@ def render_cv_page(
     exports: PNGExports | None = None,
 ) -> None:
     ready = any(model.status is ModelStatus.READY for model in (availability.segmentation, availability.detection))
-    errors = [str(adapter.error).replace("SegFormer", label) for label, adapter in (("SegFormer", models.segmentation), ("Faster R-CNN", models.detection)) if adapter.error]
+    errors = [
+        f"{label}: {str(adapter.error).replace('SegFormer', label) if adapter.error else adapter.reason}"
+        for label, adapter in (("SegFormer", models.segmentation), ("Faster R-CNN", models.detection))
+        if adapter.error or getattr(adapter, "reason", "")
+    ]
+    if not ready:
+        errors.append("Không có mô hình sẵn sàng. Phân tích bị vô hiệu hóa; vẫn có thể tải và xem ảnh.")
     idle_status = run_status(" ".join(errors), alert=True) if errors else run_status("Chưa có ảnh để phân tích.")
 
     def cleanup(state: SessionState | None) -> None:

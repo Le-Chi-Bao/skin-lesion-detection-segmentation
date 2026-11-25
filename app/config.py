@@ -1,4 +1,5 @@
 import ipaddress
+import logging
 import os
 from collections.abc import Mapping
 from dataclasses import dataclass
@@ -118,4 +119,13 @@ class AppConfig:
                     values[name] = raw
             except ValueError as exc:
                 raise AppError(ErrorCode.INVALID_CONFIG, field=name.upper()) from exc
+        if "model_registry" not in values:
+            default_registry = PROJECT_ROOT / "config" / "models.json"
+            if default_registry.exists():
+                values["model_registry"] = default_registry
+            else:
+                logging.getLogger(__name__).warning(
+                    "Không tìm thấy registry mặc định: %s; dùng chế độ SegFormer cũ "
+                    "(LESION_SEGFORMER_CHECKPOINT), detection không khả dụng.", default_registry,
+                )
         return cls(**values)

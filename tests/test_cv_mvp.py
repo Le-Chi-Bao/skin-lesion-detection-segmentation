@@ -353,7 +353,8 @@ def test_real_pilot_artifact_when_available():
     assert output.duration_ms > 0
 
 
-def test_real_dual_model_browser_upload_export_reset(tmp_path):
+@pytest.mark.parametrize("entrypoint", ["module", "root"])
+def test_real_dual_model_browser_upload_export_reset(tmp_path, entrypoint):
     import socket
     import subprocess
     import sys
@@ -375,12 +376,18 @@ def test_real_dual_model_browser_upload_export_reset(tmp_path):
             port = sock.getsockname()[1]
         env = {key: value for key, value in os.environ.items() if not key.startswith("LESION_")}
         env.update(
-            LESION_MODEL_REGISTRY=str(Path(registry).resolve()), LESION_SEGFORMER_DEVICE="cpu", LESION_DETECTION_DEVICE="cpu",
             LESION_RUNTIME_DIR=str(tmp_path), LESION_PORT=str(port), PYTHONUTF8="1",
         )
+        command = [sys.executable, "-u", "main.py"]
+        if entrypoint == "module":
+            env.update(
+                LESION_MODEL_REGISTRY=str(Path(registry).resolve()),
+                LESION_SEGFORMER_DEVICE="cpu", LESION_DETECTION_DEVICE="cpu",
+            )
+            command = [sys.executable, "-u", "-m", "app.main"]
         url = f"http://127.0.0.1:{port}"
         with (tmp_path / "server.log").open("w+", encoding="utf-8") as log:
-            process = subprocess.Popen([sys.executable, "-u", "-m", "app.main"], cwd=PROJECT_ROOT, env=env, stdout=log, stderr=subprocess.STDOUT)
+            process = subprocess.Popen(command, cwd=PROJECT_ROOT, env=env, stdout=log, stderr=subprocess.STDOUT)
             try:
                 deadline = time.monotonic() + 60
                 while process.poll() is None and time.monotonic() < deadline:
@@ -393,6 +400,13 @@ def test_real_dual_model_browser_upload_export_reset(tmp_path):
                 else:
                     log.seek(0)
                     pytest.fail(log.read())
+                log.seek(0)
+                startup = log.read()
+                expected_registry = Path(registry).resolve() if entrypoint == "module" else PROJECT_ROOT / "config/models.json"
+                assert f"Registry: {expected_registry}" in startup
+                assert "SegFormer: READY | version=checkpoint-v1 | device=" in startup
+                assert "Faster R-CNN: READY | version=E1-best-completed | device=" in startup
+                assert url in startup
                 browser = playwright.chromium.launch()
                 try:
                     first = browser.new_context(accept_downloads=True)

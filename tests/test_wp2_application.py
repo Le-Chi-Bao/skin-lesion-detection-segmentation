@@ -298,6 +298,13 @@ def real_browser(published_sample, tmp_path):
         LESION_PORT=str(port), LESION_RUNTIME_DIR=str(tmp_path), PYTHONUTF8="1",
         LESION_SEGFORMER_CHECKPOINT=str(checkpoint), LESION_SEGFORMER_DEVICE=device,
     )
+    # These regression cases assert SegFormer-only pixels and PNG filenames.
+    # Select that configuration explicitly now that CLI startup enables both models.
+    data = json.loads((PROJECT_ROOT / "config/models.json").read_text(encoding="utf-8"))
+    data["models"] = [dict(data["models"][0], checkpoint_path=str(checkpoint))]
+    registry = tmp_path / "segmentation-only.json"
+    registry.write_text(json.dumps(data), encoding="utf-8")
+    env["LESION_MODEL_REGISTRY"] = str(registry)
     url = f"http://127.0.0.1:{port}"
     with playwright_api.sync_playwright() as playwright:
         if not Path(playwright.chromium.executable_path).is_file():

@@ -30,7 +30,10 @@ def test_blocks_expose_only_wp1_modules_and_tabs(tmp_path):
     markdown = "\n".join(component["props"]["value"] for component in components if component["type"] == "markdown")
     for name in ("Tổng quan", "Computer Vision", "Medical RAG", "Clinical Cases", "Consultation Reports"):
         assert name in markdown
-    assert "không tự động chẩn đoán" in markdown and "Chưa tích hợp" in markdown
+    assert "không tự động chẩn đoán" in markdown and "Không khả dụng" in markdown
+    assert "Chưa tích hợp" not in markdown
+    status = next(component for component in components if component["props"].get("elem_id") == "segmentation-status")
+    assert "Không có mô hình sẵn sàng" in status["props"]["value"]
     assert [tab["props"]["label"] for tab in components if tab["type"] == "tabitem"] == [
         "Original", "Mask", "Overlay", "Localization",
     ]

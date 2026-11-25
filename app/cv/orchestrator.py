@@ -22,7 +22,9 @@ logger = logging.getLogger(__name__)
 class CVOrchestrator:
     def __init__(self, segmentation: SegmentationAdapter, detection: DetectionAdapter | None = None):
         self.segmentation = segmentation
-        self.detection = detection or UnavailableAdapter("Faster R-CNN ResNet50-FPN V2")
+        self.detection = detection or UnavailableAdapter(
+            "Faster R-CNN ResNet50-FPN V2", reason="Detection chưa được cấu hình qua registry.",
+        )
         self._inference_lock = Lock()
 
     @property
@@ -116,6 +118,7 @@ class CVOrchestrator:
 
 def create_orchestrator(config: AppConfig, segmentation: SegmentationAdapter | None = None) -> CVOrchestrator:
     from app.cv.segformer import SegFormer
+    logger.info("Registry: %s", config.model_registry or "không có; chế độ SegFormer cũ")
     registry = ModelRegistry(config.model_registry) if config.model_registry else None
     segmenter = segmentation if segmentation is not None else (
         registry.create("segmentation", config) if registry else SegFormer(config)
@@ -124,4 +127,32 @@ def create_orchestrator(config: AppConfig, segmentation: SegmentationAdapter | N
     segmenter.load()
     if detector:
         detector.load()
-    return CVOrchestrator(segmenter, detector)
+    models = CVOrchestrator(segmenter, detector)
+    for module, label, adapter, device in (
+        ("segmentation", "SegFormer", models.segmentation, config.segformer_device),
+        ("detection", "Faster R-CNN", models.detection, config.detection_device),
+    ):
+        entry = None
+        if registry:
+            try:
+                entry = registry.selected(module)
+            except AppError:
+                pass  # The adapter already carries this module's registry error.
+        identity = adapter.identity
+        checkpoint = config.segformer_checkpoint if registry is None and module == "segmentation" else None
+        if entry:
+            try:
+                checkpoint = entry.path
+            except (OSError, ValueError, RuntimeError):
+                checkpoint = repr(entry.checkpoint_path)
+        status = adapter.availability.status
+        reason = str(adapter.error).replace("SegFormer", label) if adapter.error else getattr(adapter, "reason", "")
+        message = "%s: %s | version=%s | device=%s | checkpoint=%s | %s"
+        logger.log(
+            logging.INFO if status is ModelStatus.READY else logging.WARNING,
+            message, label, "UNAVAILABLE" if status is ModelStatus.NOT_AVAILABLE else status.value.upper(),
+            (identity.model_version or identity.checkpoint_id) if identity else (entry.version if entry else "không có"),
+            identity.device if identity else f"chưa khởi tạo (yêu cầu {device})",
+            checkpoint or "chưa cấu hình", reason or "đã nạp và xác minh checkpoint",
+        )
+    return models

@@ -1,6 +1,7 @@
 """Versioned local artifact selection. Invalid modules fail independently."""
 
 import json
+import logging
 from dataclasses import replace
 from pathlib import Path
 
@@ -8,14 +9,17 @@ from pathlib import Path
 from app.config import AppConfig
 from app.core.errors import AppError, ErrorCode
 from app.cv.availability import ModelAvailability, ModelStatus
-from app.cv.artifacts import RegistryEntry, verify_stream
+from app.cv.artifacts import RegistryEntry
+
+logger = logging.getLogger(__name__)
 
 
 class UnavailableAdapter:
     identity = None
 
-    def __init__(self, module: str, error: AppError | None = None):
+    def __init__(self, module: str, error: AppError | None = None, reason: str = ""):
         self.error = error
+        self.reason = reason
         self.availability = ModelAvailability(
             module, ModelStatus.FAILED if error else ModelStatus.NOT_AVAILABLE,
         )
@@ -35,7 +39,8 @@ class ModelRegistry:
             data = json.loads(path.read_text(encoding="utf-8"))
             if not isinstance(data, dict) or set(data) != {"schema_version", "models"} or type(data["schema_version"]) is not int or data["schema_version"] != 1 or not isinstance(data["models"], list):
                 raise ValueError("Unsupported registry")
-        except (OSError, ValueError, TypeError):
+        except (OSError, ValueError, TypeError) as exc:
+            logger.error("Không thể đọc registry %s: %s: %s", path, type(exc).__name__, exc)
             self.errors = {key: AppError(ErrorCode.INVALID_MODEL_CONFIG) for key in ("segmentation", "detection")}
             return
         entries = []
@@ -47,12 +52,14 @@ class ModelRegistry:
                 if any((old.module, old.model_id, old.version) == (entry.module, entry.model_id, entry.version) for old in entries):
                     raise ValueError("Duplicate model version")
                 entries.append(entry)
-            except ValueError:
+            except ValueError as exc:
+                logger.error("Entry registry không hợp lệ: registry=%s module=%s | %s", path, module, exc)
                 for key in ((module,) if module in {"segmentation", "detection"} else ("segmentation", "detection")):
                     self.errors[key] = AppError(ErrorCode.INVALID_MODEL_CONFIG)
         self.entries = tuple(entries)
         for module in ("segmentation", "detection"):
             if sum(entry.active and entry.module == module for entry in entries) > 1:
+                logger.error("Registry %s: module=%s có nhiều hơn một model active.", path, module)
                 self.errors[module] = AppError(ErrorCode.INVALID_MODEL_CONFIG)
 
     def selected(self, module: str) -> RegistryEntry | None:
@@ -64,7 +71,7 @@ class ModelRegistry:
         try:
             entry = self.selected(module)
             if entry is None:
-                return UnavailableAdapter(module)
+                return UnavailableAdapter(module, reason="Không có mô hình active trong registry.")
             if module == "detection":
                 from app.cv.detection import FasterRCNN
                 return FasterRCNN(entry, config.detection_device, config.detection_pilot_mode)

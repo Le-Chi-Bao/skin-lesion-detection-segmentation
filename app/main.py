@@ -69,6 +69,8 @@ def main() -> int:
             exports = PNGExports(files)
             demo = build_shell(config, files, exports=exports)
             try:
+                host = f"[{config.host}]" if ":" in config.host else config.host
+                logger.info("URL ứng dụng khi Gradio khởi động: http://%s:%s", host, config.port)
                 demo.launch(**launch_options(config, exports))
             finally:
                 demo.close()
