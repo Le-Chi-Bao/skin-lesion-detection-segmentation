@@ -7,6 +7,8 @@ DEFERRED_MODULES = ("Medical RAG", "Clinical Cases", "Consultation Reports")
 
 def render_overview(availability: CVAvailability) -> None:
     cv_description = "Tải, xem và phân đoạn ảnh" if availability.segmentation.status is ModelStatus.READY else "Tải và xem ảnh"
+    if availability.detection.status is ModelStatus.READY:
+        cv_description += "; phát hiện tổn thương độc lập"
     gr.Markdown(
         "## Tổng quan\n"
         "Không gian nghiên cứu dành cho nhân viên y tế đã được đào tạo, hỗ trợ xem ảnh soi da "

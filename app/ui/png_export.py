@@ -37,6 +37,13 @@ def browser_owner(request) -> str | None:
     return token if re.fullmatch(r"[A-Za-z0-9_-]{43}", token) else None
 
 
+def export_filename(result: CVResult, kind: str) -> str:
+    # Preserve WP3 names for mask-only exports. Independent detections must not
+    # be attributed to SegFormer, including when they are drawn alongside a mask.
+    prefix = "cv" if kind == "localization" and result.detection.boxes else "segformer"
+    return f"{prefix}-{kind}-{result.run_id.hex[:12]}.png"
+
+
 class ExportRequest(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
 
@@ -117,7 +124,7 @@ class PNGExports:
             with self._lock:
                 self._encoding.remove(requested.session)
 
-        filename = f"segformer-{requested.kind}-{result.run_id.hex[:12]}.png"
+        filename = export_filename(result, requested.kind)
         return Response(content, media_type="image/png", headers={
             **NO_CACHE,
             "Content-Disposition": f'attachment; filename="{filename}"',

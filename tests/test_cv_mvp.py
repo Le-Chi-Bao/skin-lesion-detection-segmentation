@@ -122,6 +122,11 @@ def test_combined_and_detection_only_exports_are_authorized_full_resolution(tmp_
     assert exports.response("B" * 43, requested).status_code == 404
     response = exports.response(current.browser_owner, requested)
     assert response.status_code == 200 and response.headers["cache-control"] == "no-store"
+    prefix = "cv" if det == "ok" else "segformer"
+    filename = f"{prefix}-localization-{current.result.run_id.hex[:12]}.png"
+    assert response.headers["content-disposition"] == f'attachment; filename="{filename}"'
+    from app.ui.cv_page import export_panel
+    assert f'data-filename="{filename}"' in export_panel(current, current.result, 1)
     with Image.open(io.BytesIO(response.body)) as image:
         assert image.size == (40, 30)
         if det == "ok":
@@ -242,11 +247,12 @@ def test_malformed_registry_reports_readiness_instead_of_crashing(tmp_path, bad)
             registry.selected(module)
 
 
-def test_detection_only_gradio_uses_same_callbacks_and_clears_outputs(tmp_path, monkeypatch):
+@pytest.mark.parametrize("seg_state,det_state", [("off", "ok"), ("off", "fail"), ("fail", "fail")])
+def test_detection_only_gradio_uses_same_callbacks_and_clears_outputs(tmp_path, monkeypatch, seg_state, det_state):
     files = TemporaryFiles(tmp_path, 30)
     files.cache_dir.mkdir(parents=True)
     monkeypatch.setenv("GRADIO_TEMP_DIR", str(files.cache_dir))
-    models = CVOrchestrator(adapter("segmentation", "off"), adapter("detection", "ok"))
+    models = CVOrchestrator(adapter("segmentation", seg_state), adapter("detection", det_state))
     demo = build_shell(AppConfig(runtime_dir=tmp_path), files, orchestrator=models)
     deps = {dep["api_name"]: dep for dep in demo.config["dependencies"]}
     state_id = deps["upload"]["outputs"][0]
@@ -264,8 +270,14 @@ def test_detection_only_gradio_uses_same_callbacks_and_clears_outputs(tmp_path, 
         await call("begin_analysis", None, 1)
         await call("run_analysis", None)
         shown = await call("show_analysis", None, 1)
-        assert "data:image/png" in shown[3] and "data:image" not in shown[1]
-        assert shown[5]["interactive"] is False and shown[-1]["selected"] == "localization"
+        if det_state == "ok":
+            assert "data:image/png" in shown[3] and "data:image" not in shown[1]
+            assert shown[-1]["selected"] == "localization"
+        else:
+            assert "data:image" not in shown[3] and "data:image" not in shown[1]
+            assert "Faster R-CNN: Suy luận Faster R-CNN thất bại" in shown[2]
+            assert ("SegFormer" in shown[2]) == (seg_state == "fail")
+        assert shown[5]["interactive"] is False
         assert "detection" in shown[6]
         reset = await call("reset", None, 2)
         assert current[state_id].result is None
@@ -414,6 +426,10 @@ def test_real_dual_model_browser_upload_export_reset(tmp_path):
                         with page.expect_download() as download, page.expect_request("**/lesion-export") as request:
                             page.get_by_role("button", name=label).click()
                         requests.append(request.value.post_data_json)
+                        expected_prefix = "cv" if label == "Tải Localization PNG" else "segformer"
+                        kind = request.value.post_data_json["kind"]
+                        run = request.value.post_data_json["run"]
+                        assert download.value.suggested_filename == f"{expected_prefix}-{kind}-{run[:12]}.png"
                         with Image.open(download.value.path()) as exported, Image.open(sample) as source:
                             assert exported.size == source.size and exported.format == "PNG"
                     assert second.request.post(url + "/lesion-export", data=requests[1]).status == 404

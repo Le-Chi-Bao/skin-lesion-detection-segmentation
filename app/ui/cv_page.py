@@ -22,7 +22,7 @@ from app.cv.visualization import (
     DEFAULT_OPACITY, display_size, draw_localization, draw_combined_localization, encode_png, open_aligned_images,
     open_source, overlay_layer,
 )
-from app.ui.png_export import EXPORT_PATH, UNAVAILABLE, PNGExports, browser_owner
+from app.ui.png_export import EXPORT_PATH, UNAVAILABLE, PNGExports, browser_owner, export_filename
 
 logger = logging.getLogger(__name__)
 
@@ -83,7 +83,7 @@ def upload_browser_setup(max_bytes: int) -> str:
                 const url = URL.createObjectURL(blob);
                 const link = document.createElement("a");
                 link.href = url;
-                link.download = `segformer-${button.dataset.kind}-${actions.dataset.run.slice(0, 12)}.png`;
+                link.download = button.dataset.filename;
                 document.body.append(link);
                 link.click();
                 link.remove();
@@ -124,7 +124,7 @@ VIEWS = {
     "original": ("Ảnh soi da đã tải lên", "Tải ảnh soi da để xem ảnh gốc."),
     "mask": ("Mặt nạ tổn thương nhị phân", "Chưa có mặt nạ phân đoạn."),
     "overlay": ("Ảnh soi da chồng mặt nạ phân đoạn", "Chưa có ảnh chồng mặt nạ."),
-    "localization": ("Ảnh soi da với bounding box suy ra từ mask", "Chưa có kết quả định vị."),
+    "localization": ("Ảnh soi da với box từ mask SegFormer và detection Faster R-CNN", "Chưa có kết quả định vị."),
 }
 
 
@@ -240,10 +240,12 @@ def export_panel(current: SessionState | None = None, result: CVResult | None = 
         status = "Sẵn sàng xuất PNG." if result.localization or result.detection.boxes else "Có thể xuất Overlay. Mặt nạ rỗng nên không có ảnh định vị."
         overlay_disabled = "" if result.segmentation.mask else " disabled"
     localization_disabled = "" if result and (result.localization or result.detection.boxes) else " disabled"
+    overlay_filename = export_filename(result, "overlay") if result else ""
+    localization_filename = export_filename(result, "localization") if result else ""
     return (
         f'<div class="lesion-exports"{identity}><div class="lesion-export-actions">'
-        f'<button type="button" data-kind="overlay"{overlay_disabled}>Tải Overlay PNG</button>'
-        f'<button type="button" data-kind="localization"{localization_disabled}>Tải Localization PNG</button>'
+        f'<button type="button" data-kind="overlay" data-filename="{overlay_filename}"{overlay_disabled}>Tải Overlay PNG</button>'
+        f'<button type="button" data-kind="localization" data-filename="{localization_filename}"{localization_disabled}>Tải Localization PNG</button>'
         f'</div><p role="status">{status}</p></div>'
     )
 
@@ -456,8 +458,13 @@ def render_cv_page(
         if result is None:
             return skip
         if result.metadata.status is RunStatus.FAILED:
+            failures = " ".join(
+                f"{label}: {str(AppError(module.error_code)).replace('SegFormer', label)}"
+                for label, module in (("SegFormer", result.segmentation), ("Faster R-CNN", result.detection))
+                if module.error_code
+            )
             return (*empty_analysis(
-                True, run_status(str(AppError(result.metadata.error_code)), alert=True),
+                True, run_status(failures, alert=True),
                 result_details(result, "Phân tích thất bại"),
             ), gr.skip())
 
