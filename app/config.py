@@ -19,6 +19,9 @@ class AppConfig:
     model_store_dir: Path = PROJECT_ROOT / "model_store"
     segformer_checkpoint: Path | None = None
     segformer_device: str = "auto"
+    model_registry: Path | None = None
+    detection_device: str = "auto"
+    detection_pilot_mode: bool = False
     max_upload_mib: int = 10
     max_image_pixels: int = 16_000_000
     max_image_edge: int = 8192
@@ -48,6 +51,10 @@ class AppConfig:
             raise AppError(ErrorCode.INVALID_CONFIG, field="LOG_LEVEL")
         if self.research_mode is not True:
             raise AppError(ErrorCode.INVALID_CONFIG, field="RESEARCH_MODE")
+        if self.detection_device not in {"auto", "cpu", "cuda"}:
+            raise AppError(ErrorCode.INVALID_CONFIG, field="DETECTION_DEVICE")
+        if self.model_registry is not None:
+            object.__setattr__(self, "model_registry", (PROJECT_ROOT / self.model_registry.expanduser()).resolve())
         if self.segformer_device not in {"auto", "cpu", "cuda"}:
             raise AppError(ErrorCode.INVALID_CONFIG, field="SEGFORMER_DEVICE")
         if self.segformer_checkpoint is not None:
@@ -96,16 +103,16 @@ class AppConfig:
             try:
                 if name in {"port", "max_upload_mib", "max_image_pixels", "max_image_edge", "session_ttl_seconds"}:
                     values[name] = int(raw)
-                elif name.endswith("_dir") or name == "segformer_checkpoint":
+                elif name.endswith("_dir") or name in {"segformer_checkpoint", "model_registry"}:
                     if not raw:
                         raise ValueError
                     path = Path(raw)
                     values[name] = path if path.is_absolute() else PROJECT_ROOT / path
-                elif name == "research_mode":
+                elif name in {"research_mode", "detection_pilot_mode"}:
                     values[name] = raw.lower() in {"true", "1"}
                 elif name == "log_level":
                     values[name] = raw.upper()
-                elif name == "segformer_device":
+                elif name in {"segformer_device", "detection_device"}:
                     values[name] = raw.lower()
                 else:
                     values[name] = raw
