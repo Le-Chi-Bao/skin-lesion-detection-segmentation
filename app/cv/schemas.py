@@ -44,6 +44,10 @@ class ModelIdentity(Contract):
     checkpoint_id: Text | None = None
     checkpoint_sha256: SHA256 | None = None
     device: Text | None = None
+    model_version: Text | None = None
+    architecture: Text | None = None
+    artifact_format: Text | None = None
+    research_pilot: bool = False
 
     @model_validator(mode="after")
     def check_checkpoint(self) -> "ModelIdentity":
@@ -64,9 +68,15 @@ class ModelResult(Contract):
     status: RunStatus = RunStatus.NOT_AVAILABLE
     model: ModelIdentity | None = None
     warnings: tuple[Text, ...] = ()
+    inference_duration_ms: Nonnegative | None = None
+    error_code: ErrorCode | None = None
 
     @model_validator(mode="after")
     def check_model_status(self) -> "ModelResult":
+        if self.status is RunStatus.PARTIAL:
+            raise ValueError("Partial status is only valid for the aggregate")
+        if self.error_code is not None and self.status is not RunStatus.FAILED:
+            raise ValueError("Only a failed model may supply an error")
         if self.status is RunStatus.NOT_AVAILABLE and self.model is not None:
             raise ValueError("An unavailable model cannot supply inference metadata")
         if self.status in {RunStatus.RUNNING, RunStatus.COMPLETED} and self.model is None:
@@ -122,7 +132,7 @@ class ResultMetadata(Contract):
     def check_status(self) -> "ResultMetadata":
         if (self.error_code is not None) != (self.status is RunStatus.FAILED):
             raise ValueError("A failed run requires a UI error code")
-        if self.inference_duration_ms is not None and self.status not in {RunStatus.COMPLETED, RunStatus.FAILED}:
+        if self.inference_duration_ms is not None and self.status not in {RunStatus.COMPLETED, RunStatus.PARTIAL, RunStatus.FAILED}:
             raise ValueError("Inference duration requires a finished run")
         return self
 
@@ -146,9 +156,14 @@ class CVResult(ImageIdentity):
         if any(box.x2 > self.image_width or box.y2 > self.image_height for box in boxes):
             raise ValueError("Bounding box lies outside the original image")
         statuses = {self.segmentation.status, self.detection.status}
-        for status in (RunStatus.RUNNING, RunStatus.COMPLETED, RunStatus.FAILED, RunStatus.NOT_AVAILABLE):
-            if status in statuses:
-                if self.metadata.status is not status:
-                    raise ValueError("Run status does not match the model results")
-                break
+        if RunStatus.RUNNING in statuses:
+            expected = RunStatus.RUNNING
+        elif RunStatus.COMPLETED in statuses:
+            expected = RunStatus.PARTIAL if RunStatus.FAILED in statuses else RunStatus.COMPLETED
+        elif RunStatus.FAILED in statuses:
+            expected = RunStatus.FAILED
+        else:
+            expected = RunStatus.NOT_AVAILABLE
+        if self.metadata.status is not expected:
+            raise ValueError("Run status does not match the model results")
         return self

@@ -15,6 +15,7 @@ class RunStatus(StrEnum):
     NOT_AVAILABLE = "not_available"
     RUNNING = "running"
     COMPLETED = "completed"
+    PARTIAL = "partial"
     FAILED = "failed"
 
 

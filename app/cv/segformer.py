@@ -3,7 +3,6 @@
 import logging
 import pickle
 from collections.abc import Mapping
-from dataclasses import dataclass
 from threading import Lock
 from time import perf_counter
 from typing import TYPE_CHECKING
@@ -14,6 +13,7 @@ from app.config import AppConfig
 from app.core.errors import AppError, ErrorCode
 from app.core.logging_config import log_error
 from app.cv.availability import ModelAvailability, ModelStatus
+from app.cv.adapters import SegmentationPrediction
 from app.cv.checkpoint import CHECKPOINT_ID, SHA256, verified_checkpoint
 from app.cv.schemas import BoundingBox, ModelIdentity
 
@@ -134,12 +134,6 @@ def _runtime_error(torch_module, exc: Exception, default: ErrorCode) -> AppError
     return AppError(default)
 
 
-@dataclass(frozen=True, slots=True)
-class SegmentationPrediction:
-    mask: Image.Image
-    duration_ms: float
-
-
 class SegFormer:
     def __init__(self, config: AppConfig):
         self._config = config
@@ -188,4 +182,4 @@ class SegFormer:
                 mask = binary_mask(logits, image.size)
         except (MemoryError, RuntimeError, OSError, ValueError) as exc:
             raise _runtime_error(torch, exc, ErrorCode.INFERENCE_FAILED) from exc
-        return SegmentationPrediction(mask, duration_ms)
+        return SegmentationPrediction(mask, duration_ms, THRESHOLD)
