@@ -84,6 +84,9 @@ class RAGService:
         if identities != self._dense_ids:
             self.dense.clear()
             self._dense_ids = None
+        elif self.dense.chunks:
+            # Vectors remain valid when only the live rights evidence snapshot changes.
+            self.dense.chunks = tuple(sorted(chunks, key=lambda chunk: chunk.chunk_id))
         return chunks, identities
 
     def search(self, query: str, mode: str = "Hybrid", top_k: int = 5) -> SearchResponse:
@@ -94,7 +97,9 @@ class RAGService:
             if type(top_k) is not int or not 1 <= top_k <= 100:
                 raise RAGError("invalid_top_k")
             chunks, identities = self._refresh()
-            synthetic = bool(self._documents) and all(d.synthetic for d in self._documents.values())
+            synthetic = any(d.synthetic for d in self._documents.values()) or (
+                not self._documents and any(importer.rights.synthetic for _, importer in self._sources.values())
+            )
             hits, status = (), "OK"
             if not query.strip():
                 status = "EMPTY_QUERY"

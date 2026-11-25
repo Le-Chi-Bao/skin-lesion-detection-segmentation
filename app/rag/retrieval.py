@@ -34,7 +34,7 @@ class BM25Retriever:
         hits = []
         for chunk, terms, length in zip(self.chunks, self.terms, self.lengths):
             score = 0.0
-            for term in set(tokenize(query)):
+            for term in sorted(set(tokenize(query))):
                 frequency = terms[term]
                 if frequency == 0:
                     continue

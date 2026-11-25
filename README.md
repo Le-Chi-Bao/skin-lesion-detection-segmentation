@@ -92,6 +92,19 @@ Gradio quản lý riêng tệp tải lên trong `runtime/gradio-cache/` theo tu�
 
 ## Kiểm thử
 
+Medical RAG WP6A có trang riêng, hỗ trợ BM25 / Dense / Hybrid và không gọi LLM.
+Hướng dẫn dữ liệu, quyền AI, demo tổng hợp và kết quả kiểm thử: [WP6A RAG Foundation](docs/WP6A_RAG_FOUNDATION.md).
+
+```powershell
+.venv\Scripts\python.exe -m pip install -r requirements-rag.txt
+$env:RAG_SYNTHETIC_DEMO = '1'
+.venv\Scripts\python.exe main.py
+```
+
+Chọn **Medical RAG** rồi Search. Corpus demo luôn có nhãn **SYNTHETIC DEMO**.
+BM25 dùng được ngay; Dense/Hybrid cần dependencies và model local riêng theo tài liệu WP6A.
+Tắt demo bằng `Remove-Item Env:RAG_SYNTHETIC_DEMO`.
+
 ```powershell
 .venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 .venv\Scripts\python.exe -m pytest -q tests --basetemp runtime/wp3-regression

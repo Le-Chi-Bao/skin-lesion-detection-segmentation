@@ -76,6 +76,8 @@ class RegistryRights:
             if record["extraction"]["status"] == "partial" and grant.get("partial") != "allowed":
                 return None
             reviewed_source = next(s for s in registry["sources"] if s["source_id"] == source["source_id"])
+            if asset != reviewed_source["document_type"] + "_text":
+                return None
             return {"reuse": "permitted", "ai_use": "allowed", "indexing": "allowed",
                     "asset": asset, "registry_sha256": hashlib.sha256(registry_bytes).hexdigest(),
                     "approvals_sha256": hashlib.sha256(approval_bytes).hexdigest(),

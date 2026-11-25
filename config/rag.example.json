@@ -1,0 +1,22 @@
+{
+  "manifest": "../runtime/crawler-batches/REPLACE_WITH_BATCH_ID/manifest.json",
+  "artifacts": "../runtime/crawler-artifacts",
+  "provenance": "../runtime/crawler-provenance",
+  "registry": "../runtime/reviewed-source-registry.json",
+  "approvals": "../runtime/reviewed-indexing-approvals.json",
+  "chunking": {
+    "max_tokens": 384,
+    "overlap": 48
+  },
+  "embedding": {
+    "model": "intfloat/multilingual-e5-base",
+    "allow_download": false,
+    "device": "cpu",
+    "query_prefix": "query: ",
+    "passage_prefix": "passage: ",
+    "max_length": 512,
+    "batch_size": 16
+  },
+  "rrf_k": 60,
+  "candidates": 30
+}
