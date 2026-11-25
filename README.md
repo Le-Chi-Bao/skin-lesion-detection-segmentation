@@ -1,5 +1,7 @@
 # Hệ thống hỗ trợ phân tích tổn thương da
 
+Demo acceptance 25/11/2026: **hai mô hình thật và Chromium đã đạt trên CPU** (160 pass, 1 optional pilot skip). Xem [runbook demo](docs/DEMO_RUNBOOK.md) và [hồ sơ release acceptance](docs/DEMO_RELEASE_ACCEPTANCE.md). Pilot inactive không chặn release này; CUDA chưa kiểm chứng.
+
 Ứng dụng nghiên cứu dành cho nhân viên y tế đã được đào tạo. Mục tiêu của đồ án là hỗ trợ quan sát tổn thương trên ảnh soi da, tra cứu kiến thức da liễu và chuẩn bị hội chẩn. **CV MVP tích hợp SegFormer MiT-B2 và Faster R-CNN qua adapter, registry và orchestrator độc lập.** Nguyên mẫu này chưa được thẩm định để sử dụng lâm sàng và không tự động chẩn đoán bệnh da.
 
 | Mô-đun | Trạng thái CV MVP |

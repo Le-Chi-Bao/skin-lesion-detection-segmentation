@@ -1,5 +1,7 @@
 # CV MVP — báo cáo cuối sprint 25/11/2026
 
+> Đây là báo cáo lịch sử của sprint trước acceptance cuối. Kết quả mới: [DEMO_RELEASE_ACCEPTANCE.md](DEMO_RELEASE_ACCEPTANCE.md), hai mô hình thật và Chromium đạt trên CPU; [runbook](DEMO_RUNBOOK.md). Theo phạm vi release hiện tại, pilot inactive không bắt buộc và không chặn demo E1 hoàn tất. Các số đo/trạng thái bên dưới được giữ làm lịch sử.
+
 **CV MVP CONDITIONALLY READY — BLOCKERS REMAIN**
 
 Ứng dụng đã chạy hai checkpoint thật trên CPU, có giao diện và export PNG được kiểm chứng bằng Chromium. Artifact pilot chính xác trong brief chưa được cung cấp; không coi ca pilot là đạt. CUDA chưa được kiểm chứng. Chỉ dùng cho nghiên cứu, không chẩn đoán hoặc đề xuất điều trị.
