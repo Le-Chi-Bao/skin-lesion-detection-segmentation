@@ -10,6 +10,8 @@
 
 Nút **Phân tích** khả dụng khi ít nhất một mô hình đã nạp thành công và phiên có ảnh hợp lệ. **Localization** phân biệt box từ mask SegFormer (vàng) và detection Faster R-CNN (đỏ, có điểm). Một mô hình lỗi vẫn giữ kết quả thành công của mô hình kia. Điểm detection không phải xác suất ung thư. [Kiến trúc, artifact, kiểm chứng và giới hạn cuối sprint](docs/FINAL_CV_MVP.md).
 
+PNG Localization có detection dùng tên `cv-localization-<run>.png`; ảnh chỉ từ mask và Overlay giữ tiền tố `segformer-`. Nếu phân tích thất bại, giao diện ghi lỗi riêng của từng mô hình.
+
 Artifact pilot step 7200 đúng hash trong brief **chưa có**. Thư mục E1 thực tế có run hoàn tất; demo dùng bản inference chuẩn xuất từ best checkpoint đã kiểm tra checksum, không gán nhãn pilot thành final.
 
 ## Cài đặt và chạy cục bộ

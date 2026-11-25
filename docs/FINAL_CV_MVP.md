@@ -4,6 +4,8 @@
 
 Ứng dụng đã chạy hai checkpoint thật trên CPU, có giao diện và export PNG được kiểm chứng bằng Chromium. Artifact pilot chính xác trong brief chưa được cung cấp; không coi ca pilot là đạt. CUDA chưa được kiểm chứng. Chỉ dùng cho nghiên cứu, không chẩn đoán hoặc đề xuất điều trị.
 
+Lượt tiếp tục bắt đầu từ HEAD `10e02697a98c2b6239a3cb93d2e5129f2fe2f04d`, đã chứa phần triển khai trên base `a1839a8`. Commit `602332a` sửa việc quy nguồn tên PNG: Localization có detection dùng `cv-localization-<run>.png`; Overlay và Localization chỉ từ mask giữ tên WP3. Lỗi phân tích được hiển thị theo từng mô hình, kể cả khi chỉ detector được cấu hình hoặc cả hai cùng thất bại. Mô tả ảnh và trang Tổng quan đã bổ sung detection.
+
 ## Kiến trúc và tệp chính
 
 | Tệp | Trách nhiệm |
@@ -71,7 +73,9 @@ Registry ưu tiên hơn biến checkpoint SegFormer cũ. Muốn chạy chỉ m�
 
 ## Kiểm chứng
 
-Ảnh mẫu đã có từ WP2: `model_store/wp2-verification/dermoscopy.jpg` (330 × 244). Không crawl dữ liệu, huấn luyện lại hoặc benchmark test set. Một lượt CPU đo được SegFormer 393,22 ms, Faster R-CNN 2309,30 ms; detection `[134.668, 87.285, 183.778, 126.461]`, score `0.803465`. Đây là thời gian forward một lượt, không phải chỉ tiêu hiệu năng. Box dùng pixel ảnh gốc, cạnh phải/dưới loại trừ; không diễn giải score thành xác suất ung thư.
+Ảnh mẫu đã có từ WP2: `model_store/wp2-verification/dermoscopy.jpg` (330 × 244). Không crawl dữ liệu, huấn luyện lại hoặc benchmark test set. Lượt CPU mới nhất đo được SegFormer 415,36 ms, Faster R-CNN 2412,99 ms; detection `[134.668, 87.285, 183.778, 126.461]`, score `0.803465`. Đây là thời gian forward một lượt, không phải chỉ tiêu hiệu năng. Box dùng pixel ảnh gốc, cạnh phải/dưới loại trừ; không diễn giải score thành xác suất ung thư.
+
+Môi trường kiểm chứng: Python 3.12, Torch `2.10.0+cpu`, Torchvision `0.25.0+cpu`, Gradio `6.32.0`; `torch.cuda.is_available() == False`. Hash hai artifact đã được tính lại và khớp registry; cả hai loader và real forward đều đạt.
 
 ```powershell
 .venv\Scripts\python.exe -m pip install playwright==1.65.0
@@ -81,20 +85,24 @@ $env:WP2_SMOKE_IMAGE = (Resolve-Path 'model_store/wp2-verification/dermoscopy.jp
 $env:WP2_SMOKE_DEVICE = 'cpu'
 $env:CV_SMOKE_REGISTRY = (Resolve-Path 'config/models.json').Path
 $testRun = Join-Path (Get-Location) ('runtime/pytest-release-' + [guid]::NewGuid().ToString('N'))
-.venv\Scripts\python.exe -m pytest -q -ra --tb=short --basetemp "$testRun" --junitxml runtime/cv-release-results.xml
+.venv\Scripts\python.exe -m pytest -q -ra --tb=short --capture=tee-sys --basetemp "$testRun" --junitxml runtime/cv-continuation-results.xml *> runtime/cv-continuation-tests.log
+$LASTEXITCODE # 0 khi đạt; đọc log bên dưới để kiểm tra số pass/skip
+Get-Content runtime/cv-continuation-tests.log -Tail 12
 ```
 
-Kết quả cuối được ghi trong `runtime/cv-release-tests.log` và `runtime/cv-release-results.xml` (Git-ignored). Ca real pilot bị skip với lý do BLOCKED. Bỏ biến môi trường smoke thì các ca real khác cũng skip, không được coi là chứng cứ inference thật.
+Kết quả kiểm chứng mới nhất được ghi trong `runtime/cv-continuation-tests.log` và `runtime/cv-continuation-results.xml` (Git-ignored), exit code 0. Ca real pilot bị skip với lý do BLOCKED. Bỏ biến môi trường smoke thì các ca real khác cũng skip, không được coi là chứng cứ inference thật.
 
 | Phạm vi kiểm chứng CPU | Pass | Fail/error | Skip |
 | --- | ---: | ---: | ---: |
-| Suite ứng dụng đầy đủ, 73,15 giây | 158 | 0 | 1 |
+| Suite ứng dụng đầy đủ, 90,93 giây | 160 | 0 | 1 |
 | Hồi quy WP1–WP3 có sẵn (nằm trong dòng trên) | 112 | 0 | 0 |
-| Adapter và tích hợp CV mới (nằm trong dòng trên) | 46 | 0 | 1 |
+| Adapter và tích hợp CV mới (nằm trong dòng trên) | 48 | 0 | 1 |
 
 Năm ca dùng checkpoint thật đã đạt: SegFormer callback, SegFormer browser, WP3 browser/export, CVResult hai mô hình và browser hai mô hình. Các unit test dùng dữ liệu tổng hợp không được dùng làm bằng chứng inference thật. `python -m compileall -q app` và `git diff --check` cũng đạt.
 
 Các kiểm tra gồm: hồi quy WP1–WP3 với checkpoint SegFormer thật; hai mô hình cùng CVResult; ma trận thành công/lỗi/thiếu mô hình; output detection không hợp lệ và ghi mask thất bại vẫn giữ mô hình kia; Reset/upload khi detector đang chạy; rollback; chỉ nạp active; detector-only Gradio; PNG đủ độ phân giải, cookie/proof/TTL, truy cập chéo phiên và đường dẫn trực tiếp; Chromium hai mô hình, opacity, download và thu hồi export sau đổi ảnh/Reset.
+
+Lượt tiếp tục kiểm tra thêm tên PNG ở HTTP response và download Chromium, tương thích tên WP3, thông báo detector-only failure và hai mô hình cùng thất bại. Bốn tệp mã/test được sửa: `app/ui/cv_page.py`, `app/ui/png_export.py`, `app/ui/overview.py`, `tests/test_cv_mvp.py`; tài liệu cập nhật gồm `README.md` và báo cáo này. Không thay đổi weights, threshold, training workspace hoặc cơ chế cấp quyền PNG.
 
 Lần pytest ban đầu thu thập nhầm test/thư viện trong `finetune_detection/runs` (50 lỗi collection), và lần chạy không chỉ định basetemp vướng quyền thư mục Temp Windows (48 setup errors). `pytest.ini` giới hạn suite ứng dụng; lệnh cuối dùng basetemp riêng. Một lỗi giữ tệp tạm trong export đã được kiểm thử cũ phát hiện và sửa; không bỏ các ca bảo mật.
 
