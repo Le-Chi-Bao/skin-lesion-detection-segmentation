@@ -84,5 +84,3 @@ class ModelRegistry:
             return adapter
         except (AppError, OSError, ValueError) as exc:
             return UnavailableAdapter(module, exc if isinstance(exc, AppError) else AppError(ErrorCode.INVALID_MODEL_CONFIG))
-
-
