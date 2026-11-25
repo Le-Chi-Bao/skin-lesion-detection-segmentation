@@ -2,10 +2,13 @@
 
 import html
 import json
+import os
+from pathlib import Path
 
 import gradio as gr
 
 from app.rag.runtime import service_from_env
+from app.rag.config import RAGConfig, RetrievalConfig
 
 
 def format_response(response) -> tuple[str, str]:
@@ -48,6 +51,14 @@ def search_documents(query, mode, top_k, service):
 
 
 def render_rag_page(session_ttl: int = 3600):
+    defaults = RetrievalConfig()
+    try:
+        config_path = os.environ.get("RAG_CONFIG")
+        if config_path:
+            defaults = RAGConfig.load(Path(config_path)).retrieval
+    except (OSError, ValueError):
+        # Keep the CV shell available; search reports invalid RAG operator settings.
+        pass
     gr.Markdown("## Medical RAG\nTruy xuất các đoạn tài liệu và bằng chứng nguồn. "
                 "WP6A chưa sinh câu trả lời y khoa bằng LLM.\n\n"
                 "Demo tự tạo luôn mang nhãn **SYNTHETIC DEMO**; không phải nguồn y khoa thật.")
@@ -55,8 +66,8 @@ def render_rag_page(session_ttl: int = 3600):
                        delete_callback=lambda service: service.close() if service else None)
     question = gr.Textbox(label="Câu hỏi", placeholder="Nhập câu hỏi để tìm đoạn tài liệu liên quan", lines=2)
     with gr.Row():
-        mode = gr.Radio(["BM25", "Dense", "Hybrid"], value="BM25", label="Retrieval mode")
-        top_k = gr.Slider(1, 20, value=5, step=1, label="Top-K")
+        mode = gr.Radio(["BM25", "Dense", "Hybrid"], value=defaults.mode, label="Retrieval mode")
+        top_k = gr.Slider(1, 100, value=defaults.top_k, step=1, label="Top-K")
     button = gr.Button("Search", elem_id="rag-search", variant="primary")
     status = gr.Textbox(label="Trạng thái và thời gian tìm kiếm", interactive=False)
     results = gr.HTML(value="", label="Đoạn tài liệu liên quan")

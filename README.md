@@ -94,6 +94,7 @@ Gradio quản lý riêng tệp tải lên trong `runtime/gradio-cache/` theo tu�
 
 Medical RAG WP6A có trang riêng, hỗ trợ BM25 / Dense / Hybrid và không gọi LLM.
 Hướng dẫn dữ liệu, quyền AI, demo tổng hợp và kết quả kiểm thử: [WP6A RAG Foundation](docs/WP6A_RAG_FOUNDATION.md).
+Cấu hình JSON có validation, tham số mặc định và trạng thái kiểm chứng E5 thật: [WP6A.1 Verification](docs/WP6A_1_VERIFICATION.md).
 
 ```powershell
 .venv\Scripts\python.exe -m pip install -r requirements-rag.txt

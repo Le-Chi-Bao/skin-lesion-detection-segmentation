@@ -13,14 +13,16 @@ def main() -> int:
     source = parser.add_mutually_exclusive_group()
     source.add_argument("--demo", action="store_true")
     source.add_argument("--config", type=Path)
-    parser.add_argument("--mode", choices=["BM25", "Dense", "Hybrid"], default="BM25")
+    parser.add_argument("--mode", choices=["BM25", "Dense", "Hybrid"], default=None)
     parser.add_argument("--query", default="tổn thương da")
-    parser.add_argument("--top-k", type=int, default=5)
+    parser.add_argument("--top-k", type=int, default=None)
     args = parser.parse_args()
     service = None
     try:
         service = create_service(demo=args.demo, config_path=args.config)
-        result = service.search(args.query, args.mode, args.top_k)
+        defaults = service.settings.retrieval
+        result = service.search(args.query, args.mode if args.mode is not None else defaults.mode,
+                                args.top_k if args.top_k is not None else defaults.top_k)
         print(json.dumps({"status": result.status, "mode": result.mode, "synthetic": result.synthetic,
                           "elapsed_ms": round(result.elapsed_ms, 2),
                           "hits": [{"chunk_id": h.chunk.chunk_id, "score": h.score,

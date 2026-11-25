@@ -1,14 +1,14 @@
 """Operator-only configuration; the browser cannot select files, stores or rights policies."""
 
-import json
 import os
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from app.rag.chunking import ChunkConfig, RecursiveChunker
+from app.rag.chunking import RecursiveChunker
+from app.rag.config import RAGConfig
 from app.rag.importer import DocumentImporter, StoreBindings
 from app.rag.models import RAGError
-from app.rag.retrieval import EmbeddingConfig, LocalE5Embedder
+from app.rag.retrieval import LocalE5Embedder
 from app.rag.rights import RegistryRights
 from app.rag.service import RAGService
 from app.rag.synthetic import SyntheticRights, write_demo
@@ -17,11 +17,14 @@ from app.rag.synthetic import SyntheticRights, write_demo
 def create_service(*, demo: bool = False, config_path: Path | None = None) -> RAGService:
     if demo and config_path is not None:
         raise RAGError("demo_and_real_config_are_exclusive")
-    settings = json.loads(config_path.read_text(encoding="utf-8")) if config_path else {}
-    embeddings = LocalE5Embedder(EmbeddingConfig(**settings.get("embedding", {})))
-    service = RAGService(chunker=RecursiveChunker(ChunkConfig(**settings.get("chunking", {}))),
-                         embedder=embeddings, rrf_k=settings.get("rrf_k", 60),
-                         candidates=settings.get("candidates", 30))
+    settings = RAGConfig.load(config_path) if config_path else RAGConfig()
+    if config_path and settings.paths is None:
+        raise RAGError("incomplete_rag_paths")
+    embeddings = LocalE5Embedder(settings.embedding)
+    service = RAGService(chunker=RecursiveChunker(settings.chunking), embedder=embeddings,
+                         rrf_k=settings.rrf_k, candidates=settings.candidates,
+                         bm25_k1=settings.bm25.k1, bm25_b=settings.bm25.b)
+    service.settings = settings
     if demo:
         # Lifetime belongs to this service/session, no shared corpus or browser input.
         service._demo_directory = TemporaryDirectory(prefix="wp6a-synthetic-")
@@ -29,8 +32,7 @@ def create_service(*, demo: bool = False, config_path: Path | None = None) -> RA
         result = service.ingest(manifest, DocumentImporter(bindings, SyntheticRights()))
     elif config_path:
         def bound_path(key):
-            value = Path(settings[key]).expanduser()
-            return (config_path.parent / value).resolve()
+            return settings.paths.resolve(key, config_path)
 
         importer = DocumentImporter(StoreBindings(bound_path("artifacts"), bound_path("provenance")),
                                     RegistryRights(bound_path("registry"), bound_path("approvals")))

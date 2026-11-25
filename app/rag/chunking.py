@@ -3,25 +3,10 @@
 import hashlib
 import json
 import re
-from dataclasses import asdict, dataclass
+from dataclasses import asdict
 
+from app.rag.config import ChunkConfig
 from app.rag.models import Chunk, Document
-
-
-@dataclass(frozen=True)
-class ChunkConfig:
-    max_tokens: int = 384
-    overlap: int = 48
-    # UTF-8 bytes are a conservative token budget, independent of model downloads.
-    # Dense additionally checks its real tokenizer and never silently truncates passages.
-    token_metric: str = "utf8-bytes-v1"
-    version: str = "recursive-blocks-1"
-
-    def __post_init__(self):
-        if (type(self.max_tokens) is not int or type(self.overlap) is not int
-                or self.max_tokens < 4 or not 0 <= self.overlap < self.max_tokens
-                or self.token_metric != "utf8-bytes-v1"):
-            raise ValueError("invalid_chunk_config")
 
 
 def token_count(text: str) -> int:
@@ -99,6 +84,8 @@ class RecursiveChunker:
             section_start = position
         sections.append((section_start, len(text), current_path))
         config = asdict(self.config)
+        # Strategy is already encoded by version; retain WP6A chunk identities.
+        config.pop("strategy")
         chunks = []
         for start, end, heading_path in sections:
             for left, right in self._windows(text, start, end):

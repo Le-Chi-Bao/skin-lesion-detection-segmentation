@@ -1,4 +1,5 @@
 import math
+import os
 import sys
 from types import SimpleNamespace
 
@@ -6,8 +7,9 @@ import pytest
 
 from app.rag.chunking import RecursiveChunker
 from app.rag.models import Chunk, ModelUnavailable, RAGError, SearchHit
-from app.rag.retrieval import (BM25Retriever, DenseRetriever, HybridRetriever,
+from app.rag.retrieval import (BM25Retriever, DenseRetriever, EmbeddingConfig, HybridRetriever,
                                LocalE5Embedder, RRFusion, tokenize)
+from app.rag.service import RAGService
 from rag_support import FakeEmbedder, synthetic_batch
 
 
@@ -75,16 +77,92 @@ def test_non_finite_embeddings_rejected_and_old_index_cleared(tmp_path):
     assert dense.chunks == () and dense.vectors is None
 
 
-def test_real_e5_local_smoke():
-    # No network/download. Skip explicitly when dependencies or a complete local model are absent.
-    embedder = LocalE5Embedder()
+@pytest.mark.real_e5
+def test_real_e5_local_smoke(tmp_path):
+    # Actual E5 only. Strict mode makes a missing local model a failed verification gate.
+    import numpy as np
+
+    embedder = LocalE5Embedder(EmbeddingConfig(batch_size=2))
+    manifest, _, importer = synthetic_batch(tmp_path)
+    imported = importer.import_manifest(manifest)
+    assert imported.status == "VERIFIED"
+    documents = {d.document_id: d for d in imported.documents}
+    chunks = tuple(c for d in imported.documents for c in RecursiveChunker().chunk(d))
     try:
-        docs = embedder.embed_documents(["SYNTHETIC DEMO skin color", "SYNTHETIC DEMO source citation"])
+        docs = embedder.embed_documents([c.text for c in chunks])
         query = embedder.embed_query("màu sắc da")
     except ModelUnavailable as exc:
-        pytest.skip(f"Real multilingual-e5-base NOT VERIFIED: {exc}")
-    assert docs.shape == (2, 768) and query.shape == (768,)
-    assert float((query ** 2).sum()) == pytest.approx(1, abs=1e-5)
+        message = f"BLOCKED: real multilingual-e5-base NOT VERIFIED: {exc}"
+        if os.environ.get("RAG_REQUIRE_REAL_E5") == "1":
+            pytest.fail(message, pytrace=False)
+        pytest.skip(message)
+    assert docs.shape == (len(chunks), 768) and query.shape == (768,)
+    assert np.isfinite(docs).all() and np.isfinite(query).all()
+    assert np.linalg.norm(docs, axis=1) == pytest.approx(np.ones(len(chunks)), abs=1e-5)
+    assert np.linalg.norm(query) == pytest.approx(1, abs=1e-5)
+
+    service = RAGService(embedder=embedder)
+    try:
+        assert service.ingest(manifest, importer).status == "VERIFIED"
+        for text, title in (("skin lesion color border size", "Quan sát"),
+                            ("nguồn tài liệu và bằng chứng truy xuất", "Nguồn"),
+                            ("image segmentation mask bounding box", "Phân đoạn")):
+            query_vector = embedder.embed_query(text)
+            for mode in ("Dense", "Hybrid"):
+                first = service.search(text, mode, 3)
+                second = service.search(text, mode, 3)
+                assert first.status == second.status == "OK"
+                assert first.synthetic and len(first.hits) == 3
+                assert title in first.hits[0].chunk.citation["title"]
+                assert [h.chunk.chunk_id for h in first.hits] == [h.chunk.chunk_id for h in second.hits]
+                assert [h.score for h in first.hits] == pytest.approx([h.score for h in second.hits], abs=1e-6)
+                assert len({h.chunk.chunk_id for h in first.hits}) == 3
+                for hit in first.hits:
+                    doc = documents[hit.chunk.document_id]
+                    canonical = "\n\n".join(b["text"] for b in doc.record["content"])
+                    citation = hit.chunk.citation
+                    start, end = citation["char_range"]
+                    assert hit.chunk.text == canonical[start:end]
+                    assert citation["record_sha256"] == doc.record_hash
+                    assert citation["original_sha256"] == doc.record["original"]["sha256"]
+                    assert citation["source"] == doc.record["source"]
+                    assert citation["rights"] == doc.rights and citation["synthetic"]
+                if mode == "Dense":
+                    expected = service.dense.vectors @ query_vector
+                    ordered = sorted(zip(service.dense.chunks, expected), key=lambda pair: (-pair[1], pair[0].chunk_id))[:3]
+                    assert [h.chunk.chunk_id for h in first.hits] == [c.chunk_id for c, _ in ordered]
+                    assert [h.score for h in first.hits] == pytest.approx([float(s) for _, s in ordered], abs=1e-6)
+                else:
+                    count = max(3, service.hybrid.candidates)
+                    scores = {}
+                    for ranking in (service.bm25.search(text, count), service.dense.search(text, count)):
+                        for rank, hit in enumerate(ranking, 1):
+                            identity = hit.chunk.chunk_id
+                            scores[identity] = scores.get(identity, 0) + 1 / (60 + rank)
+                    expected_ids = sorted(scores, key=lambda identity: (-scores[identity], identity))[:3]
+                    assert [h.chunk.chunk_id for h in first.hits] == expected_ids
+                    assert [h.score for h in first.hits] == pytest.approx([scores[i] for i in expected_ids])
+    finally:
+        service.close()
+
+
+@pytest.mark.parametrize("k", [1, 60, 80.5])
+def test_rrf_unequal_rankings_duplicates_and_cross_ranking_contributions(k):
+    a, b, c, d = [SearchHit(Chunk(key, "doc-" + key, key, {}), 1, "BM25") for key in "abcd"]
+    rankings = [[a, a, b, c, c, d], [c, a], []]
+    fused = RRFusion(k).fuse(rankings, 10)
+    expected = {"a": 1 / (k + 1) + 1 / (k + 2), "b": 1 / (k + 2),
+                "c": 1 / (k + 3) + 1 / (k + 1), "d": 1 / (k + 4)}
+    assert [h.chunk.chunk_id for h in fused] == sorted(expected, key=lambda key: (-expected[key], key))
+    assert {h.chunk.chunk_id: h.score for h in fused} == pytest.approx(expected)
+    assert RRFusion(k).fuse(rankings, 2) == fused[:2]
+
+
+def test_rrf_ties_use_chunk_id_regardless_of_ranking_order():
+    a, b = [SearchHit(Chunk(key, key, key, {}), 1, "Dense") for key in "ab"]
+    fusion = RRFusion()
+    assert fusion.fuse([[b, a], [a, b]]) == fusion.fuse([[a, b], [b, a]])
+    assert [h.chunk.chunk_id for h in fusion.fuse([[b], [a]])] == ["a", "b"]
 
 
 def test_e5_prefixes_pooling_offline_options_and_no_passage_truncation(monkeypatch):

@@ -4,8 +4,8 @@ import math
 import re
 import unicodedata
 from collections import Counter
-from dataclasses import dataclass
 
+from app.rag.config import BM25Config, EmbeddingConfig
 from app.rag.models import Chunk, ModelUnavailable, RAGError, SearchHit
 
 
@@ -16,8 +16,7 @@ def tokenize(text: str) -> list[str]:
 
 class BM25Retriever:
     def __init__(self, chunks=(), *, k1: float = 1.5, b: float = 0.75):
-        if not math.isfinite(k1) or k1 <= 0 or not math.isfinite(b) or not 0 <= b <= 1:
-            raise ValueError("invalid_bm25_config")
+        BM25Config(k1=k1, b=b)
         self.k1, self.b = k1, b
         self.index(chunks)
 
@@ -45,23 +44,6 @@ class BM25Retriever:
             if score > 0:
                 hits.append(SearchHit(chunk, score, "BM25"))
         return tuple(sorted(hits, key=lambda h: (-h.score, h.chunk.chunk_id))[:top_k])
-
-
-@dataclass(frozen=True)
-class EmbeddingConfig:
-    model: str = "intfloat/multilingual-e5-base"
-    allow_download: bool = False
-    device: str = "cpu"
-    query_prefix: str = "query: "
-    passage_prefix: str = "passage: "
-    max_length: int = 512
-    batch_size: int = 16
-
-    def __post_init__(self):
-        if (not self.model or self.device not in {"cpu", "cuda"}
-                or type(self.allow_download) is not bool
-                or not 8 <= self.max_length <= 512 or self.batch_size < 1):
-            raise ValueError("invalid_embedding_config")
 
 
 class LocalE5Embedder:
@@ -170,7 +152,7 @@ class DenseRetriever:
 
 class RRFusion:
     def __init__(self, k: float = 60):
-        if not math.isfinite(k) or k <= 0:
+        if type(k) not in {int, float} or not math.isfinite(k) or k <= 0:
             raise ValueError("invalid_rrf_k")
         self.k = k
 
@@ -193,7 +175,7 @@ class RRFusion:
 
 class HybridRetriever:
     def __init__(self, bm25: BM25Retriever, dense: DenseRetriever, *, rrf_k: float = 60, candidates: int = 30):
-        if candidates < 1:
+        if type(candidates) is not int or candidates < 1:
             raise ValueError("invalid_candidate_count")
         self.bm25, self.dense = bm25, dense
         self.fusion, self.candidates = RRFusion(rrf_k), candidates

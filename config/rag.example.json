@@ -5,8 +5,15 @@
   "registry": "../runtime/reviewed-source-registry.json",
   "approvals": "../runtime/reviewed-indexing-approvals.json",
   "chunking": {
+    "strategy": "recursive-blocks",
     "max_tokens": 384,
-    "overlap": 48
+    "overlap": 48,
+    "token_metric": "utf8-bytes-v1",
+    "version": "recursive-blocks-1"
+  },
+  "bm25": {
+    "k1": 1.5,
+    "b": 0.75
   },
   "embedding": {
     "model": "intfloat/multilingual-e5-base",
@@ -16,6 +23,10 @@
     "passage_prefix": "passage: ",
     "max_length": 512,
     "batch_size": 16
+  },
+  "retrieval": {
+    "mode": "BM25",
+    "top_k": 5
   },
   "rrf_k": 60,
   "candidates": 30
