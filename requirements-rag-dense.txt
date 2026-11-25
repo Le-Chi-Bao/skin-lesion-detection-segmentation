@@ -1,5 +1,5 @@
 -r requirements-rag.txt
 torch>=2.6,<3
-transformers>=4.45,<5
+transformers>=5,<6
 sentencepiece>=0.2,<1
 numpy>=2,<3
