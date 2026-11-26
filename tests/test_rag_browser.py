@@ -25,7 +25,7 @@ def test_browser_medical_rag_demo_and_cv_navigation(tmp_path):
             port = sock.getsockname()[1]
         env = {k: v for k, v in os.environ.items() if not k.startswith(("LESION_", "RAG_"))}
         env.update(LESION_PORT=str(port), LESION_RUNTIME_DIR=str(tmp_path / "runtime"),
-                   RAG_SYNTHETIC_DEMO="1", PYTHONUTF8="1", GRADIO_ANALYTICS_ENABLED="False")
+                   RAG_SYNTHETIC_DEMO="1", RAG_CONFIG="", PYTHONUTF8="1", GRADIO_ANALYTICS_ENABLED="False")
         log = tmp_path / "server.txt"
         with log.open("w", encoding="utf-8") as output:
             process = subprocess.Popen([sys.executable, "-u", "main.py"], cwd=PROJECT_ROOT, env=env,

@@ -16,10 +16,10 @@ from app.rag.retrieval import BM25Retriever, DenseRetriever, HybridRetriever
 class RAGService:
     def __init__(self, *, chunker=None, embedder=None, rrf_k: float = 60, candidates: int = 30,
                  bm25_k1: float = 1.5, bm25_b: float = 0.75, settings=None,
-                 cloud_client=None, reranker=None, generator=None):
+                 cloud_client=None, reranker=None, generator=None, dense_retriever=None):
         self.chunker = chunker or RecursiveChunker()
         self.bm25 = BM25Retriever(k1=bm25_k1, b=bm25_b)
-        self.dense = DenseRetriever(embedder)
+        self.dense = dense_retriever or DenseRetriever(embedder)
         self.hybrid = HybridRetriever(self.bm25, self.dense, rrf_k=rrf_k, candidates=candidates)
         self._documents, self._receipts, self._sources = {}, {}, {}
         self._suppressed = set()

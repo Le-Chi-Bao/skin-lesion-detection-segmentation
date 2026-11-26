@@ -3,6 +3,11 @@
 import math
 import re
 import unicodedata
+import hashlib
+import json
+from dataclasses import asdict
+from functools import cached_property
+from pathlib import Path
 from collections import Counter
 
 from app.rag.config import BM25Config, EmbeddingConfig
@@ -78,6 +83,21 @@ class LocalE5Embedder:
         except Exception:
             raise ModelUnavailable("embedding_model_unavailable_local") from None
 
+    @cached_property
+    def persistent_fingerprint(self):
+        config = asdict(self.config)
+        config.pop("batch_size")
+        config.pop("device")
+        files = {}
+        root = Path(self.config.model)
+        if not root.is_dir():
+            raise ModelUnavailable("persistent_embedding_requires_local_model_directory")
+        for path in sorted(root.glob("*")):
+            if path.is_file() and path.suffix in {".json", ".model", ".safetensors"}:
+                with path.open("rb") as stream:
+                    files[path.name] = hashlib.file_digest(stream, "sha256").hexdigest()
+        return hashlib.sha256(json.dumps([config, files, "masked-mean-l2-v1"], sort_keys=True).encode()).hexdigest()
+
     def _encode(self, texts: list[str], prefix: str, *, query: bool):
         self._load()
         import numpy as np
@@ -91,15 +111,19 @@ class LocalE5Embedder:
                 lengths = self._tokenizer(inputs, truncation=False, padding=False)["input_ids"]
                 if any(len(ids) > self.config.max_length for ids in lengths):
                     raise RAGError("passage_exceeds_model_tokens_rechunk_required")
-            batch = self._tokenizer(inputs, max_length=self.config.max_length, padding=True,
-                                    truncation=query, return_tensors="pt").to(self.config.device)
+            options = {"max_length": self.config.max_length} if query else {}
+            batch = self._tokenizer(inputs, padding=True, truncation=query,
+                                    return_tensors="pt", **options).to(self.config.device)
             with torch.inference_mode():
                 hidden = self._model(**batch).last_hidden_state
                 mask = batch["attention_mask"]
                 hidden = hidden.masked_fill(~mask[..., None].bool(), 0.0)
                 pooled = hidden.sum(dim=1) / mask.sum(dim=1)[..., None]
                 batches.append(functional.normalize(pooled, p=2, dim=1).cpu().numpy())
-        return np.concatenate(batches) if batches else np.empty((0, 0), dtype=np.float32)
+        result = np.concatenate(batches) if batches else np.empty((0, 0), dtype=np.float32)
+        if len(texts) and self.config.dimensions is not None and result.shape[1] != self.config.dimensions:
+            raise RAGError("embedding_dimension_mismatch")
+        return result
 
     def embed_documents(self, texts: list[str]):
         return self._encode(texts, self.config.passage_prefix, query=False)

@@ -3,7 +3,7 @@
 import hashlib
 import json
 import re
-from dataclasses import asdict
+from dataclasses import asdict, replace
 
 from app.rag.config import ChunkConfig
 from app.rag.models import Chunk, Document
@@ -72,6 +72,11 @@ class RecursiveChunker:
         sections, headings, section_start = [], [], 0
         current_path = ()
         for index, block in enumerate(blocks):
+            if index and block.get("pdf_page") != blocks[index - 1].get("pdf_page"):
+                position = block_spans[index][0]
+                if position > section_start:
+                    sections.append((section_start, position, current_path))
+                section_start = position
             if block["kind"] != "heading":
                 continue
             position = block_spans[index][0]
@@ -107,5 +112,41 @@ class RecursiveChunker:
                             "rights": document.rights, "record_rights": record["rights"],
                             "extraction_status": record["extraction"]["status"],
                             "synthetic": document.synthetic, "chunk_config": config}
+                if "pdf_page" in blocks[covered[0]]:
+                    citation.update(pdf_page=blocks[covered[0]]["pdf_page"],
+                                    printed_page=blocks[covered[0]].get("printed_page"),
+                                    markdown_path=record["metadata"]["markdown_path"],
+                                    pdf_path=record["metadata"]["pdf_path"],
+                                    conversion_status=record["metadata"]["conversion_status"],
+                                    human_review_status=record["metadata"]["human_review_status"])
                 chunks.append(Chunk(chunk_id, document.document_id, text[left:right], citation))
         return tuple(chunks)
+
+
+class E5BudgetChunker(RecursiveChunker):
+    """Retain page/heading boundaries and offsets while enforcing actual E5 tokens."""
+
+    def __init__(self, config, embedder):
+        super().__init__(config)
+        self.embedder = embedder
+        self._tokenizer = None
+
+    def chunk(self, document):
+        if self._tokenizer is None:
+            from transformers import AutoTokenizer
+            self._tokenizer = AutoTokenizer.from_pretrained(self.embedder.config.model,
+                local_files_only=True, trust_remote_code=False)
+        config = self.config
+        while True:
+            chunks = RecursiveChunker(config).chunk(document)
+            if not chunks:
+                return chunks
+            lengths = self._tokenizer([self.embedder.config.passage_prefix + c.text.strip() for c in chunks],
+                                      truncation=False, padding=False, verbose=False)["input_ids"]
+            if max(map(len, lengths)) <= self.embedder.config.max_length:
+                return chunks
+            budget = max(4, int(config.max_tokens * 0.75))
+            if budget == config.max_tokens:
+                from app.rag.models import RAGError
+                raise RAGError("local_chunk_token_budget_impossible")
+            config = replace(config, max_tokens=budget, overlap=min(config.overlap, budget // 4))

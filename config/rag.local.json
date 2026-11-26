@@ -1,0 +1,23 @@
+{
+  "local_corpus": {
+    "kit": "../bo_tai_lieu_y_khoa_tieng_viet_pdf_kit",
+    "markdown": "../data/rag/markdown",
+    "approval": "../data/rag/local_indexing_consent.json"
+  },
+  "embedding": {
+    "backend": "local",
+    "model": "../model_store/embeddings/multilingual-e5-small",
+    "device": "cpu",
+    "allow_download": false,
+    "dimensions": 384,
+    "query_prefix": "query: ",
+    "passage_prefix": "passage: ",
+    "max_length": 512,
+    "batch_size": 16
+  },
+  "chunking": {"max_tokens": 1400, "overlap": 160},
+  "retrieval": {"mode": "Hybrid", "top_k": 5},
+  "vector_store": {"path": "../runtime/vector_db"},
+  "rrf_k": 60,
+  "candidates": 30
+}

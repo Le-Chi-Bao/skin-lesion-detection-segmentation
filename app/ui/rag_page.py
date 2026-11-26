@@ -7,7 +7,7 @@ from pathlib import Path
 
 import gradio as gr
 
-from app.rag.runtime import service_from_env
+from app.rag.runtime import load_environment, service_from_env
 from app.rag.config import RAGConfig, RetrievalConfig
 
 
@@ -47,6 +47,8 @@ def format_response(response) -> tuple[str, str]:
             f'<article style="border:1px solid #8885;border-radius:8px;padding:16px;margin:12px 0">'
             f'<h3>{rank}. {badge}{escape(citation["title"] or "Không có tiêu đề trong nguồn")}</h3>'
             f'<p>Nguồn: {escape(citation["source"]["locator"])}</p>'
+            f'<p>Trang PDF: {escape(citation.get("pdf_page", "không có"))} · '
+            f'Trạng thái kiểm duyệt: {escape(citation.get("human_review_status", citation["extraction_status"]))}</p>'
             f'<p>Chunk ID: <code>{escape(hit.chunk.chunk_id)}</code><br>'
             f'Score ({escape(hit.mode)}): {hit.score:.6f} · '
             f'Block [start, end): {escape(citation["block_range"])}</p>'
@@ -71,6 +73,7 @@ def search_documents(query, mode, top_k, service, rerank=None, interaction="Retr
 
 
 def render_rag_page(session_ttl: int = 3600):
+    load_environment()
     defaults = RetrievalConfig()
     settings = None
     try:
@@ -82,8 +85,10 @@ def render_rag_page(session_ttl: int = 3600):
     except (OSError, ValueError):
         # Keep the CV shell available; search reports invalid RAG operator settings.
         pass
-    gr.Markdown("## Medical RAG\nTruy xuất các đoạn tài liệu và bằng chứng nguồn. "
-                "Cloud embedding, reranking và chọn trích dẫn qua OpenRouter theo cấu hình operator. "
+    route = ("Embedding local trên CPU, tìm kiếm Dense hoặc Hybrid; không cần API key. "
+             if settings and settings.local_corpus else
+             "Cloud embedding, reranking và chọn trích dẫn qua OpenRouter theo cấu hình operator. ")
+    gr.Markdown("## Medical RAG\nTruy xuất các đoạn tài liệu và bằng chứng nguồn. " + route +
                 "Không nhập tên, mã định danh hoặc thông tin cá nhân bệnh nhân.\n\n"
                 "Demo tự tạo luôn mang nhãn **SYNTHETIC DEMO**; không phải nguồn y khoa thật.")
     session = gr.State(None, time_to_live=session_ttl,

@@ -195,6 +195,26 @@ def _section(cls, value):
 
 
 @dataclass(frozen=True)
+class LocalCorpusConfig:
+    kit: str
+    markdown: str
+    approval: str
+
+    def __post_init__(self):
+        if any(not _text(getattr(self, f.name)) for f in fields(self)):
+            raise RAGError("invalid_local_corpus_config")
+
+
+@dataclass(frozen=True)
+class VectorStoreConfig:
+    path: str
+
+    def __post_init__(self):
+        if not _text(self.path):
+            raise RAGError("invalid_vector_store_config")
+
+
+@dataclass(frozen=True)
 class RAGConfig:
     paths: PathConfig | None = None
     chunking: ChunkConfig = field(default_factory=ChunkConfig)
@@ -206,10 +226,18 @@ class RAGConfig:
     cloud: CloudConfig = field(default_factory=CloudConfig)
     reranking: RerankingConfig = field(default_factory=RerankingConfig)
     generation: GenerationConfig = field(default_factory=GenerationConfig)
+    local_corpus: LocalCorpusConfig | None = None
+    vector_store: VectorStoreConfig | None = None
 
     def __post_init__(self):
         if (self.paths is not None and not isinstance(self.paths, PathConfig)):
             raise RAGError("invalid_rag_paths")
+        if (self.local_corpus is not None and not isinstance(self.local_corpus, LocalCorpusConfig)
+                or self.vector_store is not None and not isinstance(self.vector_store, VectorStoreConfig)
+                or self.local_corpus is not None and self.paths is not None):
+            raise RAGError("invalid_local_corpus_config")
+        if self.vector_store is not None and self.embedding.backend != "local":
+            raise RAGError("persistent_store_requires_local_embedding")
         for name, cls in (("chunking", ChunkConfig), ("bm25", BM25Config),
                           ("embedding", EmbeddingConfig), ("retrieval", RetrievalConfig),
                           ("cloud", CloudConfig), ("reranking", RerankingConfig),
@@ -225,7 +253,7 @@ class RAGConfig:
     def from_dict(cls, value):
         path_keys = {f.name for f in fields(PathConfig)}
         keys = path_keys | {"chunking", "bm25", "embedding", "retrieval", "rrf_k", "candidates",
-                           "cloud", "reranking", "generation"}
+                           "cloud", "reranking", "generation", "local_corpus", "vector_store"}
         if not isinstance(value, dict) or set(value) - keys:
             raise RAGError("invalid_rag_config_fields")
         present = path_keys & value.keys()
@@ -247,7 +275,9 @@ class RAGConfig:
                    rrf_k=value.get("rrf_k", 60), candidates=value.get("candidates", 30),
                    cloud=_section(CloudConfig, cloud),
                    reranking=_section(RerankingConfig, value.get("reranking", {})),
-                   generation=_section(GenerationConfig, value.get("generation", {})))
+                   generation=_section(GenerationConfig, value.get("generation", {})),
+                   local_corpus=_section(LocalCorpusConfig, value["local_corpus"]) if "local_corpus" in value else None,
+                   vector_store=_section(VectorStoreConfig, value["vector_store"]) if "vector_store" in value else None)
 
     @classmethod
     def load(cls, path: Path):

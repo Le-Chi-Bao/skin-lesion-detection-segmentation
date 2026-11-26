@@ -1,0 +1,73 @@
+{
+  "version": "wp6d-local-consent-1",
+  "indexing": "allowed",
+  "scope": "local_only",
+  "evidence": "User explicitly accepted these eight documents for local indexing in the WP6D request.",
+  "page_review_claim": "none; original conversion and review statuses retained",
+  "documents": [
+    {
+      "document_id": "vn-raman-skin-251",
+      "markdown_sha256": "50b59af2898cd596f4fdb152ee378e3bbfd5909b25fa36c873fabefc8306b99c",
+      "original_sha256": "4051a4dbe7165ceea4e3746e31d6b27a059d042d22778dc50c675220410e309e",
+      "metadata_sha256": "6072a5fdb9dad5bc1f5a2efd849d0900132871e7478ea64bb0449d099309a569",
+      "source_url": "https://tapchikhcnnd.mod.gov.vn/index.php/tckhcnnd/article/view/251",
+      "license": "CC BY 4.0"
+    },
+    {
+      "document_id": "vn-atopic-488",
+      "markdown_sha256": "a9a17c39caad5e60dc7c15c0964bc0ed33937a28a6a8ae35163c20e1e75e2bdd",
+      "original_sha256": "fd69ef70f85ff8dfcbb87342a1f4779bc983f1f75f3684fdd344c94f4a19ec85",
+      "metadata_sha256": "6072a5fdb9dad5bc1f5a2efd849d0900132871e7478ea64bb0449d099309a569",
+      "source_url": "https://thaibinhjmp.vn/index.php/ojstbump/article/view/488",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "document_id": "vn-acne-490",
+      "markdown_sha256": "f2c598f65c34055f2ec440ccda23b0f255e34b55dca20fe3b1d9bbd3a6af6164",
+      "original_sha256": "5e31761fcc0033cde612c1c280fa9b34dabbdd5df76372ca52b34eafd1d2335a",
+      "metadata_sha256": "6072a5fdb9dad5bc1f5a2efd849d0900132871e7478ea64bb0449d099309a569",
+      "source_url": "https://thaibinhjmp.vn/index.php/ojstbump/article/view/490",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "document_id": "vn-psoriasis-treatment-640",
+      "markdown_sha256": "5b466369cd524bbb500a23ab7d7309af659571fb7ebe904fb3f1ff3cb9118212",
+      "original_sha256": "7ad5b5a83d099b35d7086ea299a4cb226e3f97be5f0610627a1ee057ac22e171",
+      "metadata_sha256": "6072a5fdb9dad5bc1f5a2efd849d0900132871e7478ea64bb0449d099309a569",
+      "source_url": "https://thaibinhjmp.vn/index.php/ojstbump/article/view/640",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "document_id": "vn-atopic-qol-425",
+      "markdown_sha256": "8d56650cb2ada54bec0e20c1cb20bf9eae7252230dffe4c9ee8f95094146306e",
+      "original_sha256": "c1ea2ccd00393235978c448ebfccd4e8aa542e05b1400dc4fe7dd111405ccf5e",
+      "metadata_sha256": "6072a5fdb9dad5bc1f5a2efd849d0900132871e7478ea64bb0449d099309a569",
+      "source_url": "https://thaibinhjmp.vn/index.php/ojstbump/article/view/425",
+      "license": "CC BY 4.0"
+    },
+    {
+      "document_id": "vn-psoriasis-qol-367",
+      "markdown_sha256": "4ce6314c7af282ef182c74c4363c7d892f24fac51876a80bdd55f5b0ba2d76d3",
+      "original_sha256": "e83b1f1fc21be548444c43c4c93d45493c4bed31a5ba21bf0f1311c45fea04b7",
+      "metadata_sha256": "6072a5fdb9dad5bc1f5a2efd849d0900132871e7478ea64bb0449d099309a569",
+      "source_url": "https://thaibinhjmp.vn/index.php/ojstbump/article/view/367",
+      "license": "CC BY 4.0"
+    },
+    {
+      "document_id": "vn-psoriasis-qol-377",
+      "markdown_sha256": "56b3fe76a01d76a4049a809de7294d05a12c4a3ded8cdd43e218a56b1d6b026b",
+      "original_sha256": "4d3eac9aa66be47ba380a2fece980470438db7c2493a6ceff3e7a6a01a7dd553",
+      "metadata_sha256": "6072a5fdb9dad5bc1f5a2efd849d0900132871e7478ea64bb0449d099309a569",
+      "source_url": "https://thaibinhjmp.vn/index.php/ojstbump/article/view/377",
+      "license": "CC BY 4.0"
+    },
+    {
+      "document_id": "vn-acne-traditional-507",
+      "markdown_sha256": "700e0e2877f0bdec203f1ecadc99cb9a0d0e564e306a8ec7be98a003329912ea",
+      "original_sha256": "48ba820aaf2162e2ab4684c340ce254a0412beb734446462cdd5e059b81c2418",
+      "metadata_sha256": "6072a5fdb9dad5bc1f5a2efd849d0900132871e7478ea64bb0449d099309a569",
+      "source_url": "https://thaibinhjmp.vn/index.php/ojstbump/article/view/507",
+      "license": "CC BY-SA 4.0"
+    }
+  ]
+}

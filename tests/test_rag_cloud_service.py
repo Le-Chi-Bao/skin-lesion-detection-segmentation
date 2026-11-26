@@ -296,7 +296,7 @@ def test_operator_demo_json_wires_ui_and_runtime(tmp_path, monkeypatch):
     write(path, value)
     monkeypatch.setenv("RAG_SYNTHETIC_DEMO", "1")
     monkeypatch.setenv("RAG_DEMO_CONFIG", str(path))
-    monkeypatch.delenv("RAG_CONFIG", raising=False)
+    monkeypatch.setenv("RAG_CONFIG", "")  # Operator .env must not select a real corpus in this test.
     service = runtime.service_from_env()
     try:
         assert service.settings.cloud.synthetic_live_opt_in and service.settings.generation.enabled

@@ -13,7 +13,7 @@ from app.ui.shell import build_shell
 
 def test_gradio_sessions_own_their_rag_service(tmp_path, monkeypatch):
     monkeypatch.setenv("RAG_SYNTHETIC_DEMO", "1")
-    monkeypatch.delenv("RAG_CONFIG", raising=False)
+    monkeypatch.setenv("RAG_CONFIG", "")  # Explicitly isolate the synthetic test from operator .env.
     config = AppConfig(runtime_dir=tmp_path)
     demo = build_shell(config, TemporaryFiles(tmp_path, 60))
     event = next(d for d in demo.config["dependencies"] if d["api_name"] == "rag_search")
