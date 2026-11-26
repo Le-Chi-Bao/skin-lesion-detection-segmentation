@@ -91,3 +91,29 @@ class RegistryRights:
 
     def allows(self, document: Document) -> bool:
         return not document.synthetic and self.evidence(document.record, document.record_hash) is not None
+
+    def external_evidence(self, document: Document, action: str, model: str, provider: str | None):
+        """Additional reviewed sidecar decision. Reuse/AI/indexing never imply outbound rights."""
+        try:
+            if not provider or not self.allows(document):
+                return None
+            approvals = json.loads(self.approvals_path.read_bytes())
+            matches = [g for g in approvals["documents"]
+                       if g["document_id"] == document.document_id
+                       and g["record_sha256"] == document.record_hash]
+            if len(matches) != 1:
+                return None
+            grant = matches[0]["external_processing"]
+            now = self.clock()
+            if (grant["status"] != "allowed" or grant["patient_identifiers"] != "absent_reviewed"
+                    or grant["destination"] != "https://openrouter.ai/api/v1"
+                    or not isinstance(grant["reviewer_id"], str) or not grant["reviewer_id"].strip()
+                    or not isinstance(grant["evidence"], str) or not grant["evidence"].strip()
+                    or not datetime.fromisoformat(grant["reviewed_at"]) <= now
+                    < datetime.fromisoformat(grant["review_again_at"])):
+                return None
+            routes = [r for r in grant["routes"] if r == {
+                "action": action, "model": model, "provider": provider}]
+            return grant if len(routes) == 1 else None
+        except Exception:
+            return None
