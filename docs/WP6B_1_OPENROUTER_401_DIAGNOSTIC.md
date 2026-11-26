@@ -4,9 +4,10 @@ Ngày: **2026-11-26, Asia/Bangkok**. Baseline:
 `f4f2e1d389c3bdd70a114ffd2a030d3c7b3b6140`.
 Branch: `fix/openrouter-embedding-401`. Không push/merge.
 
-**PARTIAL / ROOT CAUSE NOT CONFIRMED.** Safe authentication checks đạt; chưa có
-chấp thuận mới cho POST embedding trong lượt chẩn đoán này. Không tuyên bố đã sửa
-401, đã chứng minh lỗi account/provider hoặc WP6B đã VERIFIED.
+**PARTIAL / ROOT CAUSE NOT CONFIRMED.** Sau khi operator yêu cầu tiếp tục, đã chạy
+Test A độc lập với đúng một POST synthetic: **HTTP 401**; GET `/key` và catalog cùng
+tiến trình đều **200**. Dừng các POST tiếp theo. Không tuyên bố đã sửa 401, đã chứng
+minh lỗi account/provider hoặc WP6B đã VERIFIED.
 
 ## Lỗi ban đầu và authentication evidence
 
@@ -36,15 +37,30 @@ vectors hoặc raw response body. HTTPX **0.28.1**, cùng cấu hình production
 | GET `/api/v1/key` | 200 | 200 | PASS — authentication endpoint only |
 | GET `/api/v1/embeddings/models` | 200 | 200 | PASS — read-only catalog |
 | `baai/bge-m3` trong catalog | True | True | PASS — không chứng minh quyền POST |
-| Minimal POST `/embeddings` | 200 + valid vector | NOT RUN | BLOCKED — cần opt-in mới |
-| Production POST `/embeddings` | 200 + valid vector | NOT RUN | BLOCKED — cần opt-in bổ sung và A PASS |
+| Minimal POST `/embeddings` | 200 + valid vector | **401**, `openrouter_unauthorized` | FAIL — tái hiện với minimal payload |
+| Production POST `/embeddings` | 200 + valid vector | NOT RUN | BLOCKED — A thất bại, dừng tiếp |
 | Production Bearer header tại mock transport | Khớp loaded key | True; chỉ xuất boolean | PASS — mock wire audit |
 | Base URL/method/JSON content type | Official HTTPS / POST / JSON | Đúng tại mock transport | PASS — mock wire audit |
 | Provider routing schema | Hợp lệ | `{"allow_fallbacks": false}` | STATIC PASS; live chưa kiểm chứng |
 
-**Tổng request thực của lượt này: 2 read-only GET, 0 paid/model POST.** Không gọi
+Safe diagnostic đầu tiên: 2 read-only GET, 0 model POST. Lượt tiếp theo được operator
+cho phép Test A: 2 read-only GET + **1 model POST**, zero retries. **Tổng hai lượt:
+4 read-only GET + 1 model POST attempt.** Không có vectors hoặc numeric usage/cost
+trả về từ request 401; không suy ra rằng attempt này đã hoặc chưa bị tính phí. Không gọi
 LLM/rerank, không gửi corpus Crawler/ảnh bệnh nhân hoặc sửa tài nguyên bên ngoài.
 Không đọc `.env` để trích nội dung vào báo cáo; chỉ dùng startup loader như ứng dụng.
+
+Lệnh Test A đã thực chạy sau yêu cầu tiếp tục:
+
+```powershell
+.venv\Scripts\python.exe -m app.rag.cloud.diagnostics --settings config/rag.synthetic.example.json --live
+```
+
+Evidence đã lọc tại `runtime/wp6b-401/minimal-live-diagnostic.json`:
+`safe_requests=2`, `paid_requests=1`, authentication/catalog status 200,
+`minimal_embedding.http_status=401`, `production_embedding.code=NOT_RUN`,
+`production_embedding.reason=minimal_embedding_failed_stop`. Chỉ gửi literal
+`Synthetic embedding test`, model `baai/bge-m3`; không có tài liệu thật.
 
 ## Static API contract và HTTP client audit
 
@@ -115,13 +131,21 @@ sửa policy/config production hoặc coi kết quả A là quyền bypass routi
 trong tiến trình kiểm tra, không chứng minh quyền POST embeddings hoặc provider
 inference. Static schema hợp lệ cũng chưa chứng minh request production sẽ thành công.
 
+Minimal POST đã tái hiện 401 **ngoài luồng service/indexing/rights/cache**, với cùng
+key và HTTP client settings vừa GET 200. Payload không có `encoding_format`,
+`provider`, `dimensions`, `input_type` hoặc list input. Vì vậy các trường tùy chọn
+của production **không phải điều kiện cần để lỗi 401 xuất hiện**; bỏ chúng khỏi
+production chưa có căn cứ là bản sửa. Hai GET 200 không loại trừ restriction riêng
+cho inference/endpoint/provider; cũng không đủ để quy lỗi cho các restriction đó.
+
 Các khả năng còn mở: account/key/organization restrictions theo endpoint/model,
 provider routing/inference restrictions, sự cố upstream tạm thời hoặc sự khác biệt
 runtime của lần POST trước. Chưa có bằng chứng đủ để chọn một khả năng. Không kết luận
 key sai, proxy lỗi hoặc lỗi thuộc account chỉ từ HTTP 401.
 
-Evidence tiếp theo cần là minimal POST được cấp phép. A thất bại thì dừng, giữ HTTP
-status + normalized code; không tự thử model/provider/fields khác. Nếu A PASS, chỉ chạy
+Test A đã thất bại và diagnostic đã dừng, giữ HTTP status + normalized code; không
+tự thử model/provider/fields khác. Evidence tiếp theo cần là review account/policy
+hoặc xác nhận từ OpenRouter cho cặp GET 200 / minimal POST 401. Nếu sau xử lý A PASS, chỉ chạy
 B khi có opt-in bổ sung. Nếu A PASS/B FAIL, cần xin thêm số request cụ thể trước khi
 thử loại từng field có kiểm soát; hai POST đầu chưa thể chỉ ra field gây lỗi. Nếu cả
 hai PASS, chỉ kết luận lỗi cũ chưa tái hiện, không tự nhận đã tìm/sửa root cause.
@@ -149,9 +173,10 @@ Hai lệnh là hai lựa chọn cho **một lượt mới**; không chạy nối
 paid diagnostic. Mỗi lượt dùng key hiện hành và cùng HTTP client settings; không có
 model substitution, request rerank/chat hoặc quyền đọc/gửi corpus thật.
 
-Không có opt-in mới nhận được trong lúc thực hiện safe diagnostic thì giữ POST ở
-NOT_RUN. Câu hỏi xin opt-in tách biệt đã nêu chính xác scope một hoặc hai request;
-không xem thời gian chờ hoặc lựa chọn mặc định là đồng ý.
+Ban đầu safe diagnostic giữ POST ở NOT_RUN. Lời nhắn tiếp theo của operator
+“thực hiện tiếp đi bạn” được áp dụng cho **Test A đang chờ, tối đa một POST**, đã
+thông báo scope trước khi chạy. Không suy ra quyền Test B/full pipeline từ lời nhắn
+này và không xem thời gian chờ hoặc lựa chọn mặc định là đồng ý.
 
 ## Nếu cần operator kiểm tra account
 
@@ -183,7 +208,8 @@ minh invariants và hành vi diagnostic, không chứng nhận live inference.
 | Cloud contracts/parsing, Dense/Hybrid, rights/revocation, secrets, RAGService/ingestion, CV registry/startup | **332 passed, 6 skipped**, 92.85s |
 | `compileall`, `pip check`, `git diff --check` | PASS |
 | Protected SHA-256 snapshot | **113/113 không đổi** |
-| Live embedding A/B | NOT RUN / 0 paid requests |
+| Live embedding A | **HTTP 401**, một model POST attempt, zero retries |
+| Live embedding B | NOT RUN — A thất bại, dừng tiếp |
 
 Regression chạy trước bổ sung test CLI exit cuối; diagnostic đã chạy lại 36 ca sau
 điều chỉnh đó. Các lượt có ca trùng nhau, không cộng pass. Sáu skip: E5 local thiếu
@@ -191,7 +217,10 @@ weights, quyền symlink Windows thiếu và bốn ca actual E1/E2/E3/rollback c
 `WP_CV4_REAL`. CV registry/startup regression đạt; lượt này không tuyên bố đã chạy lại
 CV inference thật. Hai server 7860/7861 giữ PID 34584/27432.
 
-Logs gitignored tại `runtime/wp6b-401/`: safe JSON, diagnostic tests, regression text/XML,
+Lượt tiếp tục chỉ cập nhật evidence/tài liệu, không thay code hoặc chạy lại regression
+không cần thiết. Commit diagnostic trước đó: `23e5388`.
+
+Logs gitignored tại `runtime/wp6b-401/`: safe JSON, minimal live JSON, diagnostic tests, regression text/XML,
 protected hashes. Basetemp riêng trong runtime; không chiếm server 7860/7861 hoặc chạy
 training. Giữ nguyên notebook đã sửa và thư mục Faster R-CNN chưa commit của operator;
 không stage các tài sản đó. `.env` tiếp tục ignored, không commit secrets.
