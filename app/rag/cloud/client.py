@@ -81,6 +81,11 @@ class OpenRouterClient:
                         raise RAGError("openrouter_invalid_json") from None
                     if not isinstance(data, dict) or "error" in data:
                         raise RAGError("openrouter_invalid_response")
+                    approved = payload.get("provider", {}).get("only")
+                    actual = data.get("provider")
+                    if approved and actual is not None and (
+                            not isinstance(actual, str) or actual.casefold() != approved[0].casefold()):
+                        raise RAGError("openrouter_provider_mismatch")
                     # Whitelist numeric accounting. Never retain arbitrary provider strings.
                     usage = data.get("usage", {})
                     if isinstance(usage, dict):

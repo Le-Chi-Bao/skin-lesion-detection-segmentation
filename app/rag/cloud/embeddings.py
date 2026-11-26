@@ -22,6 +22,7 @@ class OpenRouterEmbedder:
         self.authorize = self._unbound
         self.namespace = uuid4().hex
         self.dimension = config.dimensions
+        self._observed_provider = None
         self._cache, self._prepared = {}, {}
         self._fingerprint = self.fingerprint
 
@@ -37,6 +38,7 @@ class OpenRouterEmbedder:
     @property
     def metadata(self):
         return {"model": self.config.model, "provider": self.config.provider,
+                "reported_provider": self._observed_provider,
                 "dimension": self.dimension, "fingerprint": self.fingerprint,
                 "corpus": self.namespace, "cached_vectors": len(self._cache)}
 
@@ -48,6 +50,7 @@ class OpenRouterEmbedder:
         if self.fingerprint != self._fingerprint or self.namespace != corpus:
             self.clear_cache()
             self.dimension = self.config.dimensions
+            self._observed_provider = None
             self._fingerprint, self.namespace = self.fingerprint, corpus
         prepared = {}
         for chunk in chunks:
@@ -81,6 +84,14 @@ class OpenRouterEmbedder:
                                     authorize=self.authorize)
             if data.get("model") != self.config.model:
                 raise RAGError("embedding_model_mismatch")
+            actual_provider = data.get("provider")
+            if actual_provider is not None:
+                if not isinstance(actual_provider, str) or not actual_provider.strip():
+                    raise RAGError("embedding_provider_mismatch")
+                if (self._observed_provider is not None
+                        and actual_provider.casefold() != self._observed_provider.casefold()):
+                    raise RAGError("embedding_provider_mismatch")
+                self._observed_provider = actual_provider
             rows = data.get("data")
             if not isinstance(rows, list) or len(rows) != len(batch):
                 raise RAGError("invalid_embeddings_count")
@@ -115,23 +126,24 @@ class OpenRouterEmbedder:
         if self.fingerprint != self._fingerprint:
             self.clear_cache()
             self.dimension = self.config.dimensions
+            self._observed_provider = None
             self._fingerprint = self.fingerprint
         identities = [self._prepared.get(digest(t), digest([self.namespace, self.fingerprint, digest(t)]))
                       for t in texts]
         missing = {}
         for key, text in zip(identities, texts):
-            if (key, self.dimension) not in self._cache:
+            if (key, self.dimension, self._observed_provider) not in self._cache:
                 missing.setdefault(key, text)
         encoded = self._encode([self.config.passage_prefix + t for t in missing.values()],
                                self.config.document_input_type)
         self.authorize()  # Do not retain vectors produced after a revocation.
         for key, vector in zip(missing, encoded):
-            self._cache[(key, self.dimension)] = {"dimension": self.dimension, "vector": vector}
+            self._cache[(key, self.dimension, self._observed_provider)] = {"dimension": self.dimension, "vector": vector}
         # Standalone callers cannot grow the session cache without bound either.
         if len(self._cache) > self.client.settings.max_index_chunks:
-            keep = {(key, self.dimension) for key in identities}
+            keep = {(key, self.dimension, self._observed_provider) for key in identities}
             self._cache = {key: value for key, value in self._cache.items() if key in keep}
-        return np.asarray([self._cache[(key, self.dimension)]["vector"] for key in identities])
+        return np.asarray([self._cache[(key, self.dimension, self._observed_provider)]["vector"] for key in identities])
 
     def embed_query(self, query):
         return self._encode([self.config.query_prefix + query], self.config.query_input_type)[0]

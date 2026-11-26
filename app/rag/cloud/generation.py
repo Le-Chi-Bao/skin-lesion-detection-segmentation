@@ -39,8 +39,9 @@ class OpenRouterGenerator:
             "temperature": self.config.temperature, "max_tokens": self.config.max_tokens,
             "response_format": {"type": "json_object"}, "stream": False},
             timeout=self.config.request_timeout, authorize=authorize)
+        if data.get("model") != self.config.model:
+            raise RAGError("generation_model_mismatch")
         try:
-            # OpenRouter may report a dated canonical chat model ID; no alternate model is requested.
             choice = data["choices"][0]
             if choice["finish_reason"] != "stop":
                 raise RAGError("generation_incomplete")

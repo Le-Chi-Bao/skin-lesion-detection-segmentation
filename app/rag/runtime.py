@@ -67,5 +67,9 @@ def create_service(*, demo: bool = False, config_path: Path | None = None,
 def service_from_env() -> RAGService:
     load_environment()
     path = os.environ.get("RAG_CONFIG")
-    return create_service(demo=os.environ.get("RAG_SYNTHETIC_DEMO") == "1",
-                          config_path=Path(path).resolve() if path else None)
+    demo = os.environ.get("RAG_SYNTHETIC_DEMO") == "1"
+    demo_path = os.environ.get("RAG_DEMO_CONFIG")
+    if demo_path and (not demo or path):
+        raise RAGError("demo_settings_require_exclusive_synthetic_mode")
+    return create_service(demo=demo, config_path=Path(path).resolve() if path else None,
+                          settings=RAGConfig.load(Path(demo_path).resolve()) if demo_path else None)

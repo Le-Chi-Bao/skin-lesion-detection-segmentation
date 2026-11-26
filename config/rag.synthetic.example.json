@@ -1,0 +1,19 @@
+{
+  "embedding": {
+    "backend": "openrouter",
+    "model": "baai/bge-m3",
+    "batch_size": 16,
+    "request_timeout": 30,
+    "max_input_bytes": 2048
+  },
+  "retrieval": {"mode": "BM25", "top_k": 3},
+  "cloud": {
+    "synthetic_live_opt_in": false,
+    "max_requests_per_operation": 5,
+    "max_input_chars": 8000,
+    "max_index_chunks": 16,
+    "retry_policy": {"max_retries": 0}
+  },
+  "reranking": {"enabled": false, "model": "cohere/rerank-v3.5", "candidates": 5, "top_n": 3},
+  "generation": {"enabled": false, "model": "openai/gpt-4o-mini", "max_evidence": 3, "max_tokens": 512}
+}

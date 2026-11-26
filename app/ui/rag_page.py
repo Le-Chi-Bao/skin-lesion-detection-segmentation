@@ -74,7 +74,8 @@ def render_rag_page(session_ttl: int = 3600):
     defaults = RetrievalConfig()
     settings = None
     try:
-        config_path = os.environ.get("RAG_CONFIG")
+        config_path = (os.environ.get("RAG_DEMO_CONFIG") if os.environ.get("RAG_SYNTHETIC_DEMO") == "1"
+                       else os.environ.get("RAG_CONFIG"))
         if config_path:
             settings = RAGConfig.load(Path(config_path))
             defaults = settings.retrieval
