@@ -1,19 +1,18 @@
-# WP6E RAG Retrieval Evaluation
+# WP6E RAG Evaluation
 
-The evaluation set is stored in [data/rag/evaluation_questions.json](../data/rag/evaluation_questions.json). It contains 40 Vietnamese questions across the eight local documents and two out-of-scope questions. Each row includes document and source cross-reference fields. Every row is currently `pending_review` because the corpus metadata records `needs_human_review`, so no row is treated as ground truth.
+The current RAGAS evaluation report is [RAGAS_EVALUATION_REPORT.md](RAGAS_EVALUATION_REPORT.md). Detailed outputs are generated under `runtime/rag/ragas_evaluation/`. Install the pinned evaluation dependencies separately from the demo/runtime dependencies:
 
-The runner [scripts/rag_evaluate.py](../scripts/rag_evaluate.py) executes BM25, Dense E5 Small, and Hybrid RRF against the same questions. It requests 10 hits so MRR@10 is computed at the requested cutoff, while Precision@5, Recall@5 and nDCG@5 use the first five. It loads the existing `config/rag.local.json` service and Chroma persistence. Chroma reuses vectors by content hash. The first Dense call is a warm-up and is excluded from timing. Retrieval runs on CPU.
-
-Outputs are written to `runtime/rag/wp6e/per_query.csv`, `runtime/rag/wp6e/results.json`, and `runtime/rag/wp6e/metrics.png`. The initial run produced 40 pending-review rows and zero eligible questions. Precision@5, Recall@5, MRR@10, and nDCG@5 are therefore `null` for all three methods. Mean retrieval time was 252.165 ms for BM25, 275.240 ms for Dense, and 284.673 ms for Hybrid in one CPU run with one measurement per question and mode. These timings include service refresh and query embedding where applicable and are environment-specific.
-
-Citation checks inspect every returned hit for document ID, PDF page, PDF path, and source locator. The evaluator records `metadata_valid` and `content_verified` separately per hit. `content_verified` remains false until a human checks the extracted passage against the PDF. The source metadata currently identifies all eight conversions as needing manual review.
-
-To enable metrics after manual review, a reviewer must set `review_status` to `verified` and populate `relevant_chunk_ids` using the exact chunk IDs returned by the local service. The script then computes metrics only for those rows. Out-of-scope questions remain useful for inspecting retrieval behavior but do not receive relevance scores without an explicit reviewed policy.
-
-Validation run
-
-```text
-.venv/Scripts/python.exe scripts/rag_evaluate.py --repeats 1
+```powershell
+.venv\Scripts\python.exe -m pip install -r requirements-rag-evaluation.txt
+.venv\Scripts\python.exe scripts\rag_evaluate.py --repeats 3
 ```
 
-The existing test suite should be run separately. No ChromaDB data, CV code, paid API, or model files were changed.
+The runner evaluates the unchanged WP6E set with BM25, Dense E5 Small, and Hybrid RRF at Top-K 10. It validates RAGAS 0.4.4 dataset structure, uses custom RAGAS collection metrics over reviewer-approved chunk IDs when available, and computes Precision@5, Recall@5, MRR@10, and nDCG@5 only for verified questions. It runs one Dense warm-up, then repeats each measured query three times by default. Dense retrieval attaches the live, authorized chunk metadata to the existing Chroma collection in read-only mode.
+
+Output files are `results.json`, `per_question.csv`, `retrieval_comparison.csv`, `ragas_metrics.csv`, `ragas_comparison.png`, `latency_comparison.png`, and `citation_validation.png`. `N/A` is serialized as null and is never plotted as zero.
+
+All 40 questions remain `pending_review` until a human approves the labels. The [15-question annotation template](../data/rag/evaluation_review_template.csv) and [review guide](WP6E_HUMAN_REVIEW_GUIDE.md) cover in-scope and currently marked out-of-scope cases. Copy approved reference answers and exact relevant chunk IDs into a reviewed question JSON, then pass it with `--questions`. Never mark a pending question verified based only on retrieval or an LLM judge.
+
+Ollama is not used. OpenRouter credentials are configured locally, but the corpus consent is `local_only`, so the current run does not send questions or excerpts to that service. Faithfulness, Answer Relevancy, and unsupported claim rate remain `N/A`; Evidence Summary is reported separately as extractive summary evaluation.
+
+The earlier runner output under `runtime/rag/wp6e/` is retained as a historical run. Its warm-up and retrieval behavior differ from this read-only pipeline. The current report records a low-order embedding hash change caused by the first evaluation attempt re-upserting cached Chroma vectors, and the original full 496-vector hash could not be proven restored from the compacted event log. The current evaluator verifies that its own read-only measurement leaves the collection hash and 496-vector count unchanged.

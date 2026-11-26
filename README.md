@@ -108,17 +108,18 @@ Trong tab **Medical RAG**, chọn BM25, Dense hoặc Hybrid, đặt số nguồn
 
 - **Retrieve Only** hiển thị đoạn truy xuất, score, tiêu đề, trang PDF, chunk ID và URL nguồn.
 - **Evidence Summary** chọn các câu nguyên văn dựa trên trùng lặp từ khóa. Đây là trích đoạn có dẫn chứng, không phải câu trả lời do LLM tạo. Nếu không chọn được câu phù hợp, chế độ này abstain.
-- **Ask with LLM** chạy retrieval trước. Với cấu hình corpus hiện tại, generation bị tắt bởi quyền xử lý dữ liệu. Ollama có trên máy nhưng chưa có model được cài và không tự tải model.
+- **Ask with LLM** chạy retrieval trước. Với cấu hình corpus hiện tại, generation bị tắt bởi quyền xử lý dữ liệu. Không dùng Ollama cho hệ thống này.
 
 Markdown được render bằng component Gradio có sanitize HTML. Mỗi nguồn đánh dấu riêng trạng thái `needs_human_review`; kiểm tra metadata không đồng nghĩa với xác minh nội dung. Mở accordion văn bản gốc để đọc chunk nguyên trạng. Không nhập thông tin nhận dạng bệnh nhân.
 
-WP6E giữ 40 câu hỏi. Khi chưa có chunk liên quan được con người duyệt, Precision@5, Recall@5, MRR@10 và nDCG@5 được báo `N/A`. Chạy lại bằng:
+WP6E giữ 40 câu hỏi. Khi chưa có chunk liên quan được con người duyệt, Precision@5, Recall@5, MRR@10 và nDCG@5 được báo `N/A`. Cài dependency đánh giá đã pin và chạy:
 
 ```powershell
-.venv\Scripts\python.exe scripts\rag_evaluate.py --repeats 1
+.venv\Scripts\python.exe -m pip install -r requirements-rag-evaluation.txt
+.venv\Scripts\python.exe scripts\rag_evaluate.py --repeats 3
 ```
 
-Kết quả kiểm chứng hiện tại và giới hạn nằm trong [Main System v1.1 acceptance](docs/MAIN_SYSTEM_V1_1_FINAL_ACCEPTANCE.md). Cài đặt Windows và demo CV hiện hữu vẫn theo hướng dẫn ở trên và [demo runbook](docs/DEMO_RUNBOOK.md).
+Kết quả nằm trong `runtime/rag/ragas_evaluation/`; [báo cáo và giới hạn](docs/RAGAS_EVALUATION_REPORT.md), [mẫu 15 câu review](data/rag/evaluation_review_template.csv) và [hướng dẫn review](docs/WP6E_HUMAN_REVIEW_GUIDE.md). Kết quả Main System v1.1 trước đánh giá vẫn được lưu trong [acceptance](docs/MAIN_SYSTEM_V1_1_FINAL_ACCEPTANCE.md). Demo CV vẫn theo [demo runbook](docs/DEMO_RUNBOOK.md).
 
 ## Kiểm thử
 
@@ -148,14 +149,6 @@ Bộ kiểm thử thông thường không tải checkpoint. Để chạy đủ c
 Dùng thư mục riêng cho `--basetemp` vì pytest sẽ dọn thư mục đó khi chạy lại.
 
 Pytest đã cấu hình mặc định `runtime/pytest-tmp`, phù hợp Windows và tránh lỗi quyền trên thư mục temp hệ thống.
-
-Đánh giá WP6E chạy bằng:
-
-```powershell
-.venv\Scripts\python.exe scripts\rag_evaluate.py --repeats 1
-```
-
-Kết quả nằm trong `runtime/rag/wp6e/`. Metric không có ground truth được ghi `N/A`.
 
 Để pytest chạy các ca trình duyệt, cài Playwright và Chromium trong môi trường kiểm thử.
 
