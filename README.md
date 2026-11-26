@@ -96,7 +96,9 @@ Gradio quản lý riêng tệp tải lên trong `runtime/gradio-cache/` theo tu�
 
 ## Kiểm thử
 
-Medical RAG WP6A có trang riêng, hỗ trợ BM25 / Dense / Hybrid và không gọi LLM.
+Medical RAG hỗ trợ BM25 / Dense / Hybrid, reranking và câu trả lời trích dẫn có kiểm chứng.
+Kiến trúc OpenRouter-first, quyền outbound, cache, cấu hình key và live acceptance:
+[WP6B Cloud OpenRouter](docs/WP6B_CLOUD_OPENROUTER.md).
 Hướng dẫn dữ liệu, quyền AI, demo tổng hợp và kết quả kiểm thử: [WP6A RAG Foundation](docs/WP6A_RAG_FOUNDATION.md).
 Cấu hình JSON có validation, tham số mặc định và trạng thái kiểm chứng E5 thật: [WP6A.1 Verification](docs/WP6A_1_VERIFICATION.md).
 
@@ -107,7 +109,8 @@ $env:RAG_SYNTHETIC_DEMO = '1'
 ```
 
 Chọn **Medical RAG** rồi Search. Corpus demo luôn có nhãn **SYNTHETIC DEMO**.
-BM25 dùng được ngay; Dense/Hybrid cần dependencies và model local riêng theo tài liệu WP6A.
+BM25 dùng được ngay. Runtime mới đề xuất OpenRouter cho Dense/Hybrid; cần API key và
+quyền outbound (demo cần opt-in riêng). JSON WP6A cũ vẫn dùng backend local đã cấu hình.
 Tắt demo bằng `Remove-Item Env:RAG_SYNTHETIC_DEMO`.
 
 ```powershell

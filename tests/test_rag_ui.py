@@ -21,7 +21,7 @@ def test_gradio_sessions_own_their_rag_service(tmp_path, monkeypatch):
     a, b = GradioSessionState(demo), GradioSessionState(demo)
 
     async def search(session):
-        return await demo.process_api(event["id"], ["skin", "BM25", 5, None], state=session)
+        return await demo.process_api(event["id"], ["skin", "BM25", 5, None, False, "Retrieve Only"], state=session)
 
     try:
         first, second = asyncio.run(search(a)), asyncio.run(search(b))

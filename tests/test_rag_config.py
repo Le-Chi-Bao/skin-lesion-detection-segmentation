@@ -26,7 +26,9 @@ def test_defaults_legacy_imports_and_old_wp6a_json():
     assert example.paths is not None
     assert example.chunking == config.chunking
     assert example.bm25 == config.bm25 and example.retrieval == config.retrieval
-    assert example.embedding == config.embedding
+    assert example.embedding.backend == "openrouter"
+    assert example.embedding.model == "baai/bge-m3"
+    assert config.embedding.backend == "local"
     # Preserve the direct service defaults and response contract.
     assert RAGService().search("skin").mode == "Hybrid"
 
