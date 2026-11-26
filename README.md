@@ -95,10 +95,35 @@ Mỗi phiên Gradio giữ một ảnh hiện tại và kết quả của từng 
 
 Gradio quản lý riêng tệp tải lên trong `runtime/gradio-cache/` theo tuổi tệp. Đặt lại ảnh không xóa ngay mọi bản sao thuộc cache của Gradio. Bộ nhớ trình duyệt, tệp còn lại sau khi tiến trình dừng đột ngột và chi tiết vòng đời được mô tả trong tài liệu nền tảng. [Kiến trúc và giới hạn WP1](docs/CV_MVP_FOUNDATION.md)
 
+## Medical RAG
+
+Tám tài liệu được nạp từ corpus local đã đồng ý indexing, dùng multilingual E5 Small 384 chiều trên CPU và ChromaDB hiện có. Cấu hình local không bật reranking hay generation outbound. Không gửi corpus lên cloud chỉ vì đã có quyền indexing local.
+
+```powershell
+$env:RAG_CONFIG = (Resolve-Path 'config/rag.local.json').Path
+.venv\Scripts\python.exe main.py
+```
+
+Trong tab **Medical RAG**, chọn BM25, Dense hoặc Hybrid, đặt số nguồn và chọn một chế độ:
+
+- **Retrieve Only** hiển thị đoạn truy xuất, score, tiêu đề, trang PDF, chunk ID và URL nguồn.
+- **Evidence Summary** chọn các câu nguyên văn dựa trên trùng lặp từ khóa. Đây là trích đoạn có dẫn chứng, không phải câu trả lời do LLM tạo. Nếu không chọn được câu phù hợp, chế độ này abstain.
+- **Ask with LLM** chạy retrieval trước. Với cấu hình corpus hiện tại, generation bị tắt bởi quyền xử lý dữ liệu. Ollama có trên máy nhưng chưa có model được cài và không tự tải model.
+
+Markdown được render bằng component Gradio có sanitize HTML. Mỗi nguồn đánh dấu riêng trạng thái `needs_human_review`; kiểm tra metadata không đồng nghĩa với xác minh nội dung. Mở accordion văn bản gốc để đọc chunk nguyên trạng. Không nhập thông tin nhận dạng bệnh nhân.
+
+WP6E giữ 40 câu hỏi. Khi chưa có chunk liên quan được con người duyệt, Precision@5, Recall@5, MRR@10 và nDCG@5 được báo `N/A`. Chạy lại bằng:
+
+```powershell
+.venv\Scripts\python.exe scripts\rag_evaluate.py --repeats 1
+```
+
+Kết quả kiểm chứng hiện tại và giới hạn nằm trong [Main System v1.1 acceptance](docs/MAIN_SYSTEM_V1_1_FINAL_ACCEPTANCE.md). Cài đặt Windows và demo CV hiện hữu vẫn theo hướng dẫn ở trên và [demo runbook](docs/DEMO_RUNBOOK.md).
+
 ## Kiểm thử
 
-Medical RAG hỗ trợ BM25 / Dense / Hybrid, citation metadata và retrieval-only khi chưa cấp quyền cloud. Nội dung citation vẫn cần human review theo trạng thái nguồn.
-Kiến trúc OpenRouter-first, quyền outbound, cache, cấu hình key và live acceptance:
+Medical RAG local hiện dùng multilingual E5 Small, ChromaDB, BM25 / Dense / Hybrid và ba chế độ hiển thị. Generation không được bật với corpus chỉ có quyền local indexing. Nội dung citation vẫn cần human review theo trạng thái nguồn.
+Thiết kế adapter OpenRouter, quyền outbound, cache, cấu hình key và acceptance WP6B lịch sử:
 [WP6B Cloud OpenRouter](docs/WP6B_CLOUD_OPENROUTER.md).
 Hướng dẫn dữ liệu, quyền AI, demo tổng hợp và kết quả kiểm thử: [WP6A RAG Foundation](docs/WP6A_RAG_FOUNDATION.md).
 Cấu hình JSON có validation, tham số mặc định và trạng thái kiểm chứng E5 thật: [WP6A.1 Verification](docs/WP6A_1_VERIFICATION.md).
@@ -109,9 +134,8 @@ $env:RAG_SYNTHETIC_DEMO = '1'
 .venv\Scripts\python.exe main.py
 ```
 
-Chọn **Medical RAG** rồi Search. Corpus demo luôn có nhãn **SYNTHETIC DEMO**.
-BM25 dùng được ngay. Runtime mới đề xuất OpenRouter cho Dense/Hybrid; cần API key và
-quyền outbound (demo cần opt-in riêng). JSON WP6A cũ vẫn dùng backend local đã cấu hình.
+Chọn **Medical RAG** rồi Search. Corpus demo luôn có nhãn **SYNTHETIC DEMO** và tách biệt với corpus tám tài liệu.
+BM25 dùng được ngay. Cấu hình synthetic có thể dùng OpenRouter cho Dense/Hybrid; cần API key và quyền outbound riêng. Không dùng synthetic demo để suy ra quyền xử lý corpus thật. JSON WP6A cũ vẫn dùng backend local đã cấu hình.
 Tắt demo bằng `Remove-Item Env:RAG_SYNTHETIC_DEMO`.
 
 ```powershell
