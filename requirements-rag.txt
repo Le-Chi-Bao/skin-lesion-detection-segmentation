@@ -1,3 +1,6 @@
 -r requirements.txt
+httpx>=0.28,<1
+numpy>=2,<3
+python-dotenv>=1.0,<2
 medical-data-crawler @ git+https://github.com/Le-Chi-Bao/Medical-Data-Crawler.git@1bcfb69ef8dc6991e206c5874b02779b6297204f
 

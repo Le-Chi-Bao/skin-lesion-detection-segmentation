@@ -16,18 +16,48 @@
     "b": 0.75
   },
   "embedding": {
-    "model": "intfloat/multilingual-e5-base",
-    "allow_download": false,
-    "device": "cpu",
-    "query_prefix": "query: ",
-    "passage_prefix": "passage: ",
-    "max_length": 512,
-    "batch_size": 16
+    "backend": "openrouter",
+    "model": "baai/bge-m3",
+    "provider": null,
+    "batch_size": 16,
+    "request_timeout": 30,
+    "max_input_bytes": 2048
   },
   "retrieval": {
     "mode": "BM25",
     "top_k": 5
   },
   "rrf_k": 60,
-  "candidates": 30
+  "candidates": 30,
+  "cloud": {
+    "max_requests_per_operation": 12,
+    "max_input_chars": 16000,
+    "max_index_chunks": 128,
+    "synthetic_live_opt_in": false,
+    "retry_policy": {
+      "max_retries": 2,
+      "backoff_seconds": 0.5,
+      "max_backoff_seconds": 4
+    }
+  },
+  "reranking": {
+    "enabled": false,
+    "model": "cohere/rerank-v3.5",
+    "provider": null,
+    "candidates": 30,
+    "top_n": 5,
+    "fallback_to_hybrid": false,
+    "request_timeout": 30,
+    "max_input_bytes": 8192
+  },
+  "generation": {
+    "enabled": false,
+    "model": "openai/gpt-4o-mini",
+    "provider": null,
+    "temperature": 0,
+    "max_tokens": 512,
+    "max_evidence": 5,
+    "request_timeout": 30,
+    "max_input_bytes": 16000
+  }
 }
