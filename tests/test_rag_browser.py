@@ -52,7 +52,7 @@ def test_browser_medical_rag_demo_and_cv_navigation(tmp_path):
                 api.expect(page.get_by_role("textbox", name="Trạng thái và thời gian tìm kiếm")).to_have_value(
                     re.compile(r"BM25 · SYNTHETIC DEMO.*OK"), timeout=30000)
                 api.expect(page.get_by_text("skin lesion color border size observation.", exact=False)).to_be_visible()
-                page.screenshot(path=str(PROJECT_ROOT / "runtime/wp6a-rag-browser.png"), full_page=True)
+                page.screenshot(path=str(tmp_path / "rag-browser.png"), full_page=True)
                 # Returning to CV preserves its existing viewer and tab layout.
                 page.get_by_role("radio", name="Computer Vision", exact=True).check()
                 api.expect(page.get_by_role("heading", name="Xem ảnh", exact=True)).to_be_visible()
