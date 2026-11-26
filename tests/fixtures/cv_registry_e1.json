@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "models": [
+    {
+      "module": "segmentation",
+      "model_id": "segformer-mitb2",
+      "version": "checkpoint-v1",
+      "checkpoint_path": "model_store/segformer/real_only/best.pt",
+      "sha256": "d5a92fa31296a4f7c32e87cdf84683119d07dc64410253103bfa285aacb93f87",
+      "architecture": "segformer_mit_b2",
+      "artifact_format": "segformer-gate2-state-dict",
+      "research_pilot": false,
+      "active": true,
+      "threshold": 0.7,
+      "preprocessing": "segformer-gate2-512-v1"
+    },
+    {
+      "module": "detection",
+      "model_id": "fasterrcnn",
+      "version": "E1-best-completed",
+      "checkpoint_path": "model_store/detection/E1-final-inference.pt",
+      "sha256": "eed8c28c2777005a2c6033692137f3cac8df8c68251ecb342ee4b8edf3068c9f",
+      "architecture": "fasterrcnn_resnet50_fpn_v2",
+      "artifact_format": "isic-fasterrcnn-inference-v1",
+      "research_pilot": false,
+      "active": true,
+      "threshold": 0.5,
+      "min_size": 800,
+      "max_size": 1333,
+      "preprocessing": "torchvision-rgb-float32-v1"
+    },
+    {
+      "module": "detection",
+      "model_id": "fasterrcnn",
+      "version": "E1-step7200-pilot",
+      "checkpoint_path": "model_store/detection/E1_step07200_PILOT_UNFINISHED.pt",
+      "sha256": "327c2281b69a9591939c1abe883cb4337fecc9983fdf8746d26c7b5a32011141",
+      "architecture": "fasterrcnn_resnet50_fpn_v2",
+      "artifact_format": "isic-fasterrcnn-pilot-v1",
+      "research_pilot": true,
+      "active": false,
+      "threshold": 0.5,
+      "min_size": 800,
+      "max_size": 1333,
+      "preprocessing": "torchvision-rgb-float32-v1"
+    }
+  ]
+}

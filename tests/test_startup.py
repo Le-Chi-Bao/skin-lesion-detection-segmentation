@@ -24,7 +24,8 @@ from app.ui.shell import build_shell
 
 @pytest.fixture
 def registry_data():
-    return json.loads((PROJECT_ROOT / "config/models.json").read_text(encoding="utf-8"))
+    # Preserve the historical E1 selection scenarios independently of deployment.
+    return json.loads((Path(__file__).parent / "fixtures/cv_registry_e1.json").read_text(encoding="utf-8-sig"))
 
 
 def write_registry(path, data):

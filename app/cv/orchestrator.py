@@ -147,12 +147,13 @@ def create_orchestrator(config: AppConfig, segmentation: SegmentationAdapter | N
                 checkpoint = repr(entry.checkpoint_path)
         status = adapter.availability.status
         reason = str(adapter.error).replace("SegFormer", label) if adapter.error else getattr(adapter, "reason", "")
-        message = "%s: %s | version=%s | device=%s | checkpoint=%s | %s"
+        message = "%s: %s | version=%s | device=%s | checkpoint=%s | sha256=%s | %s"
         logger.log(
             logging.INFO if status is ModelStatus.READY else logging.WARNING,
             message, label, "UNAVAILABLE" if status is ModelStatus.NOT_AVAILABLE else status.value.upper(),
             (identity.model_version or identity.checkpoint_id) if identity else (entry.version if entry else "không có"),
             identity.device if identity else f"chưa khởi tạo (yêu cầu {device})",
-            checkpoint or "chưa cấu hình", reason or "đã nạp và xác minh checkpoint",
+            checkpoint or "chưa cấu hình", identity.checkpoint_sha256 if identity else (entry.sha256 if entry else "chưa có"),
+            reason or "đã nạp và xác minh checkpoint",
         )
     return models

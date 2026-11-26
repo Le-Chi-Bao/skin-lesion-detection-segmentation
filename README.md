@@ -1,5 +1,10 @@
 # Hệ thống hỗ trợ phân tích tổn thương da
 
+WP-CV4 (26/11/2026): đã xác minh các inference export E1/E2/E3 bằng checksum, metadata,
+strict state_dict và inference CPU thật. Registry chọn E2
+`E2-a2301ed5919a4b9089dc3cc73af65e70`; E1 mới giữ inactive để rollback, E3 inactive.
+Kết quả kiểm thử và giới hạn provenance: [WP-CV4](docs/WP_CV4_E123_INTEGRATION.md).
+
 Demo acceptance 25/11/2026: **hai mô hình thật và Chromium đã đạt trên CPU** (160 pass, 1 optional pilot skip). Xem [runbook demo](docs/DEMO_RUNBOOK.md) và [hồ sơ release acceptance](docs/DEMO_RELEASE_ACCEPTANCE.md). Pilot inactive không chặn release này; CUDA chưa kiểm chứng.
 
 Ứng dụng nghiên cứu dành cho nhân viên y tế đã được đào tạo. Mục tiêu của đồ án là hỗ trợ quan sát tổn thương trên ảnh soi da, tra cứu kiến thức da liễu và chuẩn bị hội chẩn. **CV MVP tích hợp SegFormer MiT-B2 và Faster R-CNN qua adapter, registry và orchestrator độc lập.** Nguyên mẫu này chưa được thẩm định để sử dụng lâm sàng và không tự động chẩn đoán bệnh da.
@@ -14,7 +19,7 @@ Nút **Phân tích** khả dụng khi ít nhất một mô hình đã nạp thà
 
 PNG Localization có detection dùng tên `cv-localization-<run>.png`; ảnh chỉ từ mask và Overlay giữ tiền tố `segformer-`. Nếu phân tích thất bại, giao diện ghi lỗi riêng của từng mô hình.
 
-Artifact pilot step 7200 đúng hash trong brief **chưa có**. Thư mục E1 thực tế có run hoàn tất; demo dùng bản inference chuẩn xuất từ best checkpoint đã kiểm tra checksum, không gán nhãn pilot thành final.
+Artifact pilot step 7200 đúng hash trong brief **chưa có**. Mốc demo 25/11 dùng inference E1 từ run hoàn tất; WP-CV4 hiện dùng E2 và giữ export E1 mới làm rollback, không gán nhãn pilot thành final.
 
 ## Cài đặt và chạy cục bộ
 
@@ -27,7 +32,7 @@ python -m venv .venv
 python main.py
 ```
 
-Trên Linux hoặc macOS, thay `.venv\Scripts\python.exe` bằng `.venv/bin/python`, kích hoạt bằng `source .venv/bin/activate`. Sau khi cài CV và chuẩn bị artifact cục bộ, chỉ cần **`python main.py`**. Lệnh `python -m app.main` vẫn hoạt động qua cùng hàm khởi động. Ứng dụng tự đọc `config/models.json` từ gốc dự án, nạp đúng các model `active=true` (SegFormer `checkpoint-v1` và detection `E1-best-completed`), rồi mở Gradio tại `http://127.0.0.1:7860` với `share=False`. Thiết bị mặc định `auto`: CUDA khi PyTorch hỗ trợ, còn lại CPU.
+Trên Linux hoặc macOS, thay `.venv\Scripts\python.exe` bằng `.venv/bin/python`, kích hoạt bằng `source .venv/bin/activate`. Sau khi cài CV và chuẩn bị artifact cục bộ, chỉ cần **`python main.py`**. Lệnh `python -m app.main` vẫn hoạt động qua cùng hàm khởi động. Ứng dụng tự đọc `config/models.json` từ gốc dự án, nạp đúng các model `active=true` (SegFormer `checkpoint-v1` và detection `E2-a2301ed5919a4b9089dc3cc73af65e70`), rồi mở Gradio tại `http://127.0.0.1:7860` với `share=False`. Thiết bị mặc định `auto`: CUDA khi PyTorch hỗ trợ, còn lại CPU.
 
 Terminal ghi registry đã chọn, trạng thái READY / FAILED / UNAVAILABLE, version, device thực tế của model đã nạp, checkpoint dự kiến và nguyên nhân nếu lỗi. Không tự tải weights. Một model lỗi không chặn model kia; nếu cả hai chưa sẵn sàng, ứng dụng vẫn cho tải/xem ảnh nhưng khóa **Phân tích** và hiển thị lý do.
 
@@ -46,17 +51,16 @@ Lệnh tải là thao tác chuẩn bị chủ động, xác minh SHA-256 và dù
 
 ### Chạy đủ hai mô hình qua registry
 
-Sau khi cài CV và chuẩn bị checkpoint SegFormer như trên, đặt artifact detection đã xác minh tại đường dẫn trong `config/models.json`. Máy hiện tại đã có `model_store/detection/E1-final-inference.pt`. Nếu chỉ có bộ `best.ckpt`, `last.ckpt`, các sidecar `.sha256` và `completed.json` của run E1 hoàn tất:
+Sau khi cài CV và chuẩn bị checkpoint SegFormer như trên, đặt ba artifact inference tại đường dẫn trong `config/models.json`. Máy hiện tại có E1/E2/E3 theo run ID; đường dẫn cũ `E1-final-inference.pt` không còn tồn tại và đã được thay bằng E1 mới, không gán lại checksum cũ. Kiểm chứng độc lập cả ba (CPU, tuần tự, không tải weights):
 
 ```powershell
-.venv\Scripts\python.exe -m app.cv.export_detection model_store/detection/E1 model_store/detection/E1-final-inference.pt
-# Chỉ chạy export nếu đích chưa tồn tại. Ghi SHA-256 trả về vào entry tương ứng.
+.venv\Scripts\python.exe -m app.cv.verify_detection --image model_store/wp2-verification/dermoscopy.jpg
 .venv\Scripts\python.exe main.py
 ```
 
 Mở `http://127.0.0.1:7860` → **Computer Vision** → tải ảnh → **Phân tích**. Không cần đặt `LESION_MODEL_REGISTRY`; nếu có, biến này ưu tiên hơn registry mặc định. Registry có ưu tiên hơn `LESION_SEGFORMER_CHECKPOINT`. Chỉ khi **registry mặc định không tồn tại và không có override**, ứng dụng cảnh báo rồi giữ chế độ SegFormer cũ qua `LESION_SEGFORMER_CHECKPOINT`; detection không khả dụng. Registry đã được chọn mà thiếu, hỏng hoặc cấu hình sai sẽ báo lỗi, không tự chuyển sang checkpoint khác.
 
-Để đăng ký E3 sau này: chuẩn bị artifact inference đã xác minh, thêm entry detection mới với `version`, `checkpoint_path`, SHA-256 thật, architecture, format `isic-fasterrcnn-inference-v1`, threshold và preprocessing khớp metadata của artifact. Đặt `research_pilot=false`, tắt `active` của E1 rồi bật `active` của E3 và khởi động lại. Giữ tối đa một entry active cho mỗi mô-đun. Không có artifact E3 đã xác minh thì giữ E1 active; ứng dụng không tự chọn E3 hoặc bật pilot. Rollback bằng cách bật lại E1 và khởi động lại; không cần sửa code/UI.
+E2 đã được chọn từ Validation; không dùng Official Test hoặc smoke image để chọn lại model/ngưỡng. Rollback: dừng ứng dụng, đặt `active=false` cho E2 và `active=true` cho `E1-93e17545c5b84d78b46a9040cc7a8942`, giữ E3/pilot inactive rồi khởi động lại. Giữ tối đa một detection active; không sửa weights, checksum, threshold hoặc preprocessing. Chi tiết và lệnh rollback an toàn trong [WP-CV4](docs/WP_CV4_E123_INTEGRATION.md).
 
 ## Cấu hình
 

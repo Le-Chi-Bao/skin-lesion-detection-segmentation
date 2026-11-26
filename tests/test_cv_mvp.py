@@ -179,7 +179,8 @@ def test_late_detector_never_restores_old_mask_or_boxes(tmp_path, edit):
 
 
 def registry_data():
-    return json.loads((PROJECT_ROOT / "config/models.json").read_text())
+    # Unit scenarios retain their original E1 baseline as production moves to E2.
+    return json.loads((Path(__file__).parent / "fixtures/cv_registry_e1.json").read_text(encoding="utf-8-sig"))
 
 
 def write_registry(tmp_path, data):
@@ -403,9 +404,11 @@ def test_real_dual_model_browser_upload_export_reset(tmp_path, entrypoint):
                 log.seek(0)
                 startup = log.read()
                 expected_registry = Path(registry).resolve() if entrypoint == "module" else PROJECT_ROOT / "config/models.json"
+                selected_detection = ModelRegistry(expected_registry).selected("detection")
                 assert f"Registry: {expected_registry}" in startup
                 assert "SegFormer: READY | version=checkpoint-v1 | device=" in startup
-                assert "Faster R-CNN: READY | version=E1-best-completed | device=" in startup
+                assert f"Faster R-CNN: READY | version={selected_detection.version} | device=" in startup
+                assert f"sha256={selected_detection.sha256}" in startup
                 assert url in startup
                 browser = playwright.chromium.launch()
                 try:
@@ -431,9 +434,13 @@ def test_real_dual_model_browser_upload_export_reset(tmp_path, entrypoint):
                     expect(page.locator("#lesion-localization img")).to_be_visible()
                     expect(page.locator("#lesion-localization")).to_contain_text("Faster R-CNN: detection độc lập")
                     page.get_by_role("button", name="Chi tiết mô hình", exact=False).click()
-                    expect(page.locator("#lesion-model-details")).to_contain_text("E1-best-completed")
+                    expect(page.locator("#lesion-model-details")).to_contain_text(selected_detection.version)
+                    expect(page.locator("#lesion-model-details")).to_contain_text(selected_detection.sha256)
                     expect(page.locator("#lesion-model-details")).to_contain_text("isic-fasterrcnn-inference-v1")
                     expect(page.locator("#lesion-model-details")).to_contain_text("Số detection")
+                    for label in ("Original", "Mask", "Overlay", "Localization"):
+                        page.get_by_role("tab", name=label).click()
+                        expect(page.locator(f"#lesion-{label.lower()} img").first).to_be_visible()
                     page.screenshot(path=str(tmp_path / "dual-model-localization.png"), full_page=True)
                     requests = []
                     for label in ("Tải Overlay PNG", "Tải Localization PNG"):
@@ -446,10 +453,33 @@ def test_real_dual_model_browser_upload_export_reset(tmp_path, entrypoint):
                         assert download.value.suggested_filename == f"{expected_prefix}-{kind}-{run[:12]}.png"
                         with Image.open(download.value.path()) as exported, Image.open(sample) as source:
                             assert exported.size == source.size and exported.format == "PNG"
+                            if kind == "localization":
+                                assert DETECTION_COLOR in exported.convert("RGB").getdata()
                     assert second.request.post(url + "/lesion-export", data=requests[1]).status == 404
                     other.get_by_role("tab", name="Localization").click()
                     expect(other.locator("#lesion-localization img")).to_have_count(0)
-                    for row in registry_data()["models"]:
+                    # Populate the second session with different dimensions; exports must stay private.
+                    rotated = tmp_path / "rotated-demo.png"
+                    with Image.open(sample) as source:
+                        source.transpose(Image.Transpose.ROTATE_90).save(rotated)
+                    with other.expect_file_chooser() as choose:
+                        other.get_by_role("button", name="Tải ảnh lên").click()
+                    choose.value.set_files(str(rotated))
+                    other.get_by_role("button", name="Phân tích").click()
+                    expect(other.locator("#segmentation-status")).to_contain_text("Phân đoạn hoàn tất", timeout=120_000)
+                    with other.expect_download() as download, other.expect_request("**/lesion-export") as request:
+                        other.get_by_role("button", name="Tải Overlay PNG").click()
+                    with Image.open(download.value.path()) as exported, Image.open(rotated) as source:
+                        assert exported.size == source.size
+                    second_request = request.value.post_data_json
+                    assert second_request["run"] != requests[0]["run"]
+                    assert first.request.post(url + "/lesion-export", data=second_request).status == 404
+                    assert second.request.post(url + "/lesion-export", data=requests[1]).status == 404
+                    own_export = first.request.post(url + "/lesion-export", data=requests[1])
+                    assert own_export.status == 200
+                    with Image.open(io.BytesIO(own_export.body())) as exported, Image.open(sample) as source:
+                        assert exported.size == source.size
+                    for row in json.loads(expected_registry.read_text(encoding="utf-8"))["models"]:
                         assert first.request.get(url + "/gradio_api/file=" + quote(str(PROJECT_ROOT / row["checkpoint_path"]), safe="")).status == 403
                     # Replacing the image revokes both exports immediately after upload.
                     with page.expect_file_chooser() as choose:
