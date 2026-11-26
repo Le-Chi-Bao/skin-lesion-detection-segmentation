@@ -307,6 +307,7 @@ def render_cv_page(
             status = gr.HTML(idle_status, js_on_load=None, elem_id="segmentation-status")
         with gr.Column(scale=3, min_width=0, elem_id="cv-viewer"):
             gr.Markdown("### Xem ảnh")
+            gr.Markdown("Segmentation · Mask/Overlay từ SegFormer. Detection · Localization hiển thị box từ mask và Faster R-CNN.")
             with gr.Tabs(selected="original", overflow_behavior="wrap") as tabs:
                 with gr.Tab("Original", id="original"):
                     original = gr.HTML(image_panel("original"), js_on_load=None, elem_id="lesion-original")

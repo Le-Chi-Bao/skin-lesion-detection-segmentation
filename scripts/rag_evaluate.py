@@ -37,7 +37,8 @@ def _ndcg(ranked, relevant, k=5):
 def _citation_check(hit):
     c = hit.chunk.citation
     required = ("document_id", "pdf_page", "pdf_path", "source")
-    return {"valid": all(c.get(k) not in (None, "") for k in required),
+    return {"metadata_valid": all(c.get(k) not in (None, "") for k in required),
+            "content_verified": False,
             "document_id": c.get("document_id"), "pdf_page": c.get("pdf_page"),
             "pdf_path": c.get("pdf_path"), "source": c.get("source", {}).get("locator")}
 
@@ -58,7 +59,7 @@ def main():
             for mode in ("BM25", "Dense", "Hybrid"):
                 for repeat in range(max(1, args.repeats)):
                     started = time.perf_counter()
-                    response = service.search(item["query"], mode, 5)
+                    response = service.search(item["query"], mode, 10)
                     elapsed = (time.perf_counter() - started) * 1000
                     timings[mode].append(elapsed)
                     if repeat != 0:
@@ -95,7 +96,8 @@ def main():
                   "verified": sum(x.get("review_status") == "verified" for x in questions),
                   "metrics": metrics, "rows": rows,
                   "citation_summary": {"checked": sum(len(x["citations"]) for x in rows),
-                    "valid": sum(sum(c["valid"] for c in x["citations"]) for x in rows)},
+                    "metadata_valid": sum(sum(c["metadata_valid"] for c in x["citations"]) for x in rows),
+                    "content_verified": 0},
                   "conditions": {"device": "CPU", "warmup": "one Dense query excluded", "database": "existing ChromaDB", "embedding_recomputed": False}}
         (args.output_dir / "results.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
         _png(args.output_dir / "metrics.png", metrics)
@@ -111,7 +113,12 @@ def _png(path, metrics):
     for j, key in enumerate(keys):
         x = 40 + j * 260; draw.text((x, 65), key, fill="black")
         for i, row in enumerate(metrics):
-            value = row[key] or 0; y = 440 - int(value * 320); draw.rectangle((x + i*65, y, x + i*65 + 40, 440), fill=(45, 105 + i*45, 180)); draw.text((x+i*65, 455), row["mode"], fill="black")
+            value = row[key]
+            if value is None:
+                draw.text((x+i*65, 300), "N/A", fill="black")
+            else:
+                y = 440 - int(value * 320); draw.rectangle((x + i*65, y, x + i*65 + 40, 440), fill=(45, 105 + i*45, 180))
+            draw.text((x+i*65, 455), row["mode"], fill="black")
     image.save(path)
 
 if __name__ == "__main__": main()

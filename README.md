@@ -13,7 +13,8 @@ Demo acceptance 25/11/2026: **hai mô hình thật và Chromium đã đạt trê
 | --- | --- |
 | Tổng quan | Thông tin ứng dụng và trạng thái mô-đun |
 | Computer Vision | Tải JPEG/PNG; phân đoạn và detection độc lập; bốn thẻ xem ảnh, opacity, xuất Overlay và Localization PNG ở kích thước gốc. |
-| Medical RAG, Clinical Cases, Consultation Reports | Chưa triển khai |
+| Medical RAG | BM25 / Dense E5 Small / Hybrid RRF, citation document ID và trang PDF, retrieval-only local |
+| Report | Báo cáo tổng hợp MVP và trạng thái kiểm thử |
 
 Nút **Phân tích** khả dụng khi ít nhất một mô hình đã nạp thành công và phiên có ảnh hợp lệ. **Localization** phân biệt box từ mask SegFormer (vàng) và detection Faster R-CNN (đỏ, có điểm). Một mô hình lỗi vẫn giữ kết quả thành công của mô hình kia. Điểm detection không phải xác suất ung thư. [Kiến trúc, artifact, kiểm chứng và giới hạn cuối sprint](docs/FINAL_CV_MVP.md).
 
@@ -96,7 +97,7 @@ Gradio quản lý riêng tệp tải lên trong `runtime/gradio-cache/` theo tu�
 
 ## Kiểm thử
 
-Medical RAG hỗ trợ BM25 / Dense / Hybrid, reranking và câu trả lời trích dẫn có kiểm chứng.
+Medical RAG hỗ trợ BM25 / Dense / Hybrid, citation metadata và retrieval-only khi chưa cấp quyền cloud. Nội dung citation vẫn cần human review theo trạng thái nguồn.
 Kiến trúc OpenRouter-first, quyền outbound, cache, cấu hình key và live acceptance:
 [WP6B Cloud OpenRouter](docs/WP6B_CLOUD_OPENROUTER.md).
 Hướng dẫn dữ liệu, quyền AI, demo tổng hợp và kết quả kiểm thử: [WP6A RAG Foundation](docs/WP6A_RAG_FOUNDATION.md).
@@ -121,6 +122,16 @@ Tắt demo bằng `Remove-Item Env:RAG_SYNTHETIC_DEMO`.
 Bộ kiểm thử thông thường không tải checkpoint. Để chạy đủ ca đơn vị CV, cài thêm `requirements-cv.txt`. Lệnh kiểm chứng cả hai mô hình thật và Chromium có trong [báo cáo CV MVP](docs/FINAL_CV_MVP.md). Tài liệu WP2/WP3 ghi nhận các mốc trước sprint này.
 
 Dùng thư mục riêng cho `--basetemp` vì pytest sẽ dọn thư mục đó khi chạy lại.
+
+Pytest đã cấu hình mặc định `runtime/pytest-tmp`, phù hợp Windows và tránh lỗi quyền trên thư mục temp hệ thống.
+
+Đánh giá WP6E chạy bằng:
+
+```powershell
+.venv\Scripts\python.exe scripts\rag_evaluate.py --repeats 1
+```
+
+Kết quả nằm trong `runtime/rag/wp6e/`. Metric không có ground truth được ghi `N/A`.
 
 Để pytest chạy các ca trình duyệt, cài Playwright và Chromium trong môi trường kiểm thử.
 
