@@ -1,0 +1,44 @@
+Nghiên cứu khoa học công nghệ
+Tạp chí Khoa học và Công nghệnhiệt đới, Số40, 12 - 2025
+139
+ỨNG DỤNG KÍNH HIỂN VI QUANG PHỔRAMAN TRONG NGHIÊN
+CỨU SỰTHAY ĐỔI CỦA MÔ DA SAU CỐĐỊNH BẰNG FORMALIN
+TƯỞNG PHI VƯƠNG(1), TRẦN THÁI TÚ(1)*
+(1) Viện 69, BộTư lệnh Lăng Chủtịch HồChí Minh
+* Tác giảliên hệ: - Trần Thái Tú
+- Địa chỉ: Viện 69, BộTư lệnh Lăng Chủtịch HồChí Minh
+- Điện thoại: 0902 691 191
+Email: thaitu0911@gmail.com
+- Điểm nổi bật:
+✓Quang phổ Raman là một kĩ thuật hiện đại đã được sử dụng phổ biến 
+trên thế giới trong nghiên cứu y sinh học và chẩn đoán mô bệnh học, tuy 
+nhiên ở Việt Nam lại chưa có bất cứ nghiên cứu ứng dụng quang phổ 
+Raman trong lĩnh vực này.
+✓Nghiên cứu này của chúng tôi là nghiên cứu đầu tiên về quang phổ Raman 
+của mô sinh học nói chung và mô da nói riêng thực hiện tại Việt Nam.
+- Tóm tắt: Nghiên cứu nhằm đánh giá khảnăng ứng dụng kỹthuật quang phổ
+Raman trong khảo sát mô da người và phân tích những thay đổi trong cấu trúc hóa
+học của mô dưới tác động của quá trình cốđịnh bằng formalin. Đối tượng nghiên cứu
+gồm mô da tươi (chưa cốđịnh) và mô da đã được cốđịnh bằng formalin. Quang phổ
+Raman được thu nhận từcảhai nhóm mẫu đểphân tích và so sánh sựbiến đổi tín hiệu
+phổ. Kết quảcho thấy phổRaman của mô da tươi có sựtương đồng cao với các nghiên
+cứu quốc tế, với các pic đặc trưng tại 855, 933, 1003, 1033 và 1451 cm-¹, đại diện cho
+các thành phần chính như protein (đặc biệt là collagen), lipid và keratin. Sau cốđịnh,
+phổRaman thay đổi rõ rệt: cường độcác pic liên quan đến protein và lipid (856, 933,
+1271, 1451, 1653 cm-¹) suy giảm và xuất hiện thêm các pic mới tại 907 và 1492 cm-¹
+- là các tín hiệu đặc trưng của formalin. Những thay đổi này cho thấy formalin có thể
+ảnh hưởng đến độchính xác của phân tích phổRaman bằng cách làm nhiễu hoặc làm
+mất các tín hiệu đặc trưng của mô. Kết quảmởra tiềm năng ứng dụng quang phổ
+Raman như một công cụkhông xâm lấn trong nghiên cứu và phân tích mô sinh học
+tại Việt Nam.
+- Từkhoá: Quang phổRaman, mô da, cốđịnh mô, formalin.
+1. ĐẶT VẤN ĐỀ
+Trong những năm gần đây, kỹthuật quang phổRaman đã được ứng dụng rộng
+rãi trong nghiên cứu mô bệnh học nhờkhảnăng cung cấp thông tin phân tửchuyên
+sâu mà không cần sửdụng thuốc nhuộm hay xửlý phức tạp mẫu. Nhiều công trình
+trên thếgiới đã chứng minh tiềm năng to lớn của kỹthuật này trong việc phát hiện
+sớm và hỗtrợchẩn đoán các bệnh lý ác tính, đặc biệt là các loại ung thư như ung thư 
+vú [1, 2], ung thư phổi [3-5] và đặc biệt là ung thư da như ung thư biểu mô tếbào đáy 
+(basal cell carcinoma), ung thư hắc tốda (melanoma) và ung thư biểu mô tếbào vảy
+(squamous cell carcinoma) [6, 7].
+http://doi.org/10.58334/vrtc.jtst.n40.251

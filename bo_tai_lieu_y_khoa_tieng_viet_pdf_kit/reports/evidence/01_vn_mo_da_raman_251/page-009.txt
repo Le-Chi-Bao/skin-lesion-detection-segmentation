@@ -1,0 +1,70 @@
+Nghiên cứu khoa học công nghệ
+Tạp chí Khoa học và Công nghệnhiệt đới, Số40, 12 - 2025
+147
+10
+1271
+0.708 ± 0.017
+0.682 ± 0.016
+0.0738
+11
+1450
+1.685 ± 0.038
+1.492 ± 0.035
+0.0001
+12
+1492
+0.000 ± 0.000
+0.079 ± 0.006
+0.0002
+13
+1529
+0.129 ± 0.007
+0.124 ± 0.007
+0.8751
+14
+1586
+0.162 ± 0.006
+0.079 ± 0.005
+0.2146
+15
+1653
+0.323 ± 0.012
+0.000
+0.0001
+16
+1661
+0.415 ± 0.012
+0.237 ± 0.009
+0.3138
+Các ô bôi đậm là các so sánh có ý nghĩa thống kê với p < 0,05.
+Kết quảcho thấy 7 pic thay đổi cường độcó ý nghĩa thống kê, trong đó nổi bật là
+sựxuất hiện của pic 1492 cm-1 và sựbiến mất của pic 1653 cm-1.
+4. THẢO LUẬN
+4.1. Quang phổRaman trong nghiên cứu mô học da
+Dựa trên kết quảtrong Bảng 3.1 và 3.2, phổRaman của thượng bì và chân bì
+mô da cho thấy một sốpic phổchung, như tại 855 (vòng prolin của collagen), 1003
+(phenylalanin) và 1246 cm-¹ (amid III). Tuy nhiên, cũng tồn tại các pic đặc trưng riêng 
+biệt, ví dụnhư các pic tại 918 cm-¹ và 947 cm-¹, đặc trưng cho cấu trúc xoắn α-helix
+của keratin, chủyếu xuất hiện ởthượng bì, trong khi pic tại 815 cm-¹, đặc trưng cho 
+cấu trúc tropocollagen, tập trung ởchân bì. Thêm vào đó, cường độcác pic đặc trưng 
+cho cấu trúc α-helix của keratin có xu hướng cao hơn ởthượng bì và giảm dần ởchân
+bì, ngược lại, các pic đặc trưng cho collagen type I biểu hiện mạnh hơn ởchân bì và
+giảm ởthượng bì. Những đặc điểm này phản ánh sựtương quan chặt chẽgiữa cấu trúc
+mô học của da và phổRaman thu được. Cụthể, keratin chiếm thành phần chủyếu ở
+thượng bì, trong khi collagen type I là thành phần cấu trúc chính ởchân bì, do sựkhác
+nhau vềchức năng và cấu trúc riêng biệt của từng lớp da.
+Kết quảnghiên cứu này của chúng tôi vềcơ bản phù hợp với các nghiên cứu
+của T.T.Nguyen năm 2012 [9], Laurence Van Gulick năm 2019 [14] về quang phổ 
+Raman của chân bì mô da và collagen typ I. Điều này cho thấy quang phổ Raman của 
+mỗi chất hay cấu trúc là đặc trưng cho chất hoặc cấu trúc đó. Tuy nhiên kết quả của chúng 
+tôi vẫn có một số khác biệt. Ví dụ, khi đo quang phổ Raman ở chân bì, chúng tôi thu thêm
+được pic ở vị trí 1556 và 1582 cm-1, có thể do cấu trúc Amid II của protein [15].
+Ngoài ra, giá trị tuyệt đối của các pic thu được cũng có sự sai lệch nhỏ so với 
+các nghiên cứu đã được công bố. Phổ Raman của mô sinh học rất nhạy cảm với các 
+yếu tố vật lý và hóa học như nhiệt độ, độ ẩm, độ phân giải của thiết bị đo, cũng như 
+vị trí lấy mẫu. Những yếu tố này có thể tạo ra sự khác biệt nhất định trong kết quả thu 
+được, mặc dù vẫn nằm trong giới hạn cho phép. Mô sinh học có cấu trúc phức tạp, 
+bao gồm nhiều loại phân tử hữu cơ khác nhau cùng tồn tại tại một vị trí đo, dẫn đến 
+khả năng xuất hiện các dải phổ nằm gần nhau. Điều này làm tăng nguy cơ chồng lấn 
+pic, từ đó ảnh hưởng đến độ chính xác trong phân tích dữ liệu phổ. Chẳng hạn, vị trí 
+của dải Raman đặc trưng cho nhóm amid III được ghi nhận dao động trong khoảng 

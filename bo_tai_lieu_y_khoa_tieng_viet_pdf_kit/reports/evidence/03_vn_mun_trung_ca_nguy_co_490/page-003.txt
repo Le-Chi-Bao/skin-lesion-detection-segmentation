@@ -1,0 +1,101 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 18 SỐ 04 - THÁNG 9 NĂM 2025
+65
+Bảng 2. Phân bố bệnh nhân theo mức độ trứng cá
+Mức độ bệnh
+Số bệnh nhân
+Tỷ lệ (%)
+Nhẹ
+262
+64,85
+Vừa và nặng
+142
+35,15
+Tổng cộng
+404
+100
+Nhận xét: Bảng trên cho thấy đa số bệnh nhân mắc trứng cá ở mức độ nhẹ (64,85%), trong khi 35,15% 
+mắc trứng cá mức độ vừa và nặng.
+Bảng 3. Mối liên quan giữa thể loại da và mức độ bệnh
+Loại da
+Nhẹ (n=262)
+Vừa+nặng 
+(n=142)
+p
+Da thường
+16,79%
+4,93%
+0,002
+Da khô
+10,31%
+7,04%
+Da dầu
+43,89%
+56,34%
+Da hỗn hợp
+29,01%
+31,69%
+Nhận xét: Da dầu có tỷ lệ mắc trứng cá mức độ vừa và nặng cao nhất (56,34%), trong khi da thường 
+có tỷ lệ mắc trứng cá nhẹ cao nhất (16,79%). Mối liên quan giữa loại da và mức độ bệnh là có ý nghĩa 
+thống kê (p = 0,002).
+Bảng 4. Mối liên quan giữa giờ ngủ và mức độ bệnh
+Giờ ngủ
+Nhẹ
+Vừa + nặng
+p
+Trước 22h
+ 3,44%
+ 1,41%
+22h – 24h
+57,63%
+40,14%
+Sau 24h
+38,93%
+58,45%
+0,001
+Nhận xét: Tỷ lệ bệnh nhân mắc trứng cá mức độ vừa và nặng tăng dần theo giờ ngủ muộn, đặc biệt là 
+sau 24h (58,45%). Mối liên quan giữa giờ ngủ và mức độ bệnh có ý nghĩa thống kê (p = 0,001).
+Bảng 5. Mối liên quan giữa stress thi cử và mức độ bệnh
+Stress học tập
+Nhẹ (n=262)
+Vừa và Nặng (n=142)
+Tổng (n=404)
+p
+Có
+180 (68,72%)
+115 (81,69%)
+295 (73%)
+0,018
+Không
+82 (31,28%)
+27 (18,31%)
+109 (27%)
+Tổng
+262 (100%)
+142 (100%)
+404 (100%)
+Nhận xét: Có mối liên quan giữa stress thi cử và mức độ bệnh trứng cá. Tỷ lệ sinh viên bị stress thi cử 
+mắc bệnh ở mức độ vừa và nặng (81,69%) cao hơn so với nhóm không bị stress (18,31%). Mối liên quan 
+này có ý nghĩa thống kê (p=0,018).
+Bảng 6. Hồi quy logistic đa biến các yếu tố liên quan mức độ trứng cá
+Yếu tố
+OR (95% CI)
+p
+Da dầu
+2,41 (1,43–4,07)
+0,001
+Ngủ sau 24h
+2,21 (1,33–3,67)
+0,002
+Stress thi cử
+1,96 (1,12–3,41)
+0,018
+Tiền sử gia đình
+1,14 (0,74–1,75)
+0,55
+Sữa rửa mặt >2 lần/ngày
+1,08 (0,53–2,17)
+0,84
+Nhận xét: Bảng trên cho thấy da dầu, ngủ sau 24h và stress thi cử đều có mối liên quan mạnh với 
+mức độ trứng cá (p < 0,05). Cả ba yếu tố này đều có tỷ lệ odds ratio (OR) cao, với da dầu có OR cao 
+nhất (2,41). Tiền sử gia đình và việc sử dụng sữa rửa mặt >2 lần/ngày không có mối liên quan đáng kể 
+với mức độ trứng cá (p > 0,05).

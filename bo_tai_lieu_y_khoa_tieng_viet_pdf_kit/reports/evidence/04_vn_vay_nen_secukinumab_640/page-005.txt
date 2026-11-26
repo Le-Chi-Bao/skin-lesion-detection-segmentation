@@ -1,0 +1,139 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 24 SỐ 05 - THÁNG 8 NĂM 2026
+163
+12 tuần, tỷ lệ bệnh nhân đạt mức Rất tốt tăng gấp đôi lên 66,7%, trong khi 33,3% còn lại duy trì mức đáp 
+ứng Tốt, không còn bất kỳ ca nào thuộc nhóm đáp ứng Khá, Vừa hay Kém.
+Sự cải thiện chất lượng cuộc sống (DLQI): Ở thời điểm trước điều trị (T0), vảy nến gây ảnh hưởng 
+nghiêm trọng đến đời sống tinh thần và sinh hoạt thường ngày của người bệnh với điểm DLQI trung bình 
+là 15,20 ± 5,42 điểm và 100% bệnh nhân chưa đạt được đích DLQI 0/1. Sau khi bắt đầu điều trị bằng 
+Secukinumab, điểm DLQI sụt giảm nhanh. Tại tuần 4, có 66,7% (20 ca) bệnh nhân đạt được đích DLQI 
+0/1 (bệnh vảy nến hoàn toàn không còn ảnh hưởng đến cuộc sống). Đặc biệt, đến tuần 8, có 100% (30 
+ca) bệnh nhân đã đạt được đích DLQI 0/1 này và duy trì tính ổn định đến thời điểm tuần 12.
+Bảng 2. Sự thay đổi chất lượng cuộc sống (DLQI) đạt đích 0/1 theo các thời điểm và tuổi trung bình 
+bệnh nhân (n=30)
+Thời điểm
+Trạng thái đạt DLQI 0/1
+Số lượng (n)
+Tỷ lệ (%)
+Tuổi trung bình (Mean ± SD)
+Tuần T0
+Chưa đạt đích DLQI 0/1
+30
+100.0%
+51.08. ± 13.75
+Tuần T4*
+Đạt 
+đích 
+DLQI 
+0/1 
+Chưa đạt đích DLQI 0/1
+20 
+10
+66.7% 
+33.3%
+43.05. 
+± 
+10.34 
+64.27 ± 7.66
+Tuần T8
+Đạt đích DLQI 0/1
+30
+100.0%
+51.08. ± 13.75
+Nhận xét: Ở thời điểm trước điều trị (T0), 100% bệnh nhân chưa đạt được đích DLQI 0/1. Tại tuần 4, 
+có 66,7% (20 ca) bệnh nhân đạt đích DLQI 0/1 với tuổi trung bình là 43,05 ± 10,34, thấp hơn rõ rệt so với 
+tuổi trung bình của nhóm 33,3% (10 ca) chưa đạt đích là 64,27 ± 7,66; sự khác biệt này có ý nghĩa thống 
+kê với p = 0,001. Đến tuần 8, toàn bộ 100% bệnh nhân ở cả hai nhóm tuổi đều đã đạt đích DLQI 0/1.
+Mối liên quan giữa kết quả điều trị lâm sàng với các đặc điểm lâm sàng, nhân khẩu học:
+Để xác định mối liên quan lâm sàng theo Mục tiêu 2, nghiên cứu tiến hành phân tầng và phân tích sự 
+khác biệt về tỷ lệ đạt đáp ứng điều trị tuần 12 (đích đáp ứng ‹Rất tốt› - PASI 100 so với ‹Tốt› - PASI 75-
+99%) theo từng nhóm đặc điểm nhân khẩu học và bệnh sử của bệnh nhân. Toàn bộ các so sánh phân 
+nhóm nhỏ được kiểm định bằng phép kiểm chính xác Fisher (Fisher›s exact test) nhằm bảo đảm độ tin 
+cậy thống kê cao nhất.
+Bảng 3. Mối liên quan giữa các đặc điểm lâm sàng, nhân khẩu học với kết quả điều trị tại tuần 12 (n=30)
+Đặc điểm khảo 
+sát
+Phân 
+nhóm 
+bệnh nhân
+Rất 
+tốt 
+(PASI 100) 
+(n = 20)
+Tốt (PASI 
+75-99%) 
+(n = 10)
+Tỷ lệ Rất 
+tốt (%)
+p (Fisher’s exact)
+Tuổi bệnh nhân
+≤ 51 tuổi (n = 18)
+12
+6
+66.7%
+1.000
+> 51 tuổi (n = 12)
+8
+4
+66.7%
+Giới tính
+Nam (n = 26)
+18
+8
+69.2%
+0.531
+Nữ (n = 4)
+2
+2
+50.0%
+Tuổi khởi phát 
+bệnh
+Dưới 40 tuổi (n = 
+19)
+13
+6
+68.4%
+0.687
+Từ 40 tuổi trở lên 
+(n = 11)
+7
+4
+63.6%
+Thời 
+gian 
+bị 
+bệnh
+< 5 năm (n = 10)
+7
+3
+70.0%
+0.783
+≥ 5 năm (n = 20)
+13
+7
+65.0%
+Mức độ nặng 
+ban đầu
+Thể vừa (10 ≤ 
+PASI < 20) (n = 20)
+13
+7
+65.0%
+1.000
+Thể nặng (PASI 
+≥ 20) (n = 10)
+7
+3
+70.0%
+Tiền sử điều trị 
+toàn thân
+Có tiền sử điều 
+trị (n = 29)
+20
+9
+69.0%
+0.333
+Chưa từng điều 
+trị (n = 1)
+0
+1
+0.0%

@@ -1,0 +1,98 @@
+Nghiên cứu khoa học công nghệ
+Tạp chí Khoa học và Công nghệnhiệt đới, Số40, 12 - 2025
+146
+Bảng 5. Các pic đặc trưng trong phổRaman của nhú chân bì 10 mẫu mô da cốđịnh
+formalin
+Pic thu được
+Pic tham
+khảo [8-10]
+Liên kết tạo ra pic trong quang phổRaman tương 
+ứng
+815
+815
+-C-O-C giữa các tropocollagen
+855
+856
+Vòng prolin trong phân tử collagen
+908
+907
+-C=O của formalin
+933
+933
+Chuỗi xoắn α-helix collagen, elastin
+1004, 1033
+1003, 1030
+Phenylalanine
+1058, 1092
+1056, 1086
+-C-C trong phân tử phospholipid
+1246, 1272
+1248-1271
+Amid III trong phân tử collagen, elastin
+1451
+1444- 1450
+-CH trong phân tử collagen, elastin
+1492
+1490
+Cầu nối methylene giữa các phân tử protein
+-H-C-H của formalin
+1662
+1662
+-C=O của Amid I trong phân tử collagen, elastin
+3.3. Cường độcác pic sau cốđịnh formalin
+Kết quảso sánh cường độcác pic của mô da trước và sau cốđịnh được trình bày
+ởBảng 6.
+Bảng 6. So sánh tỉlệcường độcác pic của mô da trước và sau cốđịnh.
+STT
+Pic thu được 
+(cm-1)
+Cường độ (đơn vị đếm)
+X ± SD
+Giá trị p
+Mô tươi
+Mô cố định
+1
+815
+0.082 ± 0.006
+0.079 ± 0.005
+0.6490
+2
+855
+0.574 ± 0.015
+0.553 ± 0.013
+0.0157
+3
+933
+0.246 ± 0.010
+0.237 ± 0.009
+0.0402
+4
+1003
+1.000 ± 0.000
+1.000 ± 0.000
+1.0000
+5
+1030
+1.148 ± 0.030
+1.106 ± 0.028
+0.0165
+6
+1058
+0.241 ± 0.009
+0.229 ± 0.008
+0.2856
+7
+1094
+1.241 ± 0.025
+1.230 ± 0.024
+0.0522
+8
+1122
+0.351 ± 0.010
+0.339 ± 0.009
+0.2718
+9
+1246
+0.759 ± 0.018
+0.731 ± 0.017
+0.0046

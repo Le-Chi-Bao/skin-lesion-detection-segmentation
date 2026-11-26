@@ -1,0 +1,118 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 19 SỐ 05 - THÁNG 12  NĂM 2025
+6
+- Mức độ tổn thương mỗi vùng được phân theo 
+thang điểm: 1 nếu nhiều hơn 1 MTC, 2 nếu nhiều 
+hơn 1 sẩn, 3 nếu nhiều hơn 1 mủ, 4 nếu nhiều hơn 
+1 cục. Vùng nào không có mụn thì số điểm là 0. 
+Số điểm mức độ nặng mỗi vùng sẽ được cho theo 
+loại tổn thương có số điểm cao nhất. Điểm này sẽ 
+được nhân với chỉ số điểm của từng vùng. Tổng 
+điểm của cả 6 vùng sẽ cho ta điểm GAGS: nhẹ 1≤ 
+GS ≤18; trung bình 19≤ GS ≤30; nặng 31≤ GS ≤38; 
+rất nặng GS ≥38.
+❖ Thể lâm sàng (4 nhóm) [4]:
+- Thể Phong nhiệt: đa số là mụn đầu đen hoặc 
+đầu trắng, đôi khi có sẩn đỏ chưa có mủ, có thể 
+kèm theo sắc mặt đỏ, da nóng hoặc nóng rát, hơi 
+thở nóng, có thể có ngứa, đau, đầu lưỡi đỏ, rêu 
+vàng mỏng, mạch sác.
+- Thể Thấp nhiệt: da bóng nhờn, chủ yếu là tổn 
+thương sẩn và mụn mủ có tính chất đau, có thể có 
+vảy tiết, miệng hôi, táo bón, tiểu vàng, lưỡi đỏ, rêu 
+vàng nhớt, mạch hoạt sác.
+- Thể Huyết ứ hoặc Đàm ngưng: tổn thương da 
+nang cục cứng, sắc tối, hay tái phát, dễ hình thành 
+sẹo, chất lưỡi sạm tối, có điểm ứ huyết hoặc ban ứ, 
+mạch sác, hoặc nang bọc mềm, hình tròn, trơn bóng, 
+đầy bụng, đại tiện lỏng, rêu trơn nhầy, mạch hoạt.
+- Thể Xung nhâm thất điều: gặp ở bệnh nhân nữ, 
+MTC nặng lên trước và sau chu kì kinh nguyệt, sẩn 
+mụn mọc nhiều ở xung quanh miệng và cằm, có 
+thể kèm theo rối loạn kinh nguyệt, bụng dưới đau 
+chướng, mạch huyền.
+2.2.4. Phương pháp và công cụ thu thập số liệu
+- Số liệu được thu thập theo các bệnh án nghiên 
+cứu soạn sẵn gồm các phần: hành chính, tiền sử, 
+bệnh sử, thăm khám lâm sàng.
+- Phương pháp thu thập số liệu: phỏng vấn trực 
+tiếp bệnh nhân.
+- Phân thể bệnh theo YHCT do bác sĩ YHCT trực 
+tiếp thăm khám thực hiện; các trường hợp chưa 
+thống nhất được hội chẩn với bác sĩ YHCT thứ hai 
+để đi đến kết luận cuối cùng.
+2.2.5. Phân tích và xử lí số liệu: số liệu được mã 
+hóa, làm sạch và nhập vào máy tính, sau đó phân 
+tích bằng phần mềm SPSS phiên bản 20.0. Thống 
+kê mô tả được sử dụng để trình bày giá trị trung 
+bình ± độ lệch chuẩn, tần suất và tỷ lệ phần trăm. 
+So sánh giữa các nhóm được thực hiện bằng kiểm 
+định Chi-square (với biến định tính) và ANOVA (với 
+biến định lượng); phân tích hậu nghiệm Tukey HSD 
+được áp dụng khi cần thiết. Mức ý nghĩa thống kê 
+được xác định với p < 0,05.
+2.2.6. Đạo đức nghiên cứu: nghiên cứu đã 
+được thông qua bởi Hội đồng khoa học trường Đại 
+học Y-Dược, Đại học Huế theo quyết định số 1652/
+QĐ-ĐHYD ngày 02/4/2025, bệnh nhân tự nguyện 
+tham gia nghiên cứu, mọi thông tin thu thập được 
+bảo mật và chỉ phục vụ cho mục đích nghiên cứu.
+III. KẾT QUẢ
+3.1. Đặc điểm lâm sàng của đối tượng nghiên cứu
+Bảng 1. Đặc điểm chung của đối tượng nghiên cứu
+Nội dung
+Phân loại
+Số lượng (n)
+Tỷ lệ (%)
+Giới
+Nam
+22
+20,8
+Nữ
+84
+79,2
+Tuổi (năm) 
+(X± SD) = 20,46 ± 2,63
+<25
+101
+95,3
+≥25
+5
+4,7
+Nghề nghiệp
+Học sinh/sinh viên
+103
+92,5
+Viên chức
+2
+1,9
+Kinh doanh
+1
+0,9
+Hoàn cảnh sống
+Nhiều ánh nắng mặt trời
+84
+79,2
+Quá nóng
+65
+61,3
+Độ ẩm cao
+70
+66,0
+Chế độ ăn
+Nhiều chất béo
+65
+61,3
+Giàu chất ngọt
+69
+65,1
+Nhiều đồ cay nóng
+70
+66,0
+Đã được chẩn đoán bởi 
+bác sĩ Da liễu cách đây
+<24 tháng
+88
+83,0
+≥24 tháng
+18
+17,0

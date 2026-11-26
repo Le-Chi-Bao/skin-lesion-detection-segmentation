@@ -1,0 +1,114 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 18 SỐ 04 - THÁNG 9  NĂM 2025
+50
+đến bốn yếu tố chính: di truyền, dị nguyên, rối loạn 
+miễn dịch tại chỗ và suy giảm hàng rào bảo vệ da. 
+Các yếu tố này tương tác gây rối loạn miễn dịch lớp 
+thượng bì, dẫn đến tổn thương da đặc trưng. Bệnh 
+dễ tái phát khi hàng rào da bị tổn thương, do đó việc 
+nhận biết triệu chứng và yếu tố nguy cơ có vai trò 
+quan trọng trong phòng ngừa các đợt bùng phát [2].
+Trên thế giới đã có nhiều nghiên cứu về viêm da 
+cơ địa, tuy nhiên tại Việt Nam, số lượng nghiên 
+cứu tổng quát còn hạn chế. Đặc biệt, sinh viên y 
+khoa là nhóm có nguy cơ cao do đặc thù học tập 
+căng thẳng, thức khuya [3]. Vì vậy, nhóm nghiên 
+cứu thực hiện nghiên cứu này với mục tiêu: Mô 
+tả một số đặc điểm lâm sàng và xác định một số 
+yếu tố liên quan của bệnh viêm da cơ địa ở sinh 
+viên năm 4, năm 5 tại Trường Đại học Y Dược Thái 
+Bình năm 2024. 
+II. ĐỐI TƯỢNG VÀ PHƯƠNG PHÁP NGHIÊN CỨU
+2.1. Đối tượng nghiên cứu: Sinh viên năm 4, 
+năm 5 tại Trường Đại học Y Dược Thái Bình. 
+Nhóm đối tượng này được lựa chọn vì đã có những 
+hiểu biết nhất định về bệnh viêm da cơ địa, đồng thời 
+thuận lợi cho việc tiếp cận và thu thập số liệu.
+Tiêu chuẩn chọn mẫu: 
+Sinh viên năm 4, năm 5 tại Trường Đại học Y 
+Dược Thái Bình đồng ý tham gia nghiên cứu.
+Đối tượng nghiên cứu được chẩn đoán bệnh 
+viêm da cơ địa theo tiêu chuẩn của Hanifin và 
+Rajka (1980).
+Tiêu chuẩn loại trừ:
+Người từ chối không tham gia nghiên cứu. 
+Sinh viên liên thông và sinh viên người quốc tế. 
+Địa điểm nghiên cứu: Trường Đại học Y Dược 
+Thái Bình, phòng khám Da liễu Bệnh viện Đại học 
+Y Thái Bình.
+Thời gian nghiên cứu: Từ tháng 11 năm 2024 
+đến tháng 12 năm 2024.
+2.2. Phương pháp nghiên cứu
+Thiết kế nghiên cứu:
+Nghiên cứu mô tả cắt ngang nhằm mô tả một số 
+đặc điểm lâm sàng và xác định yếu tố liên quan 
+đến bệnh viêm da cơ địa ở sinh viên năm 4, năm 5 
+tại Trường Đại học Y Dược Thái Bình.
+Cỡ mẫu và phương pháp chọn mẫu: 
+Cỡ mẫu: Được tính theo công thức:
+Trong đó:
++ n: cỡ mẫu tối thiểu nghiên cứu.
++ α/2: độ tin cậy có ý nghĩa thống kê, trong nghiên 
+cứu này lấy ở ngưỡng α=0,05.
++ Z(1-α/2) : Hệ số tin cậy. Với α=0,05 thì Z(1-α/2) =1,96.
++ p: Tỷ lệ mắc bệnh theo kết quả nghiên cứu của 
+Lê Phương Anh là 6,7% nên p=0,067 [4].
++ ԑ: độ chính xác tương đối, lấy =0,25.
+Từ các số liệu trên, cỡ mẫu tính được là 856. Dự 
+trù 10% có thể không hoàn thành hoặc sai số, trên 
+thực tế chúng tôi đã thu thập thông tin từ 967 sinh 
+viên năm 4 và năm 5.
+Phương pháp chọn mẫu: Chọn mẫu ngẫu 
+nhiên đơn thuận tiện dựa trên tiêu chuẩn đưa vào, 
+đối tượng được thu thập thông tin trong khoảng 
+thời gian nghiên cứu.
+Biến số và chỉ số nghiên cứu: 
+Biến số phụ thuộc: Tỷ lệ nhóm bệnh viêm da 
+cơ địa
+Biến số độc lập: Giới tính, tuổi.
+Biến số cho mục tiêu 1: Tần suất tái phát, thời 
+điểm có xu hướng tái phát trong năm, triệu chứng 
+trên da, mức độ ngứa, thời gian ngứa nhiều nhất 
+trong ngày, mức độ nặng của bệnh viêm da cơ địa 
+theo thang điểm SCORAD.
+Biến số cho mục tiêu 2: Tiền sử gia đình, chế 
+độ ngủ.
+Phương pháp thu thập dữ liệu: Các đối tượng 
+được khám lâm sàng, chẩn đoán và xác định mức 
+độ bệnh theo tiêu chí của SCORAD, thông tin được 
+thu thập bằng bộ câu hỏi được chúng tôi mã hóa 
+trên phần mềm Google Form.
+Phỏng vấn trực tiếp: Sử dụng bộ câu hỏi khảo 
+sát đặc điểm lâm sàng và yếu tố liên quan đến 
+viêm da cơ địa. Nhóm bệnh được khám trực tiếp 
+và chẩn đoán bệnh bởi Ths.BS. Nguyễn Thị Tài 
+Linh tại phòng khám Da liễu Bệnh viện Đại học Y 
+Thái Bình.
+Phân tích số liệu: Sử dụng phần mềm Excel để 
+nhập và quản lý số liệu.
+2.3. Xử lý số liệu bằng phần mềm SPSS 26.0: 
+Số liệu định tính dưới dạng tần số và tỉ lệ phần trăm.
+Kiểm định sự khác biệt và mối tương quan giữa 
+các biến bằng các test thống kê χ2, Fisher-exact 
+test (đối với biến định tính), với mức ý nghĩa thống 
+kê p<0,05.
+Phân tích hồi quy đơn biến để xác định các yếu 
+tố ảnh hưởng đến bệnh VDCĐ, với mức ý nghĩa 
+thống kê p<0,05. Do số ca mắc ít và thiết kế mô tả 
+cắt ngang nên hạn chế thực hiện phân tích đa biến 
+và đây là hạn chế của nghiên cứu
+2
+2
+)
+2
+/
+1(
+)
+1(
+d
+p
+p
+Z
+n
+−
+=
+−α

@@ -1,0 +1,143 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 19 SỐ 05 - THÁNG 12  NĂM 2025
+8
+Bảng 3. Mối liên quan giữa mức độ nặng của mụn và chế độ ăn, môi trường sống
+Mức độ nặng theo thang điểm GAGS
+P
+Nhẹ
+Trung bình
+Nặng
+Tổng
+n
+%
+n
+%
+n
+%
+n
+Môi trường nhiều ánh 
+nắng mặt trời
+Có
+39
+46,4
+41
+48,8
+4
+4,8
+84
+0,031
+Không
+17
+77,3
+5
+22,7
+0
+0,0
+22
+Chế độ ăn giàu chất 
+ngọt (ngũ cốc, bánh 
+ngọt, đường...)
+Có
+30
+43,5
+37
+53,6
+2
+2,9
+69
+0,015
+Không
+26
+70,3
+9
+24,3
+2
+5,4
+37
+Nhận xét: Có mối liên quan có ý nghĩa thống kê giữa mức độ nặng của MTC theo thang điểm GAGS 
+và chế độ ăn giàu chất ngọt, tiếp xúc với môi trường nhiều ánh nắng mặt trời (p <0,05). 
+3.2. Phân bố thể lâm sàng theo Y học cổ truyền và mối liên quan giữa thể lâm sàng theo Y học 
+cổ truyền và một số yếu tố
+Bảng 4. Phân bố thể lâm sàng và mối liên quan giữa thể lâm sàng và giới tính
+Thể lâm sàng
+Giới tính
+Nam
+Nữ
+Tổng số
+P
+n
+%
+n
+%
+n
+%
+Phong nhiệt
+11
+50,0
+29
+34,5
+40
+37,7
+0,024
+Thấp nhiệt
+8
+36,4
+32
+38,1
+40
+37,7
+Xung nhâm thất điều
+0
+0
+20
+23,8
+20
+18,9
+Huyết ứ/Đàm ngưng
+3
+13,6
+3
+3,6
+6
+5,7
+Tổng
+22
+100
+84
+100
+106
+100
+Nhận xét: Trong 106 trường hợp khảo sát, thể lâm sàng Phong nhiệt và Thấp nhiệt chiếm tỷ lệ cao nhất 
+đều là 37,7%. Tiếp theo là thể Xung nhâm thất điều chiếm tỷ lệ 18,9%. Thể Huyết ứ/ Đàm ngưng chiếm 
+tỷ lệ thấp nhất 5,7%. Có mối liên quan có ý nghĩa thống kê giữa thể lâm sàng theo YHCT và giới tính (p 
+<0,05), thể lâm sàng thường gặp nhất ở nam giới là Phong nhiệt (50,0%), thể thường gặp nhất ở nữ là 
+thể Thấp nhiệt (38,1%).
+Bảng 5. Mối liên quan giữa thể lâm sàng và điểm GAGS trung bình
+Thể lâm sàng
+Điểm GAGS trung bình
+P
+Phong nhiệt
+15,98 ± 5,48
+0,035
+Thấp nhiệt
+19,00 ± 6,47
+Xung nhâm thất điều
+20,00 ± 6,87
+Huyết ứ/Đàm ngưng
+21,67 ± 9,09
+Nhận xét: Có sự khác biệt có ý nghĩa thống kê về mức độ nặng MTC (tính theo tổng điểm GAGS) giữa 
+các thể lâm sàng YHCT (p <0,05). Khi so sánh từng cặp thể lâm sàng riêng biệt, sự khác biệt chưa đạt 
+ý nghĩa thống kê (p >0,05). Tuy nhiên, giá trị trung bình điểm GAGS của các thể lâm sàng cho thấy có 
+xu hướng tăng dần từ thể Phong nhiệt đến Thấp nhiệt đến thể Xung nhâm thất điều và nặng nhất là thể 
+Huyết ứ/Đàm ngưng.
+IV. BÀN LUẬN
+4.1. Đặc điểm
+Kết quả khảo sát trên 106 đối tượng cho thấy 
+tuổi trung bình của nghiên cứu là 20,46 ± 2,63, độ 
+tuổi dao động từ 11-30 với nhóm <25 tuổi chiếm đa 
+số (95,3%), nhóm nghề nghiệp học sinh/sinh viên 
+chiếm tỷ lệ cao nhất với 92,5%, kết quả này tương 
+đồng với nhiều nghiên cứu trong nước [3], [7], [8]. 
+Kết quả này cũng phù hợp với đặc điểm dịch tễ 
+học của MTC khi bệnh thường gặp ở lứa tuổi thanh 
+thiếu niên và nhóm người trẻ tuổi do ảnh hưởng 
+của sự thay đổi nội tiết trong giai đoạn dậy thì, kết 

@@ -1,0 +1,426 @@
+{
+  "page": {
+    "pdf_page": 3,
+    "pdf_index_zero_based": 2,
+    "pdf_page_label": "51",
+    "printed_page_number": "51",
+    "text_layer_characters": 839,
+    "warnings": [
+      "table_structure_requires_visual_review",
+      "figure_not_reused; caption_only; rights_pending"
+    ],
+    "text_block_adjustments": [
+      {
+        "bbox": [
+          167,
+          102,
+          431,
+          227
+        ],
+        "reason": "unsupported_picture_text",
+        "original_engine_text": "\n\n"
+      },
+      {
+        "bbox": [
+          133,
+          411,
+          444,
+          566
+        ],
+        "reason": "unsupported_picture_text",
+        "original_engine_text": "\n\n"
+      },
+      {
+        "bbox": [
+          124,
+          618,
+          471,
+          768
+        ],
+        "reason": "unsupported_picture_text",
+        "original_engine_text": "\n\n"
+      }
+    ],
+    "column_bands_reordered": false,
+    "table_count": 1,
+    "figure_count": 3,
+    "embedded_image_count": 3,
+    "layout_boxes": [
+      {
+        "index": 0,
+        "class": "page-header",
+        "bbox": [
+          142,
+          43,
+          453,
+          55
+        ],
+        "pos": [
+          0,
+          64
+        ]
+      },
+      {
+        "index": 1,
+        "class": "section-header",
+        "bbox": [
+          65,
+          69,
+          130,
+          80
+        ],
+        "pos": [
+          64,
+          85
+        ]
+      },
+      {
+        "index": 2,
+        "class": "section-header",
+        "bbox": [
+          65,
+          85,
+          301,
+          98
+        ],
+        "pos": [
+          85,
+          138
+        ]
+      },
+      {
+        "index": 3,
+        "class": "picture",
+        "bbox": [
+          167,
+          102,
+          431,
+          227
+        ],
+        "pos": [
+          138,
+          263
+        ]
+      },
+      {
+        "index": 4,
+        "class": "caption",
+        "bbox": [
+          179,
+          231,
+          425,
+          244
+        ],
+        "pos": [
+          263,
+          321
+        ]
+      },
+      {
+        "index": 5,
+        "class": "text",
+        "bbox": [
+          65,
+          245,
+          327,
+          258
+        ],
+        "pos": [
+          321,
+          380
+        ]
+      },
+      {
+        "index": 6,
+        "class": "caption",
+        "bbox": [
+          208,
+          262,
+          396,
+          274
+        ],
+        "pos": [
+          380,
+          427
+        ]
+      },
+      {
+        "index": 7,
+        "class": "table",
+        "bbox": [
+          164,
+          281,
+          436,
+          361
+        ],
+        "pos": [
+          427,
+          782
+        ]
+      },
+      {
+        "index": 8,
+        "class": "text",
+        "bbox": [
+          56,
+          367,
+          542,
+          394
+        ],
+        "pos": [
+          782,
+          911
+        ]
+      },
+      {
+        "index": 9,
+        "class": "caption",
+        "bbox": [
+          65,
+          398,
+          181,
+          411
+        ],
+        "pos": [
+          911,
+          940
+        ]
+      },
+      {
+        "index": 10,
+        "class": "picture",
+        "bbox": [
+          133,
+          411,
+          444,
+          566
+        ],
+        "pos": [
+          940,
+          1065
+        ]
+      },
+      {
+        "index": 11,
+        "class": "caption",
+        "bbox": [
+          161,
+          572,
+          443,
+          584
+        ],
+        "pos": [
+          1065,
+          1131
+        ]
+      },
+      {
+        "index": 12,
+        "class": "text",
+        "bbox": [
+          56,
+          586,
+          542,
+          612
+        ],
+        "pos": [
+          1131,
+          1277
+        ]
+      },
+      {
+        "index": 13,
+        "class": "picture",
+        "bbox": [
+          124,
+          618,
+          471,
+          768
+        ],
+        "pos": [
+          1277,
+          1402
+        ]
+      },
+      {
+        "index": 14,
+        "class": "caption",
+        "bbox": [
+          138,
+          774,
+          466,
+          786
+        ],
+        "pos": [
+          1402,
+          1477
+        ]
+      },
+      {
+        "index": 15,
+        "class": "page-footer",
+        "bbox": [
+          521,
+          807,
+          534,
+          816
+        ],
+        "pos": [
+          1477,
+          1482
+        ]
+      }
+    ],
+    "quality": {
+      "replacement_characters": 0,
+      "unexpected_controls": [],
+      "possible_mojibake": false,
+      "possible_joined_words": 0,
+      "duplicate_paragraphs": [
+        "> NEEDS_MANUAL_REVIEW: Hình hoặc công thức chưa được chuyển thành văn bản đáng tin cậy; xem vị trí tương ứng trong PDF gốc."
+      ],
+      "numeric_tokens_missing_from_markdown": {},
+      "numeric_tokens_added_in_markdown": {},
+      "comparison_scope": "PDF text layer; diagnostic only, not visual truth"
+    }
+  },
+  "tables": [
+    {
+      "table_id": "page-003-table-01",
+      "pdf_page": 3,
+      "captions": [
+        "**_Biểu đồ 1. Tỷ lệ nhóm bệnh viêm da cơ địa (n=967)_**",
+        "**_Bảng 1. Phân bố theo giới tính (n=967)_**"
+      ],
+      "bbox": [
+        164.4384002685547,
+        281.5504150390625,
+        435.7633361816406,
+        360.27001953125
+      ],
+      "rows": 4,
+      "columns": 4,
+      "cells": [
+        [
+          [
+            158.29530334472656,
+            276.34930419921875,
+            240.41220092773438,
+            308.03179931640625
+          ],
+          null,
+          [
+            240.41220092773438,
+            276.34930419921875,
+            331.65350341796875,
+            308.03179931640625
+          ],
+          [
+            331.65350341796875,
+            276.34930419921875,
+            436.98028564453125,
+            308.03179931640625
+          ]
+        ],
+        [
+          [
+            158.29530334472656,
+            308.03179931640625,
+            208.8188934326172,
+            345.2325134277344
+          ],
+          [
+            208.8188934326172,
+            308.03179931640625,
+            240.41220092773438,
+            325.9844970703125
+          ],
+          [
+            240.41220092773438,
+            308.03179931640625,
+            331.65350341796875,
+            325.9844970703125
+          ],
+          [
+            331.65350341796875,
+            308.03179931640625,
+            436.98028564453125,
+            325.9844970703125
+          ]
+        ],
+        [
+          null,
+          [
+            208.8188934326172,
+            325.9844970703125,
+            240.41220092773438,
+            345.2325134277344
+          ],
+          [
+            240.41220092773438,
+            325.9844970703125,
+            331.65350341796875,
+            345.2325134277344
+          ],
+          [
+            331.65350341796875,
+            325.9844970703125,
+            436.98028564453125,
+            345.2325134277344
+          ]
+        ],
+        [
+          [
+            158.29530334472656,
+            345.2325134277344,
+            240.41220092773438,
+            363.8182067871094
+          ],
+          null,
+          [
+            240.41220092773438,
+            345.2325134277344,
+            331.65350341796875,
+            363.8182067871094
+          ],
+          [
+            331.65350341796875,
+            345.2325134277344,
+            436.98028564453125,
+            363.8182067871094
+          ]
+        ]
+      ],
+      "values": [
+        [
+          "Chẩn đoán",
+          null,
+          "Nhóm bệnh viêm\nda cơ địa n (%)",
+          "Nhóm không bị bệnh\nviêm da cơ địa n (%)"
+        ],
+        [
+          "Giới tính",
+          "Nam",
+          "36 (38,7)",
+          "347 (39,7)"
+        ],
+        [
+          null,
+          "Nữ",
+          "57 (61,3)",
+          "527 (60,3)"
+        ],
+        [
+          "Tổng",
+          null,
+          "93 (100)",
+          "874 (100)"
+        ]
+      ],
+      "html": "<table><tr><td colspan=\"2\">Chẩn đoán</td><td>Nhóm bệnh viêm<br/>da cơ địa n (%)</td><td>Nhóm không bị bệnh<br/>viêm da cơ địa n (%)</td></tr><tr><td rowspan=\"2\">Giới tính</td><td>Nam</td><td>36 (38,7)</td><td>347 (39,7)</td></tr><tr><td>Nữ</td><td>57 (61,3)</td><td>527 (60,3)</td></tr><tr><td colspan=\"2\">Tổng</td><td>93 (100)</td><td>874 (100)</td></tr></table>",
+      "method": "physical_rulings_with_geometric_spans",
+      "warning": null,
+      "merged_cells_present": true
+    }
+  ]
+}

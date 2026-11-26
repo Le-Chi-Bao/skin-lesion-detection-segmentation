@@ -1,0 +1,95 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 24 SỐ 05 - THÁNG 8 NĂM 2026
+159
+KẾT QUẢ ĐIỀU TRỊ VÀ TÍNH AN TOÀN CỦA SECUKINUMAB 
+TRÊN BỆNH NHÂN VẢY NẾN THÔNG THƯỜNG MỨC ĐỘ VỪA VÀ NẶNG 
+TẠI BỆNH VIỆN DA LIỄU THANH HÓA
+Lương Đức Diễn1*, Lê Trí Bách2, Nguyễn Thị Lệ3, Lê Thu Hoài4
+1. Bệnh viện Da liễu Thanh Hoá
+2. Đại học Y Hà Nội phân hiệu Thanh Hóa
+* Tác giả liên hệ: Lương Đức Diễn
+Email: bv.dalieuth@gmail.com
+Ngày nhận bài: 17/06/2026
+Ngày phản biện: 14/07/2026
+Ngày duyệt bài: 21/08/2026
+TÓM TẮT
+Mục tiêu: Đánh giá sự thay đổi chỉ số diện tích 
+và mức độ nặng vảy nến (PASI), chỉ số chất lượng 
+cuộc sống da liễu (DLQI), ghi nhận các biến cố bất 
+lợi trong 12 tuần điều trị và thăm dò mối liên quan 
+giữa một số đặc điểm lâm sàng, nhân khẩu học 
+với đáp ứng điều trị bằng Secukinumab trên bệnh 
+nhân vảy nến thông thường (VNTT) mức độ vừa 
+đến nặng tại Bệnh viện Da liễu Thanh Hóa.
+Phương pháp nghiên cứu: Nghiên cứu mô tả 
+hồi cứu tự đối chứng trên 30 hồ sơ bệnh án của 
+bệnh nhân VNTT mức độ vừa và nặng (PASI ≥ 
+10), chưa từng dùng thuốc sinh học (biologic-
+naive), hoàn thành lộ trình điều trị Secukinumab 
+liều 300mg tại các mốc tuần 0, 1, 2, 3, 4, 8 và 12 
+tại Bệnh viện Da liễu Thanh Hóa từ tháng 12/2025 
+đến tháng 03/2026. Các biến số được phân tích 
+gồm tuổi, giới tính, tuổi khởi phát, thời gian mắc 
+bệnh, tiền sử điều trị thuốc toàn thân cổ điển và 
+mức độ bệnh ban đầu. Phép kiểm Paired Samples 
+T-test được dùng để so sánh trung bình trước - sau 
+điều trị; phép kiểm chính xác Fisher được sử dụng 
+để đánh giá mối liên quan lâm sàng.
+Kết quả: Tuổi trung bình của nhóm nghiên cứu 
+là 51,08 ± 13,75, trong đó nam giới chiếm 86,7%. 
+Sau 12 tuần điều trị, điểm PASI trung bình giảm 
+rõ rệt từ 19,50 ± 7,83 xuống còn 0,40 ± 0,56 (p 
+< 0,01). Tỷ lệ đạt đáp ứng PASI 75 và PASI 90 
+đều đạt 100%, tỷ lệ sạch tổn thương hoàn toàn 
+(PASI 100) đạt 66,7% tại tuần 12. Tại tuần 8, 100% 
+bệnh nhân đạt đích chất lượng cuộc sống DLQI 
+0/1, trong đó nhóm bệnh nhân trẻ tuổi đạt đích sớm 
+hơn có ý nghĩa thống kê tại tuần 4 (p < 0,05). Chưa 
+ghi nhận mối liên quan có ý nghĩa thống kê giữa 
+đáp ứng điều trị tại tuần 12 với tuổi, giới tính, tuổi 
+khởi phát, thời gian mắc bệnh, tiền sử điều trị thuốc 
+toàn thân cổ điển và mức độ nặng ban đầu (p > 
+0,05). Biến cố bất lợi chủ yếu là đau khu trú tại chỗ 
+tiêm (100%), ngứa (33,3%), sưng nhẹ (20%), đều 
+ở mức độ nhẹ và tự giới hạn. Ghi nhận sự sụt giảm 
+bạch cầu và tiểu cầu sau điều trị có ý nghĩa thống 
+kê (p < 0,05) nhưng đều nằm trong giới hạn sinh lý 
+bình thường.
+Kết luận: Điều trị Secukinumab 300mg mang lại 
+kết quả cải thiện tổn thương da rõ rệt trong thực 
+tế lâm sàng, giúp phục hồi nhanh chất lượng cuộc 
+sống và có hồ sơ an toàn thuận lợi, dung nạp tốt 
+cho bệnh nhân vảy nến thông thường mức độ vừa 
+và nặng điều trị tại Bệnh viện Da liễu Thanh Hóa.
+Từ khóa: Secukinumab, vảy nến thông thường, 
+PASI, DLQI, Bệnh viện Da liễu Thanh Hóa.
+OUTCOMES AND SAFETY OF SECUKI­
+NUMAB AFTER 12 WEEKS OF TREATMENT 
+IN PATIENTS WITH MODERATE-TO-SEVERE 
+PLAQUE PSORIASIS AT THANH HOA DERMA­
+TOLOGY HOSPITAL
+ABSTRACT
+Objective: To evaluate changes in the Psoriasis 
+Area and Severity Index (PASI), Dermatology Life 
+Quality Index (DLQI), and adverse events over a 12-
+week treatment period, and to explore the relationship 
+between baseline clinical/demographic characteristics 
+and treatment response to Secukinumab in patients 
+with moderate-to-severe plaque psoriasis at Thanh 
+Hoa Dermatology Hospital.
+Methods: A retrospective descriptive, self-
+controlled study was conducted on 30 medical 
+records of biologic-naive patients with moderate-
+to-severe plaque psoriasis (PASI ≥ 10) who 
+completed a 12-week regimen of Secukinumab 
+300 mg at Thanh Hoa Dermatology Hospital from 
+December 2025 to March 2026. Investigated 
+variables included age, sex, onset age, disease 
+duration, prior systemic therapy, and baseline 
+disease severity. Paired Samples T-test was 
+used for pre- and post-treatment continuous data, 
+and Fisher’s exact test was applied for clinical 
+association analysis.
+Results: The mean age of the study population 
+was 51.08 ± 13.75 years, with males accounting for 
+86.7%. At week 12, the mean PASI score decreased 
+significantly from 19.50 ± 7.83 at baseline to 0.40 ± 

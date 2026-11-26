@@ -1,0 +1,113 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 13 SỐ 4 - THÁNG 12  NĂM 2024
+150
+khởi phát bệnh và mức độ ảnh hưởng đến chất lượng cuộc sống, những người bệnh có tuổi khởi phát < 
+30 tuổi có sự ảnh hưởng nhiều đến CLCS cao hơn những người có tuổi khởi phát > 30 tuổi với (OR=2,1; 
+95% CI; 1,04- 4,2). Có mối liên quan giữa những người mắc bệnh kèm theo và mức độ ảnh hưởng đến 
+chất lượng cuộc sống với OR= 2,3; 95% CI; 1,3- 4,3).
+Bảng 7. Mối liên quan giữa số lượng tổn thương, triệu chứng bệnh với mức độ CLCS
+Các biến số
+n
+CLCS ảnh 
+hưởng nhiều
+Không/ít ảnh 
+hưởng 
+OR 
+(95% CI)
+SL
+%
+SL
+%
+Số lượng tổn 
+thương
+> 50  
+41
+30
+73,2
+11
+26,8
+2,4
+(1,1-5,2)
+≤ 50 
+159
+84
+52,8
+75
+47,2
+Triệu chứng 
+bệnh
+Có 
+181
+108
+59,7
+73
+40,3
+3,2
+(1,2-8,8)
+Không 
+19
+6
+31,6
+13
+68,4
+Bảng 7 cho kết quả: có mối liên quan giữa số lượng tổn thương với mức độ ảnh hưởng đến chất lượng 
+cuộc sống, những người bệnh có số lượng > 50 tổn thương chất lượng cuộc sống bị ảnh hưởng nhiều 
+cao hơn so với những người bệnh có số lượng thương tổn < 50 với OR= 2,4; 95% CI; 1,1- 5,2. Có mối 
+liên quan giữa triệu chứng bệnh với mức độ ảnh hưởng đến chất lượng cuộc sống, những người có triệu 
+chứng bệnh có chất lượng cuộc sống bị ảnh hưởng nhiều cao hơn những người không có triệu chứng 
+bệnh với OR= 3,2; 95%CI; 1,2- 8,8.
+Bảng 8. Mối liên quan giữa vị trí và kích thước tổn thương với mức độ chất lượng cuộc sống 
+Các biến số
+n
+CLCS ảnh 
+hưởng nhiều
+Không/ít ảnh 
+hưởng 
+OR 
+(95% CI)
+SL
+%
+SL
+%
+Vị trí tổn thương
+≥ 4 vị trí
+135
+87
+64,4
+48
+35,6
+2,6
+(1,4-4,7)
+< 4 vị trí 
+65
+27
+41,5
+38
+58,5
+Kích thước tổn 
+thương
+≥ 5 cm
+63
+46
+73,0
+17
+27,0
+2,7
+(1,4-5,3)
+< 5 cm
+137
+68
+49,6
+69
+50,4
+Kết quả bảng 8 cho thấy: có mối liên quan giữa vị trí tổn thương và mức độ ảnh hưởng đến chất lượng 
+cuộc sống, những người bệnh có ≥ 4 vị trí tổn thương có mức độ ảnh hưởng đến chất lượng cuộc sống 
+cao hơn những người bệnh có < 4 vị trí thương tổn với OR= 2,6, 95%CI; 1,4- 4,7. Có mối liên quan giữa 
+kích thước thương tổn và mức độ ảnh hưởng CLCS, những người bệnh có kích thước tổn thương > 5cm 
+có chất lượng cuộc sống ảnh hưởng nhiều cao hơn những người bệnh có kích thước tổn thương < 5cm 
+với OR= 2,7; 95% CI; 1,4- 5,3.
+Biểu đồ 4. Mối liên quan giữa thể bệnh Vảy nến với mức độ ảnh hưởng chất lượng cuộc sống 
+(n=200)
+Biểu đồ 4 cho kết quả: Có mối liên quan giữa thể bệnh Vảy nến và mức độ ảnh hưởng CLCS,; 91,3% 
+bệnh nhân mắc Vảy nến thể mủ/thể khớp có chất lượng cuộc sống ảnh hưởng nhiều và 50,9% bệnh 
+nhân Vảy nến thể thông thường có CLCS ảnh hưởng nhiều, sự khác biệt này có ý nghĩa thống kê với 
+OR= 13,0; p< 0,05.

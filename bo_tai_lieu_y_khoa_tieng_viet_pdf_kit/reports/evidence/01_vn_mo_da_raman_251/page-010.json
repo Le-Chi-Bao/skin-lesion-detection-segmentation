@@ -1,0 +1,140 @@
+{
+  "page": {
+    "pdf_page": 10,
+    "pdf_index_zero_based": 9,
+    "pdf_page_label": "",
+    "printed_page_number": "148",
+    "text_layer_characters": 3459,
+    "warnings": [],
+    "text_block_adjustments": [],
+    "column_bands_reordered": false,
+    "table_count": 0,
+    "figure_count": 0,
+    "embedded_image_count": 0,
+    "layout_boxes": [
+      {
+        "index": 0,
+        "class": "page-header",
+        "bbox": [
+          114,
+          86,
+          237,
+          95
+        ],
+        "pos": [
+          0,
+          32
+        ]
+      },
+      {
+        "index": 1,
+        "class": "text",
+        "bbox": [
+          114,
+          108,
+          500,
+          134
+        ],
+        "pos": [
+          32,
+          184
+        ]
+      },
+      {
+        "index": 2,
+        "class": "section-header",
+        "bbox": [
+          114,
+          139,
+          498,
+          166
+        ],
+        "pos": [
+          184,
+          279
+        ]
+      },
+      {
+        "index": 3,
+        "class": "text",
+        "bbox": [
+          114,
+          171,
+          501,
+          495
+        ],
+        "pos": [
+          279,
+          2516
+        ]
+      },
+      {
+        "index": 4,
+        "class": "text",
+        "bbox": [
+          114,
+          498,
+          501,
+          563
+        ],
+        "pos": [
+          2516,
+          2883
+        ]
+      },
+      {
+        "index": 5,
+        "class": "text",
+        "bbox": [
+          114,
+          566,
+          498,
+          683
+        ],
+        "pos": [
+          2883,
+          3625
+        ]
+      },
+      {
+        "index": 6,
+        "class": "page-footer",
+        "bbox": [
+          479,
+          694,
+          496,
+          701
+        ],
+        "pos": [
+          3625,
+          3631
+        ]
+      },
+      {
+        "index": 7,
+        "class": "page-footer",
+        "bbox": [
+          114,
+          695,
+          335,
+          705
+        ],
+        "pos": [
+          3631,
+          3691
+        ]
+      }
+    ],
+    "quality": {
+      "replacement_characters": 0,
+      "unexpected_controls": [],
+      "possible_mojibake": false,
+      "possible_joined_words": 0,
+      "duplicate_paragraphs": [],
+      "numeric_tokens_missing_from_markdown": {},
+      "numeric_tokens_added_in_markdown": {},
+      "comparison_scope": "PDF text layer; diagnostic only, not visual truth"
+    }
+  },
+  "tables": []
+}

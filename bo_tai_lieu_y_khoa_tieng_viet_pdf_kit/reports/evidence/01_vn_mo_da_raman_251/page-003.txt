@@ -1,0 +1,29 @@
+Nghiên cứu khoa học công nghệ
+Tạp chí Khoa học và Công nghệnhiệt đới, Số40, 12 - 2025
+141
+đo 10 mW. Các thông sốđược cài đặt theo quy trình đã được thông qua tại Viện 69.
+Mỗi lớp da (thượng bì, chân bì), chúng tôi tiến hành đo tại 3 vịtrí gồm 2 vịtrí ởvùng
+rìa 2 bên và 1 vịtrí ởtrung tâm. Tại mỗi vịtrí đó tiến hành đo 3 lần, lấy phổtrung
+bình đểloại bỏnhiễu do kĩ thuật đo.
+Dữliệu phổRaman thu được từcác mẫu mô da sau khi đo bằng thiết bịđược
+xửlý nhằm loại bỏnhiễu, hiệu chỉnh các sai lệch tín hiệu và chuẩn hóa trước khi phân
+tích. Toàn bộquá trình xửlý được thực hiện bằng phần mềm LabSpec6 tích hợp trong
+thiết bịđi kèm. Quá trình xửlý dữliệu gồm các bước cụthểnhư sau:
+- Làm mượt tín hiệu (Smoothing): Đểgiảm nhiễu ngẫu nhiên trên phổmà không
+làm mất đi thông tin pic Raman, nghiên cứu áp dụng phương pháp làm mượt Savitzky-
+Golay. Việc này giúp làm mượt phổvà cải thiện độphân giải quang phổtrong bước
+phân tích tiếp theo.
+- Hiệu chỉnh đường nền (Baseline Correction): Các phổRaman thường bịảnh
+hưởng bởi huỳnh quang nền, dẫn đến đường nền không bằng phẳng. Phương pháp trừ
+nền bằng hồi quy đa thức bậc hai (polynomial baseline fitting) được sửdụng đểloại bỏ
+thành phần này, đảm bảo sựchính xác khi xác định vịtrí và cường độcác pic Raman.
+- Cường độcác pic được chuẩn hóa theo cường độcủa pic 1003 cm-1. Phương 
+pháp này dựa trên cơ sởpic 1003 cm-1 của phenylalanin rất ổn định trong mô sinh
+học, thường ít bịảnh hưởng bởi formalin nên thường chọn làm chuẩn nội đểso sánh
+cường độgiữa các pic.
+3. KẾT QUẢ
+3.1. Quang phổRaman mẫu mô da người bình thường
+3.1.1. Quang phổRaman thượng bì
+Kết quảcho thấy quang phổRaman lớp thượng bì của 10 mẫu mô da có sựtương 
+đồng vềvịtrí các pic và phù hợp với các nghiên cứu đã được công bố(Bảng 1).
+Hình 1. Hình ảnh mô da tươi quan sát dưới kính hiển vi quang phổRaman, vật kính 10x.

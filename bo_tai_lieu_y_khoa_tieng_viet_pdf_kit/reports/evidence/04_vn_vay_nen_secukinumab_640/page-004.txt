@@ -1,0 +1,98 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 24 SỐ 05 - THÁNG 8  NĂM 2026
+162
+- Tiền sử điều trị toàn thân cổ điển trước đó: Phân 
+nhóm bệnh nhân có tiền sử điều trị thuốc toàn thân 
+cổ điển (như Methotrexate, Cyclosporine, Acitretin, 
+Đông y...) và nhóm chưa từng điều trị.
+2.2.4. Phương pháp xử lý thống kê số liệu
+Dữ liệu được làm sạch và xử lý bằng phần mềm 
+IBM SPSS Statistics 25.0. Các biến định tính được 
+mô tả bằng tần số (n) và tỷ lệ phần trăm (%). Các 
+biến định lượng được mô tả bằng số trung bình và 
+độ lệch chuẩn (Mean ± SD). Kiểm định Kolmogorov-
+Smirnov được áp dụng để xác nhận phân bố chuẩn 
+của các chỉ số liên tục trước khi tiến hành so sánh. 
+Phép kiểm Paired Samples T-test được sử dụng 
+để so sánh sự thay đổi điểm PASI, DLQI và các 
+chỉ số xét nghiệm huyết học, sinh hóa giữa thời 
+điểm nền T0 và các mốc theo dõi điều trị sau đó. 
+Đối với các phân tích mối liên quan lâm sàng của 
+bảng 2x2 hoặc phân nhóm có cỡ mẫu nhỏ (tần số 
+kỳ vọng nhỏ hơn 5), phép kiểm chính xác Fisher 
+(Fisher’s exact test) được áp dụng nhằm bảo đảm 
+độ tin cậy của giá trị p. Tất cả các kiểm định thống 
+kê đều sử dụng mức ý nghĩa hai phía với độ tin cậy 
+95%, kết quả được coi là có ý nghĩa thống kê khi 
+giá trị p < 0,05.
+2.3. Đạo đức nghiên cứu
+Đề tài nghiên cứu đã được phê duyệt và thông 
+qua về mặt chuyên môn và y đức bởi Hội đồng Đạo 
+đức trong Nghiên cứu Y sinh học Bệnh viện Da liễu 
+Thanh Hóa theo Quyết định số 42/QĐ-BVDLTH 
+ngày 10/01/2026. Vì đây là nghiên cứu mô tả hồi 
+cứu dựa trên hồ sơ bệnh án sẵn có, nhóm nghiên 
+cứu đã được Hội đồng miễn yêu cầu ký bản đồng 
+thuận bằng văn bản của người bệnh. Mọi thông tin 
+cá nhân và dữ liệu y khoa của bệnh nhân đều được 
+mã hóa bảo mật, hoàn toàn phục vụ cho mục đích 
+phân tích khoa học phi lợi nhuận.
+III. KẾT QUẢ
+Đặc điểm chung của nhóm đối tượng nghiên cứu (N = 30): Qua khảo sát 30 hồ sơ bệnh án, tuổi trung 
+bình của bệnh nhân là 51,08 ± 13,75 (từ 26 đến 76 tuổi). Nam giới chiếm ưu thế với 86,7% (26 ca), nữ 
+giới chiếm 13,3% (4 ca). Thời gian mắc bệnh trung bình là 12,57 ± 10,24 năm, trong đó nhóm có thời 
+gian bị bệnh kéo dài ≥ 5 năm chiếm 66,7% (20 ca). Tuổi khởi phát bệnh trung bình là 38,90 ± 12,97 tuổi, 
+với 63,3% (19 ca) khởi phát trước tuổi 40. Tiền sử gia đình có người mắc vảy nến chiếm 10% (3 ca). Về 
+nghề nghiệp, viên chức văn phòng và hưu trí chiếm tỷ lệ cao nhất (đều đạt 36,7%), buôn bán chiếm 20% 
+và công nhân chiếm 6,7%. Có 96,7% (29 ca) bệnh nhân có tiền sử điều trị thuốc toàn thân cổ điển trước 
+đó và chỉ có 1 ca (3,3%) là chưa từng điều trị toàn thân cổ điển trước khi tiếp cận Secukinumab. Các yếu 
+tố khởi phát hoặc làm bùng phát bệnh phổ biến gồm thời tiết mùa đông lạnh khô (66,7%), stress tâm lý 
+(60,0%), thói quen uống rượu (36,7%) và hút thuốc lá (23,3%). Về vị trí thương tổn đặc thù, tổn thương 
+da đầu chiếm tỷ lệ 93,3% (28 ca) và tổn thương móng tay/móng chân gặp ở 86,7% (26 ca) bệnh nhân.
+Sự cải thiện chỉ số PASI trung bình qua các mốc thời gian: Điểm PASI trung bình của nhóm nghiên cứu 
+giảm nhanh từ mốc nền 19,50 ± 7,83 xuống còn 4,51 ± 3,24 điểm tại Tuần 4, tiếp tục giảm xuống 1,89 ± 
+2,32 điểm tại Tuần 8 và đạt mức là 0,40 ± 0,56 điểm tại Tuần 12. Sự khác biệt sụt giảm điểm trung bình 
+này tại tất cả các thời điểm T4, T8, T12 so với mốc nền T0 đều có ý nghĩa thống kê cao (p < 0,01). Diễn 
+tiến đáp ứng lâm sàng ghi nhận tỷ lệ đạt đáp ứng PASI 75 tăng từ 66,7% tại tuần 4 lên 100% tại tuần 8 
+và duy trì ổn định đến tuần 12. Tỷ lệ đạt đáp ứng PASI 90 tăng từ 20% (tuần 4) lên 70% (tuần 8) và đạt 
+mức tối đa 100% tại tuần 12. Đáng chú ý, tỷ lệ sạch tổn thương da hoàn toàn (PASI 100) tăng từ 30,0% 
+tại tuần 8 lên mức 66,7% tại tuần 12.
+Bảng 1. Kết quả điều trị vảy nến phân loại theo mức độ đáp ứng lâm sàng qua các tuần (n=30)
+Mốc thời gian
+Rất 
+tốt 
+(PASI 100)
+Tốt 
+(PASI 
+75-99%)
+Khá (PASI 
+50-74%)
+Vừa (PASI 
+25-49%)
+Kém hoặc 
+không KQ 
+(<25%)
+Tổng
+Tuần T4
+0 (0,0%)
+20 (66,7%)
+10 (33,3%)
+0 (0,0%)
+0 (0,0%)
+30 (100%)
+Tuần T8
+9 (30,0%)
+21 (70,0%)
+0 (0,0%)
+0 (0,0%)
+0 (0,0%)
+30 (100%)
+Tuần T12
+20 (66,7%)
+10 (33,3%)
+0 (0,0%)
+0 (0,0%)
+0 (0,0%)
+30 (100%)
+Nhận xét: Kết quả từ Bảng 1 cho thấy hiệu quả cải thiện tổn thương da xuất hiện sớm ngay từ tuần 
+4 với 66,7% bệnh nhân đạt mức đáp ứng lâm sàng Tốt và 33,3% đạt mức Khá. Đến tuần 8, 100% bệnh 
+nhân đạt đáp ứng từ mức Tốt trở lên, trong đó có 30,0% đạt mức Rất sạch tổn thương (PASI 100). Sau 

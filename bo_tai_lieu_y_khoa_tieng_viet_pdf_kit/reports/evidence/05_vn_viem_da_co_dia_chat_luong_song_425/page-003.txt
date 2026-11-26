@@ -1,0 +1,95 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 15 SỐ 01 - THÁNG 3  NĂM 2025
+146
+Nhận xét: Ảnh hưởng của bệnh đến CLCS ở mức trung bình chiếm tỷ lệ cao nhất (35%).
+3.2. Mối liên quan giữa các yếu tố nhân khẩu học và CLCS
+Bảng 1. Điểm chất lượng cuộc sống trung bình (DLQI) to nhóm tuổi
+Nhóm tuổi
+  ± SD
+p
+16 - < 25
+8,3 ± 5
+0,327
+25 - < 45
+8 ± 5,3
+45 – < 60
+7,8 ± 4,5
+> 60
+6,7 ± 3,9
+Nhận xét: Không có sự khác biệt có ý nghĩa thống kê giữa các nhóm tuổi (p = 0,327). Nhóm>60 tuổi 
+có DLQI thấp nhất (6,7 ± 3,9), cho thấy CLCS ít bị ảnh hưởng
+Bảng 2. DLQI trung bình của bệnh nhân viêm da cơ địa theo thời gian bị bệnh
+Thời gian mắc bệnh
+ ± SD
+p
+< 1 năm
+8,2 ± 4,7
+0,014
+1 – < 5 năm
+6,5 ± 4,2
+5 – 10 năm
+5,6 ± 3,6
+> 10 năm
+8,7 ± 5
+Nhận xét: Bệnh nhân mắc bệnh trên 10 năm có DLQI cao nhất (8,7 ± 5,0), chứng tỏ bệnh kéo dài làm 
+suy giảm CLCS (p = 0,014).
+3.3. Mối liên quan giữa đặc điểm lâm sàng và CLCS
+Bảng 3. DLQI trung bình của bệnh nhân viêm da cơ địa theo giai đoạn bệnh
+Giai đoạn bệnh
+ ± SD
+p
+Cấp tính
+10,2 ± 4,4
+< 0,001
+Bán cấp
+8,4 ± 3,5
+Mạn tính
+4,4 ± 3,8
+Nhận xét: Bệnh nhân giai đoạn cấp có DLQI cao nhất (10,2 ± 4,4), có ý nghĩa thống kê (p < 0,001). 
+Bệnh nhân mạn tính có DLQI thấp nhất (4,4 ± 3,8), chứng tỏ họ đã thích nghi tốt hơn với bệnh.
+Bảng 4. DLQI trung bình của bệnh nhân viêm da cơ địa theo mức độ bệnh
+Mức độ bệnh
+± SD
+p
+Nhẹ
+4,5 ± 3,8
+< 0,001
+Vừa
+9 ± 3,9
+Nặng
+12,9 ± 3,5
+Nhận xét: Mức độ bệnh càng nặng, CLCS càng suy giảm (p < 0,001)
+3.4. Các yếu tố nguy cơ làm suy giảm chất lượng cuộc sống
+Bảng 5. Mối liên quan đơn biến của một số yếu tố với chất lượng cuộc sống của bệnh nhân viêm 
+da cơ địa
+Các biến
+CLCS ảnh hưởng rất lớn
+và nghiêm trọng
+OR
+95%CI
+p
+Giới tính
+Nam
+1
+-
+-
+Nữ
+1,40
+0,77 - 2,56
+0,26
+Nhóm tuổi
+16 - < 25
+1
+-
+-
+25 - < 45
+0,55
+0,24 - 1,27
+0,16
+45 – < 60
+0,63
+0,28 - 1,42
+0,27
+> 60
+0,38
+0,17 - 0,86
+0,02

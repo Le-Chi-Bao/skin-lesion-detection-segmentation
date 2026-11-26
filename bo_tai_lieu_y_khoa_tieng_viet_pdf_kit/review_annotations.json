@@ -1,0 +1,239 @@
+{
+  "vn-raman-skin-251": {
+    "authors": [
+      "Tưởng Phi Vương",
+      "Trần Thái Tú"
+    ],
+    "authors_evidence": "PDF page 1, author line; agent visual comparison; capitalization normalized only in metadata",
+    "agent_visual_pages": [
+      1,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "human_review_status": "needs_human_review",
+    "notes": "Đối chiếu tiêu đề/tác giả trang 1; bảng 1–6 (bảng 6 tiếp trang 9), nhãn pic và các mẫu 0.0157, 0.0402, 0.0001, 0.0002. Đã thấy từ dính, số mũ cm-1 và ký hiệu X ± SD cần người kiểm tra. Giữ số thứ tự hình lặp như nguồn; không diễn giải số liệu trong đồ thị.",
+    "heading_quality": "Đã đối chiếu trang mẫu; còn khả năng tách/gộp heading cần người kiểm tra",
+    "paragraph_order": "Đối chiếu hai cột ở trang mẫu; chú thích có thể ngắt đoạn; chưa xác nhận toàn văn",
+    "tables_reviewed_pdf_pages": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "scientific_values_review": "Chỉ kiểm tra mẫu nêu trong notes; không xác nhận mọi giá trị",
+    "figure_handling": "Caption và số trang; không tái sử dụng hình; ảnh render chỉ review cục bộ",
+    "unicode_review": "Dấu tiếng Việt giữ được trên trang mẫu; kiểm tra tự động ký tự lỗi trong report",
+    "remaining_uncertainty": "needs_human_review: toàn văn, số liệu y khoa, heading, công thức và quyền tái sử dụng",
+    "reviewer_type": "agent_visual_comparison_not_human"
+  },
+  "vn-atopic-488": {
+    "authors": [
+      "Trương Mai Trâm",
+      "Dương Văn Dược",
+      "Lường Thị Hồng",
+      "Nguyễn Thị Kim Oanh",
+      "Vũ Hà Phương",
+      "Mirna Da Nora Mangue",
+      "Nguyễn Thị Tài Linh"
+    ],
+    "authors_evidence": "PDF page 1, author line; agent visual comparison; capitalization normalized only in metadata",
+    "agent_visual_pages": [
+      1,
+      3,
+      4,
+      5
+    ],
+    "human_review_status": "needs_human_review",
+    "notes": "Đối chiếu bảng 1–7 và phần bảng 6 tiếp trang 5, các nhóm/ô gộp OR và CI. Mẫu kiểm tra: n=967/n=93, 36 (38,7), 57 (61,3), OR 7,87 (4,41-14,06), 2,78 (1,33-5,8). Nguồn có tổng 82 ở bảng 4 dưới n=93; p=0,034 ở bảng 6 nhưng phần nhận xét in p=0,0034. Giữ nguyên các khác biệt; cần người kiểm tra. Tiêu đề/tác giả bị engine gộp cùng dòng, metadata tác giả tách riêng có căn cứ trang 1.",
+    "heading_quality": "Đã đối chiếu trang mẫu; còn khả năng tách/gộp heading cần người kiểm tra",
+    "paragraph_order": "Đối chiếu hai cột ở trang mẫu; chú thích có thể ngắt đoạn; chưa xác nhận toàn văn",
+    "tables_reviewed_pdf_pages": [
+      3,
+      4,
+      5
+    ],
+    "scientific_values_review": "Chỉ kiểm tra mẫu nêu trong notes; không xác nhận mọi giá trị",
+    "figure_handling": "Caption và số trang; không tái sử dụng hình; ảnh render chỉ review cục bộ",
+    "unicode_review": "Dấu tiếng Việt giữ được trên trang mẫu; kiểm tra tự động ký tự lỗi trong report",
+    "remaining_uncertainty": "needs_human_review: toàn văn, số liệu y khoa, heading, công thức và quyền tái sử dụng",
+    "reviewer_type": "agent_visual_comparison_not_human"
+  },
+  "vn-acne-490": {
+    "authors": [
+      "Nguyễn Thị Kim Dung",
+      "Nguyễn Thị Tài Linh"
+    ],
+    "authors_evidence": "PDF page 1, author line; agent visual comparison; capitalization normalized only in metadata",
+    "agent_visual_pages": [
+      1,
+      2,
+      3
+    ],
+    "human_review_status": "needs_human_review",
+    "notes": "Đối chiếu tóm tắt và bảng 1–6, các tỷ lệ/phân nhóm và p-value gộp ô. Mẫu kiểm tra: 404, 262/142, 64,85%, OR 2,41 (1,43–4,07), p=0,001; OR 1,96 (1,12–3,41), p=0,018. Đã sửa thứ tự xuất tiêu đề III sau hết phương pháp ở cột phải bằng tọa độ; chú thích tác giả cuối cột trái vẫn cần người kiểm tra tính liền mạch.",
+    "heading_quality": "Đã đối chiếu trang mẫu; còn khả năng tách/gộp heading cần người kiểm tra",
+    "paragraph_order": "Đối chiếu hai cột ở trang mẫu; chú thích có thể ngắt đoạn; chưa xác nhận toàn văn",
+    "tables_reviewed_pdf_pages": [
+      2,
+      3
+    ],
+    "scientific_values_review": "Chỉ kiểm tra mẫu nêu trong notes; không xác nhận mọi giá trị",
+    "figure_handling": "Caption và số trang; không tái sử dụng hình; ảnh render chỉ review cục bộ",
+    "unicode_review": "Dấu tiếng Việt giữ được trên trang mẫu; kiểm tra tự động ký tự lỗi trong report",
+    "remaining_uncertainty": "needs_human_review: toàn văn, số liệu y khoa, heading, công thức và quyền tái sử dụng",
+    "reviewer_type": "agent_visual_comparison_not_human"
+  },
+  "vn-psoriasis-treatment-640": {
+    "authors": [
+      "Lương Đức Diễn",
+      "Lê Trí Bách",
+      "Nguyễn Thị Lệ",
+      "Lê Thu Hoài"
+    ],
+    "authors_evidence": "PDF page 1, author line; agent visual comparison; capitalization normalized only in metadata",
+    "agent_visual_pages": [
+      1,
+      4,
+      5,
+      6
+    ],
+    "human_review_status": "needs_human_review",
+    "notes": "Đối chiếu bảng 1–4, nhãn PASI/DLQI, ô gộp nhân khẩu học và xét nghiệm. Mẫu kiểm tra: n=30; 300mg; 51,08 ± 13,75; PASI 100/75-99%; 8.27 ± 3.03 và p=0.007. Tiêu đề cột cuối bảng 2 là Tuổi trung bình (Mean ± SD) dù caption nói DLQI: giữ nguyên, cần xem lại nguồn. Một số số xét nghiệm có dấu chấm thừa trong lớp text; giữ chữ gốc và yêu cầu người kiểm tra đối chiếu bản in. Khoảng 75-99% bị formatter bỏ dấu nối đã thay toàn khối bằng dòng glyph gốc có căn cứ, không sửa số liệu.",
+    "heading_quality": "Đã đối chiếu trang mẫu; còn khả năng tách/gộp heading cần người kiểm tra",
+    "paragraph_order": "Đối chiếu hai cột ở trang mẫu; chú thích có thể ngắt đoạn; chưa xác nhận toàn văn",
+    "tables_reviewed_pdf_pages": [
+      4,
+      5,
+      6
+    ],
+    "scientific_values_review": "Chỉ kiểm tra mẫu nêu trong notes; không xác nhận mọi giá trị",
+    "figure_handling": "Caption và số trang; không tái sử dụng hình; ảnh render chỉ review cục bộ",
+    "unicode_review": "Dấu tiếng Việt giữ được trên trang mẫu; kiểm tra tự động ký tự lỗi trong report",
+    "remaining_uncertainty": "needs_human_review: toàn văn, số liệu y khoa, heading, công thức và quyền tái sử dụng",
+    "reviewer_type": "agent_visual_comparison_not_human"
+  },
+  "vn-atopic-qol-425": {
+    "authors": [
+      "Nguyễn Thị Kim Dung",
+      "Nguyễn Thị Thương Hoài"
+    ],
+    "authors_evidence": "PDF page 1, author line; agent visual comparison; capitalization normalized only in metadata",
+    "agent_visual_pages": [
+      1,
+      3,
+      4
+    ],
+    "human_review_status": "needs_human_review",
+    "notes": "Đối chiếu bảng 1–6 và bảng 5 nối trang 3–4, ô gộp OR/95%CI/p. Mẫu kiểm tra: n=225; 0,014; <0,001; 54,17 (10,49–279,63); 78,30 (11,7–524,14), p<0,001. Công thức cỡ mẫu trang 2 không trích xuất đáng tin cậy: không dùng công thức mất bố cục trong Markdown; giữ lần thử engine ở evidence và cần đối chiếu PDF. Biểu đồ chỉ giữ caption; chưa xác minh quyền hình.",
+    "heading_quality": "Đã đối chiếu trang mẫu; còn khả năng tách/gộp heading cần người kiểm tra",
+    "paragraph_order": "Đối chiếu hai cột ở trang mẫu; chú thích có thể ngắt đoạn; chưa xác nhận toàn văn",
+    "tables_reviewed_pdf_pages": [
+      3,
+      4
+    ],
+    "scientific_values_review": "Chỉ kiểm tra mẫu nêu trong notes; không xác nhận mọi giá trị",
+    "figure_handling": "Caption và số trang; không tái sử dụng hình; ảnh render chỉ review cục bộ",
+    "unicode_review": "Dấu tiếng Việt giữ được trên trang mẫu; kiểm tra tự động ký tự lỗi trong report",
+    "remaining_uncertainty": "needs_human_review: toàn văn, số liệu y khoa, heading, công thức và quyền tái sử dụng",
+    "reviewer_type": "agent_visual_comparison_not_human"
+  },
+  "vn-psoriasis-qol-367": {
+    "authors": [
+      "Lê Thị Hương",
+      "Ninh Thị Nhung",
+      "Phạm Thị Dung"
+    ],
+    "authors_evidence": "PDF page 1, author line; agent visual comparison; capitalization normalized only in metadata",
+    "agent_visual_pages": [
+      1,
+      3,
+      4,
+      5,
+      6
+    ],
+    "human_review_status": "needs_human_review",
+    "notes": "Đối chiếu bảng 1–7, bảng 4 nối trang 4–5, tiêu đề chéo và nhiều tầng SL/%. Mẫu kiểm tra n=200, nam115/nữ85, 12,8±5,7, các ngưỡng ≤5/>5 năm, ≤50/>50 tổn thương và p<0,05. Nguồn bảng 7 ghi n=159 và n=51 trong nghiên cứu n=200: giữ nguyên, đánh dấu bất nhất cần người kiểm tra. Tiêu đề chéo vẫn cần kiểm tra quan hệ ngữ nghĩa; không ước lượng số từ đồ thị.",
+    "heading_quality": "Đã đối chiếu trang mẫu; còn khả năng tách/gộp heading cần người kiểm tra",
+    "paragraph_order": "Đối chiếu hai cột ở trang mẫu; chú thích có thể ngắt đoạn; chưa xác nhận toàn văn",
+    "tables_reviewed_pdf_pages": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "scientific_values_review": "Chỉ kiểm tra mẫu nêu trong notes; không xác nhận mọi giá trị",
+    "figure_handling": "Caption và số trang; không tái sử dụng hình; ảnh render chỉ review cục bộ",
+    "unicode_review": "Dấu tiếng Việt giữ được trên trang mẫu; kiểm tra tự động ký tự lỗi trong report",
+    "remaining_uncertainty": "needs_human_review: toàn văn, số liệu y khoa, heading, công thức và quyền tái sử dụng",
+    "reviewer_type": "agent_visual_comparison_not_human"
+  },
+  "vn-psoriasis-qol-377": {
+    "authors": [
+      "Lê Thị Hương",
+      "Ninh Thị Nhung",
+      "Phạm Thị Dung"
+    ],
+    "authors_evidence": "PDF page 1, author line; agent visual comparison; capitalization normalized only in metadata",
+    "agent_visual_pages": [
+      1,
+      3,
+      4,
+      5,
+      6
+    ],
+    "human_review_status": "needs_human_review",
+    "notes": "Đối chiếu bảng 1–8, các ô gộp biến số/n/SL/%/OR/CI. Mẫu kiểm tra: OR1,9 (1,1–3,4); OR2,4 (1,1–5,2); OR2,6 (1,4–4,7); 93,1%. Nguồn bảng 1 ghi ≥30 tuổi n=159 còn bảng 6 ghi n=153: giữ nguyên, cần người kiểm tra. Các đồ thị lưu caption, không lấy thêm số từ ước lượng ảnh. Kiểm tra lại tác giả và thứ tự tóm tắt hai cột sau xử lý gutter.",
+    "heading_quality": "Đã đối chiếu trang mẫu; còn khả năng tách/gộp heading cần người kiểm tra",
+    "paragraph_order": "Đối chiếu hai cột ở trang mẫu; chú thích có thể ngắt đoạn; chưa xác nhận toàn văn",
+    "tables_reviewed_pdf_pages": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "scientific_values_review": "Chỉ kiểm tra mẫu nêu trong notes; không xác nhận mọi giá trị",
+    "figure_handling": "Caption và số trang; không tái sử dụng hình; ảnh render chỉ review cục bộ",
+    "unicode_review": "Dấu tiếng Việt giữ được trên trang mẫu; kiểm tra tự động ký tự lỗi trong report",
+    "remaining_uncertainty": "needs_human_review: toàn văn, số liệu y khoa, heading, công thức và quyền tái sử dụng",
+    "reviewer_type": "agent_visual_comparison_not_human"
+  },
+  "vn-acne-traditional-507": {
+    "authors": [
+      "Đoàn Thị Nhật Lệ",
+      "Trần Khắc Bảo Linh",
+      "Lê Công Hậu",
+      "Lê Thị Thanh Nguyên",
+      "Hồ Thị Hới",
+      "Trần Văn Viên",
+      "Võ Văn Lanh",
+      "Nguyễn Phúc Bảo Đạt"
+    ],
+    "authors_evidence": "PDF page 1, author line; agent visual comparison; capitalization normalized only in metadata",
+    "agent_visual_pages": [
+      1,
+      3,
+      4,
+      5
+    ],
+    "human_review_status": "needs_human_review",
+    "notes": "Đối chiếu bảng 1–5, bảng 1 tiếp trang 4 và tiêu đề nhiều tầng giới tính/GAGS. Mẫu kiểm tra: n=106, 22/84; 52,8%; p=0,031/0,015/0,024/0,035; 15,98±5,48; 21,67±9,09. Nguồn ghi Da nhạy cảm số lượng 4 và tỷ lệ 10,4: giữ nguyên, cần người kiểm tra. Biểu đồ chỉ giữ caption; không suy diễn lâm sàng/YHCT. Còn phải kiểm tra số mũ, đoạn chuyển hai cột và mọi trích dẫn.",
+    "heading_quality": "Đã đối chiếu trang mẫu; còn khả năng tách/gộp heading cần người kiểm tra",
+    "paragraph_order": "Đối chiếu hai cột ở trang mẫu; chú thích có thể ngắt đoạn; chưa xác nhận toàn văn",
+    "tables_reviewed_pdf_pages": [
+      3,
+      4,
+      5
+    ],
+    "scientific_values_review": "Chỉ kiểm tra mẫu nêu trong notes; không xác nhận mọi giá trị",
+    "figure_handling": "Caption và số trang; không tái sử dụng hình; ảnh render chỉ review cục bộ",
+    "unicode_review": "Dấu tiếng Việt giữ được trên trang mẫu; kiểm tra tự động ký tự lỗi trong report",
+    "remaining_uncertainty": "needs_human_review: toàn văn, số liệu y khoa, heading, công thức và quyền tái sử dụng",
+    "reviewer_type": "agent_visual_comparison_not_human"
+  }
+}

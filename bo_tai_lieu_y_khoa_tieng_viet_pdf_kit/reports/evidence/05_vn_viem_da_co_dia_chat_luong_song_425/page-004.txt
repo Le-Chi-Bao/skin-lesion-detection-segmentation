@@ -1,0 +1,150 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 15 SỐ 01 - THÁNG 3 NĂM 2025
+147
+Các biến
+CLCS ảnh hưởng rất lớn
+và nghiêm trọng
+OR
+95%CI
+p
+Thời 
+gian 
+mắc bệnh
+< 1 năm
+1
+-
+-
+1 – < 5 năm
+0,56
+0,26 - 1,20
+0,14
+5 – 10 năm
+0,24
+0,05 - 1,01
+0,07
+> 10 năm
+1,67
+0,74 - 3,78
+0,22
+Triệu chứng 
+cơ năng
+Ngứa
+Không
+1
+-
+-
+Có
+0
+0
+0,10
+Đau rát
+Không
+1
+-
+-
+Có
+0,76
+0,35 - 1,68
+0,50
+Mất ngủ
+Không
+0
+-
+-
+Có
+2,65
+1,48 - 4,63
+0,002
+Giai 
+đoạn 
+bệnh
+Cấp
+1
+-
+-
+Bán cấp
+0,37
+0,18 - 0,74
+0,05
+Mạn tính
+0,11
+0,05 - 0,27
+< 0,001
+Mức độ bệnh
+Nhẹ
+1
+-
+-
+Vừa
+4,17
+1,90 - 9,13
+< 0,001
+Nặng
+54,17
+10,49 - 279,63
+< 0,001
+Nhận xét:  Mất ngủ làm tăng nguy cơ suy giảm CLCS gấp 2,65 lần (p = 0,002). Bệnh nhân giai đoạn 
+cấp có CLCS bị ảnh hưởng nghiêm trọng cao gấp 9 lần so với giai đoạn mạn tính (p < 0,001). Bệnh nhân 
+mức độ nặng có nguy cơ suy giảm CLCS cao gấp 54 lần so với bệnh nhẹ (p < 0,001).
+Bảng 6. Mối liên quan đa biến của một số yếu tố với chất lượng cuộc sống của bệnh nhân viêm da 
+cơ địa
+Các biến
+CLCS ảnh hưởng rất lớn và 
+nghiêm trọng
+OR
+95%CI
+p
+Nhóm tuổi
+16 - < 25
+1
+-
+-
+25 - < 45
+0,40
+0,14 - 1,12
+0,08
+45 - < 60
+0,17
+0,05 - 0,57
+0,004
+> 60
+0,12
+0,03 - 0,41
+0,001
+Mất ngủ
+Không
+1
+-
+-
+Có
+2,95
+1,13 - 7,71
+0,03
+Giai đoạn bệnh
+Cấp
+1
+-
+-
+Bán cấp
+0,64
+0,29 -1,41
+0,22
+Mạn tính
+0,21
+0,07 - 0,66
+0,01
+Mức độ bệnh
+Nhẹ
+1
+-
+-
+Vừa
+2,76
+1,07 - 7,13
+0,04
+Nặng
+78,30
+11,7 - 524,14
+<0,001
+Nhận xét: Nhóm > 60 tuổi có nguy cơ suy giảm CLCS thấp hơn đáng kể so với nhóm trẻ hơn (OR = 
+0,12, p = 0,001). Bệnh nhân mất ngủ có nguy cơ suy giảm CLCS cao gấp 2,95 lần (p = 0,03). Bệnh nhân 
+mức độ nặng có nguy cơ suy giảm CLCS cao gấp 78 lần so với bệnh nhẹ (p < 0,001).

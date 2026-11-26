@@ -1,0 +1,490 @@
+{
+  "page": {
+    "pdf_page": 2,
+    "pdf_index_zero_based": 1,
+    "pdf_page_label": "79",
+    "printed_page_number": "79",
+    "text_layer_characters": 4033,
+    "warnings": [],
+    "text_block_adjustments": [],
+    "column_bands_reordered": true,
+    "table_count": 0,
+    "figure_count": 0,
+    "embedded_image_count": 0,
+    "layout_boxes": [
+      {
+        "index": 0,
+        "class": "page-header",
+        "bbox": [
+          142,
+          43,
+          453,
+          55
+        ],
+        "pos": [
+          0,
+          64
+        ]
+      },
+      {
+        "index": 1,
+        "class": "text",
+        "bbox": [
+          56,
+          69,
+          295,
+          207
+        ],
+        "pos": [
+          64,
+          511
+        ]
+      },
+      {
+        "index": 2,
+        "class": "text",
+        "bbox": [
+          56,
+          211,
+          295,
+          362
+        ],
+        "pos": [
+          511,
+          996
+        ]
+      },
+      {
+        "index": 3,
+        "class": "section-header",
+        "bbox": [
+          65,
+          368,
+          292,
+          381
+        ],
+        "pos": [
+          996,
+          1044
+        ]
+      },
+      {
+        "index": 4,
+        "class": "section-header",
+        "bbox": [
+          65,
+          385,
+          292,
+          398
+        ],
+        "pos": [
+          1044,
+          1101
+        ]
+      },
+      {
+        "index": 5,
+        "class": "text",
+        "bbox": [
+          56,
+          402,
+          295,
+          456
+        ],
+        "pos": [
+          1101,
+          1299
+        ]
+      },
+      {
+        "index": 6,
+        "class": "text",
+        "bbox": [
+          56,
+          461,
+          295,
+          485
+        ],
+        "pos": [
+          1299,
+          1359
+        ]
+      },
+      {
+        "index": 7,
+        "class": "text",
+        "bbox": [
+          56,
+          492,
+          295,
+          518
+        ],
+        "pos": [
+          1359,
+          1447
+        ]
+      },
+      {
+        "index": 8,
+        "class": "section-header",
+        "bbox": [
+          65,
+          524,
+          216,
+          535
+        ],
+        "pos": [
+          1447,
+          1483
+        ]
+      },
+      {
+        "index": 9,
+        "class": "text",
+        "bbox": [
+          56,
+          539,
+          295,
+          580
+        ],
+        "pos": [
+          1483,
+          1634
+        ]
+      },
+      {
+        "index": 10,
+        "class": "section-header",
+        "bbox": [
+          65,
+          584,
+          141,
+          595
+        ],
+        "pos": [
+          1634,
+          1657
+        ]
+      },
+      {
+        "index": 11,
+        "class": "text",
+        "bbox": [
+          65,
+          601,
+          220,
+          614
+        ],
+        "pos": [
+          1657,
+          1690
+        ]
+      },
+      {
+        "index": 12,
+        "class": "formula",
+        "bbox": [
+          65,
+          619,
+          185,
+          647
+        ],
+        "pos": [
+          1690,
+          1841
+        ]
+      },
+      {
+        "index": 13,
+        "class": "text",
+        "bbox": [
+          65,
+          653,
+          110,
+          664
+        ],
+        "pos": [
+          1841,
+          1853
+        ]
+      },
+      {
+        "index": 14,
+        "class": "text",
+        "bbox": [
+          65,
+          668,
+          181,
+          681
+        ],
+        "pos": [
+          1853,
+          1879
+        ]
+      },
+      {
+        "index": 15,
+        "class": "text",
+        "bbox": [
+          56,
+          685,
+          295,
+          714
+        ],
+        "pos": [
+          1879,
+          1949
+        ]
+      },
+      {
+        "index": 16,
+        "class": "text",
+        "bbox": [
+          56,
+          716,
+          295,
+          776
+        ],
+        "pos": [
+          1949,
+          2133
+        ]
+      },
+      {
+        "index": 17,
+        "class": "section-header",
+        "bbox": [
+          312,
+          69,
+          436,
+          81
+        ],
+        "pos": [
+          2133,
+          2166
+        ]
+      },
+      {
+        "index": 18,
+        "class": "text",
+        "bbox": [
+          303,
+          85,
+          539,
+          168
+        ],
+        "pos": [
+          2166,
+          2438
+        ]
+      },
+      {
+        "index": 19,
+        "class": "section-header",
+        "bbox": [
+          312,
+          172,
+          475,
+          185
+        ],
+        "pos": [
+          2438,
+          2478
+        ]
+      },
+      {
+        "index": 20,
+        "class": "text",
+        "bbox": [
+          312,
+          189,
+          462,
+          202
+        ],
+        "pos": [
+          2478,
+          2511
+        ]
+      },
+      {
+        "index": 21,
+        "class": "text",
+        "bbox": [
+          303,
+          206,
+          539,
+          316
+        ],
+        "pos": [
+          2511,
+          2871
+        ]
+      },
+      {
+        "index": 22,
+        "class": "section-header",
+        "bbox": [
+          312,
+          321,
+          410,
+          331
+        ],
+        "pos": [
+          2871,
+          2900
+        ]
+      },
+      {
+        "index": 23,
+        "class": "text",
+        "bbox": [
+          303,
+          339,
+          539,
+          406
+        ],
+        "pos": [
+          2900,
+          3127
+        ]
+      },
+      {
+        "index": 24,
+        "class": "text",
+        "bbox": [
+          303,
+          410,
+          539,
+          451
+        ],
+        "pos": [
+          3127,
+          3231
+        ]
+      },
+      {
+        "index": 25,
+        "class": "section-header",
+        "bbox": [
+          312,
+          455,
+          534,
+          468
+        ],
+        "pos": [
+          3231,
+          3287
+        ]
+      },
+      {
+        "index": 26,
+        "class": "text",
+        "bbox": [
+          303,
+          472,
+          539,
+          541
+        ],
+        "pos": [
+          3287,
+          3521
+        ]
+      },
+      {
+        "index": 27,
+        "class": "text",
+        "bbox": [
+          303,
+          545,
+          539,
+          572
+        ],
+        "pos": [
+          3521,
+          3586
+        ]
+      },
+      {
+        "index": 28,
+        "class": "text",
+        "bbox": [
+          303,
+          576,
+          539,
+          630
+        ],
+        "pos": [
+          3586,
+          3751
+        ]
+      },
+      {
+        "index": 29,
+        "class": "section-header",
+        "bbox": [
+          312,
+          635,
+          475,
+          647
+        ],
+        "pos": [
+          3751,
+          3792
+        ]
+      },
+      {
+        "index": 30,
+        "class": "text",
+        "bbox": [
+          303,
+          651,
+          539,
+          748
+        ],
+        "pos": [
+          3792,
+          4121
+        ]
+      },
+      {
+        "index": 31,
+        "class": "text",
+        "bbox": [
+          312,
+          754,
+          436,
+          765
+        ],
+        "pos": [
+          4121,
+          4151
+        ]
+      },
+      {
+        "index": 32,
+        "class": "page-footer",
+        "bbox": [
+          521,
+          807,
+          534,
+          816
+        ],
+        "pos": [
+          4151,
+          4156
+        ]
+      }
+    ],
+    "quality": {
+      "replacement_characters": 0,
+      "unexpected_controls": [],
+      "possible_mojibake": false,
+      "possible_joined_words": 0,
+      "duplicate_paragraphs": [],
+      "numeric_tokens_missing_from_markdown": {},
+      "numeric_tokens_added_in_markdown": {},
+      "comparison_scope": "PDF text layer; diagnostic only, not visual truth"
+    }
+  },
+  "tables": []
+}

@@ -1,0 +1,193 @@
+{
+  "page": {
+    "pdf_page": 6,
+    "pdf_index_zero_based": 5,
+    "pdf_page_label": "9",
+    "printed_page_number": "9",
+    "text_layer_characters": 4780,
+    "warnings": [],
+    "text_block_adjustments": [
+      {
+        "bbox": [
+          56,
+          500,
+          295,
+          750
+        ],
+        "reason": "numeric_formatter_difference",
+        "original_engine_text": "Kết quả cho thấy MTC hay gặp ở vùng mặt với tỷ lệ 100% đối tượng trong nghiên cứu. Ở những khu vực khác chiếm tỷ lệ thấp hơn như ở ngực là 18,9%; lưng 29,2%. Kết quả này tương đồng với nghiên cứu về đặc điểm lâm sàng trên bệnh nhân MTC thông thường đến khám và điều trị tại Bệnh viện Đại học Y Dược Cần Thơ năm 20182019 cho thấy MTC xuất hiện ở mặt chiếm tỷ lệ cao nhất 99,2%, các vùng da khác tỷ lệ thấp hơn như lưng 45,2%, ngực 17,7% [7]. Điều này giải thích do tuyến bã có vai trò quan trọng trong cơ chế hình thành MTC, vùng nào có mật độ tuyến bã cao sẽ có nguy cơ mắc MTC cao hơn những vùng có mật độ tuyến bã thấp. Trong khi đó da vùng mặt có số lượng tế bào tuyến bã nhiều nhất, tế bào tuyến bã lại có thể tích lớn hơn và phát triển gấp 5 lần ở các nơi khác đó là lý do tại sao MTC hay gặp với mặt so với các vị trí khác [11]. \n\n"
+      }
+    ],
+    "column_bands_reordered": true,
+    "table_count": 0,
+    "figure_count": 0,
+    "embedded_image_count": 0,
+    "layout_boxes": [
+      {
+        "index": 0,
+        "class": "page-header",
+        "bbox": [
+          139,
+          43,
+          456,
+          55
+        ],
+        "pos": [
+          0,
+          65
+        ]
+      },
+      {
+        "index": 1,
+        "class": "text",
+        "bbox": [
+          56,
+          69,
+          295,
+          109
+        ],
+        "pos": [
+          65,
+          203
+        ]
+      },
+      {
+        "index": 2,
+        "class": "text",
+        "bbox": [
+          56,
+          113,
+          295,
+          210
+        ],
+        "pos": [
+          203,
+          528
+        ]
+      },
+      {
+        "index": 3,
+        "class": "text",
+        "bbox": [
+          56,
+          214,
+          295,
+          353
+        ],
+        "pos": [
+          528,
+          993
+        ]
+      },
+      {
+        "index": 4,
+        "class": "text",
+        "bbox": [
+          56,
+          357,
+          295,
+          496
+        ],
+        "pos": [
+          993,
+          1431
+        ]
+      },
+      {
+        "index": 5,
+        "class": "text",
+        "bbox": [
+          56,
+          500,
+          295,
+          750
+        ],
+        "pos": [
+          1431,
+          2269
+        ]
+      },
+      {
+        "index": 6,
+        "class": "text",
+        "bbox": [
+          56,
+          755,
+          295,
+          781
+        ],
+        "pos": [
+          2269,
+          2363
+        ]
+      },
+      {
+        "index": 7,
+        "class": "text",
+        "bbox": [
+          303,
+          69,
+          542,
+          151
+        ],
+        "pos": [
+          2363,
+          2610
+        ]
+      },
+      {
+        "index": 8,
+        "class": "text",
+        "bbox": [
+          303,
+          155,
+          542,
+          294
+        ],
+        "pos": [
+          2610,
+          3068
+        ]
+      },
+      {
+        "index": 9,
+        "class": "text",
+        "bbox": [
+          303,
+          298,
+          542,
+          773
+        ],
+        "pos": [
+          3068,
+          4711
+        ]
+      },
+      {
+        "index": 10,
+        "class": "page-footer",
+        "bbox": [
+          524,
+          807,
+          531,
+          816
+        ],
+        "pos": [
+          4711,
+          4715
+        ]
+      }
+    ],
+    "quality": {
+      "replacement_characters": 0,
+      "unexpected_controls": [],
+      "possible_mojibake": false,
+      "possible_joined_words": 0,
+      "duplicate_paragraphs": [],
+      "numeric_tokens_missing_from_markdown": {},
+      "numeric_tokens_added_in_markdown": {},
+      "comparison_scope": "PDF text layer; diagnostic only, not visual truth"
+    }
+  },
+  "tables": []
+}

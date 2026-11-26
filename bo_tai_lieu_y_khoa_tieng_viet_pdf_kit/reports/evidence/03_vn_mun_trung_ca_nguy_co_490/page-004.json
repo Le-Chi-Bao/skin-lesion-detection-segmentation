@@ -1,0 +1,196 @@
+{
+  "page": {
+    "pdf_page": 4,
+    "pdf_index_zero_based": 3,
+    "pdf_page_label": "66",
+    "printed_page_number": "66",
+    "text_layer_characters": 4825,
+    "warnings": [],
+    "text_block_adjustments": [],
+    "column_bands_reordered": true,
+    "table_count": 0,
+    "figure_count": 0,
+    "embedded_image_count": 0,
+    "layout_boxes": [
+      {
+        "index": 0,
+        "class": "page-header",
+        "bbox": [
+          146,
+          45,
+          460,
+          57
+        ],
+        "pos": [
+          0,
+          65
+        ]
+      },
+      {
+        "index": 1,
+        "class": "section-header",
+        "bbox": [
+          65,
+          72,
+          136,
+          85
+        ],
+        "pos": [
+          65,
+          86
+        ]
+      },
+      {
+        "index": 2,
+        "class": "text",
+        "bbox": [
+          56,
+          89,
+          295,
+          382
+        ],
+        "pos": [
+          86,
+          1104
+        ]
+      },
+      {
+        "index": 3,
+        "class": "text",
+        "bbox": [
+          56,
+          386,
+          295,
+          553
+        ],
+        "pos": [
+          1104,
+          1660
+        ]
+      },
+      {
+        "index": 4,
+        "class": "text",
+        "bbox": [
+          56,
+          557,
+          295,
+          752
+        ],
+        "pos": [
+          1660,
+          2321
+        ]
+      },
+      {
+        "index": 5,
+        "class": "text",
+        "bbox": [
+          56,
+          756,
+          295,
+          782
+        ],
+        "pos": [
+          2321,
+          2419
+        ]
+      },
+      {
+        "index": 6,
+        "class": "text",
+        "bbox": [
+          303,
+          88,
+          539,
+          213
+        ],
+        "pos": [
+          2419,
+          2866
+        ]
+      },
+      {
+        "index": 7,
+        "class": "text",
+        "bbox": [
+          303,
+          219,
+          539,
+          398
+        ],
+        "pos": [
+          2866,
+          3489
+        ]
+      },
+      {
+        "index": 8,
+        "class": "text",
+        "bbox": [
+          303,
+          402,
+          539,
+          583
+        ],
+        "pos": [
+          3489,
+          4083
+        ]
+      },
+      {
+        "index": 9,
+        "class": "text",
+        "bbox": [
+          303,
+          587,
+          539,
+          712
+        ],
+        "pos": [
+          4083,
+          4513
+        ]
+      },
+      {
+        "index": 10,
+        "class": "text",
+        "bbox": [
+          303,
+          716,
+          539,
+          784
+        ],
+        "pos": [
+          4513,
+          4765
+        ]
+      },
+      {
+        "index": 11,
+        "class": "page-footer",
+        "bbox": [
+          55,
+          807,
+          68,
+          816
+        ],
+        "pos": [
+          4765,
+          4770
+        ]
+      }
+    ],
+    "quality": {
+      "replacement_characters": 0,
+      "unexpected_controls": [],
+      "possible_mojibake": false,
+      "possible_joined_words": 0,
+      "duplicate_paragraphs": [],
+      "numeric_tokens_missing_from_markdown": {},
+      "numeric_tokens_added_in_markdown": {},
+      "comparison_scope": "PDF text layer; diagnostic only, not visual truth"
+    }
+  },
+  "tables": []
+}

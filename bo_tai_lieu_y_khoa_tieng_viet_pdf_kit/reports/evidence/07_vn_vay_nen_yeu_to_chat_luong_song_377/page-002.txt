@@ -1,0 +1,78 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 13 SỐ 4 - THÁNG 12  NĂM 2024
+146
+lượng cuộc sống và một số yếu tố ảnh hưởng đến 
+bệnh Vảy nến, tuy nhiên số lượng không nhiều, địa 
+điểm nghiên cứu chưa phong phú. Mặt khác, tại 
+Thái Bình chưa có nghiên cứu nào về vấn đề này.
+Vì vậy, chúng tôi tiến hành nghiên cứu với mục 
+tiêu: Tìm hiểu một số yếu tố liên quan tới chất lượng 
+cuộc sống của người bệnh vảy nến đến khám, điều 
+trị tại Bệnh viện Da liễu Thái Bình năm 2024
+II. ĐỐI TƯỢNG VÀ PHƯƠNG PHÁP NGHIÊN CỨU
+2.1 Đối tượng, địa điểm và thời gian nghiên cứu
+Đối tượng nghiên cứu: Là những người bệnh từ 18 
+tuổi trở lên đến khám, điều trị tại bệnh viện Da liễu 
+Thái Bình được chẩn đoán mắc bệnh Vảy nến theo 
+tiêu chuẩn chẩn đoán của Bộ Y tế năm 2023 [2].
+Địa điểm nghiên cứu: Bệnh viện Da liễu tỉnh 
+Thái Bình
+Thời gian nghiên cứu: Nghiên cứu được tiến 
+hành từ tháng 1/2024 đến tháng 6/2024.
+2.2. Phương pháp nghiên cứu
+2.2.1. Thiết kế nghiên cứu: Nghiên cứu dịch tễ 
+học mô tả thông qua cuộc điều tra cắt ngang với cỡ 
+mẫu là 200 người bệnh được chẩn đoán vảy nến.
+2.2.2. Cỡ mẫu: 
+Sử dụng công thức tính cỡ mẫu: 
+                  n  =      Z2
+(1-α/2)     δ2                       
+                                         ε2 µ2
+Trong đó:
+n: Số lượng người bệnh.
+Z(1-α/2): Hệ số tin cậy ở ngưỡng xác suất  = 5% thì 
+Z(1-α/2) = 1,96
+δ: Mức sai số tương đối chấp nhận. Δ = 4,3[4]
+µ: Giá trị trung bình của quần thể µ = 15,2[4]
+Thay vào công thức ta có n= 192 người bệnh. 
+Trên thực tế điều tra được 200 người bệnh.
+2.2.3. Kỹ thuật chọn mẫu: 
+Chọn mẫu thuận tiện có chủ đích: chọn tất cả người 
+bệnh đến khám tại  bệnh viện Da liễu tỉnh Thái Bình 
+từ tháng 1 năm 2024 đến tháng 6 năm 2024 được 
+chẩn đoán mắc bệnh Vảy nến theo tiêu chuẩn chẩn 
+đoán của Bộ Y tế năm 2023 đáp ứng các tiêu chuẩn 
+chọn mẫu cho đến đủ cỡ mẫu đã tính.
+- Phương pháp thu thập số liệu: 
++ Bước 1: Xây dựng và hoàn thiện bộ công cụ.
++ Bước 2: Tập huấn cho điều tra viên.
++ Bước 3: Thu thập số liệu.
++ Bước 4: Tổng hợp số liệu.
+2.2.4 Tiêu chuẩn đánh giá trong nghiên cứu 
+Đánh giá chất lượng cuộc sống của người bệnh 
+Vảy nến dựa vào bảng điểm chất lượng cuộc sống 
+của người bệnh da liễu (DLQI). Mỗi câu hỏi được 
+tính điểm từ 0 đến 3 (0: hoàn toàn không/không 
+liên quan, 1: ít, 2: nhiều và 3: rất nhiều). 
+- Đánh giá tác động của bệnh đến chất lượng 
+cuộc sống như sau: 
+ 0-1 điểm= hoàn toàn không có tác động; 2-5 
+điểm = tác động nhỏ; 6-10 điểm = tác động vừa 
+phải,11-20 điểm = tác động rất lớn, 21-30 điểm = 
+tác động cực kỳ lớn. [5]
+2.2.5.  Phương pháp xử lý số liệu
+Số liệu được xử lý trên máy vi tính bằng phần 
+mềm EPI- DATA 3.1 và SPSS 25. Trong đánh giá 
+kết quả sử dụng các phương pháp thống kê y học 
+và dịch tễ học (tính giá trị trung bình, tỷ lệ). Các số 
+liệu được trình bày bằng các bảng số liệu và biểu 
+đồ. Phân tích, tổng hợp để từ đó rút ra các nhận 
+xét, đánh giá. 
+2.3. Đạo đức trong nghiên cứu: Nghiên cứu đã 
+được Hội đồng xét duyệt đề cương của trường Đại 
+học Y Dược Thái Bình đồng ý thông qua và cho 
+thực hiện theo Quyết định số 105/QĐ-YDTB ngày 
+16 tháng 01 năm 2024. Nghiên cứu chỉ được tiến 
+hành khi có sự đồng ý của lãnh đạo bệnh viện và 
+sự tham gia tự nguyện của đối tượng nghiên cứu. 
+III. KẾT QUẢ 
+Biểu đồ 1. Phân bố đối tượng nghiên cứu theo giới và nhóm tuổi 

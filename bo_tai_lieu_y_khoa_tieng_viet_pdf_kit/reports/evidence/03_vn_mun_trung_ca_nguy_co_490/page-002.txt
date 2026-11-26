@@ -1,0 +1,91 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 18 SỐ 04 - THÁNG 9  NĂM 2025
+64
+- Đối tượng nghiên cứu: là sinh viên đang theo 
+học tại trường Đại học Y Dược Thái Bình, được 
+chẩn đoán mắc trứng cá thể thông thường theo 
+tiêu chuẩn của Hiệp hội Da liễu Hoa Kỳ (AAD) [4].
+Tiêu chuẩn lựa chọn:
+Sinh viên tuổi từ 18 đến 25.
+Được chẩn đoán mắc trứng cá thể thông thường.
+Đồng ý tham gia nghiên cứu.
+Tiêu chuẩn loại trừ:
+Sinh viên mắc các bệnh da khác (eczema, vảy 
+nến…).
+Đang dùng thuốc điều trị trứng cá đặc hiệu trong 
+3 tháng gần đây.
+Có bệnh lý nội khoa nghiêm trọng (đái tháo 
+đường, suy thận, tim mạch…).
+Không hợp tác hoặc không hoàn thành bảng hỏi.
+- Địa điểm và thời gian nghiên cứu: Nghiên 
+cứu được tiến hành tại Trường Đại học Y Dược 
+Thái Bình từ tháng 10/2020 đến tháng 5 năm 2021.
+2.2. Phương pháp nghiên cứu
+Thiết kế nghiên cứu:
+Nghiên cứu mô tả cắt ngang có phân tích hồi quy 
+đa biến.
+Cỡ mẫu và chọn mẫu:
+Cỡ mẫu được tính theo công thức nghiên cứu 
+mô tả với p ước lượng 0,5; sai số d = 0,05 và độ 
+tin cậy 95%. Tổng số mẫu nghiên cứu là 404 sinh 
+viên. Mẫu được chọn từ các lớp học thông qua 
+danh sách đăng ký học phần, đảm bảo đáp ứng 
+tiêu chuẩn lựa chọn và loại trừ.
+Nội dung/chỉ số nghiên cứu:
+- Đặc điểm dịch tễ: tuổi, giới, tiền sử gia đình.
+- Đặc điểm lâm sàng: mức độ trứng cá (nhẹ, vừa, 
+nặng), loại tổn thương, vị trí tổn thương.
+- Các yếu tố liên quan: loại da, giờ ngủ, mức độ 
+stress, sử dụng thuốc, mỹ phẩm, chế độ chăm sóc da.
+Quy trình tiến hành:
+Bước 1: Tuyển chọn đối tượng theo tiêu chuẩn.
+Bước 2: Phỏng vấn theo bảng hỏi, đồng thời 
+thăm khám lâm sàng bởi bác sĩ da liễu.
+Bước 3: Phân loại mức độ bệnh theo hướng dẫn 
+AAD[5] 
+Mức độ nhẹ: chủ yếu là comedones (mụn đầu 
+trắng, đầu đen), có thể có vài tổn thương viêm 
+nông (mụn sẩn, mụn mủ).
+Mức độ trung bình: có số lượng lớn comedones 
+và tổn thương viêm, ảnh hưởng đến nhiều vùng da.
+Mức độ nặng: xuất hiện nốt, nang, tổn thương 
+viêm sâu, có nguy cơ để lại sẹo.
+Bước 4: Mã hóa và xử lý dữ liệu.
+Phương pháp xử lý số liệu:
+Dữ liệu được nhập và xử lý bằng phần mềm SPSS 
+20.0. Các biến định tính được trình bày dưới dạng 
+tần suất và tỷ lệ phần trăm. Mối liên quan giữa các 
+yếu tố được phân tích bằng hồi quy logistic nhị phân; 
+giá trị p < 0,05 được xem là có ý nghĩa thống kê.
+2.3. Đạo đức nghiên cứu
+Nghiên cứu được thực hiện theo đúng các 
+nguyên tắc đạo đức trong nghiên cứu y sinh học. 
+Toàn bộ đối tượng đều được giải thích về mục 
+tiêu và quyền lợi, ký cam kết tham gia tự nguyện. 
+Thông tin cá nhân được bảo mật tuyệt đối, chỉ sử 
+dụng cho mục đích nghiên cứu khoa học.
+III. KẾT QUẢ NGHIÊN CỨU
+Bảng 1. Đặc điểm dịch tễ và lâm sàng của sinh viên mắc trứng cá
+Yếu tố
+Số lượng (n=404)
+Tỷ lệ (%)
+Nữ giới
+303
+75,0
+Tuổi từ 20–25
+331
+82,0
+Không có triệu chứng cơ năng
+316
+78,22
+Có tiền sử gia đình trứng cá
+215
+53,22
+Không sử dụng thuốc đặc hiệu
+315
+77,97
+Dùng sữa rửa mặt 1–2 lần/ngày
+298
+73,76
+Nhận xét: phần lớn sinh viên mắc trứng cá là nữ (75%) và trong độ tuổi từ 20–25 (82%). Hầu hết không 
+có triệu chứng cơ năng (78,22%) và không sử dụng thuốc đặc hiệu (77,97%). Yếu tố di truyền cũng khá 
+phổ biến với 53,22% có tiền sử gia đình trứng cá.

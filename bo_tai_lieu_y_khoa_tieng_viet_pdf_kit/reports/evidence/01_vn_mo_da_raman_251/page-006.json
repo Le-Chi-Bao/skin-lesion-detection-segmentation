@@ -1,0 +1,344 @@
+{
+  "page": {
+    "pdf_page": 6,
+    "pdf_index_zero_based": 5,
+    "pdf_page_label": "",
+    "printed_page_number": "144",
+    "text_layer_characters": 744,
+    "warnings": [
+      "table_structure_requires_visual_review",
+      "figure_not_reused; caption_only; rights_pending"
+    ],
+    "text_block_adjustments": [
+      {
+        "bbox": [
+          180,
+          273,
+          458,
+          460
+        ],
+        "reason": "unsupported_picture_text",
+        "original_engine_text": "\n\n"
+      },
+      {
+        "bbox": [
+          172,
+          500,
+          440,
+          658
+        ],
+        "reason": "unsupported_picture_text",
+        "original_engine_text": "\n\n"
+      }
+    ],
+    "column_bands_reordered": false,
+    "table_count": 1,
+    "figure_count": 2,
+    "embedded_image_count": 2,
+    "layout_boxes": [
+      {
+        "index": 0,
+        "class": "text",
+        "bbox": [
+          114,
+          86,
+          237,
+          95
+        ],
+        "pos": [
+          0,
+          32
+        ]
+      },
+      {
+        "index": 1,
+        "class": "text",
+        "bbox": [
+          145,
+          108,
+          467,
+          121
+        ],
+        "pos": [
+          32,
+          104
+        ]
+      },
+      {
+        "index": 2,
+        "class": "table",
+        "bbox": [
+          126,
+          127,
+          489,
+          202
+        ],
+        "pos": [
+          104,
+          429
+        ]
+      },
+      {
+        "index": 3,
+        "class": "text",
+        "bbox": [
+          141,
+          209,
+          429,
+          222
+        ],
+        "pos": [
+          429,
+          486
+        ]
+      },
+      {
+        "index": 4,
+        "class": "section-header",
+        "bbox": [
+          141,
+          226,
+          450,
+          239
+        ],
+        "pos": [
+          486,
+          550
+        ]
+      },
+      {
+        "index": 5,
+        "class": "text",
+        "bbox": [
+          114,
+          242,
+          498,
+          269
+        ],
+        "pos": [
+          550,
+          698
+        ]
+      },
+      {
+        "index": 6,
+        "class": "picture",
+        "bbox": [
+          180,
+          273,
+          458,
+          460
+        ],
+        "pos": [
+          698,
+          823
+        ]
+      },
+      {
+        "index": 7,
+        "class": "caption",
+        "bbox": [
+          126,
+          469,
+          486,
+          495
+        ],
+        "pos": [
+          823,
+          922
+        ]
+      },
+      {
+        "index": 8,
+        "class": "picture",
+        "bbox": [
+          172,
+          500,
+          440,
+          658
+        ],
+        "pos": [
+          922,
+          1047
+        ]
+      },
+      {
+        "index": 9,
+        "class": "caption",
+        "bbox": [
+          141,
+          667,
+          471,
+          680
+        ],
+        "pos": [
+          1047,
+          1116
+        ]
+      },
+      {
+        "index": 10,
+        "class": "page-footer",
+        "bbox": [
+          479,
+          694,
+          496,
+          701
+        ],
+        "pos": [
+          1116,
+          1122
+        ]
+      },
+      {
+        "index": 11,
+        "class": "page-footer",
+        "bbox": [
+          114,
+          695,
+          335,
+          705
+        ],
+        "pos": [
+          1122,
+          1182
+        ]
+      }
+    ],
+    "quality": {
+      "replacement_characters": 0,
+      "unexpected_controls": [],
+      "possible_mojibake": false,
+      "possible_joined_words": 2,
+      "duplicate_paragraphs": [
+        "> NEEDS_MANUAL_REVIEW: Hình hoặc công thức chưa được chuyển thành văn bản đáng tin cậy; xem vị trí tương ứng trong PDF gốc."
+      ],
+      "numeric_tokens_missing_from_markdown": {},
+      "numeric_tokens_added_in_markdown": {},
+      "comparison_scope": "PDF text layer; diagnostic only, not visual truth"
+    }
+  },
+  "tables": [
+    {
+      "table_id": "page-006-table-01",
+      "pdf_page": 6,
+      "captions": [],
+      "bbox": [
+        126.59680938720703,
+        127.73899841308594,
+        488.3982238769531,
+        201.6025390625
+      ],
+      "rows": 4,
+      "columns": 3,
+      "cells": [
+        [
+          [
+            120.0,
+            124.55999374389648,
+            194.5199966430664,
+            155.76000213623047
+          ],
+          [
+            194.5199966430664,
+            124.55999374389648,
+            272.0399932861328,
+            155.76000213623047
+          ],
+          [
+            272.0399932861328,
+            124.55999374389648,
+            493.4399871826172,
+            155.76000213623047
+          ]
+        ],
+        [
+          [
+            120.0,
+            155.76000213623047,
+            194.5199966430664,
+            172.1999969482422
+          ],
+          [
+            194.5199966430664,
+            155.76000213623047,
+            272.0399932861328,
+            172.1999969482422
+          ],
+          [
+            272.0399932861328,
+            155.76000213623047,
+            493.4399871826172,
+            172.1999969482422
+          ]
+        ],
+        [
+          [
+            120.0,
+            172.1999969482422,
+            194.5199966430664,
+            188.63999938964844
+          ],
+          [
+            194.5199966430664,
+            172.1999969482422,
+            272.0399932861328,
+            188.63999938964844
+          ],
+          [
+            272.0399932861328,
+            172.1999969482422,
+            493.4399871826172,
+            188.63999938964844
+          ]
+        ],
+        [
+          [
+            120.0,
+            188.63999938964844,
+            194.5199966430664,
+            204.83999633789062
+          ],
+          [
+            194.5199966430664,
+            188.63999938964844,
+            272.0399932861328,
+            204.83999633789062
+          ],
+          [
+            272.0399932861328,
+            188.63999938964844,
+            493.4399871826172,
+            204.83999633789062
+          ]
+        ]
+      ],
+      "values": [
+        [
+          "Pic thu được",
+          "Pic tham\nkhảo [4, 11]",
+          "Liên kết tạo ra pic trong quang phổRaman\ntương ứng"
+        ],
+        [
+          "906",
+          "907",
+          "-C=O của formalin"
+        ],
+        [
+          "1043",
+          "1041",
+          "-C=O của formalin"
+        ],
+        [
+          "1489",
+          "1492",
+          "-CH2 của formalin"
+        ]
+      ],
+      "html": "<table><tr><td>Pic thu được</td><td>Pic tham<br/>khảo [4, 11]</td><td>Liên kết tạo ra pic trong quang phổRaman<br/>tương ứng</td></tr><tr><td>906</td><td>907</td><td>-C=O của formalin</td></tr><tr><td>1043</td><td>1041</td><td>-C=O của formalin</td></tr><tr><td>1489</td><td>1492</td><td>-CH2 của formalin</td></tr></table>",
+      "method": "physical_rulings_with_geometric_spans",
+      "warning": null,
+      "merged_cells_present": false
+    }
+  ]
+}

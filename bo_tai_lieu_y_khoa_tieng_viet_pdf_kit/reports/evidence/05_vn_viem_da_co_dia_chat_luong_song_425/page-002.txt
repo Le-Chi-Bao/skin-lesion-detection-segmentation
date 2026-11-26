@@ -1,0 +1,93 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 15 SỐ 01 - THÁNG 3 NĂM 2025
+145
+Tiêu chuẩn chọn mẫu:
+Bệnh nhân được chẩn đoán viêm da cơ địa 
+(VDCĐ) theo tiêu chuẩn của Hội Da liễu Mỹ 
+(American Academy of Dermatology - AAD).
+Bệnh nhân từ 16 tuổi trở lên, đồng ý tham gia 
+nghiên cứu.
+Có khả năng trả lời bộ câu hỏi đánh giá chất 
+lượng cuộc sống (DLQI - Dermatology Life Quality 
+Index).
+Tiêu chuẩn loại trừ:
+Bệnh nhân có bệnh lý da liễu khác kèm theo có 
+thể ảnh hưởng đến chất lượng cuộc sống.
+Bệnh nhân mắc bệnh lý tâm thần nặng, không 
+thể hợp tác trong nghiên cứu.
+Bệnh nhân đang điều trị nội trú hoặc có tình trạng 
+cấp cứu cần can thiệp y tế ngay lập tức.
+Địa điểm nghiên cứu: Bệnh viện Đại học Y Thái Bình.
+Thời gian nghiên cứu: Từ tháng 1 – 6/2022
+2.2. Phương pháp nghiên cứu
+Thiết kế nghiên cứu:
+Nghiên cứu mô tả cắt ngang nhằm đánh giá các 
+yếu tố ảnh hưởng đến chất lượng cuộc sống của 
+bệnh nhân VDCĐ.
+Cỡ mẫu và phương pháp chọn mẫu:
+Cỡ mẫu: Được tính theo công thức:
+Trong đó:
++ n: cỡ mẫu tối thiểu nghiên cứu
++ α/2: độ tin cậy có ý nghĩa thống kê, trong nghiên 
+cứu này lấy ở ngưỡng α = 0,05.
++ Z1-α/2: Hệ số tin cậy. Với α = 0,05 thì Z1-α/2=1.96
++ p: Tỷ lệ mắc bệnh chung theo kết quả nghiên cứu 
+của Phạm Văn Hiển là khoảng 4% nên p=0,04 [8].
++ d: độ chính xác tuyệt đối mong muốn, thường 
+lấy = 0,03 (3%).
+Từ các số liệu trên, cỡ mẫu tính được là 164. 
+Trên thực tế, chúng tôi thu thập được thông tin từ 
+225 bệnh nhân viêm da cơ địa đến khám.
+Phương pháp chọn mẫu: Chọn mẫu thuận tiện 
+dựa trên tiêu chuẩn đưa vào, bệnh nhân được thu 
+thập thông tin trong khoảng thời gian nghiên cứu.
+Biến số và chỉ số nghiên cứu:
+Biến số độc lập: 
+Đặc điểm nhân khẩu học: Giới tính, tuổi, nghề 
+nghiệp, thời gian mắc bệnh.
+Tình trạng bệnh: Giai đoạn bệnh (cấp, bán cấp, 
+mạn tính), mức độ bệnh (nhẹ, vừa, nặng).
+Triệu chứng: Ngứa, mất ngủ, đau rát, khô da.
+Biến số phụ thuộc: 
+Chất lượng cuộc sống: Đánh giá bằng thang 
+điểm DLQI (Dermatology Life Quality Index), thang 
+đo từ 0-30 điểm, trong đó: 
+0-1: Không ảnh hưởng
+2-5: Ảnh hưởng nhẹ
+6-10: Ảnh hưởng trung bình
+11-20: Ảnh hưởng nặng
+21-30: Ảnh hưởng rất nặng
+Phương pháp thu thập dữ liệu:
+Bệnh nhân được khám lâm sàng xác định mức 
+độ bệnh theo tiêu chí của SCORAD (Scoring Atopic 
+Dermatitis).
+Phỏng vấn trực tiếp sử dụng bộ câu hỏi DLQI.
+Phân tích số liệu:
+2.3. Xử lý số liệu bằng phần mềm SPSS 26.0.
+Sử dụng trung bình ± độ lệch chuẩn (SD) để mô tả 
+biến liên tục, tần suất (%) để mô tả biến phân loại.
+So sánh giữa các nhóm bằng t-test, ANOVA cho 
+biến liên tục và chi-square test cho biến phân loại.
+Phân tích hồi quy đơn biến và đa biến để xác 
+định các yếu tố ảnh hưởng đến CLCS, với mức ý 
+nghĩa thống kê p < 0,05.
+2
+2
+)
+2
+/
+1
+(
+)
+1
+(
+d
+p
+p
+Z
+n
+−
+=
+−α
+III. KẾT QUẢ
+3.1. Ảnh hưởng chung của bệnh viêm da cơ địa đến chất lượng cuộc sống
+Biểu đồ 1. Phân bố điểm chất lượng cuộc sống (DLQI) ở bệnh nhân viêm da cơ địa (n= 225)

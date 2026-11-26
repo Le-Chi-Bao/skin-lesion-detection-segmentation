@@ -1,0 +1,96 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 15 SỐ 01 - THÁNG 3  NĂM 2025
+144
+CÁC YẾU TỐ ẢNH HƯỞNG ĐẾN CHẤT LƯỢNG CUỘC SỐNG CỦA BỆNH NHÂN 
+VIÊM DA CƠ ĐỊA TẠI THÁI BÌNH
+Nguyễn Thị Kim Dung1*, Nguyễn Thị Thương Hoài1
+1.  Trường Đại học Y Dược Thái Bình
+*Tác giả liên hệ: Nguyễn Thị Kim Dung
+Email: dunghungdl79@gmail.com
+Ngày nhận bài: 15/02/2025
+Ngày phản biện: 01/3/2025
+Ngày duyệt bài: 10/3/2025
+TÓM TẮT
+Mục tiêu: Đánh giá các yếu tố ảnh hưởng đến 
+chất lượng cuộc sống (CLCS) của bệnh nhân viêm 
+da cơ địa (VDCĐ) tại Thái Bình.
+Phương pháp: Nghiên cứu mô tả cắt ngang trên 
+225 bệnh nhân VDCĐ tại Bệnh viện Đại học Y Thái 
+Bình. CLCS được đánh giá bằng chỉ số DLQI, phân 
+tích các yếu tố ảnh hưởng bằng hồi quy đơn biến 
+và đa biến.
+Kết quả: 35% bệnh nhân có CLCS bị ảnh hưởng 
+mức trung bình. Mức độ bệnh nặng, giai đoạn cấp 
+tính, thời gian mắc bệnh dài và mất ngủ làm suy 
+giảm CLCS đáng kể (p < 0,05). Bệnh nhân mức độ 
+nặng có nguy cơ suy giảm CLCS cao gấp 78 lần so 
+với bệnh nhẹ (p < 0,001).
+Kết luận: Bệnh nhân VDCĐ có CLCS suy giảm 
+rõ rệt, đặc biệt ở những trường hợp nặng, kéo dài. 
+Việc kiểm soát triệu chứng hiệu quả và can thiệp 
+kịp thời là cần thiết để cải thiện CLCS.
+Từ khóa: Viêm da cơ địa, chất lượng cuộc sống, 
+DLQI, yếu tố ảnh hưởng.
+FACTORS AFFECTING THE QUALITY OF 
+LIFE OF PATIENTS WITH ATOPIC DERMAITIS 
+IN THAI BINH
+ABSTRACT
+Objective: To assess the factors affecting the 
+quality of life (QoL) of patients with atopic dermatitis 
+(AD) in Thai Binh.
+Method:A cross-sectional descriptive study 
+was conducted on 225 AD patients at Thai Binh 
+University Hospital. QoL was assessed using the 
+DLQI index, and factors affecting it were analyzed 
+using univariate and multivariate regression.
+Results: 35% of patients had a moderate 
+impairment in QoL. Disease severity, acute phase, 
+long disease duration, and sleep disturbances 
+significantly impaired QoL (p < 0.05). Patients with 
+severe disease had 78 times higher risk of QoL 
+impairment compared to those with mild disease 
+(p < 0.001).
+Conclusion: AD patients experience significant 
+impairment in QoL, especially in severe and 
+chronic cases. Effective symptom control and 
+timely intervention are necessary to improve QoL.
+Keywords: Atopic dermatitis, quality of life, DLQI, 
+influencing factors.
+I. ĐẶT VẤN ĐỀ
+Viêm da cơ địa (VDCĐ) là một bệnh viêm da mạn 
+tính, tái phát nhiều lần, có liên quan đến cơ chế 
+miễn dịch và yếu tố di truyền. Bệnh có thể xuất hiện 
+ở mọi lứa tuổi, ảnh hưởng nghiêm trọng đến chất 
+lượng cuộc sống (CLCS) của người bệnh do tình 
+trạng ngứa kéo dài, mất ngủ, stress tâm lý và hạn 
+chế trong sinh hoạt hằng ngày [1].
+Theo nghiên cứu dịch tễ, tỷ lệ mắc VDCĐ trên 
+thế giới dao động từ 2-20%, tùy thuộc vào từng khu 
+vực và nhóm dân số [2]. Ở Việt Nam, một số nghiên 
+cứu ghi nhận tỷ lệ mắc VDCĐ khoảng 4-8% dân 
+số, trong đó trẻ em và người trưởng thành đều có 
+nguy cơ mắc bệnh cao [3] (. Mặc dù bệnh không gây 
+tử vong, nhưng triệu chứng kéo dài có thể làm suy 
+giảm đáng kể CLCS, đặc biệt là ở những bệnh nhân 
+có mức độ bệnh nặng hoặc bệnh mạn tính [4].
+Nhiều nghiên cứu đã chứng minh VDCĐ không 
+chỉ gây ảnh hưởng về mặt thể chất mà còn tác 
+động tiêu cực đến sức khỏe tinh thần, làm gia tăng 
+nguy cơ trầm cảm và rối loạn lo âu [5]. Chỉ số DLQI 
+(Dermatology Life Quality Index) thường được sử 
+dụng để đánh giá mức độ ảnh hưởng của bệnh da 
+liễu đến CLCS của bệnh nhân, cho thấy bệnh nhân 
+VDCĐ có DLQI cao hơn so với nhiều bệnh da liễu 
+khác [6]. Các yếu tố như mức độ bệnh, giai đoạn 
+bệnh, thời gian mắc bệnh, tiền sử dị ứng và triệu 
+chứng ngứa có thể làm suy giảm CLCS đáng kể [7].
+Tại Việt Nam, các nghiên cứu về VDCĐ chủ yếu 
+tập trung vào đặc điểm lâm sàng và hiệu quả điều 
+trị, trong khi ít có nghiên cứu phân tích tác động 
+của bệnh đến CLCS. Vì vậy, nghiên cứu này được 
+thực hiện nhằm đánh giá các yếu tố ảnh hưởng 
+đến CLCS của bệnh nhân VDCĐ tại Thái Bình, từ 
+đó đề xuất các biện pháp giúp cải thiện chất lượng 
+cuộc sống cho người bệnh.
+II.ĐỐI TƯỢNG VÀ PHƯƠNG PHÁP NGHIÊN CỨU
+2.1. Đối tượng nghiên cứu: Bệnh nhân được 
+chẩn đoán viêm da cơ địa

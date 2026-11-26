@@ -1,0 +1,101 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 24 SỐ 05 - THÁNG 8 NĂM 2026
+161
+Tiêu chuẩn loại trừ hồ sơ gồm: (1) Bệnh nhân 
+có tiền sử đã sử dụng các thuốc sinh học khác 
+(như Adalimumab, Ustekinumab...); (2) Bệnh nhân 
+có nhiễm trùng cấp tính đang hoạt động hoặc lao 
+hoạt động trước khi điều trị; (3) Hồ sơ thiếu dữ liệu 
+lâm sàng hoặc cận lâm sàng tại các mốc thời gian 
+quy định; (4) Bệnh nhân tự ý bỏ điều trị hoặc không 
+tuân thủ phác đồ tiêm thuốc.
+Sơ đồ quy trình chọn mẫu bệnh án (Flowchart): 
+Trong thời gian nghiên cứu, có tổng cộng 34 bệnh 
+nhân vảy nến bắt đầu lộ trình điều trị Secukinumab 
+300mg tại bệnh viện. Nhóm nghiên cứu tiến hành 
+sàng lọc hồ sơ bệnh án và loại trừ 04 trường hợp 
+không thỏa mãn: 02 bệnh nhân tự ý ngưng trị nửa 
+chừng do lý do tài chính cá nhân, 01 bệnh nhân 
+chuyển cơ sở điều trị ngoại tỉnh, và 01 bệnh nhân 
+bị thiếu dữ liệu xét nghiệm huyết học và sinh hóa 
+tại mốc Tuần 12. Cuối cùng, 30 hồ sơ bệnh án của 
+những bệnh nhân hoàn thành đầy đủ 12 tuần điều 
+trị được đưa vào phân tích số liệu cuối cùng.
+Địa điểm nghiên cứu: Khoa Lâm sàng và phòng 
+khám chuyên khoa, Bệnh viện Da liễu Thanh Hóa. 
+Thời gian nghiên cứu: Từ tháng 12 năm 2025 đến 
+tháng 03 năm 2026.
+2.2. Phương pháp nghiên cứu
+Nghiên cứu được thực hiện theo phương pháp 
+mô tả hồi cứu, kết hợp so sánh trước và sau điều 
+trị (mô hình tự đối chứng dọc).
+2.2.1. Phác đồ điều trị và Quy trình Sàng lọc 
+cận lâm sàng bắt buộc
+Trước khi bắt đầu mũi tiêm Secukinumab đầu 
+tiên, toàn bộ bệnh nhân đều được thực hiện quy 
+trình sàng lọc cận lâm sàng bắt buộc bao gồm: 
+Công thức máu toàn phần, chức năng gan (SGOT, 
+SGPT), chức năng thận (Ure, Creatinin), Glucose 
+máu, kiểm tra X-quang ngực thẳng loại trừ lao hoạt 
+động và sàng lọc lao tiềm ẩn bằng xét nghiệm 
+Mantoux hoặc Quantiferon-TB Gold, sàng lọc viêm 
+gan siêu vi B (HBsAg), viêm gan siêu vi C (Anti-
+HCV) và HIV [3].
+Phác đồ điều trị sử dụng chế phẩm Secukinumab 
+với liều khuyến cáo 300mg tiêm dưới da (chia 
+thành 2 mũi tiêm 150mg tại hai vị trí khác nhau). Lộ 
+trình tiêm bắt buộc gồm giai đoạn tấn công: Tiêm 
+hàng tuần tại các tuần 0, 1, 2, 3 và 4; giai đoạn 
+duy trì sớm: Tiêm mỗi 4 tuần một lần tại các mốc 
+Tuần 8 và Tuần 12. Trong suốt 12 tuần điều trị, 
+bệnh nhân tuân thủ nghiêm ngặt việc không phối 
+hợp bất kỳ phương pháp điều trị toàn thân kinh 
+điển nào khác (như Methotrexate, Cyclosporine, 
+Acitretin, Corticosteroid toàn thân) hoặc liệu pháp 
+ánh sáng (NBUVB, PUVA). Về điều trị tại chỗ, 
+người bệnh ngừng hoàn toàn các thuốc bôi chứa 
+Corticosteroid hoạt lực mạnh và dẫn chất Vitamin 
+D3, chỉ được phép sử dụng chất dưỡng ẩm trung 
+tính (emollients) để làm dịu da khi cần thiết.
+2.2.2. Các chỉ số lâm sàng, thang đo và tiêu 
+chí đánh giá
+Chỉ số diện tích và mức độ nặng vảy nến (PASI) 
+được tính toán dựa trên mức độ đỏ da (E), dày 
+da (T) và bong vảy (S) tại 4 vùng cơ thể (đầu, chi 
+trên, thân mình, chi dưới). Mức sụt giảm điểm PASI 
+tại mốc Tuần 12 so với nền (T0) được dùng để 
+phân chia kết quả điều trị thành 5 mức độ đáp ứng 
+lâm sàng: (1) Rất tốt: Giảm 100% PASI (sạch hoàn 
+toàn tổn thương da); (2) Tốt: Giảm từ 75% đến 
+99% (PASI 75); (3) Khá: Giảm từ 50% đến < 75%; 
+(4) Vừa: Giảm từ 25% đến < 50%; (5) Kém hoặc 
+không kết quả: Giảm < 25% điểm PASI.
+Chỉ số chất lượng cuộc sống da liễu (DLQI) gồm 
+10 câu hỏi do bệnh nhân tự hoàn thành dưới sự 
+hướng dẫn không định hướng của bác sĩ lâm sàng. 
+Trạng thái chất lượng cuộc sống đạt đích được xác 
+định khi điểm DLQI đạt 0 hoặc 1 điểm, có ý nghĩa 
+lâm sàng là bệnh vảy nến không còn gây bất kỳ ảnh 
+hưởng nào đến đời sống thường ngày của người 
+bệnh [5]. Để kiểm soát sai số giữa các đánh giá viên 
+khác nhau (inter-observer variability), quy trình đánh 
+giá lâm sàng PASI và ghi nhận DLQI cho một bệnh 
+nhân được phân công thực hiện nhất quán bởi cùng 
+một bác sĩ điều trị phụ trách xuyên suốt từ đầu đến 
+cuối tại tất cả các thời điểm theo dõi.
+2.2.3. Định nghĩa biến số và phân nhóm trong 
+phân tích mối liên quan
+Để phân tích mối liên quan giữa các yếu tố đặc 
+điểm lâm sàng, nhân khẩu học với kết quả điều trị 
+tại tuần 12 (đích đáp ứng ‹Rất tốt› - PASI 100 so 
+với mức ‹Tốt› - PASI 75-99%), các biến liên tục và 
+phân loại được xử lý như sau:
+- Tuổi của bệnh nhân: Phân nhóm dựa trên trung 
+vị mẫu thành nhóm trẻ tuổi (≤ 51 tuổi) và lớn tuổi 
+(> 51 tuổi);
+- Giới tính: Phân nhóm Nam và Nữ;
+- Tuổi khởi phát bệnh: Phân nhóm khởi phát sớm 
+(< 40 tuổi) và khởi phát muộn (≥ 40 tuổi);
+- Thời gian bị bệnh: Phân nhóm dưới 5 năm (< 5 
+năm) và từ 5 năm trở lên (≥ 5 năm);
+- Mức độ bệnh ban đầu: Phân nhóm mức độ vừa 
+(10 ≤ PASI < 20) và mức độ nặng (PASI ≥ 20);

@@ -1,0 +1,139 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 18 SỐ 04 - THÁNG 9 NĂM 2025
+53
+Bệnh dị ứng
+Nhóm bệnh viêm 
+da cơ địa n (%)
+Nhóm không bị bệnh 
+viêm da cơ địa n (%)
+Tổng
+OR
+( CI 95%)
+p
+Hen phế quản
+Có
+8 (19)
+34 (81)
+42
+2,32
+(1,04-5,18)
+0,034
+Không
+85 (9,2)
+840 (90,8)
+925
+Viêm mũi dị 
+ứng
+Có
+26 (16,5)
+132 (83,5)
+158
+2,18
+(1,33-3,55)
+0,001
+Không
+67 (8,3)
+742 (91,7)
+809
+Nhận xét: Tiền sử gia đình mắc bệnh viêm da cơ địa làm tăng nguy cơ mắc bệnh viêm da cơ địa gấp 
+7,87 lần (p<0,001). Tiền sử gia đình mắc bệnh hen phế quản làm tăng nguy cơ mắc bệnh viêm da cơ địa 
+gấp 2,32 lần (p<0,0034). Tương tự, tiền sử gia đình mắc bệnh viêm mũi dị ứng làm tăng nguy cơ mắc 
+bệnh viêm da cơ địa gấp 2,18 lần (p=0,001).
+Bảng 7. Mối liên quan giữa chế độ ngủ và bệnh viêm da cơ địa (n=967)
+Chế độ ngủ
+Nhóm bệnh viêm 
+da cơ địa n (%)
+Nhóm không bị bệnh 
+viêm da cơ địa n (%)
+Tổng
+OR
+(CI 95%)
+p
+Thời 
+gian 
+ngủ 
+trung bình
+<5 giờ
+11 (22,9)
+37 (77,1)
+48
+2,78
+(1,33-5,8)
+0,006
+5-7 giờ
+49 (9,6)
+459 (90,4)
+508
+Giá trị tham chiếu
+7-8 giờ
+25 (8)
+286 (92)
+311
+0,82
+(0,49-1,35)
+0,44
+>8 giờ
+8 (8)
+92 (92)
+100
+0,81
+(0,37-1,78)
+0,6
+Ngủ ít, không ngon 
+giấc làm tình trạng 
+da xấu đi
+Có
+63 (13,6)
+401 (86,4)
+464
+2,48
+(1,57-3,9)
+<0,001
+Không
+30 (6)
+473 (94)
+503
+Nhận xét: Nhóm có thời gian ngủ trung bình <5 giờ/ngày có khả năng mắc viêm da cơ địa cao gấp 2,78 
+lần nhóm có thời gian ngủ 5-7 giờ/ngày (p=0,006). Ngủ ít, không ngon giấc làm tình trạng da xấu đi làm 
+tăng nguy cơ mắc viêm da cơ địa gấp 2,48 lần (p<0,001).
+IV. BÀN LUẬN
+Viêm da cơ địa (VDCĐ) là một bệnh da liễu mạn 
+tính, có cơ chế bệnh sinh phức tạp, liên quan mật thiết 
+đến yếu tố di truyền, hàng rào bảo vệ da, miễn dịch 
+và môi trường. Bệnh có xu hướng tái phát, gây ảnh 
+hưởng đáng kể đến chất lượng cuộc sống của người 
+mắc. Nghiên cứu của chúng tôi nhằm mô tả đặc điểm 
+lâm sàng và một số yếu tố nguy cơ của bệnh. 
+Trong nghiên cứu của chúng tôi, tỷ lệ mắc bệnh 
+VDCĐ ở 967 sinh viên Trường Đại học Y Dược Thái 
+Bình là 9,6%, cao hơn so với nghiên cứu của Lê 
+Phương Anh và cộng sự (2024) thực hiện trên sinh 
+viên tại Phân hiệu Đại học Y Hà Nội tại Thanh Hóa 
+là 6,7% [4]. Sự khác biệt này có thể là do sự khác 
+biệt về khí hậu, điều kiện sống, học tập, do cường 
+độ thực tập lâm sàng tại các cơ sở y tế. Nghiên cứu 
+của chúng tôi còn cho thấy, tỷ lệ mắc bệnh ở nữ giới 
+61,3% cao hơn nam giới 38,7%. Kết quả này của 
+chúng tôi khá tương đồng với nghiên cứu trên với 
+tỉ lệ mắc bệnh ở nữ cao hơn nam [4]. Điều này cho 
+thấy yếu tố sinh học, nội tiết, hoặc tiếp xúc với các 
+tác nhân dị ứng khác nhau giữa hai giới.
+Chúng tôi còn nhận thấy tần suất tái phát bệnh 
+ở mức độ thỉnh thoảng chiếm 69,9% và phát bệnh 
+thường xuyên chiếm 30,1%. Kết quả này khá tương 
+đồng với nghiên cứu của llli S, et al. (2004) đa số 
+bệnh nhân viêm da cơ địa không bị bệnh liên tục mà 
+xuất hiện triệu chứng theo từng giai đoạn [5]. Điều 
+này có thể là do hiện nay có nhiều các sản phẩm 
+chăm sóc da hỗ trợ quá trình điều trị, giúp làm giảm 
+tần suất tái phát bệnh như: sản phẩm dưỡng ẩm, 
+làm dịu da…,từ đó kiểm soát bệnh tốt hơn và làm 
+khoảng cách giữa các đợt tái phát xa nhau hơn. 
+Tỷ lệ tái phát bệnh VDCĐ cao nhất vào mùa đông 
+(66,7%), thấp hơn vào các mùa còn lại. Điều này có 
+thể liên quan đến độ ẩm và nhiệt độ thấp trong mùa 
+đông ở Việt Nam. Kết quả này tương đồng với nghiên 
+cứu của Silverberg cũng ghi nhận tỷ lệ tái phát cao 
+hơn ở các khu vực có độ ẩm thấp [6]. Điều này có thể 
+được lí giải là do các yếu tố khí hậu khô lạnh làm mất 
+nước qua da, suy giảm chức năng hàng rào bảo vệ, 
+từ đó làm tăng nguy cơ tái phát bệnh.

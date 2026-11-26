@@ -1,0 +1,102 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 24 SỐ 05 - THÁNG 8  NĂM 2026
+160
+0.56 (p < 0.01). The PASI 75 and PASI 90 response 
+rates both reached 100%, and 66.7% of patients 
+achieved PASI 100. Additionally, 100% of patients 
+achieved the DLQI 0/1 target by week 8, with 
+younger patients achieving this target significantly 
+earlier at week 4 (p < 0.05). No statistically significant 
+correlations were found between clinical response at 
+week 12 and age, sex, onset age, disease duration, 
+prior systemic therapy, or baseline disease severity 
+(p > 0.05). The most common adverse events were 
+localized injection site pain (100%), pruritus (33.3%), 
+and mild swelling (20%), all of which were mild and 
+self-limiting. Post-treatment laboratory evaluations 
+revealed statistically significant decreases in white 
+blood cell and platelet counts (p < 0.05), though all 
+values remained within normal physiological ranges.
+Conclusion: Secukinumab 300 mg therapy 
+provides significant improvement in skin lesions in 
+real-world clinical practice, substantially enhances 
+patients’ quality of life, and demonstrates a 
+favorable safety and tolerability profile in patients 
+with moderate-to-severe plaque psoriasis at Thanh 
+Hoa Dermatology Hospital.
+Keywords: Secukinumab, plaque psoriasis, 
+PASI, DLQI, Thanh Hoa Dermatology Hospital.
+I. ĐẶT VẤN ĐỀ
+Vảy nến là bệnh viêm da mạn tính do rối loạn đáp 
+ứng miễn dịch có xu hướng tiến triển dai dẳng suốt 
+đời, ảnh hưởng đến 2-3% dân số thế giới [1, 2]. 
+Tại Việt Nam, tỷ lệ người bệnh vảy nến đang có xu 
+hướng ngày càng gia tăng, tạo ra gánh nặng bệnh 
+tật đối với hệ thống y tế và đời sống của người 
+bệnh. Đặc biệt, tổn thương da diện rộng kết hợp 
+với cảm giác ngứa, đau nhức dai dẳng đã gây ra 
+sự suy giảm nghiêm trọng về mặt tâm lý, hạn chế 
+khả năng lao động và ảnh hưởng xấu đến chất 
+lượng cuộc sống đo lường qua chỉ số chất lượng 
+cuộc sống da liễu (DLQI). Do đó, mục tiêu điều trị 
+vảy nến hiện nay không chỉ dừng lại ở việc kiểm 
+soát tổn thương da đơn thuần mà còn hướng tới 
+mục tiêu làm sạch da tối đa và phục hoàn toàn đời 
+sống tinh thần, xã hội cho người bệnh [2].
+Những tiến bộ trong lĩnh vực sinh học phân tử và 
+miễn dịch học đã làm sáng tỏ trục sinh bệnh học 
+trung tâm Interleukin-23/Interleukin-17, đặc biệt là 
+vai trò chủ đạo của cytokine IL-17A trong việc thúc 
+đẩy phản ứng viêm mạch máu, thâm nhiễm bạch 
+cầu trung tính và kích thích sự tăng sinh quá mức 
+của tế bào sừng thượng bì [2]. Sự hiểu biết sâu sắc 
+này đã mở ra kỷ nguyên điều trị mới bằng thuốc 
+sinh học nhắm trúng đích. Trong đó, Secukinumab 
+là kháng thể đơn dòng người hoàn toàn thuộc 
+nhóm IgG1/κ có khả năng liên kết chọn lọc cao 
+và trung hòa hoạt tính của IL-17A, từ đó làm giảm 
+nhanh các dát đỏ, tình trạng thâm nhiễm dày da 
+và bong vảy trên lâm sàng. Hiệu quả làm sạch tổn 
+thương da của Secukinumab đã được chứng minh 
+rộng rãi qua các thử nghiệm lâm sàng ngẫu nhiên 
+có đối chứng (RCT) pha III mang tính bản lề như 
+ERASURE và FIXTURE trên thế giới [8].
+ Tại Việt Nam, việc nghiên cứu và công bố các 
+dữ liệu thực hành lâm sàng thực tế (Real-World 
+Evidence - RWE) về Secukinumab, đặc biệt tại các 
+bệnh viện chuyên khoa tuyến tỉnh, vẫn còn hạn 
+chế cần được bổ sung dữ liệu thực chứng. Bệnh 
+viện Da liễu Thanh Hóa là cơ sở chuyên khoa đầu 
+ngành của tỉnh Thanh Hóa, đã đưa Secukinumab 
+vào điều trị thường quy cho bệnh nhân vảy nến 
+mức độ vừa và nặng từ cuối năm 2024. Nhằm 
+đánh giá một cách hệ thống, khách quan kết quả 
+điều trị thực tế cũng như an toàn y khoa tại cơ sở, 
+chúng tôi tiến hành đề tài này với hai mục tiêu cụ 
+thể: (1) Đánh giá sự thay đổi chỉ số PASI, DLQI 
+và các biến cố bất lợi sau 12 tuần điều trị bằng 
+Secukinumab; và (2) Thăm dò mối liên quan giữa 
+một số đặc điểm lâm sàng, nhân khẩu học với đáp 
+ứng điều trị của người bệnh vảy nến tại Bệnh viện 
+Da liễu Thanh Hóa.
+II. ĐỐI TƯỢNG VÀ PHƯƠNG PHÁP NGHIÊN CỨU
+2.1. Đối tượng, địa điểm và thời gian nghiên cứu
+Đối tượng nghiên cứu là hồ sơ bệnh án của các 
+bệnh nhân được chẩn đoán xác định vảy nến thông 
+thường thể mảng mức độ vừa đến nặng, chưa 
+từng sử dụng bất kỳ loại thuốc sinh học nào trước 
+đó (biologic-naive) và hoàn thành đầy đủ lộ trình 
+12 tuần điều trị bằng Secukinumab liều 300mg tại 
+Bệnh viện Da liễu Thanh Hóa.
+Tiêu chuẩn lựa chọn hồ sơ bệnh án bao gồm: 
+(1) Bệnh nhân từ 18 tuổi trở lên, có chẩn đoán 
+xác định lâm sàng vảy nến thông thường mức độ 
+vừa và nặng dựa trên Quyết định số 4416/QĐ-
+BYT ngày 12/09/2016 của Bộ Y tế về Hướng dẫn 
+chẩn đoán và điều trị các bệnh Da liễu, cụ thể là 
+có chỉ số PASI nền (T0) ≥ 10 điểm; (2) Được điều 
+trị bằng Secukinumab liều 300mg tiêm dưới da 
+đúng lộ trình tấn công và duy trì sớm; (3) Hồ sơ 
+bệnh án ghi chép đầy đủ các chỉ số PASI, DLQI 
+và các xét nghiệm an toàn tại mốc khởi trị (T0) và 
+các thời điểm theo dõi Tuần 4 (T4), Tuần 8 (T8) và 
+Tuần 12 (T12).

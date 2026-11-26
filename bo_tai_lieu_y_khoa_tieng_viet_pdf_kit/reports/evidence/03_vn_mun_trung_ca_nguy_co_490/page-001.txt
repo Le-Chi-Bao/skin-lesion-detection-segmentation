@@ -1,0 +1,93 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 18 SỐ 04 - THÁNG 9 NĂM 2025
+63
+1. Trường Đại học Y Dược Thái Bình
+* Tác giả chính: Nguyễn Thị Kim Dung
+Emai: dunghungdl79@gmail.com
+Ngày nhận bài: 30/6/2025
+Ngày phản biện: 20/8/2025
+Ngày duyệt bài: 25/8/2025
+CÁC YẾU TỐ NGUY CƠ LIÊN QUAN ĐẾN MỨC ĐỘ TRỨNG CÁ THỂ 
+THÔNG THƯỜNG Ở SINH VIÊN: NGHIÊN CỨU CẮT NGANG
+TẠI TRƯỜNG ĐẠI HỌC Y DƯỢC THÁI BÌNH
+Nguyễn Thị Kim Dung1*, Nguyễn Thị Tài Linh1
+TÓM TẮT 
+Mục tiêu: Xác định các yếu tố nguy cơ liên quan 
+đến mức độ bệnh trứng cá thể thông thường ở 
+sinh viên.
+Phương pháp: Nghiên cứu mô tả cắt ngang, có 
+phân tích hồi quy logistic trên 404 sinh viên mắc 
+trứng cá tại Trường Đại học Y Dược Thái Bình. Dữ 
+liệu được phân tích bằng hồi quy logistic đa biến.
+Kết quả: Bệnh mức độ nhẹ chiếm 64,85%. Các 
+yếu tố liên quan mức độ nặng gồm da dầu (OR 
+= 2,41; 95% CI: 1,43–4,07; p = 0,001), ngủ sau 
+24h (OR = 2,21; 95% CI: 1,33–3,67; p = 0,002), và 
+stress thi cử (OR = 1,96; 95% CI: 1,12–3,41; p = 
+0,018). Các yếu tố như tiền sử gia đình và tần suất 
+sử dụng sữa rửa mặt không có ý nghĩa thống kê.
+Kết luận: Da dầu, thức khuya và stress là yếu tố 
+nguy cơ độc lập, cần được kiểm soát để cải thiện 
+tình trạng bệnh ở sinh viên.
+Từ khóa: Trứng cá, sinh viên, da dầu, stress, hồi 
+quy logistic.
+THE RISK FACTORS ASSOCIATED WITH THE 
+SEVERITY OF ACNE VULGARIS IN STUDENTS: 
+A CROSS-SECTIONAL STUDY AT THAI BINH 
+UNIVERSITY OF MEDICINE AND PHARMACY
+ABSTRACT
+Objective: To identify the risk factors associated 
+with the severity of common acne in students.
+Method: A cross-sectional descriptive study with 
+multivariate logistic regression was conducted 
+on 404 students diagnosed with acne vulgaris at 
+Thai Binh University of Medicine and Pharmacy. 
+Data were analyzed using multivariate logistic 
+regression.
+Results: Mild acne accounted for 64.85% of 
+cases. Factors significantly associated with more 
+severe acne included oily skin (OR = 2.41; 95% CI: 
+1.43–4.07; p = 0.001), sleeping after midnight (OR 
+= 2.21; 95% CI: 1.33–3.67; p = 0.002), and exam-
+related stress (OR = 1.96; 95% CI: 1.12–3.41; p 
+= 0.018). Other factors such as family history of 
+acne and frequency of facial cleanser use were not 
+statistically significant.
+Conclusion: Oily skin, staying up late, and 
+stress are independent risk factors that should be 
+controlled to improve acne conditions in students.
+Keywords: Acne, students, oily skin, stress, 
+logistic regression.
+I. ĐẶT VẤN ĐỀ
+Bệnh trứng cá thể thông thường (acne vulgaris) 
+là một trong những bệnh lý da liễu phổ biến nhất, 
+đặc biệt ở đối tượng thanh thiếu niên và người 
+trưởng thành trẻ tuổi. Theo Hiệp hội Da liễu Hoa 
+Kỳ, có tới 85% thanh niên trong độ tuổi từ 12 đến 
+25 từng bị trứng cá ở mức độ khác nhau, gây ảnh 
+hưởng đến chất lượng cuộc sống, tâm lý xã hội 
+và khả năng học tập [1]. Mặc dù không nguy hiểm 
+đến tính mạng, nhưng trứng cá có thể kéo dài dai 
+dẳng, gây sẹo và ảnh hưởng thẩm mỹ, từ đó dẫn 
+đến các vấn đề tâm lý như lo âu, trầm cảm, và giảm 
+tự tin [2].
+Nhiều yếu tố nguy cơ đã được ghi nhận có liên 
+quan đến sự khởi phát và mức độ nghiêm trọng 
+của trứng cá, bao gồm loại da, yếu tố nội tiết, chế 
+độ ăn uống, stress tâm lý, thói quen sinh hoạt (ngủ 
+muộn, vệ sinh da), và yếu tố di truyền [3], [4]. Trong 
+đó, stress do học tập và thức khuya là các yếu tố 
+đặc biệt phổ biến ở sinh viên - nhóm có nguy cơ 
+cao nhưng ít được nghiên cứu tại Việt Nam. Mặc 
+dù một số nghiên cứu trong nước đã bước đầu ghi 
+nhận vai trò của các yếu tố này, nhưng chưa có 
+nghiên cứu nào sử dụng phân tích hồi quy đa biến 
+để xác định yếu tố nguy cơ độc lập trong quần thể 
+sinh viên y khoa - nhóm có đặc điểm lối sống và 
+nhận thức sức khỏe đặc thù.
+Do đó, nghiên cứu này được thực hiện nhằm xác 
+định các yếu tố nguy cơ độc lập liên quan đến mức 
+độ trứng cá thể thông thường ở sinh viên trường 
+Đại học Y Dược Thái Bình, qua đó đề xuất hướng 
+can thiệp phù hợp trong cộng đồng sinh viên y khoa.
+II. ĐỐI TƯỢNG VÀ PHƯƠNG PHÁP NGHIÊN CỨU
+2.1. Đối tượng, địa điểm và thời gian nghiên cứu

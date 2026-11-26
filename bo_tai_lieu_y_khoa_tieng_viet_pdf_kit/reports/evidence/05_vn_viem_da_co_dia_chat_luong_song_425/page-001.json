@@ -1,0 +1,378 @@
+{
+  "page": {
+    "pdf_page": 1,
+    "pdf_index_zero_based": 0,
+    "pdf_page_label": "144",
+    "printed_page_number": "144",
+    "text_layer_characters": 4065,
+    "warnings": [],
+    "text_block_adjustments": [],
+    "column_bands_reordered": true,
+    "table_count": 0,
+    "figure_count": 0,
+    "embedded_image_count": 0,
+    "layout_boxes": [
+      {
+        "index": 0,
+        "class": "page-header",
+        "bbox": [
+          146,
+          45,
+          460,
+          57
+        ],
+        "pos": [
+          0,
+          65
+        ]
+      },
+      {
+        "index": 1,
+        "class": "section-header",
+        "bbox": [
+          56,
+          69,
+          542,
+          103
+        ],
+        "pos": [
+          65,
+          162
+        ]
+      },
+      {
+        "index": 2,
+        "class": "section-header",
+        "bbox": [
+          283,
+          108,
+          536,
+          120
+        ],
+        "pos": [
+          162,
+          253
+        ]
+      },
+      {
+        "index": 3,
+        "class": "section-header",
+        "bbox": [
+          65,
+          108,
+          112,
+          119
+        ],
+        "pos": [
+          253,
+          270
+        ]
+      },
+      {
+        "index": 4,
+        "class": "text",
+        "bbox": [
+          303,
+          124,
+          542,
+          180
+        ],
+        "pos": [
+          270,
+          462
+        ]
+      },
+      {
+        "index": 5,
+        "class": "text",
+        "bbox": [
+          56,
+          125,
+          295,
+          166
+        ],
+        "pos": [
+          462,
+          591
+        ]
+      },
+      {
+        "index": 6,
+        "class": "text",
+        "bbox": [
+          56,
+          170,
+          295,
+          236
+        ],
+        "pos": [
+          591,
+          798
+        ]
+      },
+      {
+        "index": 7,
+        "class": "text",
+        "bbox": [
+          303,
+          186,
+          542,
+          212
+        ],
+        "pos": [
+          798,
+          879
+        ]
+      },
+      {
+        "index": 8,
+        "class": "section-header",
+        "bbox": [
+          312,
+          215,
+          386,
+          227
+        ],
+        "pos": [
+          879,
+          902
+        ]
+      },
+      {
+        "index": 9,
+        "class": "text",
+        "bbox": [
+          303,
+          234,
+          542,
+          328
+        ],
+        "pos": [
+          902,
+          1232
+        ]
+      },
+      {
+        "index": 10,
+        "class": "text",
+        "bbox": [
+          56,
+          243,
+          295,
+          325
+        ],
+        "pos": [
+          1232,
+          1499
+        ]
+      },
+      {
+        "index": 11,
+        "class": "text",
+        "bbox": [
+          56,
+          330,
+          295,
+          384
+        ],
+        "pos": [
+          1499,
+          1688
+        ]
+      },
+      {
+        "index": 12,
+        "class": "text",
+        "bbox": [
+          303,
+          333,
+          542,
+          457
+        ],
+        "pos": [
+          1688,
+          2122
+        ]
+      },
+      {
+        "index": 13,
+        "class": "text",
+        "bbox": [
+          56,
+          388,
+          295,
+          415
+        ],
+        "pos": [
+          2122,
+          2201
+        ]
+      },
+      {
+        "index": 14,
+        "class": "text",
+        "bbox": [
+          56,
+          421,
+          295,
+          458
+        ],
+        "pos": [
+          2201,
+          2292
+        ]
+      },
+      {
+        "index": 15,
+        "class": "text",
+        "bbox": [
+          303,
+          462,
+          542,
+          614
+        ],
+        "pos": [
+          2292,
+          2820
+        ]
+      },
+      {
+        "index": 16,
+        "class": "section-header",
+        "bbox": [
+          65,
+          466,
+          123,
+          475
+        ],
+        "pos": [
+          2820,
+          2838
+        ]
+      },
+      {
+        "index": 17,
+        "class": "text",
+        "bbox": [
+          56,
+          479,
+          295,
+          522
+        ],
+        "pos": [
+          2838,
+          2967
+        ]
+      },
+      {
+        "index": 18,
+        "class": "text",
+        "bbox": [
+          56,
+          528,
+          295,
+          594
+        ],
+        "pos": [
+          2967,
+          3208
+        ]
+      },
+      {
+        "index": 19,
+        "class": "text",
+        "bbox": [
+          56,
+          600,
+          295,
+          695
+        ],
+        "pos": [
+          3208,
+          3510
+        ]
+      },
+      {
+        "index": 20,
+        "class": "text",
+        "bbox": [
+          303,
+          618,
+          542,
+          729
+        ],
+        "pos": [
+          3510,
+          3872
+        ]
+      },
+      {
+        "index": 21,
+        "class": "text",
+        "bbox": [
+          60,
+          704,
+          237,
+          783
+        ],
+        "pos": [
+          3872,
+          4058
+        ]
+      },
+      {
+        "index": 22,
+        "class": "section-header",
+        "bbox": [
+          312,
+          733,
+          538,
+          746
+        ],
+        "pos": [
+          4058,
+          4106
+        ]
+      },
+      {
+        "index": 23,
+        "class": "text",
+        "bbox": [
+          303,
+          750,
+          542,
+          776
+        ],
+        "pos": [
+          4106,
+          4179
+        ]
+      },
+      {
+        "index": 24,
+        "class": "page-footer",
+        "bbox": [
+          53,
+          807,
+          69,
+          815
+        ],
+        "pos": [
+          4179,
+          4185
+        ]
+      }
+    ],
+    "quality": {
+      "replacement_characters": 0,
+      "unexpected_controls": [],
+      "possible_mojibake": false,
+      "possible_joined_words": 7,
+      "duplicate_paragraphs": [],
+      "numeric_tokens_missing_from_markdown": {},
+      "numeric_tokens_added_in_markdown": {},
+      "comparison_scope": "PDF text layer; diagnostic only, not visual truth"
+    }
+  },
+  "tables": []
+}

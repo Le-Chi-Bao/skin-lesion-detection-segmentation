@@ -1,0 +1,126 @@
+{
+  "page": {
+    "pdf_page": 6,
+    "pdf_index_zero_based": 5,
+    "pdf_page_label": "149",
+    "printed_page_number": "149",
+    "text_layer_characters": 884,
+    "warnings": [],
+    "text_block_adjustments": [],
+    "column_bands_reordered": false,
+    "table_count": 0,
+    "figure_count": 0,
+    "embedded_image_count": 0,
+    "layout_boxes": [
+      {
+        "index": 0,
+        "class": "page-header",
+        "bbox": [
+          142,
+          43,
+          453,
+          55
+        ],
+        "pos": [
+          0,
+          64
+        ]
+      },
+      {
+        "index": 1,
+        "class": "list-item",
+        "bbox": [
+          59,
+          72,
+          295,
+          128
+        ],
+        "pos": [
+          64,
+          223
+        ]
+      },
+      {
+        "index": 2,
+        "class": "list-item",
+        "bbox": [
+          59,
+          133,
+          295,
+          174
+        ],
+        "pos": [
+          223,
+          341
+        ]
+      },
+      {
+        "index": 3,
+        "class": "list-item",
+        "bbox": [
+          59,
+          179,
+          295,
+          236
+        ],
+        "pos": [
+          341,
+          506
+        ]
+      },
+      {
+        "index": 4,
+        "class": "list-item",
+        "bbox": [
+          306,
+          71,
+          542,
+          142
+        ],
+        "pos": [
+          506,
+          705
+        ]
+      },
+      {
+        "index": 5,
+        "class": "list-item",
+        "bbox": [
+          306,
+          147,
+          542,
+          217
+        ],
+        "pos": [
+          705,
+          900
+        ]
+      },
+      {
+        "index": 6,
+        "class": "page-footer",
+        "bbox": [
+          518,
+          807,
+          537,
+          816
+        ],
+        "pos": [
+          900,
+          906
+        ]
+      }
+    ],
+    "quality": {
+      "replacement_characters": 0,
+      "unexpected_controls": [],
+      "possible_mojibake": false,
+      "possible_joined_words": 0,
+      "duplicate_paragraphs": [],
+      "numeric_tokens_missing_from_markdown": {},
+      "numeric_tokens_added_in_markdown": {},
+      "comparison_scope": "PDF text layer; diagnostic only, not visual truth"
+    }
+  },
+  "tables": []
+}

@@ -1,0 +1,280 @@
+{
+  "page": {
+    "pdf_page": 1,
+    "pdf_index_zero_based": 0,
+    "pdf_page_label": "4",
+    "printed_page_number": "4",
+    "text_layer_characters": 4290,
+    "warnings": [],
+    "text_block_adjustments": [],
+    "column_bands_reordered": true,
+    "table_count": 0,
+    "figure_count": 0,
+    "embedded_image_count": 0,
+    "layout_boxes": [
+      {
+        "index": 0,
+        "class": "page-header",
+        "bbox": [
+          143,
+          45,
+          462,
+          57
+        ],
+        "pos": [
+          0,
+          66
+        ]
+      },
+      {
+        "index": 1,
+        "class": "text",
+        "bbox": [
+          57,
+          68,
+          543,
+          102
+        ],
+        "pos": [
+          66,
+          174
+        ]
+      },
+      {
+        "index": 2,
+        "class": "text",
+        "bbox": [
+          142,
+          103,
+          539,
+          130
+        ],
+        "pos": [
+          174,
+          476
+        ]
+      },
+      {
+        "index": 3,
+        "class": "section-header",
+        "bbox": [
+          65,
+          119,
+          112,
+          130
+        ],
+        "pos": [
+          476,
+          492
+        ]
+      },
+      {
+        "index": 4,
+        "class": "text",
+        "bbox": [
+          56,
+          136,
+          295,
+          205
+        ],
+        "pos": [
+          492,
+          716
+        ]
+      },
+      {
+        "index": 5,
+        "class": "text",
+        "bbox": [
+          303,
+          138,
+          542,
+          175
+        ],
+        "pos": [
+          716,
+          817
+        ]
+      },
+      {
+        "index": 6,
+        "class": "section-header",
+        "bbox": [
+          312,
+          183,
+          370,
+          192
+        ],
+        "pos": [
+          817,
+          834
+        ]
+      },
+      {
+        "index": 7,
+        "class": "text",
+        "bbox": [
+          303,
+          200,
+          542,
+          281
+        ],
+        "pos": [
+          834,
+          1127
+        ]
+      },
+      {
+        "index": 8,
+        "class": "text",
+        "bbox": [
+          56,
+          209,
+          295,
+          306
+        ],
+        "pos": [
+          1127,
+          1447
+        ]
+      },
+      {
+        "index": 9,
+        "class": "text",
+        "bbox": [
+          303,
+          287,
+          542,
+          382
+        ],
+        "pos": [
+          1447,
+          1753
+        ]
+      },
+      {
+        "index": 10,
+        "class": "text",
+        "bbox": [
+          56,
+          310,
+          295,
+          519
+        ],
+        "pos": [
+          1753,
+          2468
+        ]
+      },
+      {
+        "index": 11,
+        "class": "text",
+        "bbox": [
+          303,
+          388,
+          542,
+          637
+        ],
+        "pos": [
+          2468,
+          3304
+        ]
+      },
+      {
+        "index": 12,
+        "class": "text",
+        "bbox": [
+          56,
+          523,
+          295,
+          647
+        ],
+        "pos": [
+          3304,
+          3738
+        ]
+      },
+      {
+        "index": 13,
+        "class": "text",
+        "bbox": [
+          303,
+          643,
+          542,
+          765
+        ],
+        "pos": [
+          3738,
+          4159
+        ]
+      },
+      {
+        "index": 14,
+        "class": "text",
+        "bbox": [
+          56,
+          652,
+          295,
+          678
+        ],
+        "pos": [
+          4159,
+          4234
+        ]
+      },
+      {
+        "index": 15,
+        "class": "section-header",
+        "bbox": [
+          65,
+          684,
+          295,
+          693
+        ],
+        "pos": [
+          4234,
+          4274
+        ]
+      },
+      {
+        "index": 16,
+        "class": "footnote",
+        "bbox": [
+          60,
+          704,
+          242,
+          786
+        ],
+        "pos": [
+          4274,
+          4464
+        ]
+      },
+      {
+        "index": 17,
+        "class": "page-footer",
+        "bbox": [
+          58,
+          807,
+          65,
+          815
+        ],
+        "pos": [
+          4464,
+          4468
+        ]
+      }
+    ],
+    "quality": {
+      "replacement_characters": 0,
+      "unexpected_controls": [],
+      "possible_mojibake": false,
+      "possible_joined_words": 1,
+      "duplicate_paragraphs": [],
+      "numeric_tokens_missing_from_markdown": {},
+      "numeric_tokens_added_in_markdown": {},
+      "comparison_scope": "PDF text layer; diagnostic only, not visual truth"
+    }
+  },
+  "tables": []
+}

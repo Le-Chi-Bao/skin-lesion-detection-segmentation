@@ -1,0 +1,51 @@
+Nghiên cứu khoa học công nghệ
+Tạp chí Khoa học và Công nghệnhiệt đới, Số40, 12 - 2025
+151
+16. Z. Movasaghi, S. Rehman and I.U. Rehman, Raman spectroscopy of biological
+tissues, Applied Spectroscopy Reviews, Vol. 42, No. 5, pp. 493-541, 2007. DOI:
+10.1080/05704920701551530
+17. O. J. Gustafsson, G. Arentz and P. Hoffmann, Proteomic developments in the
+analysis of formalin-fixed tissue, Biochimica et Biophysica Acta (BBA)-
+Proteins
+and
+Proteomics,
+Vol.
+1854,
+No.
+6,
+pp.
+559-580,
+2015.
+DOI:10.1016/j.bbapap.2014.10.003
+18. D. N. Vos et al., Class-specific depletion of lipid ion signals in tissues upon
+formalin fixation, International journal of mass spectrometry, Vol. 446, p.
+116212, 2019. DOI: 10.1016/j.ijms.2019.116212
+19. M. J. Hackett et al., Chemical alterations to murine brain tissue induced by
+formalin fixation: implications for biospectroscopic imaging and mapping
+studies of disease pathogenesis, Analyst, Vol. 136, No. 14, p. 2941-2952, 2011.
+DOI: 10.1039/C0AN00269K
+20. I. J. Jahn et al., Sample preparation for Raman microspectroscopy, Physical
+Sciences Reviews, Vol. 5, No. 1, 2020. DOI: 10.1515/psr-2019-0018
+ABTRACTS
+APPLICATION OF RAMAN MICROSPECTROSCOPY IN THE STUDY OF
+FORMALIN-FIXED SKIN TISSUE ALTERATIONS
+This study aims to evaluate the applicability of Raman spectroscopy in the
+examination of human skin tissue and to analyze chemical structural changes induced
+by formalin fixation. The research subjects included both fresh (unfixed) and
+formalin-fixed human skin tissues. Raman spectra were acquired from both sample
+groups to analyze and compare spectral signal variations. The results demonstrated
+that the Raman spectra of fresh skin tissues closely matched those reported in
+international studies, with characteristic peaks observed at 855, 933, 1003, 1033, and
+1451 cm-¹, corresponding to major biochemical components such as proteins
+(particularly collagen), lipids, and keratin. After fixation, significant spectral changes
+were observed: the intensities of peaks associated with proteins and lipids (856, 933,
+1271, 1451, and 1653 cm-¹) were reduced, and new peaks emerged at 907 and 1492
+cm-¹-characteristic signals of formalin. These changes indicate that formalin may
+compromise the accuracy of Raman spectral analysis by interfering with or masking
+the tissue’s intrinsic spectral features. The findings highlight the potential of Raman 
+spectroscopy as a non-invasive tool for studying and analyzing biological tissues in
+Vietnam.
+Keywords: Raman spectroscopy, skin tissue, tissue fixation, formalin.
+Nhận bài ngày 26 tháng 5 năm 2025
+Phản biện xong ngày 21 tháng 6 năm 2025
+Hoàn thiện ngày 24 tháng 6 năm 2025

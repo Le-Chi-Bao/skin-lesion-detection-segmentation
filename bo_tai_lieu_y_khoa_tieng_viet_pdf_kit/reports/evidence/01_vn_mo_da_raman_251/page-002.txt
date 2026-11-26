@@ -1,0 +1,44 @@
+Nghiên cứu khoa học công nghệ
+Tạp chí Khoa học và Công nghệnhiệt đới, Số40, 12 - 2025
+140
+Ưu điểm lớn của quang phổRaman nằm ởkhảnăng cung cấp "dấu vân tay phân
+tử" của mẫu mô, từđó cho phép nhận biết và phân biệt các thành phần sinh học như 
+protein, lipid, carbohydrate, nucleic acid… với độchính xác cao. Nhờvậy, quang phổ
+Raman không chỉhỗtrợtrong nghiên cứu định tính cấu trúc mô, mà còn có thểđịnh
+lượng nồng độcác hợp chất trong mẫu sinh học - điều rất quan trọng trong việc theo
+dõi tiến trình bệnh hoặc đánh giá hiệu quảđiều trị.
+Tuy nhiên, đểđảm bảo kết quảphân tích Raman chính xác và tái lập được, quá
+trình chuẩn bịmẫu cần được kiểm soát chặt chẽ. Một trong những bước không thể
+thiếu trong quy trình xửlý mô sinh học hiện nay là cốđịnh mẫu bằng dung dịch
+formalin. Quá trình cốđịnh giúp duy trì hình thái và cấu trúc mô, ngăn ngừa sựphân
+hủy trong quá trình lưu trữhoặc phân tích. Mặc dù vậy, formalin lại có thểtham gia
+vào các phản ứng hóa học với thành phần mô như protein, collagen, acid nucleic,… 
+tạo ra các sản phẩm mới hoặc làm biến đổi cấu trúc hóa học ban đầu. Những biến đổi
+này có khảnăng gây sai lệch kết quảphân tích Raman, vì các dải phổmới xuất hiện
+hoặc cường độphổbịthay đổi, khiến cho việc giải đoán dữliệu Raman gặp khó khăn, 
+đặc biệt trong các nghiên cứu yêu cầu độchính xác cao như chẩn đoán mô bệnh.
+Do đó, việc khảo sát cụthểảnh hưởng của formalin đến quang phổRaman của
+mô sinh học - trong trường hợp này là mô da - là hết sức cần thiết. Kết quảcủa nghiên
+cứu không chỉgóp phần làm rõ mức độthay đổi vềmặt phổsau cốđịnh, mà còn cung
+cấp cơ sởđểhiệu chỉnh phương pháp xửlý mẫu, từđó nâng cao độtin cậy khi ứng
+dụng kỹthuật quang phổRaman trong nghiên cứu mô bệnh học, đặc biệt trong các
+ứng dụng lâm sàng vềchẩn đoán ung thư da.
+Xuất phát từthực tiễn đó, chúng tôi tiến hành nghiên cứu “Phân tích sựthay đổi
+quang phổRaman của mô da trướcvà sau cốđịnh bằng formalin”, với hai nội dung chính:
+1. Khảo sát quang phổRaman của mô da tươi
+2. Khảo sát quang phổRaman của mô da sau cốđịnh bằng dung dịch formalin.
+2. ĐỐI TƯỢNG, PHƯƠNG PHÁP NGHIÊN CỨU
+2.1 Đối tượng
+- 10 mẫu mô da người bình thường chưa qua cốđịnh.
+- 10 mẫu mô da người người bình thường đã cốđịnh bằng dung dịch formalin
+trong 24h.
+Các mẫu mô da được lấy từngười hiến, lưu trữtại viện 69 và đã được thông qua
+Hội đồng đạo đức theo quy định. Vịtrí lấy mẫu là vùng mặt trong đùi. Mô da tươi sau 
+khi lấy được rửa bằng nước muối sinh lý và bảo quản trong thùng lạnh ~ 4ºC. Sau đó 
+mô da tươi được chia làm 2 phần, 1 phần được đo quang phổtrong vòng 6 tiếng kểtừ
+khi lấy mẫu, 1 phần được cốđịnh bằng dung dịch formalin 10% trong 24h sau đó mới
+đem đi đo quang phổ.
+2.2. Phương pháp
+Các mẫu mô được chuẩn bịmẫu theo phương pháp cắt lạnh với độdày lát cắt
+15 µm và soi dưới kính hiển vi quang phổRaman LabRAM soleil v1.0 (Horiba, Nhật
+Bản), vật kính 50x (NA = 0.6, Nikon), nguồn laser có bước sóng 785 nm, công suất

@@ -1,0 +1,123 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 18 SỐ 04 - THÁNG 9  NĂM 2025
+52
+Nhận xét: Trong bốn mùa, tỷ lệ đối tượng nghiên cứu tái phát bệnh cao nhất vào mùa đông là 66,7%, 
+sau đó đến mùa hạ chiếm 36,6%.
+Bảng 2. Triệu chứng da của bệnh viêm da cơ địa (n=93)
+Triệu chứng
+Số lượng (n=93)
+Tỷ lệ (%)
+Ngứa
+67
+72.0
+Phát ban
+31
+33.3
+Mụn nước
+24
+25.8
+Chảy dịch
+12
+12.9
+Khô da
+61
+65.6
+Bong vảy da
+48
+51.6
+Dày da, lichen hóa
+20
+21.5
+Triệu chứng khác
+2
+2.2
+Nhận xét: Triệu chứng phổ biến nhất là ngứa chiếm 72,0%, khô da cũng rất phổ biến chiếm 65,6%, và 
+bong vảy da là 51,6%.
+Bảng 3. Mức độ ngứa của bệnh viêm da cơ địa (n=93)
+Mức độ ngứa
+Số lượng 
+Tỷ lệ (%)
+Không ngứa
+11
+11.8
+Ngứa nhẹ
+48
+51.6
+Ngứa trung bình
+26
+28.0
+Ngứa nhiều
+8
+8.6
+Tổng 
+93
+100
+Nhận xét: Tỷ lệ đối tượng nghiên cứu mắc bệnh viêm da cơ địa có mức độ ngứa nhẹ là cao nhất chiếm 
+51,6%, thấp nhất là ngứa nhiều (8,6%).
+Bảng 4. Thời gian ngứa nhiều nhất trong ngày của bệnh viêm da cơ địa (n=93)
+Thời gian
+Số lượng (n=93)
+Tỷ lệ(%)
+Ban ngày
+28
+34,2
+Ban đêm
+54
+65,8
+Tổng 
+82
+100
+Nhận xét: Thời gian ngứa trong ngày chủ yếu là vào ban đêm với tỷ lệ là 65,8%.
+Bảng 5. Mức độ nặng của bệnh viêm da cơ địa theo thang điểm SCORAD (n=93)
+Mức độ
+Số lượng (n=93)
+Tỷ lệ (%)
+Nhẹ
+26
+28.0
+Trung bình
+49
+52.7
+Nặng
+18
+19.4
+Tổng 
+93
+100
+Nhận xét: Đánh giá theo thang điểm scorad thì đa số đối tượng nghiên cứu mắc bệnh viêm da cơ địa 
+ở mức độ trung bình chiếm tỷ lệ 52,7%, thấp nhất là mức độ nặng (19.4%).
+3.3: Một số yếu tố liên quan đến bệnh viêm da cơ địa 
+Bảng 6. Mối liên quan giữa tiền sử mắc bệnh dị ứng của gia đình với bệnh viêm da cơ địa (n=967)
+Bệnh dị ứng
+Nhóm bệnh viêm 
+da cơ địa n (%)
+Nhóm không bị bệnh 
+viêm da cơ địa n (%)
+Tổng
+OR
+( CI 95%)
+p
+Viêm da cơ 
+địa
+Có
+23 (39.7)
+35 (60,3)
+58
+7,87
+(4,41-14,06)
+<0,001
+Không
+70 (7,7)
+839 (92,3)
+909
+Mày đay
+Có
+8 (15,1)
+45 (84,9)
+53
+1,73
+(0,79-3,79)
+0,16
+Không
+85 (9,3)
+829 (90,7)
+914

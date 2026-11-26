@@ -1,0 +1,96 @@
+TẠP CHÍ Y DƯỢC THÁI BÌNH, TẬP 24 SỐ 05 - THÁNG 8  NĂM 2026
+164
+Nhận xét: Kết quả so sánh tại Bảng 3 cho thấy, tại tuần thứ 12 điều trị, tỷ lệ bệnh nhân đạt mức đáp 
+ứng lâm sàng Rất tốt (PASI 100) là đồng đều giữa các nhóm đặc điểm lâm sàng và nhân khẩu học khác 
+nhau. Sự khác biệt về tỷ lệ đạt đáp ứng PASI 100 giữa nhóm ≤ 51 tuổi và > 51 tuổi (66,7% so với 66,7%, 
+p = 1,000), giữa nam và nữ (69,2% so với 50,0%, p = 0,531), giữa khởi phát < 40 tuổi và ≥ 40 tuổi (68,4% 
+so với 63,6%, p = 0,687), giữa thời gian bị bệnh < 5 năm và ≥ 5 năm (70,0% so với 65,0%, p = 0,783) 
+và giữa nhóm có mức độ nặng ban đầu vừa so với nặng (65,0% so với 70,0%, p = 1,000) đều chưa ghi 
+nhận sự khác biệt có ý nghĩa thống kê (p > 0,05). Do chỉ có 1 ca duy nhất chưa từng điều trị toàn thân cổ 
+điển trước đó (cho kết quả đạt đáp ứng Tốt tại tuần 12), kết quả so sánh tỷ lệ đạt đáp ứng Rất tốt giữa 
+nhóm có tiền sử điều trị toàn thân cổ điển và chưa từng điều trị (69,0% so với 0,0%) cũng chưa ghi nhận 
+sự khác biệt có ý nghĩa thống kê (p = 0,333).
+3.4. Kết quả tác dụng không mong muốn và an toàn cận lâm sàng
+Về khía cạnh an toàn lâm sàng, trong suốt 12 tuần điều trị, không ghi nhận bất kỳ tác dụng không mong 
+muốn nghiêm trọng nào (như nhiễm trùng toàn thân nặng, lao bùng phát hoặc bùng phát bệnh Crohn) 
+dẫn đến việc phải trì hoãn hoặc ngừng điều trị. Các biến cố bất lợi ghi nhận được chủ yếu là đau khu trú 
+tại vị trí tiêm (100% bệnh nhân ghi nhận cảm giác đau nhẹ và thoáng qua kéo dài từ 1 đến 2 ngày sau 
+tiêm), ngứa tại vùng tiêm chiếm 33,3% (10 ca) và sưng nề nhẹ tại vùng tiêm chiếm 20% (6 ca). Tất cả 
+các phản ứng tại chỗ tiêm này đều ở mức độ nhẹ, tự giới hạn hoàn toàn mà không cần can thiệp y tế 
+hay sử dụng trị liệu hỗ trợ.
+Về khía cạnh an toàn cận lâm sàng, kết quả đánh giá các chỉ số xét nghiệm huyết học và sinh hóa tại 
+mốc Tuần 12 so với thời điểm khởi trị T0 được trình bày chi tiết tại Bảng 4. Nhìn chung, phác đồ điều trị 
+Secukinumab 300mg có tính an toàn sinh học cao, không gây rối loạn chức năng gan, chức năng thận 
+hoặc chuyển hóa glucose máu.
+Bảng 4. Sự biến đổi một số chỉ số xét nghiệm huyết học và sinh hóa trước và sau 12 tuần điều trị (n=30)
+Hạng 
+mục 
+xét 
+nghiệm
+Chỉ số cận lâm 
+sàng
+Trước điều trị 
+(T0)
+Sau 
+điều 
+trị 
+(T12)
+p (Paired T-test)
+1. Huyết học
+Bạch 
+cầu 
+(BC) 
+(G/L)
+8.27. ± 3.03
+7.06. ± 1.49
+0.007
+Hồng 
+cầu 
+(HC) 
+(T/L)
+4.80. ± 0.39
+4.93. ± 0.40
+0.070
+Tiểu cầu (TC) (G/L)
+272.74. ± 65.00
+242.54. ± 64.39
+0.012
+2. Sinh hóa máu
+Glucose (mmol/L)
+6.02. ± 2.21
+6.92. ± 8.59
+0.557
+Ure (mmol/L)
+5.40. ± 1.32
+5.39. ± 1.33
+0.971
+Creatinin (μmol/L)
+75.76. ± 22.07
+79.46. ± 17.59
+0.199
+SGOT (AST) (U/L)
+40.81. ± 66.17
+33.18. ± 22.07
+0.473
+SGPT (ALT) (U/L)
+28.64. ± 17.08
+40.15. ± 52.17
+0.193
+Nhận xét: Số liệu tại Bảng 4 cho thấy, sau 12 tuần điều trị bằng Secukinumab, có sự sụt giảm nhẹ số 
+lượng bạch cầu trung bình (từ 8,27 ± 3,03 xuống còn 7,06 ± 1,49 G/L, p = 0,007) và số lượng tiểu cầu 
+trung bình (từ 272,74 ± 65,00 xuống còn 242,54 ± 64,39 G/L, p = 0,012). Tuy nhiên, các giá trị sụt giảm 
+này vẫn nằm hoàn toàn trong giới hạn sinh lý bình thường của cơ thể, không có ca nào bị giảm bạch cầu 
+hoặc tiểu cầu bệnh lý. Các chỉ số về số lượng hồng cầu, glucose máu, chức năng thận (ure, creatinin) và 
+chức năng men gan (SGOT, SGPT) đều duy trì sự ổn định và không có sự khác biệt có ý nghĩa thống kê 
+trước và sau điều trị (p > 0,05).
+IV. BÀN LUẬN
+Kết quả nghiên cứu thực tế tại Bệnh viện Da 
+liễu Thanh Hóa cho thấy Secukinumab liều 300mg 
+mang lại kết quả cải thiện tổn thương da nhanh. 
+Điểm PASI trung bình giảm từ mốc 19,50 ± 7,83 
+điểm xuống 4,51 ± 3,24 điểm ngay tại tuần thứ 4, 
+và sạch tổn thương gần như hoàn toàn tại tuần 
+thứ 12 với chỉ 0,40 ± 0,56 điểm. Sự thay đổi có ý 
+nghĩa thống kê (p < 0,01) tại mọi mốc đánh giá so 
+với nền (T0) đã khẳng định hoạt tính kháng viêm 
+của phác đồ điều trị này. Tại tuần thứ 12, tỷ lệ đạt 

@@ -1,0 +1,46 @@
+Nghiên cứu khoa học công nghệ
+Tạp chí Khoa học và Công nghệnhiệt đới, Số40, 12 - 2025
+148
+1220 đến 1280 cm-¹, trong khi dải phổ của nhóm amid I cũng có sự biến thiên nhẹ, 
+nằm trong khoảng từ 1634 đến 1673 cm-¹ [16].
+4.2. Sựảnh hưởng của quá trình cốđịnh bằng formalin lên quang phổ
+Raman của mẫu nghiên cứu
+Các pic Raman chính của protein và lipid (ví dụ: 856, 933, 1271, 1451 cm-1)
+không thay đổi vịtrí bởi quá trình cốđịnh formalin, có thểdo các cấu trúc phân tửcủa
+protein và lipid không bịthay đổi hoàn toàn bởi quá trình này. Tuy nhiên, có sựgiảm
+rõ ràng vềcường độRaman tổng thểcủa các pic này. Cụthể, sựgiảm cường độcó ý
+nghĩa thống kê ởcác pic 855, 933, 1246 cm-1 của collagen, 1030 cm-1 của phenyalanin
+và 1450 cm-1 của collagen và lipid. Điều này do formalin phản ứng với với các protein
+bắt đầu hình thành cộng hợp metylol trên nhóm amin. Sau đó các mảnh gắn metylol vào
+nhóm amin bậc nhất này bịkhửnước, tạo thành bazơ Schiff không bền mà có thểtạo
+thành các liên kết chéo methylene với một sốgốc acid amin như tyrosin [17]. Ngoài ra,
+quá trình cốđịnh có thểlàm thất thoát một phần lipid màng, đặc biệt là lipid mang nhóm
+amin, kèm theo biến đổi tính toàn vẹn màng, dẫn đến suy giảm tương đối các dải
+CH₂/CH₃ của lipid (1443-1450 cm-¹) [18].Vì vậy quá trình cốđịnh này làm giảm cường
+độcác pic liên quan đến dao động của nhóm amid (trong protein) và CH₂ (trong collagen 
+và lipid), đồng thời tạo ra một sốpic mới đặc trưng cho bản thân formalin trong phổ
+Raman tại vịtrí 907 và 1492 cm-1 [5, 19]. Chúng tôi còn phát hiện thấy pic 1492 cm-1
+xuất hiện ởtất cảcác mẫu cốđịnh formalin, tuy nhiên pic 907 cm-1 lại chỉxuất hiện ở
+3/10 mẫu. Có thểdo formalin là 1 chất dễbay hơi nên trong quá trình đo mỗi mẫu 3 lần,
+thời gian đo kéo dài dẫn đến formalin tựdo đã bay hơi, dẫn đến phổRaman của formalin
+cũng không xuất hiện. Pic 1492 cm-1 có thểlà của cầu nối methylene còn lại trong mô.
+Giảthuyết này tương tựcủa Faolain và cộng sựcũng cho rằng sựxuất hiện của pic 1492
+cm-1 không chỉdo sựxâm nhập của formalin vào mô mà còn có thểchính là sựxuất
+hiện của cầu nối methylene [12]. Nói cách khác, ta có thểcăn cứvào vịtrí và cường độ
+của pic 1492 cm-1 đểđánh giá sựbảo tồn cầu nối này trong mô. Ngoài ra, pic 1653 cm-
+1(đặc trưng cho cấu trúc amid I) không còn xuất hiện ởtoàn bộ10 mẫu nghiên cứu. Kết
+quảnày do formalin đặc biệt thay đổi cấu trúc của amid I [5, 12, 13].
+Những thay đổi này có thểgây nhiễu phổ, làm mờhoặc che khuất các pic cần
+phân tích, từđó ảnh hưởng đến độchính xác trong nhận diện cấu trúc hóa học của
+mẫu mô. Một sốtác giảđã đềxuất có thểrửa mẫu đã cốđịnh bằng dung dịch đệm
+phốt phát đểtrung hòa lượng formalin dư, hoặc chuẩn bịmẫu theo phương pháp đông 
+lạnh đểhạn chếảnh hưởng của formalin [13, 19, 20].
+Mặt khác collagen typ I là thành phần cấu trúc chủyếu của mô da, giữvai trò
+then chốt trong việc duy trì độbền cơ học và tính toàn vẹn của tổchức mô. Khi cố
+định mô bằng formalin, các phân tửformaldehyde phản ứng với các nhóm amin trong
+cấu trúc của collagen typ I, tạo liên kết chéo giữa các chuỗi polypeptid. Quá trình này
+giúp tăng độbền vững và ổn định hình thái không gian của collagen, qua đó góp phần
+bảo tồn cấu trúc tổng thểcủa mô da trong thời gian dài. Do đó, sựhiện diện của các
+dải phổđặc trưng của formalin trong phổRaman của mô cốđịnh không chỉlà biểu
+hiện của quá trình cốđịnh, mà còn có thểđược xem như một chỉdấu phản ánh mức
+độhoàn tất và hiệu quảcủa việc bảo quản cấu trúc mô, đặc biệt là ởcác mẫu lưu trữ

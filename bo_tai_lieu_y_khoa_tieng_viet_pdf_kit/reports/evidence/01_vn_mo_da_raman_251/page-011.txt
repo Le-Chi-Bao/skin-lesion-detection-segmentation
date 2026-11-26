@@ -1,0 +1,43 @@
+Nghiên cứu khoa học công nghệ
+Tạp chí Khoa học và Công nghệnhiệt đới, Số40, 12 - 2025
+149
+lâu dài. Nếu các pic đặc trưng của formalin suy giảm đáng kểhoặc biến mất, điều đó 
+có thểphản ánh tình trạng cốđịnh không còn hiệu quả, từđó làm cơ sởquyết định có
+nên bổsung thêm formalin đểđảm bảo chất lượng mẫu được cốđịnh hay không.
+5. KẾT LUẬN
+- PhổRaman thu được từcác mẫu mô da tươi trong nghiên cứu của chúng tôi
+tương tựvới kết quảnghiên cứu khác đã được công bốvới các pic đặc trưng: 855, 
+933, 1003, 1033 1451 cm-1 tương ứng với các cấu trúc mô học của da gồm protein
+(chủyếu là collagen), lipid và keratin.
+- Cốđịnh bằng formalin làm thay đổi phổRaman của mẫu mô da, gây giảm
+cường độpic protein , lipid (856, 933, 1271, 1451, 1653 cm-1) và xuất hiện thêm pic
+của formalin (907, 1492 cm-1), có thểgây nhiễu hoặc mất tín hiệu cần thiết. Tuy nhiên,
+các pic formalin cũng giúp đánh giá mức độcốđịnh mô và quyết định việc bổsung
+formalin khi cần thiết.
+- Đây là một nghiên cứu mô tảnên chưa thểđưa ra kết luận vềmối quan hệnhân
+quảgiữa các yếu tốđược quan sát; các kết quảchỉdừng lại ởmức độphát hiện mối
+liên quan ban đầu, cần được kiểm chứng thêm qua các nghiên cứu với cỡmẫu lớn hơn 
+và các điều kiện khác trước khi ứng dụng lâm sàng.
+Lời cảm ơn: Cảm ơn lãnh đạo chỉhuy Viện 69, BộTư lệnh Lăng Chủtịch HồChí
+Minh và tập thểchỉhuy, nhân viên khoa Hình thái, Viện 69; cũng như lãnh đạo Bộmôn
+Giải phẫu bệnh lý, pháp y, Bệnh viện Quân y 103 đã tạo điều kiện giúp tôi hoàn thành
+nghiên cứu này.
+Tuyên bốvềđóng góp của tác giả: Trần Thái Tú: Chịu trách nhiệm xây dựng
+ý tưởng nghiên cứu, thực hiện các thí nghiệm, phân tích dữliệu và soạn thảo bản thảo
+ban đầu của bài báo; Tưởng Phi Vương: Hướng dẫn khoa học, đóng góp vào thiết kế
+phương pháp nghiên cứu và chỉnh sửa bản thảo.
+Tuyên bốvềxung đột lợi ích: Các tác giảkhẳng định không có bất kỳxung đột
+lợi ích nào liên quan đến nghiên cứu, tài trợ, hoặc xuất bản bài báo này.
+TÀI LIỆU THAM KHẢO
+1.
+A.S. Haka et al., Diagnosing breast cancer by using Raman spectroscopy.
+Proceedings of the National Academy of Sciences, 102(35), pp. 12371-12376,
+2005. DOI: 10.1073/pnas.0501390102
+2.
+K. Hanna et al., Raman spectroscopy: Current applications in breast cancer
+diagnosis, challenges and future prospects, British journal of cancer, 126(8),
+pp. 1125-1139, 2022. DOI: 10.1038/s41416-021-01659-5
+3.
+N.D. Magee et al., Ex vivo diagnosis of lung cancer using a Raman miniprobe,
+The Journal of Physical Chemistry B, 113(23), pp. 8137-8141, 2009. DOI:
+10.1021/jp900379w
