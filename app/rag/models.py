@@ -1,6 +1,6 @@
 """Small data contracts shared by ingestion, indexing and the future WP6B adapter."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any
 
 
@@ -49,6 +49,10 @@ class SearchResponse:
     elapsed_ms: float
     status: str
     synthetic: bool
+    answer: str = ""
+    sources: tuple[dict, ...] = ()
+    backend: str = ""
+    usage: dict = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
