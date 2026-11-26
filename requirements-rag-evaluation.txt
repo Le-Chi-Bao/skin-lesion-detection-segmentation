@@ -1,0 +1,3 @@
+# Install on top of requirements-rag.txt for WP-RAGAS evaluation.
+ragas==0.4.4
+matplotlib==3.11.2
