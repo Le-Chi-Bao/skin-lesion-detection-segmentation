@@ -179,7 +179,7 @@ def test_outbound_revocation_evicts_cache_even_on_bm25(tmp_path):
 
 
 @pytest.mark.parametrize("phase", ["embeddings", "rerank", "completions"])
-def test_revocation_during_any_api_stage_hides_entire_result(tmp_path, phase):
+def test_revocation_during_api_stage_never_returns_unapproved_generation(tmp_path, phase):
     config = settings()
     service, router, _, _, _, approvals = production_fixture(tmp_path, config)
     grant_external(approvals, config)
@@ -193,7 +193,11 @@ def test_revocation_during_any_api_stage_hides_entire_result(tmp_path, phase):
     try:
         result = service.search("skin", "Hybrid", 3, rerank=True, ask=True)
         assert result.status == "outbound_processing_not_approved"
-        assert not result.hits and not result.answer and not result.sources
+        assert not result.answer and not result.sources
+        if phase == "completions":
+            assert result.hits
+        else:
+            assert not result.hits
         assert not service.dense.chunks and not service.dense.embedder._cache
     finally:
         service.close()
@@ -349,7 +353,10 @@ def test_each_stage_requires_its_own_reviewed_route(tmp_path, action):
     try:
         result = service.search("skin", "BM25", rerank=action == "reranking", ask=action == "generation")
         assert result.status == "outbound_processing_not_approved" and not router.calls
-        assert not result.hits and not result.answer and not result.sources
+        if action == "generation":
+            assert result.hits and not result.answer and not result.sources
+        else:
+            assert not result.hits and not result.answer and not result.sources
     finally:
         service.close()
 

@@ -150,14 +150,15 @@ class RAGService:
             raise RAGError("query_possible_patient_identifier_blocked")
 
     def search(self, query: str, mode: str = "Hybrid", top_k: int = 5, *,
-               rerank: bool | None = None, ask: bool = False) -> SearchResponse:
+               rerank: bool | None = None, ask: bool = False, summarize: bool = False) -> SearchResponse:
         start = perf_counter()
         with self._lock:
             if mode not in {"BM25", "Dense", "Hybrid"}:
                 raise RAGError("invalid_retrieval_mode")
             if type(top_k) is not int or not 1 <= top_k <= 100:
                 raise RAGError("invalid_top_k")
-            if not isinstance(query, str) or type(ask) is not bool or rerank is not None and type(rerank) is not bool:
+            if (not isinstance(query, str) or type(ask) is not bool or type(summarize) is not bool
+                    or ask and summarize or rerank is not None and type(rerank) is not bool):
                 raise RAGError("invalid_search_options")
             if self.cloud_client is not None:
                 self.cloud_client.begin()
@@ -168,14 +169,13 @@ class RAGService:
             )
             hits, status, answer, sources = (), "OK", "", ()
             phases = []
+            generation_attempted = False
             if not query.strip():
                 status = "EMPTY_QUERY"
             elif not chunks:
                 status = "EMPTY_INDEX"
             else:
                 try:
-                    if ask and not self.settings.generation.enabled:
-                        raise RAGError("generation_disabled_by_operator")
                     if rerank and not self.settings.reranking.enabled:
                         raise RAGError("reranking_disabled_by_operator")
                     cloud_embedding = hasattr(self.dense.embedder, "prepare_index")
@@ -193,7 +193,8 @@ class RAGService:
                         self._dense_ids = identities
                         self._dense_fingerprint = getattr(self.dense.embedder, "fingerprint", None)
                     retriever = {"BM25": self.bm25, "Dense": self.dense, "Hybrid": self.hybrid}[mode]
-                    count = self.settings.reranking.candidates if rerank else top_k
+                    count = (self.settings.reranking.candidates if rerank else
+                             min(100, top_k * 2) if summarize else top_k)
                     hits = retriever.search(query, count)
                     if rerank and hits:
                         if self.reranker is None:
@@ -209,24 +210,38 @@ class RAGService:
                             if not config.fallback_to_hybrid or mode != "Hybrid":
                                 raise
                             status = "DEGRADED_HYBRID_WITHOUT_RERANK"
-                    hits = hits[:top_k]
+                    if not summarize:
+                        hits = hits[:top_k]
+                    if summarize:
+                        from app.rag.evidence_summary import summarize_evidence
+                        answer, sources = summarize_evidence(query, hits)
+                        if not answer:
+                            status = "INSUFFICIENT_EVIDENCE"
+                            hits = ()
+                        else:
+                            selected_ids = {source["chunk_id"] for source in sources}
+                            hits = tuple(hit for hit in hits if hit.chunk.chunk_id in selected_ids)[:top_k]
                     if ask:
-                        if self.generator is None:
-                            raise RAGError("generator_unavailable")
-                        config = self.settings.generation
-                        evidence = tuple(h.chunk for h in hits[:config.max_evidence])
-                        auth = lambda: self._authorize("generation", config, evidence)
-                        auth()
-                        answer, sources, generated_status = self.generator.generate(query, hits, authorize=auth)
-                        phases.append(("generation", config, evidence))
-                        if generated_status != "OK":
-                            status = generated_status
+                        generation_attempted = True
+                        if not self.settings.generation.enabled:
+                            status = "generation_disabled_by_operator"
+                        elif self.generator is None:
+                            status = "generator_unavailable"
+                        else:
+                            config = self.settings.generation
+                            evidence = tuple(h.chunk for h in hits[:config.max_evidence])
+                            auth = lambda: self._authorize("generation", config, evidence)
+                            auth()
+                            answer, sources, generated_status = self.generator.generate(query, hits, authorize=auth)
+                            phases.append(("generation", config, evidence))
+                            if generated_status != "OK":
+                                status = generated_status
                     # A final live rights check also covers revocation during embedding.
                     hits = tuple(h for h in hits if self._sources[self._receipts[h.chunk.document_id]][1]
                                  .rights.allows(self._documents[h.chunk.document_id]))
                     for action, config, used in phases:
                         self._authorize(action, config, used)
-                    if not hits and not ask:
+                    if not hits and not ask and not summarize:
                         status = "NO_MATCH"
                 except ModelUnavailable as exc:
                     status = str(exc)
@@ -235,7 +250,23 @@ class RAGService:
                 except Exception:
                     status = "retrieval_failed"
                 if status not in {"OK", "NO_MATCH", "INSUFFICIENT_EVIDENCE", "DEGRADED_HYBRID_WITHOUT_RERANK"}:
-                    hits, answer, sources = (), "", ()
+                    can_preserve_retrieval = (ask and generation_attempted and status in {
+                        "generation_disabled_by_operator", "generator_unavailable",
+                        "outbound_processing_not_approved",
+                    })
+                    if can_preserve_retrieval:
+                        try:
+                            current, _ = self._refresh()
+                            trusted = {chunk.chunk_id: chunk for chunk in current}
+                            hits = tuple(hit for hit in hits
+                                         if (match := trusted.get(hit.chunk.chunk_id)) is not None
+                                         and match.text == hit.chunk.text
+                                         and match.document_id == hit.chunk.document_id)
+                        except Exception:
+                            hits = ()
+                    else:
+                        hits = ()
+                    answer, sources = "", ()
             if ask and status in {"EMPTY_INDEX", "EMPTY_QUERY"}:
                 from app.rag.cloud.generation import INSUFFICIENT
                 answer, status = INSUFFICIENT, "INSUFFICIENT_EVIDENCE"

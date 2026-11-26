@@ -167,6 +167,43 @@ def test_returned_metadata_cannot_mutate_internal_corpus(tmp_path):
     assert again.chunk.citation["rights"]["ai_use"] == "allowed"
 
 
+def test_evidence_summary_is_extractive_and_cites_retrieved_chunks():
+    service = create_service(demo=True)
+    try:
+        response = service.search("skin lesion observation", "BM25", summarize=True)
+        assert response.status == "OK"
+        assert "không phải câu trả lời do LLM tạo" in response.answer
+        assert response.sources
+        for source in response.sources:
+            hit = next(hit for hit in response.hits if hit.chunk.chunk_id == source["chunk_id"])
+            assert source["excerpt"] in hit.chunk.text
+            assert source["citation"]["document_id"] == hit.chunk.document_id
+            assert source["evidence_id"].startswith("E")
+    finally:
+        service.close()
+
+
+def test_generation_disabled_keeps_local_retrieval_results():
+    service = create_service(demo=True)
+    try:
+        response = service.search("skin lesion", "BM25", ask=True)
+        assert response.status == "generation_disabled_by_operator"
+        assert response.hits
+        assert not response.answer
+    finally:
+        service.close()
+
+
+def test_evidence_summary_abstains_when_no_retrieved_sentence_matches():
+    service = create_service(demo=True)
+    try:
+        response = service.search("quantum gravity telescope", "BM25", summarize=True)
+        assert response.status == "INSUFFICIENT_EVIDENCE"
+        assert not response.hits and not response.answer and not response.sources
+    finally:
+        service.close()
+
+
 def test_unavailable_dense_does_not_silently_fall_back(tmp_path):
     class Missing:
         def embed_documents(self, texts):
